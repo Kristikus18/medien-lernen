@@ -1600,5 +1600,816 @@ window.LEARNING_DATA = [
         ]
       }
     ]
+  },
+  {
+    "id": "w3",
+    "title": "Woche 3",
+    "days": [
+      {
+        "id": "t1",
+        "label": "Tag 1",
+        "topic": "Zielgruppenanalyse",
+        "learning_goal": "Du verstehst, was eine Zielgruppe ist und welche Informationen für ein Designprojekt wichtig sind.",
+        "practice": "Beschreibe die Zielgruppe für ein Plakat oder einen Instagram-Post für ein kleines Café.",
+        "words": [
+          {
+            "id": "w3-t1-w1",
+            "word": "die Zielgruppe",
+            "translation": "цільова аудиторія",
+            "explanation": "Eine Zielgruppe sind Menschen, die ein Produkt oder eine Botschaft erreichen soll."
+          },
+          {
+            "id": "w3-t1-w2",
+            "word": "die Zielgruppenanalyse",
+            "translation": "аналіз цільової аудиторії",
+            "explanation": "Bei der Zielgruppenanalyse sammelt man wichtige Informationen über eine Zielgruppe."
+          },
+          {
+            "id": "w3-t1-w3",
+            "word": "der Kunde",
+            "translation": "клієнт, замовник",
+            "explanation": "Der Kunde gibt einer Medienfirma einen Auftrag."
+          },
+          {
+            "id": "w3-t1-w4",
+            "word": "das Interesse",
+            "translation": "інтерес",
+            "explanation": "Ein Interesse zeigt, was eine Person gerne mag oder wissen möchte."
+          },
+          {
+            "id": "w3-t1-w5",
+            "word": "das Bedürfnis",
+            "translation": "потреба",
+            "explanation": "Ein Bedürfnis ist etwas, das eine Person braucht oder möchte."
+          },
+          {
+            "id": "w3-t1-w6",
+            "word": "das Alter",
+            "translation": "вік",
+            "explanation": "Das Alter hilft, eine Zielgruppe genauer zu beschreiben."
+          },
+          {
+            "id": "w3-t1-w7",
+            "word": "der Wohnort",
+            "translation": "місце проживання",
+            "explanation": "Der Wohnort zeigt, wo eine Person lebt."
+          },
+          {
+            "id": "w3-t1-w8",
+            "word": "der Beruf",
+            "translation": "професія",
+            "explanation": "Der Beruf kann wichtig für die Zielgruppenanalyse sein."
+          },
+          {
+            "id": "w3-t1-w9",
+            "word": "das Einkommen",
+            "translation": "дохід",
+            "explanation": "Das Einkommen sagt, wie viel Geld eine Person ungefähr hat."
+          },
+          {
+            "id": "w3-t1-w10",
+            "word": "das Verhalten",
+            "translation": "поведінка",
+            "explanation": "Das Verhalten zeigt, wie eine Person handelt."
+          },
+          {
+            "id": "w3-t1-w11",
+            "word": "die Mediennutzung",
+            "translation": "використання медіа",
+            "explanation": "Mediennutzung bedeutet, welche Medien eine Person verwendet."
+          },
+          {
+            "id": "w3-t1-w12",
+            "word": "der Kanal",
+            "translation": "канал",
+            "explanation": "Ein Kanal ist zum Beispiel Instagram, TikTok, eine Website oder ein Flyer."
+          },
+          {
+            "id": "w3-t1-w13",
+            "word": "die Ansprache",
+            "translation": "звернення, стиль комунікації",
+            "explanation": "Die Ansprache beschreibt, wie man mit der Zielgruppe spricht."
+          },
+          {
+            "id": "w3-t1-w14",
+            "word": "die Werbebotschaft",
+            "translation": "рекламне повідомлення",
+            "explanation": "Eine Werbebotschaft sagt kurz, was wichtig oder besonders ist."
+          },
+          {
+            "id": "w3-t1-w15",
+            "word": "die Designentscheidung",
+            "translation": "дизайнерське рішення",
+            "explanation": "Eine Designentscheidung ist eine bewusste Wahl im Design, zum Beispiel Farbe oder Schrift."
+          }
+        ],
+        "questions": [
+          {
+            "id": "w3-t1-q1",
+            "question": "Was ist eine Zielgruppe?",
+            "answer": "Eine Zielgruppe sind Menschen, die man mit einer Botschaft erreichen möchte.",
+            "translation": "Що таке цільова аудиторія? Це люди, до яких хочуть донести повідомлення."
+          },
+          {
+            "id": "w3-t1-q2",
+            "question": "Warum ist die Zielgruppe wichtig?",
+            "answer": "Sie hilft, Design und Text passend zu planen.",
+            "translation": "Чому цільова аудиторія важлива? Вона допомагає правильно планувати дизайн і текст."
+          },
+          {
+            "id": "w3-t1-q3",
+            "question": "Welche Daten sind wichtig?",
+            "answer": "Alter, Wohnort, Interessen und Mediennutzung sind wichtig.",
+            "translation": "Які дані важливі? Важливі вік, місце проживання, інтереси та використання медіа."
+          },
+          {
+            "id": "w3-t1-q4",
+            "question": "Was bedeutet Mediennutzung?",
+            "answer": "Mediennutzung bedeutet, welche Medien eine Person verwendet.",
+            "translation": "Що означає використання медіа? Це означає, які медіа використовує людина."
+          },
+          {
+            "id": "w3-t1-q5",
+            "question": "Was ist ein Kanal?",
+            "answer": "Ein Kanal ist ein Weg für Kommunikation, zum Beispiel Instagram.",
+            "translation": "Що таке канал? Це шлях для комунікації, наприклад Instagram."
+          },
+          {
+            "id": "w3-t1-q6",
+            "question": "Wie findet man Interessen heraus?",
+            "answer": "Man fragt, beobachtet oder recherchiert online.",
+            "translation": "Як дізнатися інтереси? Питають, спостерігають або шукають інформацію онлайн."
+          },
+          {
+            "id": "w3-t1-q7",
+            "question": "Was ist eine Werbebotschaft?",
+            "answer": "Eine Werbebotschaft ist die wichtigste Aussage einer Werbung.",
+            "translation": "Що таке рекламне повідомлення? Це найважливіша думка реклами."
+          },
+          {
+            "id": "w3-t1-q8",
+            "question": "Warum muss die Ansprache passen?",
+            "answer": "Die Zielgruppe soll den Text gut verstehen.",
+            "translation": "Чому звернення має підходити? Цільова аудиторія повинна добре розуміти текст."
+          },
+          {
+            "id": "w3-t1-q9",
+            "question": "Wie hilft die Analyse beim Design?",
+            "answer": "Sie hilft bei Farben, Bildern, Schrift und Format.",
+            "translation": "Як аналіз допомагає в дизайні? Він допомагає з кольорами, зображеннями, шрифтом і форматом."
+          },
+          {
+            "id": "w3-t1-q10",
+            "question": "Was kann man für ein Plakat prüfen?",
+            "answer": "Man prüft, ob das Plakat zur Zielgruppe passt.",
+            "translation": "Що можна перевірити для плаката? Перевіряють, чи плакат підходить цільовій аудиторії."
+          }
+        ]
+      },
+      {
+        "id": "t2",
+        "label": "Tag 2",
+        "topic": "Persona und Nutzerbedürfnisse",
+        "learning_goal": "Du lernst, eine einfache Persona für ein Medienprojekt zu erstellen.",
+        "practice": "Erstelle eine Persona für eine Person, die einen Flyer für einen Sprachkurs sieht.",
+        "words": [
+          {
+            "id": "w3-t2-w1",
+            "word": "die Persona",
+            "translation": "персона, образ типового користувача",
+            "explanation": "Eine Persona ist eine erfundene Person, die eine Zielgruppe zeigt."
+          },
+          {
+            "id": "w3-t2-w2",
+            "word": "das Profil",
+            "translation": "профіль",
+            "explanation": "Ein Profil beschreibt eine Person mit wichtigen Informationen."
+          },
+          {
+            "id": "w3-t2-w3",
+            "word": "der Name",
+            "translation": "ім'я",
+            "explanation": "Ein Name macht eine Persona persönlicher."
+          },
+          {
+            "id": "w3-t2-w4",
+            "word": "der Alltag",
+            "translation": "повсякденне життя",
+            "explanation": "Der Alltag zeigt, wie eine Person normalerweise lebt."
+          },
+          {
+            "id": "w3-t2-w5",
+            "word": "das Ziel",
+            "translation": "мета",
+            "explanation": "Ein Ziel ist etwas, das eine Person erreichen möchte."
+          },
+          {
+            "id": "w3-t2-w6",
+            "word": "das Problem",
+            "translation": "проблема",
+            "explanation": "Ein Problem ist etwas, das schwierig ist oder stört."
+          },
+          {
+            "id": "w3-t2-w7",
+            "word": "die Motivation",
+            "translation": "мотивація",
+            "explanation": "Motivation ist der Grund, warum eine Person etwas tut."
+          },
+          {
+            "id": "w3-t2-w8",
+            "word": "die Erwartung",
+            "translation": "очікування",
+            "explanation": "Eine Erwartung ist etwas, das eine Person erwartet oder hofft."
+          },
+          {
+            "id": "w3-t2-w9",
+            "word": "die Gewohnheit",
+            "translation": "звичка",
+            "explanation": "Eine Gewohnheit ist etwas, das eine Person oft macht."
+          },
+          {
+            "id": "w3-t2-w10",
+            "word": "das Lieblingsmedium",
+            "translation": "улюблене медіа",
+            "explanation": "Ein Lieblingsmedium ist das Medium, das eine Person besonders gerne nutzt."
+          },
+          {
+            "id": "w3-t2-w11",
+            "word": "die Kaufentscheidung",
+            "translation": "рішення про покупку",
+            "explanation": "Eine Kaufentscheidung ist die Entscheidung, etwas zu kaufen."
+          },
+          {
+            "id": "w3-t2-w12",
+            "word": "der Nutzer",
+            "translation": "користувач",
+            "explanation": "Ein Nutzer verwendet ein Produkt, eine Website oder eine App."
+          },
+          {
+            "id": "w3-t2-w13",
+            "word": "die Nutzerin",
+            "translation": "користувачка",
+            "explanation": "Eine Nutzerin verwendet ein Produkt, eine Website oder eine App."
+          },
+          {
+            "id": "w3-t2-w14",
+            "word": "die Beschreibung",
+            "translation": "опис",
+            "explanation": "Eine Beschreibung erklärt eine Person oder eine Situation."
+          },
+          {
+            "id": "w3-t2-w15",
+            "word": "das Zitat",
+            "translation": "цитата",
+            "explanation": "Ein Zitat ist ein kurzer Satz, der eine Persona lebendiger macht."
+          }
+        ],
+        "questions": [
+          {
+            "id": "w3-t2-q1",
+            "question": "Was ist eine Persona?",
+            "answer": "Eine Persona ist eine erfundene Beispielperson für eine Zielgruppe.",
+            "translation": "Що таке персона? Це вигадана прикладова людина для цільової аудиторії."
+          },
+          {
+            "id": "w3-t2-q2",
+            "question": "Warum nutzt man eine Persona?",
+            "answer": "Man versteht die Zielgruppe besser.",
+            "translation": "Навіщо використовують персону? Так краще розуміють цільову аудиторію."
+          },
+          {
+            "id": "w3-t2-q3",
+            "question": "Welche Informationen braucht eine Persona?",
+            "answer": "Sie braucht Name, Alter, Ziel, Problem und Mediennutzung.",
+            "translation": "Яка інформація потрібна персоні? Потрібні ім'я, вік, мета, проблема і використання медіа."
+          },
+          {
+            "id": "w3-t2-q4",
+            "question": "Was ist ein Ziel?",
+            "answer": "Ein Ziel ist etwas, das eine Person erreichen möchte.",
+            "translation": "Що таке мета? Це те, чого людина хоче досягти."
+          },
+          {
+            "id": "w3-t2-q5",
+            "question": "Was ist ein Problem?",
+            "answer": "Ein Problem ist etwas, das für die Person schwierig ist.",
+            "translation": "Що таке проблема? Це те, що для людини складне."
+          },
+          {
+            "id": "w3-t2-q6",
+            "question": "Was zeigt der Alltag?",
+            "answer": "Der Alltag zeigt, wie eine Person lebt und Medien nutzt.",
+            "translation": "Що показує повсякденне життя? Воно показує, як людина живе і використовує медіа."
+          },
+          {
+            "id": "w3-t2-q7",
+            "question": "Warum ist Motivation wichtig?",
+            "answer": "Sie zeigt, warum eine Person etwas tun möchte.",
+            "translation": "Чому мотивація важлива? Вона показує, чому людина хоче щось зробити."
+          },
+          {
+            "id": "w3-t2-q8",
+            "question": "Was kann ein Lieblingsmedium sein?",
+            "answer": "Ein Lieblingsmedium kann Instagram, TikTok, YouTube oder Print sein.",
+            "translation": "Що може бути улюбленим медіа? Це може бути Instagram, TikTok, YouTube або друк."
+          },
+          {
+            "id": "w3-t2-q9",
+            "question": "Wie hilft eine Persona beim Layout?",
+            "answer": "Sie hilft, Bilder, Texte und Farben passend zu wählen.",
+            "translation": "Як персона допомагає в макеті? Вона допомагає підібрати зображення, тексти і кольори."
+          },
+          {
+            "id": "w3-t2-q10",
+            "question": "Was schreibt man als Zitat?",
+            "answer": "Man schreibt einen kurzen Satz aus Sicht der Persona.",
+            "translation": "Що пишуть як цитату? Пишуть коротке речення з погляду персони."
+          }
+        ]
+      },
+      {
+        "id": "t3",
+        "label": "Tag 3",
+        "topic": "Marktanalyse und Kundenbedürfnisse",
+        "learning_goal": "Du verstehst einfache Marktinformationen und kannst Kundenbedürfnisse erkennen.",
+        "practice": "Sammle einfache Marktinformationen für ein lokales Fitnessstudio oder eine Musikschule.",
+        "words": [
+          {
+            "id": "w3-t3-w1",
+            "word": "der Markt",
+            "translation": "ринок",
+            "explanation": "Der Markt ist der Bereich, in dem Produkte oder Dienstleistungen angeboten werden."
+          },
+          {
+            "id": "w3-t3-w2",
+            "word": "die Marktanalyse",
+            "translation": "аналіз ринку",
+            "explanation": "Eine Marktanalyse untersucht den Markt und die Kunden."
+          },
+          {
+            "id": "w3-t3-w3",
+            "word": "die Nachfrage",
+            "translation": "попит",
+            "explanation": "Nachfrage bedeutet, dass Menschen etwas kaufen oder nutzen möchten."
+          },
+          {
+            "id": "w3-t3-w4",
+            "word": "das Angebot",
+            "translation": "пропозиція",
+            "explanation": "Ein Angebot ist das, was eine Firma verkauft oder anbietet."
+          },
+          {
+            "id": "w3-t3-w5",
+            "word": "die Kundengruppe",
+            "translation": "група клієнтів",
+            "explanation": "Eine Kundengruppe sind Kunden mit ähnlichen Bedürfnissen."
+          },
+          {
+            "id": "w3-t3-w6",
+            "word": "der Trend",
+            "translation": "тренд",
+            "explanation": "Ein Trend zeigt, was gerade beliebt oder wichtig wird."
+          },
+          {
+            "id": "w3-t3-w7",
+            "word": "die Branche",
+            "translation": "галузь",
+            "explanation": "Eine Branche ist ein Arbeitsbereich, zum Beispiel Medien oder Gastronomie."
+          },
+          {
+            "id": "w3-t3-w8",
+            "word": "das Produkt",
+            "translation": "продукт",
+            "explanation": "Ein Produkt ist etwas, das verkauft wird."
+          },
+          {
+            "id": "w3-t3-w9",
+            "word": "die Dienstleistung",
+            "translation": "послуга",
+            "explanation": "Eine Dienstleistung ist eine Arbeit, die für Kunden gemacht wird."
+          },
+          {
+            "id": "w3-t3-w10",
+            "word": "der Preis",
+            "translation": "ціна",
+            "explanation": "Der Preis sagt, wie viel etwas kostet."
+          },
+          {
+            "id": "w3-t3-w11",
+            "word": "die Qualität",
+            "translation": "якість",
+            "explanation": "Qualität beschreibt, wie gut etwas ist."
+          },
+          {
+            "id": "w3-t3-w12",
+            "word": "die Chance",
+            "translation": "можливість, шанс",
+            "explanation": "Eine Chance ist eine gute Möglichkeit für ein Projekt."
+          },
+          {
+            "id": "w3-t3-w13",
+            "word": "das Risiko",
+            "translation": "ризик",
+            "explanation": "Ein Risiko ist eine mögliche Schwierigkeit oder Gefahr."
+          },
+          {
+            "id": "w3-t3-w14",
+            "word": "die Recherche",
+            "translation": "дослідження, пошук інформації",
+            "explanation": "Recherche bedeutet, Informationen zu suchen und zu prüfen."
+          },
+          {
+            "id": "w3-t3-w15",
+            "word": "die Quelle",
+            "translation": "джерело",
+            "explanation": "Eine Quelle zeigt, woher eine Information kommt."
+          }
+        ],
+        "questions": [
+          {
+            "id": "w3-t3-q1",
+            "question": "Was ist ein Markt?",
+            "answer": "Ein Markt ist ein Bereich mit Angeboten und Kunden.",
+            "translation": "Що таке ринок? Це сфера з пропозиціями і клієнтами."
+          },
+          {
+            "id": "w3-t3-q2",
+            "question": "Was macht man bei einer Marktanalyse?",
+            "answer": "Man sammelt Informationen über Kunden, Angebote und Trends.",
+            "translation": "Що роблять під час аналізу ринку? Збирають інформацію про клієнтів, пропозиції і тренди."
+          },
+          {
+            "id": "w3-t3-q3",
+            "question": "Was bedeutet Nachfrage?",
+            "answer": "Nachfrage bedeutet, dass Menschen etwas brauchen oder kaufen möchten.",
+            "translation": "Що означає попит? Це означає, що люди щось потребують або хочуть купити."
+          },
+          {
+            "id": "w3-t3-q4",
+            "question": "Was ist eine Dienstleistung?",
+            "answer": "Eine Dienstleistung ist eine Arbeit für Kunden.",
+            "translation": "Що таке послуга? Це робота для клієнтів."
+          },
+          {
+            "id": "w3-t3-q5",
+            "question": "Warum ist der Preis wichtig?",
+            "answer": "Der Preis beeinflusst die Kaufentscheidung.",
+            "translation": "Чому ціна важлива? Вона впливає на рішення про покупку."
+          },
+          {
+            "id": "w3-t3-q6",
+            "question": "Was ist ein Trend?",
+            "answer": "Ein Trend zeigt, was gerade beliebt oder wichtig ist.",
+            "translation": "Що таке тренд? Він показує, що зараз популярне або важливе."
+          },
+          {
+            "id": "w3-t3-q7",
+            "question": "Warum braucht man Quellen?",
+            "answer": "Quellen zeigen, ob Informationen zuverlässig sind.",
+            "translation": "Навіщо потрібні джерела? Вони показують, чи інформація надійна."
+          },
+          {
+            "id": "w3-t3-q8",
+            "question": "Was ist eine Chance?",
+            "answer": "Eine Chance ist eine gute Möglichkeit für ein Projekt.",
+            "translation": "Що таке шанс? Це хороша можливість для проєкту."
+          },
+          {
+            "id": "w3-t3-q9",
+            "question": "Was ist ein Risiko?",
+            "answer": "Ein Risiko ist eine mögliche Schwierigkeit.",
+            "translation": "Що таке ризик? Це можлива складність."
+          },
+          {
+            "id": "w3-t3-q10",
+            "question": "Wie hilft die Marktanalyse in einer Medienfirma?",
+            "answer": "Sie hilft, passende Medien und Botschaften zu planen.",
+            "translation": "Як аналіз ринку допомагає в медіафірмі? Він допомагає планувати відповідні медіа і повідомлення."
+          }
+        ]
+      },
+      {
+        "id": "t4",
+        "label": "Tag 4",
+        "topic": "Konkurrenzanalyse und Positionierung",
+        "learning_goal": "Du lernst, Mitbewerber einfach zu vergleichen und Unterschiede zu erkennen.",
+        "practice": "Vergleiche zwei Websites oder Instagram-Profile von ähnlichen Firmen.",
+        "words": [
+          {
+            "id": "w3-t4-w1",
+            "word": "die Konkurrenz",
+            "translation": "конкуренція",
+            "explanation": "Konkurrenz sind andere Firmen mit ähnlichen Angeboten."
+          },
+          {
+            "id": "w3-t4-w2",
+            "word": "der Mitbewerber",
+            "translation": "конкурент",
+            "explanation": "Ein Mitbewerber ist eine Firma, die ein ähnliches Angebot hat."
+          },
+          {
+            "id": "w3-t4-w3",
+            "word": "die Wettbewerbsanalyse",
+            "translation": "аналіз конкурентів",
+            "explanation": "Eine Wettbewerbsanalyse vergleicht verschiedene Mitbewerber."
+          },
+          {
+            "id": "w3-t4-w4",
+            "word": "die Strategie",
+            "translation": "стратегія",
+            "explanation": "Eine Strategie ist ein Plan, um ein Ziel zu erreichen."
+          },
+          {
+            "id": "w3-t4-w5",
+            "word": "die Positionierung",
+            "translation": "позиціонування",
+            "explanation": "Positionierung zeigt, wie sich eine Marke im Markt zeigt."
+          },
+          {
+            "id": "w3-t4-w6",
+            "word": "das Logo",
+            "translation": "логотип",
+            "explanation": "Ein Logo ist ein Zeichen für eine Marke oder Firma."
+          },
+          {
+            "id": "w3-t4-w7",
+            "word": "die Website",
+            "translation": "вебсайт",
+            "explanation": "Eine Website zeigt Informationen über eine Firma im Internet."
+          },
+          {
+            "id": "w3-t4-w8",
+            "word": "der Social-Media-Auftritt",
+            "translation": "присутність у соцмережах",
+            "explanation": "Der Social-Media-Auftritt zeigt eine Firma auf Plattformen wie Instagram oder TikTok."
+          },
+          {
+            "id": "w3-t4-w9",
+            "word": "der Vorteil",
+            "translation": "перевага",
+            "explanation": "Ein Vorteil ist etwas Positives oder Nützliches."
+          },
+          {
+            "id": "w3-t4-w10",
+            "word": "der Nachteil",
+            "translation": "недолік",
+            "explanation": "Ein Nachteil ist etwas Negatives oder Schwieriges."
+          },
+          {
+            "id": "w3-t4-w11",
+            "word": "die Stärke",
+            "translation": "сильна сторона",
+            "explanation": "Eine Stärke ist etwas, das gut funktioniert."
+          },
+          {
+            "id": "w3-t4-w12",
+            "word": "die Schwäche",
+            "translation": "слабка сторона",
+            "explanation": "Eine Schwäche ist etwas, das verbessert werden kann."
+          },
+          {
+            "id": "w3-t4-w13",
+            "word": "der Vergleich",
+            "translation": "порівняння",
+            "explanation": "Ein Vergleich zeigt Unterschiede und Gemeinsamkeiten."
+          },
+          {
+            "id": "w3-t4-w14",
+            "word": "die Referenz",
+            "translation": "референс, приклад роботи",
+            "explanation": "Eine Referenz ist ein Beispiel für eine frühere Arbeit."
+          },
+          {
+            "id": "w3-t4-w15",
+            "word": "das Alleinstellungsmerkmal",
+            "translation": "унікальна перевага",
+            "explanation": "Ein Alleinstellungsmerkmal zeigt, was eine Marke besonders macht."
+          }
+        ],
+        "questions": [
+          {
+            "id": "w3-t4-q1",
+            "question": "Was ist Konkurrenz?",
+            "answer": "Konkurrenz sind andere Firmen mit ähnlichen Angeboten.",
+            "translation": "Що таке конкуренція? Це інші фірми зі схожими пропозиціями."
+          },
+          {
+            "id": "w3-t4-q2",
+            "question": "Was ist ein Mitbewerber?",
+            "answer": "Ein Mitbewerber ist eine Firma im gleichen oder ähnlichen Markt.",
+            "translation": "Що таке конкурент? Це фірма на тому самому або схожому ринку."
+          },
+          {
+            "id": "w3-t4-q3",
+            "question": "Was vergleicht man bei Mitbewerbern?",
+            "answer": "Man vergleicht Website, Logo, Preise, Angebote und Social Media.",
+            "translation": "Що порівнюють у конкурентів? Порівнюють сайт, логотип, ціни, пропозиції і соцмережі."
+          },
+          {
+            "id": "w3-t4-q4",
+            "question": "Was ist eine Stärke?",
+            "answer": "Eine Stärke ist etwas, das sehr gut ist.",
+            "translation": "Що таке сильна сторона? Це те, що є дуже хорошим."
+          },
+          {
+            "id": "w3-t4-q5",
+            "question": "Was ist eine Schwäche?",
+            "answer": "Eine Schwäche ist etwas, das besser werden kann.",
+            "translation": "Що таке слабка сторона? Це те, що можна покращити."
+          },
+          {
+            "id": "w3-t4-q6",
+            "question": "Warum ist Positionierung wichtig?",
+            "answer": "Sie zeigt, wie eine Marke wahrgenommen werden soll.",
+            "translation": "Чому позиціонування важливе? Воно показує, як бренд має сприйматися."
+          },
+          {
+            "id": "w3-t4-q7",
+            "question": "Was ist ein Alleinstellungsmerkmal?",
+            "answer": "Es zeigt, was eine Marke besonders macht.",
+            "translation": "Що таке унікальна перевага? Вона показує, що робить бренд особливим."
+          },
+          {
+            "id": "w3-t4-q8",
+            "question": "Wie hilft eine Konkurrenzanalyse beim Design?",
+            "answer": "Sie zeigt, wie man sich visuell unterscheiden kann.",
+            "translation": "Як аналіз конкурентів допомагає в дизайні? Він показує, як можна візуально відрізнятися."
+          },
+          {
+            "id": "w3-t4-q9",
+            "question": "Was ist eine Referenz?",
+            "answer": "Eine Referenz ist ein Beispiel für eine frühere Arbeit.",
+            "translation": "Що таке референс? Це приклад попередньої роботи."
+          },
+          {
+            "id": "w3-t4-q10",
+            "question": "Was schreibt man in einen Vergleich?",
+            "answer": "Man schreibt Unterschiede, Stärken und Schwächen auf.",
+            "translation": "Що пишуть у порівнянні? Записують відмінності, сильні й слабкі сторони."
+          }
+        ]
+      },
+      {
+        "id": "t5",
+        "label": "Tag 5",
+        "topic": "Trends, Insights und Analysebericht",
+        "learning_goal": "Du kannst einfache Erkenntnisse sammeln und sie kurz für ein Medienprojekt zusammenfassen.",
+        "practice": "Schreibe einen kurzen Analysebericht mit 3 Erkenntnissen und 2 Empfehlungen für ein Social-Media-Projekt.",
+        "words": [
+          {
+            "id": "w3-t5-w1",
+            "word": "der Trend",
+            "translation": "тренд",
+            "explanation": "Ein Trend zeigt, was aktuell beliebt oder wichtig ist."
+          },
+          {
+            "id": "w3-t5-w2",
+            "word": "die Beobachtung",
+            "translation": "спостереження",
+            "explanation": "Eine Beobachtung ist etwas, das man sieht oder bemerkt."
+          },
+          {
+            "id": "w3-t5-w3",
+            "word": "die Erkenntnis",
+            "translation": "висновок, усвідомлення",
+            "explanation": "Eine Erkenntnis ist eine wichtige Information, die man verstanden hat."
+          },
+          {
+            "id": "w3-t5-w4",
+            "word": "die Empfehlung",
+            "translation": "рекомендація",
+            "explanation": "Eine Empfehlung sagt, was man machen sollte."
+          },
+          {
+            "id": "w3-t5-w5",
+            "word": "der Bericht",
+            "translation": "звіт",
+            "explanation": "Ein Bericht fasst Informationen geordnet zusammen."
+          },
+          {
+            "id": "w3-t5-w6",
+            "word": "die Zusammenfassung",
+            "translation": "підсумок",
+            "explanation": "Eine Zusammenfassung nennt die wichtigsten Punkte kurz."
+          },
+          {
+            "id": "w3-t5-w7",
+            "word": "das Ergebnis",
+            "translation": "результат",
+            "explanation": "Ein Ergebnis ist das, was am Ende herauskommt."
+          },
+          {
+            "id": "w3-t5-w8",
+            "word": "die Präsentation",
+            "translation": "презентація",
+            "explanation": "Eine Präsentation zeigt Ergebnisse für Kunden oder ein Team."
+          },
+          {
+            "id": "w3-t5-w9",
+            "word": "die Grafik",
+            "translation": "графіка",
+            "explanation": "Eine Grafik zeigt Informationen visuell."
+          },
+          {
+            "id": "w3-t5-w10",
+            "word": "das Diagramm",
+            "translation": "діаграма",
+            "explanation": "Ein Diagramm zeigt Zahlen oder Vergleiche als Bild."
+          },
+          {
+            "id": "w3-t5-w11",
+            "word": "die Tabelle",
+            "translation": "таблиця",
+            "explanation": "Eine Tabelle ordnet Informationen in Zeilen und Spalten."
+          },
+          {
+            "id": "w3-t5-w12",
+            "word": "die Entscheidung",
+            "translation": "рішення",
+            "explanation": "Eine Entscheidung ist eine Wahl zwischen Möglichkeiten."
+          },
+          {
+            "id": "w3-t5-w13",
+            "word": "der Maßnahmenplan",
+            "translation": "план дій",
+            "explanation": "Ein Maßnahmenplan sagt, welche Schritte gemacht werden."
+          },
+          {
+            "id": "w3-t5-w14",
+            "word": "die Priorität",
+            "translation": "пріоритет",
+            "explanation": "Eine Priorität zeigt, was besonders wichtig ist."
+          },
+          {
+            "id": "w3-t5-w15",
+            "word": "das Fazit",
+            "translation": "висновок",
+            "explanation": "Ein Fazit nennt am Ende die wichtigste Aussage."
+          }
+        ],
+        "questions": [
+          {
+            "id": "w3-t5-q1",
+            "question": "Was ist ein Trend?",
+            "answer": "Ein Trend zeigt, was aktuell beliebt oder wichtig ist.",
+            "translation": "Що таке тренд? Він показує, що зараз популярне або важливе."
+          },
+          {
+            "id": "w3-t5-q2",
+            "question": "Was ist eine Beobachtung?",
+            "answer": "Eine Beobachtung ist etwas, das man sieht oder bemerkt.",
+            "translation": "Що таке спостереження? Це те, що людина бачить або помічає."
+          },
+          {
+            "id": "w3-t5-q3",
+            "question": "Was ist eine Erkenntnis?",
+            "answer": "Eine Erkenntnis ist eine wichtige Information aus der Analyse.",
+            "translation": "Що таке висновок? Це важлива інформація з аналізу."
+          },
+          {
+            "id": "w3-t5-q4",
+            "question": "Was steht in einem Bericht?",
+            "answer": "In einem Bericht stehen Informationen, Ergebnisse und Empfehlungen.",
+            "translation": "Що міститься у звіті? У звіті є інформація, результати і рекомендації."
+          },
+          {
+            "id": "w3-t5-q5",
+            "question": "Warum nutzt man Grafiken?",
+            "answer": "Grafiken machen Informationen schneller verständlich.",
+            "translation": "Навіщо використовують графіки? Вони роблять інформацію швидше зрозумілою."
+          },
+          {
+            "id": "w3-t5-q6",
+            "question": "Was zeigt ein Diagramm?",
+            "answer": "Ein Diagramm zeigt Zahlen oder Vergleiche visuell.",
+            "translation": "Що показує діаграма? Вона візуально показує числа або порівняння."
+          },
+          {
+            "id": "w3-t5-q7",
+            "question": "Was ist eine Empfehlung?",
+            "answer": "Eine Empfehlung sagt, was man als Nächstes tun sollte.",
+            "translation": "Що таке рекомендація? Вона говорить, що треба робити далі."
+          },
+          {
+            "id": "w3-t5-q8",
+            "question": "Was ist ein Maßnahmenplan?",
+            "answer": "Ein Maßnahmenplan zeigt die nächsten Schritte.",
+            "translation": "Що таке план дій? Він показує наступні кроки."
+          },
+          {
+            "id": "w3-t5-q9",
+            "question": "Warum sind Prioritäten wichtig?",
+            "answer": "Prioritäten zeigen, was zuerst gemacht werden soll.",
+            "translation": "Чому пріоритети важливі? Вони показують, що треба зробити спочатку."
+          },
+          {
+            "id": "w3-t5-q10",
+            "question": "Was schreibt man ins Fazit?",
+            "answer": "Man schreibt die wichtigste Aussage kurz auf.",
+            "translation": "Що пишуть у висновку? Коротко записують найважливішу думку."
+          }
+        ]
+      }
+    ]
   }
 ];
