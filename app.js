@@ -1,7 +1,8 @@
 const data = window.LEARNING_DATA || [];
+const appVersion = "medien-lernen-v7";
 
 const state = {
-  weekIndex: 0,
+  weekIndex: getInitialWeekIndex(),
   dayIndex: 0,
   mode: "words",
   query: "",
@@ -31,6 +32,25 @@ function loadProgress() {
   } catch {
     return {};
   }
+}
+
+function getInitialWeekIndex() {
+  const params = new URLSearchParams(window.location.search);
+  const week = params.get("week");
+  if (week) {
+    const index = data.findIndex((item) => item.id === week || item.title.toLowerCase() === week.toLowerCase());
+    if (index >= 0) return index;
+  }
+  return Math.max(0, data.length - 1);
+}
+
+function clearOldCaches() {
+  if (!("caches" in window)) return;
+  caches.keys().then((keys) => {
+    keys
+      .filter((key) => key.startsWith("medien-lernen-") && key !== appVersion)
+      .forEach((key) => caches.delete(key));
+  });
 }
 
 function saveProgress() {
@@ -331,9 +351,10 @@ importProgressButton.addEventListener("click", importProgress);
 
 if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
   navigator.serviceWorker
-    .register("./sw.js?v=6")
+    .register("./sw.js?v=7")
     .then((registration) => registration.update())
     .catch(() => {});
 }
 
+clearOldCaches();
 render();
