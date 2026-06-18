@@ -1,4 +1,4 @@
-const CACHE_NAME = "medien-lernen-v7";
+const CACHE_NAME = "medien-lernen-v8";
 const FILES = [
   "./",
   "./index.html",

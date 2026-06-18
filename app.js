@@ -1,16 +1,19 @@
 const data = window.LEARNING_DATA || [];
-const appVersion = "medien-lernen-v7";
+const appVersion = "medien-lernen-v8";
+const storageKey = "medien-lernen-progress-v1";
+const selectionKey = "medien-lernen-selection-v1";
+
+const initialWeekIndex = getInitialWeekIndex();
 
 const state = {
-  weekIndex: getInitialWeekIndex(),
-  dayIndex: 0,
+  weekIndex: initialWeekIndex,
+  dayIndex: getInitialDayIndex(initialWeekIndex),
   mode: "words",
   query: "",
   practiceIndex: 0,
   practiceRevealed: false,
 };
 
-const storageKey = "medien-lernen-progress-v1";
 const progress = loadProgress();
 
 const weekTabs = document.querySelector("#weekTabs");
@@ -41,7 +44,44 @@ function getInitialWeekIndex() {
     const index = data.findIndex((item) => item.id === week || item.title.toLowerCase() === week.toLowerCase());
     if (index >= 0) return index;
   }
-  return Math.max(0, data.length - 1);
+  const saved = loadSelection();
+  if (saved?.weekId) {
+    const index = data.findIndex((item) => item.id === saved.weekId);
+    if (index >= 0) return index;
+  }
+  return 0;
+}
+
+function getInitialDayIndex(weekIndex) {
+  const params = new URLSearchParams(window.location.search);
+  const day = params.get("day");
+  const week = data[weekIndex];
+  if (!week) return 0;
+  if (day) {
+    const index = week.days.findIndex((item) => item.id === day || item.label.toLowerCase() === day.toLowerCase());
+    if (index >= 0) return index;
+  }
+  const saved = loadSelection();
+  if (saved?.dayId) {
+    const index = week.days.findIndex((item) => item.id === saved.dayId);
+    if (index >= 0) return index;
+  }
+  return 0;
+}
+
+function loadSelection() {
+  try {
+    return JSON.parse(localStorage.getItem(selectionKey)) || {};
+  } catch {
+    return {};
+  }
+}
+
+function saveSelection() {
+  localStorage.setItem(selectionKey, JSON.stringify({
+    weekId: currentWeek().id,
+    dayId: currentDay().id,
+  }));
 }
 
 function clearOldCaches() {
@@ -106,15 +146,27 @@ function currentDay() {
 }
 
 function itemKey(type, id) {
-  return `${currentWeek().id}:${currentDay().id}:${type}:${id}`;
+  return itemKeyFor(currentWeek().id, currentDay().id, type, id);
+}
+
+function itemKeyFor(weekId, dayId, type, id) {
+  return `${weekId}:${dayId}:${type}:${id}`;
 }
 
 function isDone(type, id) {
-  return Boolean(progress[itemKey(type, id)]);
+  return isDoneFor(currentWeek().id, currentDay().id, type, id);
+}
+
+function isDoneFor(weekId, dayId, type, id) {
+  return Boolean(progress[itemKeyFor(weekId, dayId, type, id)]);
 }
 
 function toggleDone(type, id) {
-  const key = itemKey(type, id);
+  toggleDoneFor(currentWeek().id, currentDay().id, type, id);
+}
+
+function toggleDoneFor(weekId, dayId, type, id) {
+  const key = itemKeyFor(weekId, dayId, type, id);
   if (progress[key]) {
     delete progress[key];
   } else {
@@ -157,6 +209,7 @@ function renderWeekTabs() {
       state.dayIndex = 0;
       state.practiceIndex = 0;
       state.practiceRevealed = false;
+      saveSelection();
       render();
     });
     weekTabs.append(button);
@@ -174,6 +227,7 @@ function renderDayTabs() {
       state.dayIndex = index;
       state.practiceIndex = 0;
       state.practiceRevealed = false;
+      saveSelection();
       render();
     });
     dayTabs.append(button);
@@ -181,6 +235,30 @@ function renderDayTabs() {
 }
 
 function renderSummary() {
+  if (state.mode === "topics") {
+    const groups = new Set();
+    let wordCount = 0;
+    let doneCount = 0;
+    data.forEach((week) => {
+      week.days.forEach((day) => {
+        groups.add(day.group || week.group || "Allgemein");
+        day.words.forEach((word) => {
+          wordCount += 1;
+          if (isDoneFor(week.id, day.id, "word", word.id)) doneCount += 1;
+        });
+      });
+    });
+    daySummary.innerHTML = `
+      <p class="eyebrow">Themenübersicht</p>
+      <h2>Fachwörter nach Themen</h2>
+      <div class="stats-row">
+        <div class="stat-pill"><strong>${groups.size}</strong><span>Themen</span></div>
+        <div class="stat-pill"><strong>${wordCount}</strong><span>Wörter</span></div>
+        <div class="stat-pill"><strong>${doneCount}</strong><span>Gelernt</span></div>
+      </div>
+    `;
+    return;
+  }
   const day = currentDay();
   const wordDone = day.words.filter((item) => isDone("word", item.id)).length;
   const questionDone = day.questions.filter((item) => isDone("question", item.id)).length;
@@ -308,6 +386,60 @@ function renderPractice() {
   content.append(card);
 }
 
+function collectTopicGroups() {
+  const groups = new Map();
+  data.forEach((week) => {
+    week.days.forEach((day) => {
+      const groupName = day.group || week.group || "Allgemein";
+      day.words.forEach((word) => {
+        if (!includesQuery(groupName, week.title, day.label, day.topic, word.word, word.translation, word.explanation)) return;
+        if (!groups.has(groupName)) groups.set(groupName, []);
+        groups.get(groupName).push({ week, day, word });
+      });
+    });
+  });
+  return [...groups.entries()];
+}
+
+function renderTopics() {
+  const groups = collectTopicGroups();
+  content.innerHTML = "";
+  if (!groups.length) {
+    renderEmpty();
+    return;
+  }
+  groups.forEach(([groupName, items], index) => {
+    const doneCount = items.filter(({ week, day, word }) => isDoneFor(week.id, day.id, "word", word.id)).length;
+    const section = document.createElement("details");
+    section.className = "topic-group";
+    section.open = state.query ? true : index < 2;
+    section.innerHTML = `
+      <summary>
+        <span class="topic-summary-main">${escapeHtml(groupName)}</span>
+        <span class="topic-count">${doneCount} / ${items.length} gelernt</span>
+      </summary>
+      <div class="topic-list"></div>
+    `;
+    const list = section.querySelector(".topic-list");
+    items.forEach(({ week, day, word }) => {
+      const row = document.createElement("article");
+      row.className = "mini-word";
+      row.innerHTML = `
+        <div>
+          <p class="source-line">${escapeHtml(week.title)} · ${escapeHtml(day.label)} · ${escapeHtml(day.topic)}</p>
+          <h3 class="mini-word-title">${escapeHtml(word.word)}</h3>
+          <p class="translation">${escapeHtml(word.translation)}</p>
+          <p class="explanation">${escapeHtml(word.explanation)}</p>
+        </div>
+        <button class="mark-button${isDoneFor(week.id, day.id, "word", word.id) ? " done" : ""}" type="button" aria-label="Wort gelernt">✓</button>
+      `;
+      row.querySelector("button").addEventListener("click", () => toggleDoneFor(week.id, day.id, "word", word.id));
+      list.append(row);
+    });
+    content.append(section);
+  });
+}
+
 function renderEmpty() {
   content.innerHTML = `<div class="empty-state">Keine passenden Einträge gefunden.</div>`;
 }
@@ -321,6 +453,7 @@ function render() {
   if (state.mode === "words") renderWords();
   if (state.mode === "questions") renderQuestions();
   if (state.mode === "practice") renderPractice();
+  if (state.mode === "topics") renderTopics();
 }
 
 function escapeHtml(value) {
@@ -351,7 +484,7 @@ importProgressButton.addEventListener("click", importProgress);
 
 if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
   navigator.serviceWorker
-    .register("./sw.js?v=7")
+    .register("./sw.js?v=8")
     .then((registration) => registration.update())
     .catch(() => {});
 }
