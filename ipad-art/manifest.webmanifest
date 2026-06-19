@@ -1,0 +1,22 @@
+{
+  "name": "iPad Art Tracker",
+  "short_name": "iPad Art",
+  "description": "Трекер уроків Procreate, Illustrator і Photoshop на iPad.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f5ef",
+  "theme_color": "#255f63",
+  "icons": [
+    {
+      "src": "../icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "../icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
