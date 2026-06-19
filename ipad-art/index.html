@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#255f63" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="iPad Art" />
+    <title>iPad Art Tracker</title>
+    <link rel="manifest" href="./manifest.webmanifest?v=1" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <link rel="stylesheet" href="./styles.css?v=1" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Procreate · Illustrator · Photoshop</p>
+          <h1>iPad Art Tracker</h1>
+          <p class="lead">Уроки, вправи, стікери, фрукти й персонажі в одному місці.</p>
+        </div>
+        <div class="progress-ring" aria-label="Загальний прогрес">
+          <svg viewBox="0 0 52 52" aria-hidden="true">
+            <circle class="ring-bg" cx="26" cy="26" r="22"></circle>
+            <circle class="ring-value" id="progressCircle" cx="26" cy="26" r="22"></circle>
+          </svg>
+          <span id="progressPercent">0%</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero-panel">
+          <div>
+            <span class="status-pill" id="todayBadge">Сьогодні</span>
+            <h2 id="focusTitle">Обери урок для практики</h2>
+            <p id="focusText">Позначай не тільки перегляд відео, а й власний варіант роботи.</p>
+          </div>
+          <button class="icon-action" id="nextLessonButton" type="button" aria-label="Перейти до наступного уроку">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </button>
+        </section>
+
+        <section class="control-panel">
+          <div class="segmented" id="appTabs" aria-label="Фільтр за програмою"></div>
+          <div class="week-scroll" id="weekTabs" aria-label="Фільтр за тижнем"></div>
+          <label class="search-box">
+            <span>Пошук</span>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="персонаж, стікер, фрукт, вектор" />
+          </label>
+          <div class="quick-filters" aria-label="Швидкі фільтри">
+            <button class="quick-filter active" type="button" data-status="all">Усе</button>
+            <button class="quick-filter" type="button" data-status="open">Ще роблю</button>
+            <button class="quick-filter" type="button" data-status="done">Готово</button>
+          </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Статистика">
+          <article class="stat-card">
+            <strong id="doneCount">0</strong>
+            <span>кроків готово</span>
+          </article>
+          <article class="stat-card">
+            <strong id="lessonCount">0</strong>
+            <span>уроків у списку</span>
+          </article>
+          <article class="stat-card">
+            <strong id="projectCount">0</strong>
+            <span>фінальних робіт</span>
+          </article>
+        </section>
+
+        <nav class="mode-tabs" aria-label="Режим перегляду">
+          <button class="mode-tab active" type="button" data-mode="lessons">Уроки</button>
+          <button class="mode-tab" type="button" data-mode="projects">Проєкти</button>
+          <button class="mode-tab" type="button" data-mode="notes">Нотатки</button>
+        </nav>
+
+        <section id="content" class="content-stack"></section>
+
+        <details class="sync-box">
+          <summary>Перенести прогрес на інший пристрій</summary>
+          <p>Створи код на одному пристрої, встав його на іншому й продовжуй з того самого місця.</p>
+          <div class="sync-actions">
+            <button id="exportProgressButton" type="button">Створити код</button>
+            <button id="importProgressButton" type="button">Імпортувати</button>
+          </div>
+          <textarea id="progressCode" rows="3" placeholder="Код прогресу"></textarea>
+          <p id="syncStatus" class="sync-status"></p>
+        </details>
+      </main>
+    </div>
+
+    <template id="emptyTemplate">
+      <div class="empty-state">
+        <h2>Нічого не знайдено</h2>
+        <p>Спробуй іншу програму, тиждень або слово в пошуку.</p>
+      </div>
+    </template>
+
+    <script src="./app.js?v=1"></script>
+  </body>
+</html>
