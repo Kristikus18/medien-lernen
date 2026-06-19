@@ -1,9 +1,9 @@
-const cacheName = "ipad-art-v1";
+const cacheName = "ipad-art-v2";
 const files = [
   "./",
-  "./index.html?v=1",
+  "./index.html?v=2",
   "./styles.css?v=1",
-  "./app.js?v=1",
+  "./app.js?v=2",
   "./manifest.webmanifest?v=1",
   "../icon-192.png",
   "../icon-512.png",

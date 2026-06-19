@@ -4,7 +4,7 @@ Interaktive Lern-App fuer die Ausbildung Medienfachfrau: Grafik, Print, Publishi
 
 ## iPad Art Tracker
 
-Der Ordner `ipad-art/` enthaelt eine zweite kleine Web-App fuer Procreate-, Illustrator- und Photoshop-Unterricht auf dem iPad. Sie speichert Fortschritt und Notizen lokal im Browser und kann ebenfalls ueber GitHub Pages geoeffnet werden:
+Der Ordner `ipad-art/` enthaelt eine zweite kleine Web-App fuer Video-Unterricht zu Procreate, Illustrator und Photoshop auf dem iPad. Sie speichert Fortschritt und Notizen lokal im Browser und kann ebenfalls ueber GitHub Pages geoeffnet werden:
 
 `https://kristikus18.github.io/medien-lernen/ipad-art/`
 
