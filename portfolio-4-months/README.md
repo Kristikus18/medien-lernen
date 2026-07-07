@@ -15,7 +15,8 @@ Pfad fuer GitHub Pages:
 - Portfolio-Projekte statt isolierte Uebungen
 - zweisprachige Kundenauftraege Deutsch/Ukrainisch
 - fiktiver Kunde mit realistischen Briefings und Lieferobjekten
-- ein konkreter Kundenauftrag pro Woche: jede Woche eine andere feste Kundenrichtung
+- ein kompletter Kundenauftrag pro Woche: jede Woche eine andere feste Kundenrichtung
+- 5 Stunden Kurszeit pro Woche fuer ein komplettes Mini-Projekt
 - genaue Vorgaben fuer Logo, Visitenkarte, Flyer, Broschuere, Social Media, Website und WordPress
 - konkrete Seitenzahlen/Formate, damit nicht jedes Mal neu entschieden werden muss
 - WordPress-Aufgaben mit kostenlosen Plugin-Vorschlaegen fuer SEO, Backup, Cookies, Kalender, Formulare und Performance
@@ -42,7 +43,15 @@ Der Plan basiert auf den Pruefungsthemen aus `THEORIE MEDIEN.pdf`, aber jede The
 
 ## Kundenprojekt
 
-Jede Woche hat einen anderen fiktiven Kunden, damit mehrere Branchen und Aufgaben geuebt werden:
+Jede Woche hat einen anderen fiktiven Kunden, damit mehrere Branchen und Aufgaben geuebt werden. Jede Woche ist als kompletter Sprint aufgebaut:
+
+1. Moodboard und Briefing
+2. Logo mit 1-3 Versionen
+3. Visitenkarte Vorderseite/Rueckseite
+4. Mini-Broschuere oder Printprodukt
+5. Website Design in Figma
+6. WordPress/Elementor Grundaufbau
+7. kostenlose Plugin-Liste mit kurzer Begruendung
 
 - Arztpraxis: Moodboard und Zielgruppe
 - Recruiting-Firma: Logo mit 1-3 Versionen
@@ -51,7 +60,7 @@ Jede Woche hat einen anderen fiktiven Kunden, damit mehrere Branchen und Aufgabe
 - Kreativschule fuer Kinder: A5 Flyer
 - Immobilienfirma: 8-seitige Broschuere
 - Catering: Social Media Kampagne
-- Fahrradverleih: 5-Seiten-Website in Figma
+- Fahrradverleih: 5-Seiten-Website in Figma plus WordPress-Aufbau
 - Restaurant und Eventlocation: WordPress, Elementor und Plugins
 
-Jede Woche ist als kompletter kleiner Kundenauftrag aufgebaut. Der Kunde, die Branche, der Umfang, die Seitenzahl oder das Format und die Abgabe sind fest vorgegeben, damit die Lernzeit direkt in Praxis und Portfolio fliessen kann.
+Der Kunde, die Branche, der Umfang, die Seitenzahl oder das Format und die Abgabe sind fest vorgegeben, damit die 5 Stunden Kurszeit direkt in Praxis und Portfolio fliessen koennen.

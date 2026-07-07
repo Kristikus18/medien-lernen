@@ -1769,23 +1769,234 @@ const projectSpecOverrides = {
 };
 
 const projectRoadmap = [
-  { id: "w01", de: "Arztpraxis: Moodboard", ua: "лікар: moodboard" },
-  { id: "w02", de: "Recruiting: Logo", ua: "пошук роботи: логотип" },
-  { id: "w03", de: "Beauty Studio: CD", ua: "косметологія: CD" },
-  { id: "w04", de: "Physio: Visitenkarte", ua: "фізіо: візитка" },
-  { id: "w05", de: "Kinderschule: Flyer", ua: "дитяча школа: flyer" },
-  { id: "w06", de: "Immobilien: Broschüre", ua: "нерухомість: брошура" },
-  { id: "w07", de: "Catering: Social Media", ua: "catering: соцмережі" },
-  { id: "w08", de: "Papeterie: Druckdaten", ua: "поліграфія: Druckdaten" },
-  { id: "w09", de: "Bike Verleih: Figma Website", ua: "bike rental: сайт Figma" },
-  { id: "w10", de: "Yoga: UI Kit", ua: "йога: UI kit" },
-  { id: "w11", de: "Restaurant: WordPress", ua: "ресторан: WordPress" },
-  { id: "w12", de: "Eventraum: Plugins", ua: "івент-зал: плагіни" },
-  { id: "w13", de: "Tierpraxis: Behance", ua: "ветеринар: Behance" },
-  { id: "w14", de: "Du: Portfolio PDF", ua: "ти: portfolio PDF" },
-  { id: "w15", de: "Eco Cleaning: Paket", ua: "еко клінінг: пакет" },
-  { id: "w16", de: "Prüfung: Fachgespräch", ua: "іспит: Fachgespräch" },
+  { id: "w01", de: "Arztpraxis: Full Sprint", ua: "лікар: повний sprint" },
+  { id: "w02", de: "Recruiting: Full Sprint", ua: "пошук роботи: повний sprint" },
+  { id: "w03", de: "Beauty Studio: Full Sprint", ua: "косметологія: повний sprint" },
+  { id: "w04", de: "Physio: Full Sprint", ua: "фізіо: повний sprint" },
+  { id: "w05", de: "Kinderschule: Full Sprint", ua: "дитяча школа: повний sprint" },
+  { id: "w06", de: "Immobilien: Full Sprint", ua: "нерухомість: повний sprint" },
+  { id: "w07", de: "Catering: Full Sprint", ua: "catering: повний sprint" },
+  { id: "w08", de: "Papeterie: Full Sprint", ua: "поліграфія: повний sprint" },
+  { id: "w09", de: "Bike Verleih: Full Sprint", ua: "bike rental: повний sprint" },
+  { id: "w10", de: "Yoga: Full Sprint", ua: "йога: повний sprint" },
+  { id: "w11", de: "Restaurant: Full Sprint", ua: "ресторан: повний sprint" },
+  { id: "w12", de: "Eventraum: Full Sprint", ua: "івент-зал: повний sprint" },
+  { id: "w13", de: "Tierpraxis: Full Sprint", ua: "ветеринар: повний sprint" },
+  { id: "w14", de: "Personal Brand: Full Sprint", ua: "personal brand: повний sprint" },
+  { id: "w15", de: "Eco Cleaning: Full Sprint", ua: "еко клінінг: повний sprint" },
+  { id: "w16", de: "Prüfung: Full Sprint", ua: "іспит: повний sprint" },
 ];
+
+const weeklyFullProjects = {
+  w01: {
+    company: "Praxis Dr. Anna Berger",
+    industry: "Hausarztpraxis / лікарська практика",
+    weekTitle: "Arztpraxis Full Brand Sprint",
+    directionDe: "Neue Hausarztpraxis in Wien. Die Marke soll ruhig, sauber, vertrauensvoll und freundlich wirken.",
+    directionUa: "Нова сімейна лікарська практика у Відні. Бренд має бути спокійний, чистий, надійний і дружній.",
+    websitePages: "5 Seiten: Startseite, Leistungen, Team, Termin, Kontakt",
+    websitePagesUa: "5 сторінок: головна, послуги, команда, запис, контакт",
+    printProduct: "Mini-Broschüre 4 Seiten: Willkommen, Leistungen, Team, Kontakt",
+    printProductUa: "Міні-брошура 4 сторінки: welcome, services, team, contact",
+    plugins: ["Elementor", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "Fluent Forms", "UpdraftPlus Backup"],
+    settings: ["Kontaktformular testen", "Cookie-Banner aktivieren", "Meta Title schreiben", "Alt-Texte setzen", "Backup erstellen"],
+  },
+  w02: {
+    company: "JobBrücke Recruiting",
+    industry: "Jobsuche und Bewerbung / рекрутингова фірма",
+    weekTitle: "Recruiting Full Brand Sprint",
+    directionDe: "Firma für Jobsuche, Lebenslauf-Check und Karrierewechsel. Die Marke soll seriös, klar und motivierend wirken.",
+    directionUa: "Фірма для пошуку роботи, перевірки CV і зміни кар'єри. Бренд має бути серйозний, чіткий і мотивуючий.",
+    websitePages: "5 Seiten: Startseite, Jobsuche, CV-Check, Für Firmen, Kontakt",
+    websitePagesUa: "5 сторінок: головна, пошук роботи, CV-check, для фірм, контакт",
+    printProduct: "Mini-Broschüre 4 Seiten: Angebot, Ablauf, Vorteile, Kontakt",
+    printProductUa: "Міні-брошура 4 сторінки: пропозиція, процес, переваги, контакт",
+    plugins: ["Elementor", "Rank Math SEO oder Yoast SEO", "Fluent Forms", "CookieYes oder Complianz", "UpdraftPlus Backup"],
+    settings: ["Bewerbungsformular anlegen", "CTA: Kostenloses Erstgespräch", "SEO-Titel für Startseite", "Backup erstellen"],
+  },
+  w03: {
+    company: "Klara Beauty Studio",
+    industry: "Kosmetikstudio / косметологічна студія",
+    weekTitle: "Beauty Studio Full Brand Sprint",
+    directionDe: "Kosmetikstudio für Gesichtsbehandlungen und Pflege. Die Marke soll hochwertig, sauber und feminin wirken.",
+    directionUa: "Косметологічна студія для догляду за обличчям. Бренд має бути якісний, чистий і жіночний.",
+    websitePages: "5 Seiten: Startseite, Behandlungen, Preise, Studio, Kontakt",
+    websitePagesUa: "5 сторінок: головна, процедури, ціни, студія, контакт",
+    printProduct: "Mini-Broschüre 4 Seiten: Behandlungen, Preise, Pflegehinweise, Kontakt",
+    printProductUa: "Міні-брошура 4 сторінки: процедури, ціни, догляд, контакт",
+    plugins: ["Elementor", "Simply Schedule Appointments oder Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "UpdraftPlus Backup"],
+    settings: ["Buchungs-CTA setzen", "Preisliste als Abschnitt bauen", "Kontaktformular testen", "Alt-Texte für Beauty-Bilder"],
+  },
+  w04: {
+    company: "Physio Aktiv Wien",
+    industry: "Physiotherapie / фізіотерапія",
+    weekTitle: "Physio Full Brand Sprint",
+    directionDe: "Physiotherapie-Praxis für Rücken, Sport und Rehabilitation. Die Marke soll aktiv, professionell und gesund wirken.",
+    directionUa: "Фізіотерапія для спини, спорту і реабілітації. Бренд має бути активний, професійний і здоровий.",
+    websitePages: "5 Seiten: Startseite, Therapie, Sportphysio, Team, Kontakt",
+    websitePagesUa: "5 сторінок: головна, терапія, sport physio, команда, контакт",
+    printProduct: "Mini-Broschüre 4 Seiten: Therapie-Angebot, Ablauf, Übungen, Kontakt",
+    printProductUa: "Міні-брошура 4 сторінки: терапія, процес, вправи, контакт",
+    plugins: ["Elementor", "Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "UpdraftPlus Backup"],
+    settings: ["Termin-Anfrage Formular", "Leistungsseiten benennen", "mobile Kontaktbuttons", "Backup erstellen"],
+  },
+  w05: {
+    company: "Kinderatelier Farbenfroh",
+    industry: "Kreativschule für Kinder / творча школа для дітей",
+    weekTitle: "Kinderschule Full Brand Sprint",
+    directionDe: "Kreativschule für Kinder-Workshops. Die Marke soll bunt, freundlich und trotzdem professionell wirken.",
+    directionUa: "Творча школа для дитячих воркшопів. Бренд має бути кольоровий, дружній і професійний.",
+    websitePages: "5 Seiten: Startseite, Kurse, Ferienworkshops, Galerie, Kontakt",
+    websitePagesUa: "5 сторінок: головна, курси, канікулярні воркшопи, галерея, контакт",
+    printProduct: "Mini-Broschüre 4 Seiten: Ferienprogramm, Kurse, Preise, Anmeldung",
+    printProductUa: "Міні-брошура 4 сторінки: канікулярна програма, курси, ціни, запис",
+    plugins: ["Elementor", "The Events Calendar", "Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz"],
+    settings: ["1 Workshop als Event eintragen", "Anmeldeformular testen", "Galerie-Bilder komprimieren", "Cookie-Banner aktivieren"],
+  },
+  w06: {
+    company: "Nova Raum Immobilien",
+    industry: "Immobilienfirma / агенція нерухомості",
+    weekTitle: "Immobilien Full Brand Sprint",
+    directionDe: "Immobilienfirma für eine neue Wohnanlage. Die Marke soll modern, seriös und hochwertig wirken.",
+    directionUa: "Агенція нерухомості для нового житлового комплексу. Бренд має бути сучасний, серйозний і преміальний.",
+    websitePages: "5 Seiten: Startseite, Projekt, Wohnungen, Lage, Kontakt",
+    websitePagesUa: "5 сторінок: головна, проєкт, квартири, локація, контакт",
+    printProduct: "Broschüre 8 Seiten: Cover, Projekt, Lage, Wohnungen, Grundrisse, Vorteile, Finanzierung, Kontakt",
+    printProductUa: "Брошура 8 сторінок: обкладинка, проєкт, локація, квартири, плани, переваги, фінансування, контакт",
+    plugins: ["Elementor", "Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "UpdraftPlus Backup"],
+    settings: ["Exposé-Anfrage Formular", "Bildgrößen optimieren", "SEO für Projektseite", "PDF-Download Button"],
+  },
+  w07: {
+    company: "FitMeal Catering",
+    industry: "Healthy Food Catering / доставка здорової їжі",
+    weekTitle: "Catering Full Brand Sprint",
+    directionDe: "Catering für gesunde Lunch-Boxen in Büros. Die Marke soll frisch, schnell und zuverlässig wirken.",
+    directionUa: "Catering здорових lunch boxes для офісів. Бренд має бути свіжий, швидкий і надійний.",
+    websitePages: "5 Seiten: Startseite, Boxen, Wochenplan, Firmenangebot, Kontakt",
+    websitePagesUa: "5 сторінок: головна, boxes, тижневе меню, пропозиція для фірм, контакт",
+    printProduct: "Mini-Broschüre 4 Seiten: Menü, Boxen, Firmenpakete, Bestellung",
+    printProductUa: "Міні-брошура 4 сторінки: меню, boxes, corporate packages, замовлення",
+    plugins: ["Elementor", "Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "UpdraftPlus Backup"],
+    settings: ["Bestellformular bauen", "CTA: Lunchbox bestellen", "Social Post Mockups", "Alt-Texte für Food-Bilder"],
+  },
+  w08: {
+    company: "WaldPapier Studio",
+    industry: "nachhaltige Papeterie / екологічна поліграфія",
+    weekTitle: "Papeterie Full Brand Sprint",
+    directionDe: "Studio für nachhaltige Papeterie und Druckprodukte. Die Marke soll natürlich, ruhig und handwerklich wirken.",
+    directionUa: "Студія екологічної паперової продукції. Бренд має бути природний, спокійний і craft.",
+    websitePages: "5 Seiten: Startseite, Produkte, Nachhaltigkeit, Shop-Anfrage, Kontakt",
+    websitePagesUa: "5 сторінок: головна, продукти, sustainability, shop request, contact",
+    printProduct: "Mini-Broschüre 4 Seiten: Produktlinie, Papier, Druckdaten, Kontakt",
+    printProductUa: "Міні-брошура 4 сторінки: product line, paper, print files, contact",
+    plugins: ["Elementor", "Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "UpdraftPlus Backup"],
+    settings: ["Anfrageformular", "PDF/X-Notiz ins Portfolio", "Beschnitt erklären", "SEO für Produktseite"],
+  },
+  w09: {
+    company: "AlpenBike Verleih",
+    industry: "Fahrradverleih und Touren / оренда велосипедів",
+    weekTitle: "Bike Rental Full Brand Sprint",
+    directionDe: "Fahrradverleih mit geführten Touren. Die Marke soll aktiv, klar und outdoor-orientiert wirken.",
+    directionUa: "Оренда велосипедів з турами. Бренд має бути активний, зрозумілий і outdoor.",
+    websitePages: "5 Seiten: Startseite, Fahrräder, Touren, Preise, Kontakt",
+    websitePagesUa: "5 сторінок: головна, велосипеди, тури, ціни, контакт",
+    printProduct: "Mini-Broschüre 4 Seiten: Touren, Preise, Regeln, Kontakt",
+    printProductUa: "Міні-брошура 4 сторінки: тури, ціни, правила, контакт",
+    plugins: ["Elementor", "The Events Calendar", "Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz"],
+    settings: ["Tour als Event eintragen", "Kontaktformular testen", "Preise sichtbar", "mobile Touren-CTA"],
+  },
+  w10: {
+    company: "Urban Yoga Studio",
+    industry: "Yoga Studio / йога студія",
+    weekTitle: "Yoga Studio Full Brand Sprint",
+    directionDe: "Yoga Studio mit Kursplan und Workshops. Die Marke soll ruhig, modern und achtsam wirken.",
+    directionUa: "Йога студія з розкладом і workshops. Бренд має бути спокійний, сучасний і mindful.",
+    websitePages: "5 Seiten: Startseite, Kurse, Kursplan, Preise, Kontakt",
+    websitePagesUa: "5 сторінок: головна, курси, розклад, ціни, контакт",
+    printProduct: "Mini-Broschüre 4 Seiten: Kursarten, Preise, Studio-Regeln, Kontakt",
+    printProductUa: "Міні-брошура 4 сторінки: типи курсів, ціни, правила студії, контакт",
+    plugins: ["Elementor", "The Events Calendar", "Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz"],
+    settings: ["Kursplan als Eventliste", "Button states", "Formular für Probestunde", "mobile Lesbarkeit prüfen"],
+  },
+  w11: {
+    company: "Bistro Mare",
+    industry: "Restaurant / ресторан",
+    weekTitle: "Restaurant Full Brand Sprint",
+    directionDe: "Mediterranes Bistro. Die Marke soll frisch, elegant und einladend wirken.",
+    directionUa: "Середземноморське bistro. Бренд має бути свіжий, елегантний і запрошуючий.",
+    websitePages: "5 Seiten: Startseite, Speisekarte, Reservierung, Über uns, Kontakt",
+    websitePagesUa: "5 сторінок: головна, меню, бронювання, про нас, контакт",
+    printProduct: "Mini-Broschüre 4 Seiten: Menü-Auswahl, Mittagsangebot, Gutschein, Kontakt",
+    printProductUa: "Міні-брошура 4 сторінки: menu selection, lunch offer, voucher, contact",
+    plugins: ["Elementor", "Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "UpdraftPlus Backup"],
+    settings: ["Reservierungsformular", "Speisekarte als Abschnitt", "Startseite als Homepage", "Backup erstellen"],
+  },
+  w12: {
+    company: "Lichtwerk Eventraum",
+    industry: "Eventlocation / простір для подій",
+    weekTitle: "Eventlocation Full Brand Sprint",
+    directionDe: "Eventraum für Workshops, Feiern und kleine Konferenzen. Die Marke soll flexibel, urban und professionell wirken.",
+    directionUa: "Event space для workshops, свят і малих конференцій. Бренд має бути flexible, urban і professional.",
+    websitePages: "5 Seiten: Startseite, Räume, Events, Preise, Kontakt",
+    websitePagesUa: "5 сторінок: головна, зали, події, ціни, контакт",
+    printProduct: "Mini-Broschüre 4 Seiten: Räume, Ausstattung, Preise, Buchung",
+    printProductUa: "Міні-брошура 4 сторінки: rooms, equipment, prices, booking",
+    plugins: ["Elementor", "The Events Calendar", "Fluent Forms", "CookieYes oder Complianz", "Rank Math SEO oder Yoast SEO", "UpdraftPlus Backup"],
+    settings: ["Eventkalender einrichten", "Buchungsformular testen", "Cookie-Banner", "Meta Description", "Backup"],
+  },
+  w13: {
+    company: "PfotenGlück Tierpraxis",
+    industry: "Tierarztpraxis / ветеринарна практика",
+    weekTitle: "Tierpraxis Full Brand Sprint",
+    directionDe: "Tierarztpraxis für Hunde und Katzen. Die Marke soll freundlich, kompetent und vertrauensvoll wirken.",
+    directionUa: "Ветеринарна практика для собак і котів. Бренд має бути дружній, компетентний і надійний.",
+    websitePages: "5 Seiten: Startseite, Leistungen, Notfall, Team, Kontakt",
+    websitePagesUa: "5 сторінок: головна, послуги, emergency, team, contact",
+    printProduct: "Mini-Broschüre 4 Seiten: Leistungen, Notfallinfo, Vorsorge, Kontakt",
+    printProductUa: "Міні-брошура 4 сторінки: services, emergency info, prevention, contact",
+    plugins: ["Elementor", "Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "UpdraftPlus Backup"],
+    settings: ["Notfall-CTA", "Kontaktformular", "Alt-Texte", "Behance Case Screens"],
+  },
+  w14: {
+    company: "Krystyna Lozova Design",
+    industry: "Personal Brand / особистий бренд",
+    weekTitle: "Personal Brand Full Sprint",
+    directionDe: "Eigene Marke als Junior Graphic Designerin und Medienfachfrau. Die Marke soll klar, kreativ und professionell wirken.",
+    directionUa: "Власний бренд Junior Graphic Designer / Medienfachfrau. Бренд має бути чіткий, креативний і професійний.",
+    websitePages: "5 Seiten: Startseite, Projekte, Über mich, Leistungen, Kontakt",
+    websitePagesUa: "5 сторінок: головна, проєкти, про мене, послуги, контакт",
+    printProduct: "Portfolio PDF 8 Seiten plus persönliche Visitenkarte",
+    printProductUa: "Portfolio PDF 8 сторінок плюс особиста візитка",
+    plugins: ["Elementor", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "Fluent Forms", "UpdraftPlus Backup"],
+    settings: ["Portfolio-Kontaktformular", "Projektseiten planen", "LinkedIn Text", "PDF Export"],
+  },
+  w15: {
+    company: "EcoHome Cleaning",
+    industry: "nachhaltige Reinigungsfirma / еко клінінг",
+    weekTitle: "Eco Cleaning Full Brand Sprint",
+    directionDe: "Nachhaltige Reinigungsfirma für Wohnungen und kleine Büros. Die Marke soll sauber, frisch und zuverlässig wirken.",
+    directionUa: "Еко клінінг для квартир і малих офісів. Бренд має бути чистий, свіжий і надійний.",
+    websitePages: "5 Seiten: Startseite, Leistungen, Preise, Nachhaltigkeit, Kontakt",
+    websitePagesUa: "5 сторінок: головна, послуги, ціни, sustainability, contact",
+    printProduct: "Mini-Broschüre 4 Seiten: Leistungen, Pakete, Vorteile, Kontakt",
+    printProductUa: "Міні-брошура 4 сторінки: services, packages, benefits, contact",
+    plugins: ["Elementor", "Fluent Forms", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "UpdraftPlus Backup"],
+    settings: ["Anfrageformular", "Preispakete", "SEO für Leistungen", "finales Board"],
+  },
+  w16: {
+    company: "Prüfungssimulation",
+    industry: "Medienfachfrau Grafik und Print / підготовка до іспиту",
+    weekTitle: "Prüfung Full Client Sprint",
+    directionDe: "Simulierter Kundenauftrag für die Prüfung: ein kleines Unternehmen bekommt ein komplettes Mini-Paket.",
+    directionUa: "Симуляція клієнтського замовлення для іспиту: мала фірма отримує повний mini package.",
+    websitePages: "1 Landing Page oder 5-Seiten-Konzept, je nach Prüfungssimulation",
+    websitePagesUa: "1 landing page або concept на 5 сторінок, залежно від симуляції іспиту",
+    printProduct: "Mini-Broschüre 4 Seiten plus Visitenkarte",
+    printProductUa: "Міні-брошура 4 сторінки плюс візитка",
+    plugins: ["Elementor", "Rank Math SEO oder Yoast SEO", "CookieYes oder Complianz", "Fluent Forms", "UpdraftPlus Backup"],
+    settings: ["12 Fachgespräch-Fragen", "RGB/CMYK erklären", "Beschnitt erklären", "WordPress Plugins erklären", "Portfolio bewerten"],
+  },
+};
 
 const theorySupport = {
   w01: {
@@ -2049,9 +2260,11 @@ const termMeaningTranslations = {
 };
 
 plan.forEach((week) => {
-  week.client = { ...clientBriefs[week.id], ...clientBriefOverrides[week.id] };
-  week.spec = { ...projectSpecs[week.id], ...projectSpecOverrides[week.id] };
+  const fullProject = weeklyFullProjects[week.id];
+  week.client = fullProject ? buildFullClientBrief(fullProject) : { ...clientBriefs[week.id], ...clientBriefOverrides[week.id] };
+  week.spec = fullProject ? buildFullProjectSpec(fullProject, week.id) : { ...projectSpecs[week.id], ...projectSpecOverrides[week.id] };
   week.learning = enrichLearning(theorySupport[week.id]);
+  if (fullProject) applyFullProjectWeek(week, fullProject);
 });
 
 const state = {
@@ -2137,6 +2350,130 @@ function learningStatsForWeek(week) {
   const termDone = week.learning.terms.filter((_, index) => isLearned(learningItemKey(week.id, "term", index))).length;
   const questionDone = week.learning.questions.filter((_, index) => isLearned(learningItemKey(week.id, "question", index))).length;
   return { done: termDone + questionDone, total };
+}
+
+function buildFullClientBrief(project) {
+  return {
+    company: project.company,
+    industry: project.industry,
+    wantsDe: `${project.directionDe} Der Kunde möchte ein komplettes Mini-Paket: Moodboard, Logo, Visitenkarte, Printprodukt, Website-Design und WordPress-Grundaufbau.`,
+    wantsUa: `${project.directionUa} Клієнт хоче повний mini package: moodboard, logo, business card, print product, website design і WordPress basic setup.`,
+    orderDe: `Erstelle in dieser Woche ein komplettes Kundenpaket für ${project.company}.`,
+    orderUa: `Створи цього тижня повний клієнтський пакет для ${project.company}.`,
+    deliverables: ["Moodboard", "Logo 1-3 Versionen", "Visitenkarte", "Mini-Broschüre/Print", "Figma Website", "WordPress/Elementor"],
+    today: [
+      {
+        de: "Bereite Briefing, Moodboard, Logo-Ideen und die wichtigsten Inhalte vor, damit du im Kurs schnell gestalten kannst.",
+        ua: "Підготуй brief, moodboard, ідеї логотипу і головний контент, щоб на курсі швидко створювати.",
+      },
+      {
+        de: "Finalisiere das Paket: Logo, Visitenkarte, Printprodukt, Website-Screen, WordPress-Aufbau und Plugin-Notizen.",
+        ua: "Доведи пакет: logo, business card, print product, website screen, WordPress setup і plugin notes.",
+      },
+    ],
+  };
+}
+
+function buildFullProjectSpec(project, weekId) {
+  return {
+    phase: `5h Kurs-Sprint · ${project.weekTitle}`,
+    directionDe: `Kunde: ${project.company}. ${project.directionDe}`,
+    directionUa: `Клієнт: ${project.company}. ${project.directionUa}`,
+    fixedDe: "Du wählst keinen anderen Kunden. In dieser Woche entsteht ein komplettes Mini-Projekt mit festen Abgaben.",
+    fixedUa: "Ти не вибираєш іншого клієнта. Цього тижня створюється повний mini project з чіткими результатами.",
+    scopeDe: "Pflichtpaket: Moodboard, Logo 1-3 Versionen, Visitenkarte, Printprodukt, Figma Website und WordPress/Elementor mit Plugins.",
+    scopeUa: "Обов'язковий пакет: moodboard, logo 1-3 versions, business card, print product, Figma website і WordPress/Elementor з plugins.",
+    pagesDe: project.websitePages,
+    pagesUa: project.websitePagesUa,
+    deliverables: ["Moodboard", "Logo 1-3 Versionen", "Visitenkarte Vorder/Rückseite", project.printProduct, "Figma Website", "WordPress/Elementor Setup"],
+    plugins: project.plugins,
+    settings: project.settings,
+    fullPackage: [
+      "Moodboard mit 8-12 Referenzen",
+      "Logo: 1-3 Versionen, davon 1 finale Version",
+      "Visitenkarte: Vorderseite und Rückseite",
+      project.printProduct,
+      `Website Design: ${project.websitePages}`,
+      "WordPress/Elementor: Startseite oder wichtigste Seite bauen",
+      "Plugin-Notizen: warum diese Plugins gebraucht werden",
+    ],
+    fullPackageUa: [
+      "Moodboard з 8-12 референсами",
+      "Logo: 1-3 версії, з них 1 фінальна",
+      "Візитка: передня і задня сторона",
+      project.printProductUa,
+      `Website design: ${project.websitePagesUa}`,
+      "WordPress/Elementor: побудувати головну або найважливішу сторінку",
+      "Plugin notes: пояснити, навіщо ці плагіни",
+    ],
+    coursePlan: [
+      "00:00-00:30 Briefing lesen, Zielgruppe und Moodboard festlegen",
+      "00:30-01:30 Logo 1-3 Versionen in Illustrator",
+      "01:30-02:10 Visitenkarte Vorder/Rückseite in InDesign",
+      "02:10-03:00 Mini-Broschüre oder Printprodukt in InDesign",
+      "03:00-04:00 Website-Screen in Figma",
+      "04:00-04:40 WordPress/Elementor Grundaufbau + Plugins notieren",
+      "04:40-05:00 Export, Screenshots, 5 Fachwörter für Fachgespräch",
+    ],
+    coursePlanUa: [
+      "00:00-00:30 прочитати brief, визначити target group і moodboard",
+      "00:30-01:30 logo 1-3 versions в Illustrator",
+      "01:30-02:10 business card front/back в InDesign",
+      "02:10-03:00 mini brochure або print product в InDesign",
+      "03:00-04:00 website screen у Figma",
+      "04:00-04:40 WordPress/Elementor basic setup + plugin notes",
+      "04:40-05:00 export, screenshots, 5 Fachwörter для Fachgespräch",
+    ],
+    weekId,
+  };
+}
+
+function applyFullProjectWeek(week, project) {
+  week.title = project.weekTitle;
+  week.goal = `За цей тиждень створити повний mini client package для ${project.company}: від moodboard до WordPress/Elementor.`;
+  week.project = `${project.company}: komplettes Kundenpaket`;
+  week.tools = ["Illustrator", "InDesign", "Figma", "WordPress", "Elementor"];
+  week.days = week.days.map((day, index) => {
+    if (index === 0) {
+      return {
+        ...day,
+        label: "Tag A",
+        title: "Vorbereitung + 5h Kurs-Sprint",
+        time: "60-90 Min Vorbereitung + 5h Kurszeit",
+        light: "25-35 Min Vorbereitung",
+        focus: `Für ${project.company}: schnell vorbereiten, damit die 5 Kursstunden für echtes Gestalten genutzt werden.`,
+        practice: [
+          "Zu Hause: Briefing lesen und Zielgruppe in 5 Sätzen notieren.",
+          "Zu Hause: Moodboard mit 8-12 Referenzen sammeln.",
+          "Zu Hause: 6 Logo-Skizzen auf Papier oder iPad machen.",
+          "Im Kurs: Logo, Visitenkarte, Printprodukt, Figma Website und WordPress-Grundaufbau erstellen.",
+        ],
+        portfolio: ["Moodboard", "Logo-Entwürfe", "Visitenkarte", project.printProduct, "Figma Website Screen", "WordPress Screenshot"],
+        adobe: "Illustrator: Logo 1-3 Versionen. InDesign: Visitenkarte und Mini-Broschüre/Printprodukt. Photoshop nur für Bildkorrektur, wenn nötig.",
+        figma: `Figma: Website Design für ${project.websitePages}.`,
+        videos: [videos.illustratorLogoShort, videos.businessCard, videos.figmaLanding, videos.elementorBasics],
+      };
+    }
+    return {
+      ...day,
+      label: "Tag B",
+      title: "Fertigstellen + WordPress + Fachgespräch",
+      time: "60-90 Min Nacharbeit",
+      light: "25-40 Min Nacharbeit",
+      focus: `Das Wochenpaket für ${project.company} fertig machen und kurz auf Deutsch erklären können.`,
+      practice: [
+        "Finales Logo auswählen und sauber exportieren.",
+        "Visitenkarte und Printprodukt als PDF/PNG exportieren.",
+        "Figma Website Screen aufräumen und mobile Idee notieren.",
+        "WordPress/Elementor Seite prüfen und Plugin-Liste mit Zweck notieren.",
+        "5 Fachwörter laut auf Deutsch erklären.",
+      ],
+      portfolio: ["Final Board", "Export-Ordner", "WordPress/Plugin Checklist", "5 Fachgespräch-Sätze"],
+      adobe: "Export: AI/SVG/PDF/PNG für Logo, PDF für Print, Screenshots für Portfolio.",
+      figma: "Figma: finaler Website-Screen plus kurzer Kommentar, welche Seiten der Kunde möchte.",
+      videos: [videos.printPdf, videos.elementorLanding, videos.behance],
+    };
+  });
 }
 
 function bindLearningToggles() {
@@ -2297,10 +2634,10 @@ function renderProjectSpec(spec) {
     <div class="summary-block project-spec">
       <div class="spec-head">
         <div>
-          <h3>Konkreter Kundenauftrag / Конкретне замовлення клієнта</h3>
+          <h3>Kompletter Wochenauftrag / Повний проєкт на тиждень</h3>
           <p class="phase-label">${spec.phase}</p>
         </div>
-        <span class="chip coral">1 Woche · 1 Kunde · klare Abgabe</span>
+        <span class="chip coral">1 Woche · 1 kompletter Kunde · 5h Kurszeit</span>
       </div>
       <div class="spec-grid">
         <article>
@@ -2324,6 +2661,27 @@ function renderProjectSpec(spec) {
           <p class="ua">${spec.pagesUa}</p>
         </article>
       </div>
+      ${spec.fullPackage ? `
+        <div class="full-package-grid">
+          <div>
+            <strong>Pflichtpaket diese Woche</strong>
+            ${list(spec.fullPackage)}
+          </div>
+          <div>
+            <strong>Обов'язково цього тижня</strong>
+            ${list(spec.fullPackageUa)}
+          </div>
+        </div>
+      ` : ""}
+      ${spec.coursePlan ? `
+        <div class="course-plan">
+          <strong>5 Stunden Kurszeit / 5 годин курсу</strong>
+          <div class="bilingual-grid">
+            <div>${list(spec.coursePlan)}</div>
+            <div>${list(spec.coursePlanUa)}</div>
+          </div>
+        </div>
+      ` : ""}
       <div class="spec-columns">
         <div>
           <strong>Abgabe / Що здати</strong>

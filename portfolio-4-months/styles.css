@@ -548,6 +548,36 @@ button {
   margin-top: 12px;
 }
 
+.full-package-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.full-package-grid > div,
+.course-plan {
+  padding: 12px;
+  border: 1px solid #ffd0c2;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.full-package-grid strong,
+.course-plan > strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #9a3412;
+}
+
+.course-plan {
+  margin-top: 12px;
+}
+
+.course-plan .bilingual-grid {
+  margin-top: 8px;
+}
+
 .learning-support {
   border-color: #c4b5fd;
   background: #faf7ff;
@@ -718,6 +748,7 @@ button {
   .roadmap-list,
   .spec-grid,
   .spec-columns,
+  .full-package-grid,
   .term-grid {
     grid-template-columns: 1fr;
   }
