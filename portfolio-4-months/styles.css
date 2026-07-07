@@ -228,6 +228,46 @@ button {
   line-height: 1.5;
 }
 
+.client-brief {
+  grid-column: 1 / -1;
+  padding: 16px;
+  border: 1px solid #b7d8d0;
+  border-radius: 8px;
+  background: #f0fdfa;
+}
+
+.client-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.bilingual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.bilingual-grid > div {
+  padding: 12px;
+  border: 1px solid #cce7df;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.bilingual-grid strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #134e4a;
+}
+
+.ua {
+  margin-top: 7px !important;
+  color: #334155 !important;
+}
+
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -373,6 +413,15 @@ button {
   background: #fff7df;
 }
 
+.client-task {
+  border-color: #99d8ca;
+  background: #effbf8;
+}
+
+.client-task h3 {
+  color: #134e4a;
+}
+
 .video-list {
   display: grid;
   gap: 10px;
@@ -446,8 +495,13 @@ button {
   }
 
   .week-summary,
-  .layout-grid {
+  .layout-grid,
+  .bilingual-grid {
     grid-template-columns: 1fr;
+  }
+
+  .client-head {
+    display: grid;
   }
 }
 

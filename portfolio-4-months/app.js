@@ -759,6 +759,317 @@ const plan = [
   },
 ];
 
+const clientBriefs = {
+  w01: {
+    company: "Luna Kava Studio",
+    industry: "kleines Café mit Workshops und Take-away",
+    wantsDe: "Die Kundin eröffnet ein kleines Café und braucht zuerst eine klare Markenrichtung.",
+    wantsUa: "Клієнтка відкриває маленьку кав'ярню і спочатку потребує чіткого напрямку бренду.",
+    orderDe: "Erstelle ein Briefing, eine Persona und ein Moodboard für die neue Marke.",
+    orderUa: "Створи бриф, персону і moodboard для нового бренду.",
+    deliverables: ["Briefing", "Persona", "Moodboard"],
+    today: [
+      {
+        de: "Kläre, wer die Zielgruppe ist und welches Gefühl die Marke vermitteln soll.",
+        ua: "З'ясуй, хто цільова група і яке відчуття має передавати бренд.",
+      },
+      {
+        de: "Lege die erste Markenrichtung fest: freundlich, warm, modern und ruhig.",
+        ua: "Визнач перший напрямок бренду: дружній, теплий, сучасний і спокійний.",
+      },
+    ],
+  },
+  w02: {
+    company: "Luna Kava Studio",
+    industry: "Café Branding",
+    wantsDe: "Die Kundin braucht ein Logo, das auf Schild, Becher, Visitenkarte und Website funktioniert.",
+    wantsUa: "Клієнтці потрібен логотип, який працює на вивісці, стаканчиках, візитці та сайті.",
+    orderDe: "Gestalte ein Logo mit Varianten und prüfe, ob es klein und groß gut lesbar ist.",
+    orderUa: "Створи логотип з варіантами і перевір, чи він добре читається в малому і великому розмірі.",
+    deliverables: ["Hauptlogo", "Icon", "Schwarz-Weiß-Version", "SVG/PDF/PNG"],
+    today: [
+      {
+        de: "Skizziere mehrere Logo-Ideen und baue die besten Varianten in Illustrator nach.",
+        ua: "Намалюй кілька ідей логотипу і побудуй найкращі варіанти в Illustrator.",
+      },
+      {
+        de: "Finalisiere das Logo und exportiere die wichtigsten Dateien für Print und Web.",
+        ua: "Доведи логотип до фіналу і експортуй основні файли для друку та вебу.",
+      },
+    ],
+  },
+  w03: {
+    company: "Luna Kava Studio",
+    industry: "Corporate Design",
+    wantsDe: "Die Marke braucht passende Schriften und Farben, damit alle Materialien einheitlich wirken.",
+    wantsUa: "Бренду потрібні правильні шрифти і кольори, щоб усі матеріали виглядали єдино.",
+    orderDe: "Erstelle ein kleines Corporate Design Sheet mit Typografie und Farbpalette.",
+    orderUa: "Створи маленький Corporate Design Sheet з типографікою і палітрою кольорів.",
+    deliverables: ["Typografie-System", "Farbpalette", "RGB/CMYK-Notiz"],
+    today: [
+      {
+        de: "Wähle eine Schriftkombination für Überschrift, Untertitel und Fließtext.",
+        ua: "Вибери поєднання шрифтів для заголовка, підзаголовка і основного тексту.",
+      },
+      {
+        de: "Definiere Farben für digitale Medien und Printprodukte.",
+        ua: "Визнач кольори для цифрових медіа і друкованої продукції.",
+      },
+    ],
+  },
+  w04: {
+    company: "Luna Kava Studio",
+    industry: "Print Stationery",
+    wantsDe: "Die Kundin möchte eine professionelle Visitenkarte und einen einfachen Briefkopf.",
+    wantsUa: "Клієнтка хоче професійну візитку і простий фірмовий бланк.",
+    orderDe: "Gestalte eine Visitenkarte mit Beschnitt und bereite eine druckfertige PDF-Datei vor.",
+    orderUa: "Створи візитку з вильотом під обріз і підготуй PDF для друку.",
+    deliverables: ["Visitenkarte Vorderseite", "Visitenkarte Rückseite", "Briefkopf", "PDF/X"],
+    today: [
+      {
+        de: "Lege das Visitenkarten-Dokument mit Rand, Satzspiegel und Beschnitt an.",
+        ua: "Створи документ для візитки з полями, Satzspiegel і Beschnitt.",
+      },
+      {
+        de: "Prüfe die Druckdaten und exportiere die Visitenkarte für die Druckerei.",
+        ua: "Перевір друкарські дані і експортуй візитку для друкарні.",
+      },
+    ],
+  },
+  w05: {
+    company: "Luna Kava Studio",
+    industry: "Event Promotion",
+    wantsDe: "Das Café plant einen Wochenend-Workshop und braucht einen A5 Flyer.",
+    wantsUa: "Кав'ярня планує воркшоп на вихідних і потребує A5 flyer.",
+    orderDe: "Gestalte einen A5 Flyer mit klarer Leserführung, Blickfang und Call-to-Action.",
+    orderUa: "Створи A5 flyer з чіткою Leserführung, Blickfang і call-to-action.",
+    deliverables: ["A5 Flyer", "Print PDF", "Web PNG"],
+    today: [
+      {
+        de: "Baue ein Raster und vergleiche eine enge Version mit einer Version mit mehr Weißraum.",
+        ua: "Побудуй сітку і порівняй тісну версію з версією з більшим Weißraum.",
+      },
+      {
+        de: "Gestalte den finalen Flyer mit Bild, Headline, Text und Call-to-Action.",
+        ua: "Створи фінальний flyer із зображенням, заголовком, текстом і call-to-action.",
+      },
+    ],
+  },
+  w06: {
+    company: "Luna Kava Studio",
+    industry: "Imagebroschüre",
+    wantsDe: "Die Kundin möchte eine kleine Broschüre, um Café, Workshops und Angebote vorzustellen.",
+    wantsUa: "Клієнтка хоче маленьку брошуру, щоб презентувати кав'ярню, воркшопи і пропозиції.",
+    orderDe: "Erstelle eine 6-8-seitige Broschüre mit Cover, Angeboten und Kontaktseite.",
+    orderUa: "Створи брошуру на 6-8 сторінок з обкладинкою, пропозиціями і контактною сторінкою.",
+    deliverables: ["Broschüre", "3 polierte Doppelseiten", "PDF Preview"],
+    today: [
+      {
+        de: "Plane die Seitenstruktur und lege Musterseiten und Raster in InDesign an.",
+        ua: "Сплануй структуру сторінок і створи master pages та сітку в InDesign.",
+      },
+      {
+        de: "Finalisiere die wichtigsten Seiten und bereite eine Portfolio-Vorschau vor.",
+        ua: "Доведи найважливіші сторінки до фіналу і підготуй прев'ю для портфоліо.",
+      },
+    ],
+  },
+  w07: {
+    company: "Luna Kava Studio",
+    industry: "Social Media Kampagne",
+    wantsDe: "Das Café möchte mehr Besucherinnen für Workshops gewinnen.",
+    wantsUa: "Кав'ярня хоче залучити більше відвідувачок на воркшопи.",
+    orderDe: "Entwickle eine kleine Social-Media-Kampagne mit drei zusammengehörenden Posts.",
+    orderUa: "Розроби маленьку social media кампанію з трьох пов'язаних постів.",
+    deliverables: ["3 Instagram Posts", "Kampagnenidee", "Mockup"],
+    today: [
+      {
+        de: "Definiere Kampagnenziel, Botschaft und drei Post-Ideen.",
+        ua: "Визнач мету кампанії, повідомлення і три ідеї постів.",
+      },
+      {
+        de: "Gestalte drei Posts in einem einheitlichen visuellen Stil.",
+        ua: "Створи три пости в єдиному візуальному стилі.",
+      },
+    ],
+  },
+  w08: {
+    company: "Luna Kava Studio",
+    industry: "Print Case Study",
+    wantsDe: "Die Kundin möchte verstehen, welche Dateien sie für Druck und Online bekommt.",
+    wantsUa: "Клієнтка хоче розуміти, які файли вона отримує для друку і онлайн.",
+    orderDe: "Erstelle eine kurze Case Study mit Druckdaten-Checkliste und finalen Ergebnissen.",
+    orderUa: "Створи короткий case study з checklist для друку і фінальними результатами.",
+    deliverables: ["Druckdaten-Checkliste", "Mini Case Study", "PDF/PNG Export"],
+    today: [
+      {
+        de: "Erkläre Druckdaten, Beschnitt, PDF/X und Farbprofil in einfachen Sätzen.",
+        ua: "Поясни Druckdaten, Beschnitt, PDF/X і Farbprofil простими реченнями.",
+      },
+      {
+        de: "Baue eine kleine Case Study aus Logo, Flyer, Broschüre und Prozess.",
+        ua: "Збери маленький case study з логотипу, flyer, брошури і процесу.",
+      },
+    ],
+  },
+  w09: {
+    company: "Luna Kava Studio",
+    industry: "Website Design",
+    wantsDe: "Das Café braucht eine moderne One-Page-Website für Angebot, Workshops und Kontakt.",
+    wantsUa: "Кав'ярні потрібен сучасний one-page сайт для пропозицій, воркшопів і контакту.",
+    orderDe: "Entwirf eine Landing Page in Figma mit Hero, Services, About, Trust und Kontakt.",
+    orderUa: "Створи дизайн landing page у Figma з hero, services, about, trust і contact.",
+    deliverables: ["Desktop Wireframe", "Landing Page Design", "Mobile Preview"],
+    today: [
+      {
+        de: "Plane die Seitenstruktur und erstelle einen klaren Wireframe.",
+        ua: "Сплануй структуру сторінки і створи зрозумілий wireframe.",
+      },
+      {
+        de: "Gestalte die finale Website-Oberfläche in Figma.",
+        ua: "Створи фінальний дизайн сайту у Figma.",
+      },
+    ],
+  },
+  w10: {
+    company: "Luna Kava Studio",
+    industry: "UI System",
+    wantsDe: "Die Website soll konsistent und auch auf dem Smartphone gut bedienbar sein.",
+    wantsUa: "Сайт має бути послідовним і зручним також на смартфоні.",
+    orderDe: "Erstelle ein kleines UI Kit und responsive Varianten für die Landing Page.",
+    orderUa: "Створи маленький UI Kit і responsive варіанти для landing page.",
+    deliverables: ["UI Kit", "Desktop/Tablet/Mobile Preview", "Komponenten"],
+    today: [
+      {
+        de: "Baue wiederverwendbare Komponenten wie Buttons, Cards, Navigation und Formularfelder.",
+        ua: "Створи повторювані компоненти: кнопки, cards, навігацію і поля форми.",
+      },
+      {
+        de: "Passe die wichtigsten Bereiche für Mobile und Tablet an.",
+        ua: "Адаптуй найважливіші блоки для mobile і tablet.",
+      },
+    ],
+  },
+  w11: {
+    company: "Luna Kava Studio",
+    industry: "WordPress Umsetzung",
+    wantsDe: "Die Kundin möchte den Figma-Entwurf als echte WordPress-Seite sehen.",
+    wantsUa: "Клієнтка хоче побачити Figma-дизайн як реальну WordPress-сторінку.",
+    orderDe: "Baue die Landing Page in WordPress mit Elementor nach.",
+    orderUa: "Побудуй landing page у WordPress через Elementor.",
+    deliverables: ["WordPress Page", "Elementor Struktur", "Screenshots"],
+    today: [
+      {
+        de: "Richte WordPress, Theme, Plugins und Seitenstruktur ein.",
+        ua: "Налаштуй WordPress, theme, plugins і структуру сторінок.",
+      },
+      {
+        de: "Baue Hero und Service-Bereich in Elementor nach.",
+        ua: "Побудуй hero і service-блоки в Elementor.",
+      },
+    ],
+  },
+  w12: {
+    company: "Luna Kava Studio",
+    industry: "WordPress Funktionen",
+    wantsDe: "Die Seite soll nicht nur schön sein, sondern auch Formular, SEO und mobile Darstellung haben.",
+    wantsUa: "Сторінка має бути не тільки красивою, а й мати форму, SEO і mobile-версію.",
+    orderDe: "Ergänze Formular, SEO-Basics, Alt-Texte und eine Übergabe-Checkliste.",
+    orderUa: "Додай форму, SEO basics, alt-тексти і checklist для передачі клієнту.",
+    deliverables: ["Kontaktformular", "SEO Texte", "Handoff Checklist"],
+    today: [
+      {
+        de: "Füge Formular, Datenschutz-Hinweis und sinnvolle Plugins hinzu.",
+        ua: "Додай форму, privacy note і потрібні plugins.",
+      },
+      {
+        de: "Schreibe Meta Title, Meta Description, Alt-Texte und eine Übergabe-Notiz.",
+        ua: "Напиши meta title, meta description, alt-тексти і нотатку для передачі.",
+      },
+    ],
+  },
+  w13: {
+    company: "Luna Kava Studio",
+    industry: "Portfolio Case",
+    wantsDe: "Das Projekt soll professionell als Behance Case Study präsentiert werden.",
+    wantsUa: "Проєкт треба професійно показати як Behance case study.",
+    orderDe: "Baue eine Case Study mit Problem, Recherche, Prozess, Design und Ergebnis.",
+    orderUa: "Збери case study з problem, research, process, design і final result.",
+    deliverables: ["Behance Draft", "Case Structure", "Mockups"],
+    today: [
+      {
+        de: "Sortiere alle Materialien und schreibe die Struktur der Case Study.",
+        ua: "Відсортуй усі матеріали і напиши структуру case study.",
+      },
+      {
+        de: "Gestalte die Case Study so, dass sie klar und professionell wirkt.",
+        ua: "Оформи case study так, щоб він виглядав зрозуміло і професійно.",
+      },
+    ],
+  },
+  w14: {
+    company: "Krystyna Lozova",
+    industry: "Personal Portfolio",
+    wantsDe: "Du brauchst eine kurze, professionelle Präsentation deiner besten Arbeiten.",
+    wantsUa: "Тобі потрібна коротка професійна презентація найкращих робіт.",
+    orderDe: "Erstelle ein Portfolio PDF und aktualisiere deine LinkedIn-Projekttexte.",
+    orderUa: "Створи portfolio PDF і онови тексти про проєкти для LinkedIn.",
+    deliverables: ["Portfolio PDF", "LinkedIn Texte", "Kurzprofil"],
+    today: [
+      {
+        de: "Wähle die stärksten Projekte und baue eine klare Portfolio-Reihenfolge.",
+        ua: "Вибери найсильніші проєкти і побудуй зрозумілий порядок portfolio.",
+      },
+      {
+        de: "Schreibe kurze Projekttexte und eine 45-Sekunden-Vorstellung auf Deutsch.",
+        ua: "Напиши короткі тексти про проєкти і 45-секундну самопрезентацію німецькою.",
+      },
+    ],
+  },
+  w15: {
+    company: "Luna Kava Studio",
+    industry: "Finale Crossmedia Kampagne",
+    wantsDe: "Die Kundin möchte ein zusammenhängendes Paket aus Print, Social Media und Website.",
+    wantsUa: "Клієнтка хоче цілісний пакет з print, social media і website.",
+    orderDe: "Verbinde Logo, Visitenkarte, Broschüre, Social Posts, Figma Website und WordPress-Seite zu einer Kampagne.",
+    orderUa: "Об'єднай логотип, візитку, брошуру, social posts, Figma website і WordPress-сторінку в одну кампанію.",
+    deliverables: ["Campaign Board", "Finale Assets", "Export-Ordner"],
+    today: [
+      {
+        de: "Plane die finale Kampagne und liste alle benötigten Medien auf.",
+        ua: "Сплануй фінальну кампанію і випиши всі потрібні медіа.",
+      },
+      {
+        de: "Bereinige die wichtigsten finalen Dateien und erstelle ein Präsentationsboard.",
+        ua: "Очисти найважливіші фінальні файли і створи presentation board.",
+      },
+    ],
+  },
+  w16: {
+    company: "Luna Kava Studio + Krystyna Portfolio",
+    industry: "Prüfung und Portfolio Review",
+    wantsDe: "Du sollst dein Projekt sicher erklären und die besten Arbeiten für Bewerbung und Prüfung auswählen.",
+    wantsUa: "Ти маєш впевнено пояснити проєкт і вибрати найкращі роботи для Bewerbung та Prüfung.",
+    orderDe: "Bereite Fachgespräch-Antworten vor und mache einen finalen Portfolio-Check.",
+    orderUa: "Підготуй відповіді для Fachgespräch і зроби фінальну перевірку portfolio.",
+    deliverables: ["Fachgespräch Sheet", "Portfolio Checklist", "Next Steps"],
+    today: [
+      {
+        de: "Übe 12 Fragen und Antworten zu deinem finalen Projekt auf Deutsch.",
+        ua: "Потренуй 12 питань і відповідей до фінального проєкту німецькою.",
+      },
+      {
+        de: "Bewerte deine Projekte und entscheide, welche zwei zuerst auf Behance kommen.",
+        ua: "Оціни свої проєкти і виріши, які два першими підуть на Behance.",
+      },
+    ],
+  },
+};
+
+plan.forEach((week) => {
+  week.client = clientBriefs[week.id];
+});
+
 const state = {
   weekIndex: Number(localStorage.getItem(selectedWeekKey) || 0),
   dayIndex: 0,
@@ -853,6 +1164,7 @@ function renderWeekSummary() {
       <p><strong>${week.project}</strong></p>
       <div class="chips">${week.tools.map((tool) => `<span class="chip teal">${tool}</span>`).join("")}</div>
     </div>
+    ${renderClientBrief(week.client)}
   `;
 }
 
@@ -893,8 +1205,48 @@ function renderVideos(items) {
   `;
 }
 
+function renderClientBrief(brief) {
+  if (!brief) return "";
+  return `
+    <div class="summary-block client-brief">
+      <div class="client-head">
+        <div>
+          <h3>Kundenauftrag / Клієнтське замовлення</h3>
+          <p><strong>Firma:</strong> ${brief.company} · ${brief.industry}</p>
+        </div>
+        <div class="chips">${brief.deliverables.map((item) => `<span class="chip amber">${item}</span>`).join("")}</div>
+      </div>
+      <div class="bilingual-grid">
+        <div>
+          <strong>Was will der Kunde?</strong>
+          <p>${brief.wantsDe}</p>
+          <p class="ua">${brief.wantsUa}</p>
+        </div>
+        <div>
+          <strong>Auftrag</strong>
+          <p>${brief.orderDe}</p>
+          <p class="ua">${brief.orderUa}</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderTodayOrder(brief, dayIndex) {
+  if (!brief || !brief.today || !brief.today[dayIndex]) return "";
+  const order = brief.today[dayIndex];
+  return `
+    <section class="section client-task">
+      <h3>Aufgabe heute / Завдання на сьогодні</h3>
+      <p><strong>DE:</strong> ${order.de}</p>
+      <p class="ua"><strong>UA:</strong> ${order.ua}</p>
+    </section>
+  `;
+}
+
 function renderDay() {
   const day = currentDay();
+  const week = currentWeek();
   const done = isDone(day);
   const time = state.lightWeek ? day.light : day.time;
   dayView.innerHTML = `
@@ -915,39 +1267,40 @@ function renderDay() {
 
     <div class="layout-grid">
       <div>
+        ${renderTodayOrder(week.client, state.dayIndex)}
         <section class="section">
-          <h3>Theorie, die du direkt brauchst</h3>
+          <h3>Theorie / Теорія</h3>
           ${chips(day.theory, "teal")}
         </section>
         <section class="section">
-          <h3>Fachwörter für Fachgespräch</h3>
+          <h3>Fachwörter / Фахові слова</h3>
           ${chips(day.fach)}
         </section>
         <section class="section">
-          <h3>Praxis-Aufgabe</h3>
+          <h3>Praxis-Aufgabe / Практичне завдання</h3>
           ${list(day.practice)}
         </section>
         <section class="section soft">
-          <h3>Portfolio-Ergebnis</h3>
+          <h3>Portfolio-Ergebnis / Результат для портфоліо</h3>
           ${list(day.portfolio)}
         </section>
       </div>
 
       <aside>
         <section class="project-card">
-          <h3>Adobe-Aufgabe</h3>
+          <h3>Adobe-Aufgabe / Завдання в Adobe</h3>
           <p>${day.adobe}</p>
         </section>
         <section class="project-card">
-          <h3>Figma-Variante</h3>
+          <h3>Figma-Variante / Варіант у Figma</h3>
           <p>${day.figma}</p>
         </section>
         <section class="project-card warning">
-          <h3>Wenn die Woche schwer ist</h3>
+          <h3>Wenn die Woche schwer ist / Якщо тиждень важкий</h3>
           <p>Nur Minimum machen: öffnen, Struktur anlegen, 1 Entscheidung treffen, speichern. Nicht alles perfektionieren.</p>
         </section>
         <section class="project-card">
-          <h3>Kurz-Tutorials</h3>
+          <h3>Kurz-Tutorials / Короткі уроки</h3>
           ${renderVideos(day.videos)}
         </section>
       </aside>

@@ -13,6 +13,8 @@ Pfad fuer GitHub Pages:
 - 2 Lerntage pro Woche
 - Theorie und Praxis zusammen
 - Portfolio-Projekte statt isolierte Uebungen
+- zweisprachige Kundenauftraege Deutsch/Ukrainisch
+- fiktiver Kunde mit realistischen Briefings und Lieferobjekten
 - Adobe, Figma, WordPress und Elementor
 - kurze kostenlose YouTube-Tutorials als Einstieg
 
@@ -29,3 +31,15 @@ Der Plan basiert auf den Pruefungsthemen aus `THEORIE MEDIEN.pdf`, aber jede The
 - WordPress/Elementor Umsetzung
 - Behance Case Study
 - Portfolio PDF
+
+## Kundenprojekt
+
+Die meisten Aufgaben bauen auf dem fiktiven Kunden `Luna Kava Studio` auf. So entstehen zusammenhaengende Portfolio-Arbeiten:
+
+- Logo
+- Visitenkarte
+- Flyer
+- Broschuere
+- Social Media Kampagne
+- Website-Design in Figma
+- Umsetzung in WordPress mit Elementor
