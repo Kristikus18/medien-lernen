@@ -15,7 +15,7 @@ Pfad fuer GitHub Pages:
 - Portfolio-Projekte statt isolierte Uebungen
 - zweisprachige Kundenauftraege Deutsch/Ukrainisch
 - fiktiver Kunde mit realistischen Briefings und Lieferobjekten
-- ein konkreter Kundenauftrag pro Woche: 1 Kunde, 1 Projekt, klare Abgabe
+- ein konkreter Kundenauftrag pro Woche: jede Woche eine andere feste Kundenrichtung
 - genaue Vorgaben fuer Logo, Visitenkarte, Flyer, Broschuere, Social Media, Website und WordPress
 - konkrete Seitenzahlen/Formate, damit nicht jedes Mal neu entschieden werden muss
 - WordPress-Aufgaben mit kostenlosen Plugin-Vorschlaegen fuer SEO, Backup, Cookies, Kalender, Formulare und Performance
@@ -42,14 +42,16 @@ Der Plan basiert auf den Pruefungsthemen aus `THEORIE MEDIEN.pdf`, aber jede The
 
 ## Kundenprojekt
 
-Die meisten Aufgaben bauen auf dem fiktiven Kunden `Luna Kava Studio` auf. So entstehen zusammenhaengende Portfolio-Arbeiten:
+Jede Woche hat einen anderen fiktiven Kunden, damit mehrere Branchen und Aufgaben geuebt werden:
 
-- Logo
-- Visitenkarte
-- Flyer
-- Broschuere
-- Social Media Kampagne
-- Website-Design in Figma
-- Umsetzung in WordPress mit Elementor
+- Arztpraxis: Moodboard und Zielgruppe
+- Recruiting-Firma: Logo mit 1-3 Versionen
+- Kosmetikstudio: Farben, Typografie und Mini-CD-Manual
+- Physiotherapie: Visitenkarte und Briefkopf
+- Kreativschule fuer Kinder: A5 Flyer
+- Immobilienfirma: 8-seitige Broschuere
+- Catering: Social Media Kampagne
+- Fahrradverleih: 5-Seiten-Website in Figma
+- Restaurant und Eventlocation: WordPress, Elementor und Plugins
 
-Jede Woche ist als kompletter kleiner Kundenauftrag aufgebaut. Der Kunde, die Richtung, der Umfang, die Seitenzahl oder das Format und die Abgabe sind fest vorgegeben, damit die Lernzeit direkt in Praxis und Portfolio fliessen kann.
+Jede Woche ist als kompletter kleiner Kundenauftrag aufgebaut. Der Kunde, die Branche, der Umfang, die Seitenzahl oder das Format und die Abgabe sind fest vorgegeben, damit die Lernzeit direkt in Praxis und Portfolio fliessen kann.

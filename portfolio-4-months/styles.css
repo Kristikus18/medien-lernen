@@ -433,6 +433,65 @@ button {
   background: #fff7f3;
 }
 
+.project-roadmap {
+  grid-column: 1 / -1;
+  border-color: #d5c7ff;
+  background: #fbfaff;
+}
+
+.roadmap-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.roadmap-item {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 4px 8px;
+  min-height: 64px;
+  padding: 9px;
+  border: 1px solid #e3ddff;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.roadmap-item b {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #ede9fe;
+  color: #4c1d95;
+  font-size: 12px;
+}
+
+.roadmap-item span,
+.roadmap-item small {
+  min-width: 0;
+}
+
+.roadmap-item span {
+  color: #1f2937;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.roadmap-item small {
+  grid-column: 2;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.roadmap-item.active {
+  border-color: #9f7aea;
+  background: #f3f0ff;
+}
+
 .spec-head,
 .learning-head,
 .term-top,
@@ -656,6 +715,7 @@ button {
   .week-summary,
   .layout-grid,
   .bilingual-grid,
+  .roadmap-list,
   .spec-grid,
   .spec-columns,
   .term-grid {

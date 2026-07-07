@@ -108,7 +108,7 @@ const plan = [
     month: "Monat 1",
     pdf: "Marketing, Zielgruppe, Moodboard, Corporate Identity",
     goal: "Створити основу для бренду, щоб усі наступні роботи виглядали як один реальний клієнтський проєкт.",
-    project: "Mini-Brand für Luna Kava Studio",
+    project: "Moodboard und Briefing für Arztpraxis",
     tools: ["Figma", "Illustrator"],
     days: [
       {
@@ -694,7 +694,7 @@ const plan = [
         focus: "Не робити все заново, а об'єднати найкраще в одну кампанію.",
         theory: ["Kampagnenziel", "Kanäle", "Zielgruppe", "Corporate Design"],
         fach: ["das Kampagnenziel", "der Kanal", "die Zielgruppe", "das Corporate Design"],
-        practice: ["Використай final client Luna Kava Studio.", "Напиши campaign goal.", "Склади asset list: logo, flyer, posts, landing page."],
+        practice: ["Використай клієнта EcoHome Cleaning.", "Напиши campaign goal.", "Склади asset list: logo, flyer, posts, landing page."],
         portfolio: ["Final campaign plan"],
         adobe: "Collect final assets.",
         figma: "Campaign overview board.",
@@ -1067,9 +1067,316 @@ const clientBriefs = {
   },
 };
 
+const clientBriefOverrides = {
+  w01: {
+    company: "Praxis Dr. Anna Berger",
+    industry: "Hausarztpraxis / лікарська практика",
+    wantsDe: "Die Ärztin eröffnet eine moderne Hausarztpraxis und braucht eine ruhige, vertrauensvolle visuelle Richtung.",
+    wantsUa: "Лікарка відкриває сучасну сімейну практику і потребує спокійного, надійного візуального напрямку.",
+    orderDe: "Erstelle Briefing, Zielgruppe, Persona und Moodboard für die Praxis.",
+    orderUa: "Створи бриф, цільову групу, персону і moodboard для лікарської практики.",
+    deliverables: ["Briefing", "Persona", "Moodboard", "Brand Direction"],
+    today: [
+      {
+        de: "Kläre, welche Patientinnen und Patienten die Praxis erreichen will.",
+        ua: "З'ясуй, яких пацієнтів хоче залучити практика.",
+      },
+      {
+        de: "Lege die Markenrichtung fest: ruhig, sauber, professionell und freundlich.",
+        ua: "Визнач напрямок бренду: спокійний, чистий, професійний і дружній.",
+      },
+    ],
+  },
+  w02: {
+    company: "JobBrücke Recruiting",
+    industry: "Firma für Jobsuche und Bewerbung / рекрутингова фірма",
+    wantsDe: "Die Firma hilft Menschen bei Jobsuche, Bewerbung und Karrierewechsel und braucht ein seriöses Logo.",
+    wantsUa: "Фірма допомагає людям з пошуком роботи, резюме і зміною кар'єри та потребує серйозний логотип.",
+    orderDe: "Gestalte 1-3 Logo-Versionen und finalisiere eine saubere Logo-Variante.",
+    orderUa: "Створи 1-3 версії логотипу і доведи одну чисту фінальну версію.",
+    deliverables: ["3 Logo-Entwürfe", "Finales Logo", "Icon", "SVG/PDF/PNG"],
+    today: [
+      {
+        de: "Skizziere Logo-Ideen mit Symbolen für Brücke, Karriere, Verbindung oder Neustart.",
+        ua: "Намалюй ідеї логотипу з символами мосту, кар'єри, зв'язку або нового старту.",
+      },
+      {
+        de: "Finalisiere eine Logo-Version und exportiere sie für Print und Web.",
+        ua: "Доведи одну версію логотипу до фіналу і експортуй для друку та вебу.",
+      },
+    ],
+  },
+  w03: {
+    company: "Klara Beauty Studio",
+    industry: "Kosmetikstudio / косметологічна студія",
+    wantsDe: "Das Studio braucht Farben und Schriften, die hochwertig, sauber und feminin wirken.",
+    wantsUa: "Студії потрібні кольори і шрифти, які виглядають якісно, чисто і жіночно.",
+    orderDe: "Erstelle ein kleines Corporate Design Sheet mit Farbpalette und Typografie.",
+    orderUa: "Створи маленький corporate design sheet з палітрою і типографікою.",
+    deliverables: ["Farbpalette", "Schriftsystem", "Mini-CD-Manual", "Anwendungsbeispiel"],
+    today: [
+      {
+        de: "Wähle Schriften für Überschrift, Untertitel und Fließtext.",
+        ua: "Вибери шрифти для заголовка, підзаголовка і основного тексту.",
+      },
+      {
+        de: "Definiere Farben für Instagram, Website und Printprodukte.",
+        ua: "Визнач кольори для Instagram, сайту і друкованої продукції.",
+      },
+    ],
+  },
+  w04: {
+    company: "Physio Aktiv Wien",
+    industry: "Physiotherapie / фізіотерапія",
+    wantsDe: "Die Praxis braucht eine professionelle Visitenkarte und einen einfachen Briefkopf für Patientinnen und Partner.",
+    wantsUa: "Практиці потрібна професійна візитка і простий бланк для пацієнтів та партнерів.",
+    orderDe: "Gestalte eine druckfertige Visitenkarte und einen A4-Briefkopf.",
+    orderUa: "Створи візитку для друку і A4 фірмовий бланк.",
+    deliverables: ["Visitenkarte Vorderseite", "Visitenkarte Rückseite", "A4 Briefkopf", "PDF/X"],
+    today: [
+      {
+        de: "Lege das Visitenkarten-Dokument mit Format, Rand und Beschnitt an.",
+        ua: "Створи документ візитки з форматом, полями і Beschnitt.",
+      },
+      {
+        de: "Prüfe die Druckdaten und exportiere die PDF-Datei für die Druckerei.",
+        ua: "Перевір друкарські файли і експортуй PDF для друкарні.",
+      },
+    ],
+  },
+  w05: {
+    company: "Kinderatelier Farbenfroh",
+    industry: "Kreativschule für Kinder / творча школа для дітей",
+    wantsDe: "Das Atelier bewirbt einen Ferien-Workshop und braucht einen freundlichen A5 Flyer.",
+    wantsUa: "Ательє рекламує канікулярний воркшоп і потребує дружній A5 flyer.",
+    orderDe: "Gestalte einen A5 Flyer mit Datum, Uhrzeit, Preis, Ort und Anmeldung.",
+    orderUa: "Створи A5 flyer з датою, часом, ціною, місцем і записом.",
+    deliverables: ["A5 Flyer", "Print PDF", "Web PNG", "Before/After Layout"],
+    today: [
+      {
+        de: "Baue ein Raster und vergleiche eine enge Version mit einer luftigen Version.",
+        ua: "Побудуй сітку і порівняй тісну версію з більш повітряною.",
+      },
+      {
+        de: "Gestalte den finalen Flyer mit Bild, Headline, Text und Call-to-Action.",
+        ua: "Створи фінальний flyer із зображенням, заголовком, текстом і CTA.",
+      },
+    ],
+  },
+  w06: {
+    company: "Nova Raum Immobilien",
+    industry: "Immobilienfirma / агенція нерухомості",
+    wantsDe: "Die Firma braucht eine 8-seitige Broschüre für eine neue Wohnanlage.",
+    wantsUa: "Фірмі потрібна брошура на 8 сторінок для нового житлового комплексу.",
+    orderDe: "Erstelle eine Broschüre mit Projektinfo, Grundrissen, Vorteilen und Kontaktseite.",
+    orderUa: "Створи брошуру з інформацією про проєкт, планами, перевагами і контактами.",
+    deliverables: ["8-Seiten-Broschüre", "3 polierte Doppelseiten", "PDF Preview"],
+    today: [
+      {
+        de: "Plane Seitenstruktur, Raster und Musterseiten in InDesign.",
+        ua: "Сплануй структуру сторінок, сітку і master pages в InDesign.",
+      },
+      {
+        de: "Finalisiere die wichtigsten Seiten und bereite eine Portfolio-Vorschau vor.",
+        ua: "Доведи найважливіші сторінки і підготуй прев'ю для портфоліо.",
+      },
+    ],
+  },
+  w07: {
+    company: "FitMeal Catering",
+    industry: "Healthy Food Catering / healthy food доставка",
+    wantsDe: "Das Catering bewirbt neue Lunch-Boxen für Büros und braucht eine Social-Media-Kampagne.",
+    wantsUa: "Catering рекламує нові lunch boxes для офісів і потребує social media кампанію.",
+    orderDe: "Entwickle 3 Instagram Posts und 2 Story-Slides in einem einheitlichen Stil.",
+    orderUa: "Розроби 3 Instagram posts і 2 story slides в одному стилі.",
+    deliverables: ["3 Feed Posts", "2 Stories", "Caption Texte", "Mockup"],
+    today: [
+      {
+        de: "Definiere Kampagnenziel, Botschaft und drei Post-Ideen.",
+        ua: "Визнач мету кампанії, повідомлення і три ідеї постів.",
+      },
+      {
+        de: "Gestalte die Posts mit Foto, Headline, Angebot und CTA.",
+        ua: "Створи пости з фото, заголовком, пропозицією і CTA.",
+      },
+    ],
+  },
+  w08: {
+    company: "WaldPapier Studio",
+    industry: "nachhaltige Papeterie / екологічна поліграфія",
+    wantsDe: "Das Studio möchte Printprodukte zeigen und braucht eine kleine Case Study mit Druckdaten-Erklärung.",
+    wantsUa: "Студія хоче показати друковані продукти і потребує mini case study з поясненням Druckdaten.",
+    orderDe: "Erstelle Druckdaten-Checkliste und Mini Case Study mit 6 Slides.",
+    orderUa: "Створи checklist для Druckdaten і mini case study на 6 слайдів.",
+    deliverables: ["Druckdaten-Checkliste", "6-Slide Case Study", "PDF/PNG Export"],
+    today: [
+      {
+        de: "Erkläre Beschnitt, PDF/X, CMYK und Farbprofil in einfachen Sätzen.",
+        ua: "Поясни Beschnitt, PDF/X, CMYK і Farbprofil простими реченнями.",
+      },
+      {
+        de: "Baue eine kleine Case Study mit Prozess und finalen Print-Ergebnissen.",
+        ua: "Збери маленький case study з процесом і фінальними print результатами.",
+      },
+    ],
+  },
+  w09: {
+    company: "AlpenBike Verleih",
+    industry: "Fahrradverleih und Touren / оренда велосипедів",
+    wantsDe: "Der Kunde möchte eine übersichtliche Website mit fünf Seiten für Verleih, Touren und Kontakt.",
+    wantsUa: "Клієнт хоче зрозумілий сайт на п'ять сторінок для оренди, турів і контакту.",
+    orderDe: "Entwirf Sitemap, Wireframe und Startseite in Figma.",
+    orderUa: "Створи sitemap, wireframe і головну сторінку у Figma.",
+    deliverables: ["Sitemap", "Desktop Wireframe", "Startseite Design", "Mobile Preview"],
+    today: [
+      {
+        de: "Plane die fünf Seiten und erstelle einen klaren Wireframe.",
+        ua: "Сплануй п'ять сторінок і створи зрозумілий wireframe.",
+      },
+      {
+        de: "Gestalte die finale Website-Oberfläche in Figma.",
+        ua: "Створи фінальний дизайн сайту у Figma.",
+      },
+    ],
+  },
+  w10: {
+    company: "Urban Yoga Studio",
+    industry: "Yoga Studio / йога студія",
+    wantsDe: "Das Studio braucht ein konsistentes UI-System für Desktop, Tablet und Smartphone.",
+    wantsUa: "Студії потрібна послідовна UI-система для desktop, tablet і smartphone.",
+    orderDe: "Erstelle UI Kit, Komponenten und responsive Varianten.",
+    orderUa: "Створи UI kit, компоненти і responsive варіанти.",
+    deliverables: ["UI Kit", "Buttons", "Cards", "Navigation", "Responsive Screens"],
+    today: [
+      {
+        de: "Baue wiederverwendbare Komponenten wie Buttons, Cards, Navigation und Formularfelder.",
+        ua: "Створи повторювані компоненти: кнопки, cards, навігацію і поля форми.",
+      },
+      {
+        de: "Passe die wichtigsten Bereiche für Mobile und Tablet an.",
+        ua: "Адаптуй найважливіші блоки для mobile і tablet.",
+      },
+    ],
+  },
+  w11: {
+    company: "Bistro Mare",
+    industry: "Restaurant / ресторан",
+    wantsDe: "Das Restaurant möchte eine 5-seitige WordPress-Website mit Elementor.",
+    wantsUa: "Ресторан хоче WordPress-сайт на 5 сторінок через Elementor.",
+    orderDe: "Baue die Seitenstruktur und die Startseite in WordPress mit Elementor.",
+    orderUa: "Побудуй структуру сторінок і головну сторінку у WordPress через Elementor.",
+    deliverables: ["5 WordPress-Seiten", "Elementor Startseite", "Navigation", "Mobile Check"],
+    today: [
+      {
+        de: "Richte WordPress, Theme, Plugins und Seitenstruktur ein.",
+        ua: "Налаштуй WordPress, theme, plugins і структуру сторінок.",
+      },
+      {
+        de: "Baue Hero, Speisekarte-Teaser und Kontaktbereich in Elementor.",
+        ua: "Побудуй hero, teaser меню і контактний блок в Elementor.",
+      },
+    ],
+  },
+  w12: {
+    company: "Lichtwerk Eventraum",
+    industry: "Eventlocation / простір для подій",
+    wantsDe: "Die Location braucht Formular, Kalender, Cookie-Banner, SEO und Backup für die Website.",
+    wantsUa: "Локації потрібні форма, календар, cookie banner, SEO і backup для сайту.",
+    orderDe: "Richte kostenlose WordPress-Plugins ein und dokumentiere die wichtigsten Einstellungen.",
+    orderUa: "Налаштуй безкоштовні WordPress-плагіни і задокументуй головні налаштування.",
+    deliverables: ["Kontaktformular", "Cookie Banner", "Event Kalender", "SEO Liste", "Handoff Checklist"],
+    today: [
+      {
+        de: "Füge Formular, Datenschutz-Hinweis, Kalender und Cookie-Banner hinzu.",
+        ua: "Додай форму, Datenschutz Hinweis, календар і cookie banner.",
+      },
+      {
+        de: "Schreibe Meta Title, Meta Description, Alt-Texte und eine Übergabe-Notiz.",
+        ua: "Напиши meta title, meta description, alt-тексти і нотатку для передачі.",
+      },
+    ],
+  },
+  w13: {
+    company: "PfotenGlück Tierpraxis",
+    industry: "Tierarztpraxis / ветеринарна практика",
+    wantsDe: "Die Praxis braucht eine professionelle Behance Case Study für ein kleines Branding-Projekt.",
+    wantsUa: "Практиці потрібен професійний Behance case study для маленького branding-проєкту.",
+    orderDe: "Baue eine Case Study mit Problem, Zielgruppe, Moodboard, Logo, Print und Ergebnis.",
+    orderUa: "Збери case study з problem, target group, moodboard, logo, print і результатом.",
+    deliverables: ["Behance Draft", "Case Structure", "Mockups"],
+    today: [
+      {
+        de: "Sortiere alle Materialien und schreibe die Struktur der Case Study.",
+        ua: "Відсортуй матеріали і напиши структуру case study.",
+      },
+      {
+        de: "Gestalte die Case Study klar, ruhig und professionell.",
+        ua: "Оформи case study зрозуміло, спокійно і професійно.",
+      },
+    ],
+  },
+  w14: {
+    company: "Krystyna Lozova",
+    industry: "Personal Portfolio / особисте портфоліо",
+    wantsDe: "Du brauchst eine professionelle Präsentation deiner besten Arbeiten für Bewerbung und Ausbildung.",
+    wantsUa: "Тобі потрібна професійна презентація найкращих робіт для Bewerbung і Ausbildung.",
+    orderDe: "Erstelle Portfolio PDF, LinkedIn Texte und eine kurze Vorstellung auf Deutsch.",
+    orderUa: "Створи portfolio PDF, LinkedIn тексти і коротку презентацію німецькою.",
+    deliverables: ["Portfolio PDF", "LinkedIn Texte", "Kurzprofil"],
+    today: [
+      {
+        de: "Wähle die stärksten Projekte und baue eine klare Portfolio-Reihenfolge.",
+        ua: "Вибери найсильніші проєкти і побудуй зрозумілий порядок portfolio.",
+      },
+      {
+        de: "Schreibe kurze Projekttexte und eine 45-Sekunden-Vorstellung auf Deutsch.",
+        ua: "Напиши короткі тексти про проєкти і 45-секундну презентацію німецькою.",
+      },
+    ],
+  },
+  w15: {
+    company: "EcoHome Cleaning",
+    industry: "nachhaltige Reinigungsfirma / еко клінінг",
+    wantsDe: "Die Firma möchte ein zusammenhängendes Paket aus Print, Social Media und Website.",
+    wantsUa: "Фірма хоче цілісний пакет з print, social media і website.",
+    orderDe: "Verbinde Logo, Visitenkarte, Flyer, Social Posts, Figma Website und WordPress-Notizen zu einer Kampagne.",
+    orderUa: "Об'єднай логотип, візитку, flyer, social posts, Figma website і WordPress нотатки в одну кампанію.",
+    deliverables: ["Campaign Board", "Finale Assets", "Export-Ordner"],
+    today: [
+      {
+        de: "Plane die finale Kampagne und liste alle benötigten Medien auf.",
+        ua: "Сплануй фінальну кампанію і випиши всі потрібні медіа.",
+      },
+      {
+        de: "Bereinige die wichtigsten finalen Dateien und erstelle ein Präsentationsboard.",
+        ua: "Очисти найважливіші фінальні файли і створи presentation board.",
+      },
+    ],
+  },
+  w16: {
+    company: "Prüfungssimulation",
+    industry: "Medienfachfrau Grafik und Print / підготовка до іспиту",
+    wantsDe: "Du sollst zwei Kundenprojekte sicher erklären und deine Entscheidungen begründen.",
+    wantsUa: "Ти маєш впевнено пояснити два клієнтські проєкти і обґрунтувати рішення.",
+    orderDe: "Bereite Fachgespräch-Antworten vor und mache einen finalen Portfolio-Check.",
+    orderUa: "Підготуй відповіді для Fachgespräch і зроби фінальну перевірку portfolio.",
+    deliverables: ["Fachgespräch Sheet", "Portfolio Checklist", "Next Steps"],
+    today: [
+      {
+        de: "Übe 12 Fragen und Antworten zu deinen Kundenprojekten auf Deutsch.",
+        ua: "Потренуй 12 питань і відповідей до клієнтських проєктів німецькою.",
+      },
+      {
+        de: "Bewerte deine Projekte und entscheide, welche zwei zuerst auf Behance kommen.",
+        ua: "Оціни проєкти і виріши, які два першими підуть на Behance.",
+      },
+    ],
+  },
+};
+
 const projectSpecs = {
   w01: {
-    phase: "Sommer-Schule Praxisphase",
+    phase: "Phase 01 · Briefing, Zielgruppe und Moodboard",
     directionDe: "Fester Kunde: Luna Kava Studio, ein kleines Café mit Kaffee, ukrainischem Gebäck und kreativen Wochenend-Workshops.",
     directionUa: "Фіксований клієнт: Luna Kava Studio, маленька кав'ярня з кавою, українською випічкою і творчими воркшопами на вихідних.",
     fixedDe: "Du wählst keinen anderen Kunden. Die Marke soll warm, modern, ruhig und freundlich wirken.",
@@ -1082,7 +1389,7 @@ const projectSpecs = {
     settings: ["Client Name bleibt Luna Kava Studio", "Farbstimmung: warm, hell, nicht dunkel", "Zielgruppe: 20-40 Jahre, Kaffee, Design, Workshops"],
   },
   w02: {
-    phase: "Sommer-Schule Praxisphase",
+    phase: "Phase 02 · Logo 1-3 Versionen",
     directionDe: "Logo-Projekt für Luna Kava Studio. Das Logo muss auf Becher, Schild, Visitenkarte, Instagram und Website funktionieren.",
     directionUa: "Проєкт логотипу для Luna Kava Studio. Логотип має працювати на стаканчику, вивісці, візитці, Instagram і сайті.",
     fixedDe: "Stil: einfache Wortmarke mit kleinem Symbol. Kein kompliziertes Illustrationslogo.",
@@ -1095,7 +1402,7 @@ const projectSpecs = {
     settings: ["Mindestgröße testen: 24 px und 30 mm", "Schutzzone zeigen", "Logo auf Becher und Schild mocken"],
   },
   w03: {
-    phase: "Sommer-Schule Praxisphase",
+    phase: "Phase 03 · Farben, Schriften und Mini-CD-Manual",
     directionDe: "Corporate-Design-Grundlage für Luna Kava Studio: Schriften, Farben und kleine Regeln.",
     directionUa: "Основа corporate design для Luna Kava Studio: шрифти, кольори і маленькі правила.",
     fixedDe: "Die Marke bleibt warm und modern. Keine Neonfarben, keine harte Luxus-Optik.",
@@ -1108,7 +1415,7 @@ const projectSpecs = {
     settings: ["1 Headline-Schrift", "1 Fließtext-Schrift", "1 Primary Color", "2 Secondary Colors", "2 Neutral Colors"],
   },
   w04: {
-    phase: "Sommer-Schule Praxisphase",
+    phase: "Phase 04 · Visitenkarte und Briefkopf",
     directionDe: "Print-Set für Luna Kava Studio: Visitenkarte und einfacher Briefkopf.",
     directionUa: "Print-набір для Luna Kava Studio: візитка і простий фірмовий бланк.",
     fixedDe: "Die Visitenkarte ist 85 x 55 mm, Vorderseite und Rückseite, mit 3 mm Beschnitt.",
@@ -1121,7 +1428,7 @@ const projectSpecs = {
     settings: ["3 mm Beschnitt", "CMYK für Print", "Schnittmarken beim Export", "Kontaktdaten vollständig"],
   },
   w05: {
-    phase: "Sommer-Schule Praxisphase",
+    phase: "Phase 05 · A5 Flyer für ein Kunden-Event",
     directionDe: "Event-Flyer für den Workshop 'Latte Art Samstag' im Luna Kava Studio.",
     directionUa: "Event flyer для воркшопу 'Latte Art Samstag' у Luna Kava Studio.",
     fixedDe: "Format A5 hoch. Der Flyer muss Datum, Uhrzeit, Preis, Ort und CTA enthalten.",
@@ -1134,7 +1441,7 @@ const projectSpecs = {
     settings: ["Blickfang oben", "klare Leserführung", "CTA: Jetzt Platz reservieren", "viel Weißraum in finaler Version"],
   },
   w06: {
-    phase: "Sommer-Schule Praxisphase",
+    phase: "Phase 06 · 8-seitige Broschüre in InDesign",
     directionDe: "Imagebroschüre für Luna Kava Studio mit Café, Angebot und Workshops.",
     directionUa: "Іміджева брошура для Luna Kava Studio з кав'ярнею, пропозицією і воркшопами.",
     fixedDe: "Die Broschüre hat genau 8 Seiten und wird in InDesign aufgebaut.",
@@ -1147,7 +1454,7 @@ const projectSpecs = {
     settings: ["Musterseite verwenden", "Seitenzahlen setzen", "einheitliches Raster", "Bild-Text-Verhältnis prüfen"],
   },
   w07: {
-    phase: "Sommer-Schule Praxisphase",
+    phase: "Phase 07 · Social Media Kampagne",
     directionDe: "Social-Media-Kampagne für den Workshop 'Latte Art Samstag'.",
     directionUa: "Social media кампанія для воркшопу 'Latte Art Samstag'.",
     fixedDe: "Die Kampagne besteht aus 3 Instagram Feed Posts und 2 Story-Slides.",
@@ -1160,7 +1467,7 @@ const projectSpecs = {
     settings: ["gleiche Typografie", "gleiche CTA-Logik", "mobile Lesbarkeit testen", "Brandfarben nutzen"],
   },
   w08: {
-    phase: "Sommer-Schule Praxisphase",
+    phase: "Phase 08 · Druckdaten und Mini Case Study",
     directionDe: "Print-Workflow und Mini Case Study für die bisherigen Luna-Kava-Arbeiten.",
     directionUa: "Print workflow і mini case study для всіх попередніх робіт Luna Kava.",
     fixedDe: "Du präsentierst nicht nur schöne Bilder, sondern auch Druckdaten, Beschnitt und Export.",
@@ -1173,7 +1480,7 @@ const projectSpecs = {
     settings: ["PDF/X erklären", "Beschnitt erklären", "CMYK erklären", "Preflight-Screenshot einbauen"],
   },
   w09: {
-    phase: "Website Design Phase",
+    phase: "Phase 09 · 5-Seiten-Website Design in Figma",
     directionDe: "Website-Konzept für Luna Kava Studio. Der Kunde möchte eine klare kleine Website mit 5 Seiten.",
     directionUa: "Website concept для Luna Kava Studio. Клієнт хоче маленький зрозумілий сайт на 5 сторінок.",
     fixedDe: "Keine andere Branche. Es bleibt Café + Workshops + Kontakt.",
@@ -1186,7 +1493,7 @@ const projectSpecs = {
     settings: ["Hero mit CTA", "Workshop-Teaser", "Kontaktbereich", "Öffnungszeiten", "ruhiger Weißraum"],
   },
   w10: {
-    phase: "Website Design Phase",
+    phase: "Phase 10 · Responsive UI Kit",
     directionDe: "Responsive UI-System für die Luna-Kava-Website.",
     directionUa: "Responsive UI system для сайту Luna Kava.",
     fixedDe: "Du arbeitest weiter mit denselben 5 Seiten und machst das Design wiederverwendbar.",
@@ -1199,7 +1506,7 @@ const projectSpecs = {
     settings: ["Button states", "Form fields", "Breakpoints notieren", "Touch targets prüfen"],
   },
   w11: {
-    phase: "WordPress Umsetzung",
+    phase: "Phase 11 · WordPress/Elementor Aufbau",
     directionDe: "WordPress-Aufbau der Luna-Kava-Website mit Elementor.",
     directionUa: "Створення сайту Luna Kava у WordPress через Elementor.",
     fixedDe: "Der Kunde möchte keine große Website. Es bleibt bei 5 Seiten und einer einfachen Pflege.",
@@ -1213,7 +1520,7 @@ const projectSpecs = {
     settings: ["Permalinks prüfen", "Global Colors setzen", "Global Fonts setzen", "Navigation bauen", "Startseite als Homepage setzen"],
   },
   w12: {
-    phase: "WordPress Funktionen",
+    phase: "Phase 12 · WordPress Plugins und Funktionen",
     directionDe: "Funktionen für die Luna-Kava-Website: Kontakt, Cookie-Banner, Kalender, SEO und Backup.",
     directionUa: "Функції для сайту Luna Kava: контакт, cookie banner, календар, SEO і backup.",
     fixedDe: "Du installierst nur kostenlose Plugin-Versionen und dokumentierst, warum du sie brauchst.",
@@ -1227,7 +1534,7 @@ const projectSpecs = {
     settings: ["Cookie-Banner aktivieren", "1 Test-Event eintragen", "Kontaktformular testen", "Meta Title schreiben", "Alt-Texte setzen", "Backup erstellen"],
   },
   w13: {
-    phase: "Portfolio Aufbau",
+    phase: "Phase 13 · Behance Case Study",
     directionDe: "Behance Case Study für Luna Kava Studio.",
     directionUa: "Behance case study для Luna Kava Studio.",
     fixedDe: "Du baust eine echte Case Study aus deinem Projekt, nicht nur eine Galerie.",
@@ -1240,7 +1547,7 @@ const projectSpecs = {
     settings: ["kurze Texte", "klare Reihenfolge", "nur beste Bilder", "DE/UA Notizen für Fachgespräch"],
   },
   w14: {
-    phase: "Bewerbung und Portfolio",
+    phase: "Phase 14 · Portfolio PDF und LinkedIn",
     directionDe: "Persönliches Portfolio von Krystyna Lozova für Bewerbung und Ausbildung.",
     directionUa: "Особисте портфоліо Krystyny Lozova для Bewerbung і Ausbildung.",
     fixedDe: "Der Fokus bleibt Graphic Design, Print, Figma, WordPress und AI. Kein React/Backend.",
@@ -1253,7 +1560,7 @@ const projectSpecs = {
     settings: ["maximal 3 Projekte", "kurze Texte", "deutsche Fachwörter einbauen", "Kontakt gut sichtbar"],
   },
   w15: {
-    phase: "Finale Crossmedia Kampagne",
+    phase: "Phase 15 · Finale Crossmedia Kampagne",
     directionDe: "Finales Kundenpaket für Luna Kava Studio: 'Summer Coffee Workshop 2026'.",
     directionUa: "Фінальний клієнтський пакет для Luna Kava Studio: 'Summer Coffee Workshop 2026'.",
     fixedDe: "Alle Medien gehören zu derselben Kampagne und müssen wie eine Marke aussehen.",
@@ -1266,7 +1573,7 @@ const projectSpecs = {
     settings: ["alles konsistent prüfen", "Druckdaten kontrollieren", "Website mobile prüfen", "finale Dateien sauber benennen"],
   },
   w16: {
-    phase: "Prüfung und Review",
+    phase: "Phase 16 · Prüfungssimulation und Portfolio Review",
     directionDe: "Fachgespräch über dein Luna-Kava-Projekt und dein persönliches Portfolio.",
     directionUa: "Fachgespräch про твій Luna Kava проєкт і особисте портфоліо.",
     fixedDe: "Du übst einfache, richtige deutsche Antworten. Nicht perfekt, aber verständlich.",
@@ -1279,6 +1586,206 @@ const projectSpecs = {
     settings: ["RGB/CMYK erklären", "Beschnitt erklären", "Typografie begründen", "WordPress Plugins erklären", "Portfolio-Projekte bewerten"],
   },
 };
+
+const projectSpecOverrides = {
+  w01: {
+    directionDe: "Kunde: Praxis Dr. Anna Berger, moderne Hausarztpraxis. Aufgabe: Moodboard, Briefing und Zielgruppe vorbereiten.",
+    directionUa: "Клієнт: Praxis Dr. Anna Berger, сучасна сімейна лікарська практика. Завдання: підготувати moodboard, brief і target group.",
+    fixedDe: "Die Richtung ist fest: medizinisch, ruhig, vertrauensvoll, hell und freundlich.",
+    fixedUa: "Напрямок фіксований: медичний, спокійний, надійний, світлий і дружній.",
+    scopeDe: "1 Kundenbriefing, 1 Persona, 1 Moodboard mit 12 Referenzen und 1 Brand-Direction-Board.",
+    scopeUa: "1 клієнтський бриф, 1 персона, 1 moodboard з 12 референсами і 1 brand direction board.",
+    pagesDe: "4 Portfolio-Seiten: Briefing, Persona, Moodboard, Brand Direction.",
+    pagesUa: "4 portfolio сторінки: brief, persona, moodboard, brand direction.",
+    settings: ["Branche: Arztpraxis", "Zielgruppe: Familien, Berufstätige, ältere Menschen", "Stimmung: Vertrauen, Sauberkeit, Ruhe", "Farben: hell, medizinisch, nicht kalt"],
+  },
+  w02: {
+    directionDe: "Kunde: JobBrücke Recruiting. Aufgabe: Logo für eine Firma, die Menschen bei Jobsuche und Bewerbung hilft.",
+    directionUa: "Клієнт: JobBrücke Recruiting. Завдання: логотип для фірми, яка допомагає людям з пошуком роботи і Bewerbung.",
+    fixedDe: "Du erstellst 1-3 Logo-Versionen. Mindestens eine Version muss als Wortmarke mit kleinem Symbol funktionieren.",
+    fixedUa: "Ти створюєш 1-3 версії логотипу. Мінімум одна версія має працювати як словесний логотип з маленьким символом.",
+    scopeDe: "12 Skizzen, 3 Vektor-Entwürfe in Illustrator, 1 finale Logo-Version, Export für Print und Web.",
+    scopeUa: "12 ескізів, 3 векторні варіанти в Illustrator, 1 фінальна версія логотипу, export для print і web.",
+    pagesDe: "2 Portfolio-Seiten: Logo-Prozess und finales Logo-Board.",
+    pagesUa: "2 portfolio сторінки: процес логотипу і фінальний logo board.",
+    settings: ["Symbolideen: Brücke, Pfeil, Verbindung, Neustart", "Logo klein testen", "SVG, PDF und PNG exportieren", "Schutzzone zeigen"],
+  },
+  w03: {
+    directionDe: "Kunde: Klara Beauty Studio. Aufgabe: Farben, Schriften und ein kleines Corporate Design Manual.",
+    directionUa: "Клієнт: Klara Beauty Studio. Завдання: кольори, шрифти і маленький corporate design manual.",
+    fixedDe: "Die Marke soll hochwertig, sauber und feminin wirken, aber nicht kitschig.",
+    fixedUa: "Бренд має виглядати якісно, чисто і жіночно, але не занадто солодко.",
+    scopeDe: "Mini-CD-Manual mit 4 Seiten: Logo-Platzhalter, Farben, Typografie und Beispielanwendung.",
+    scopeUa: "Mini CD manual на 4 сторінки: logo placeholder, кольори, типографіка і приклад застосування.",
+    pagesDe: "4 Manual-Seiten: Cover, Farben, Typografie, Anwendung.",
+    pagesUa: "4 сторінки manual: обкладинка, кольори, типографіка, застосування.",
+    settings: ["1 Headline-Schrift", "1 Fließtext-Schrift", "1 Primary Color", "2 Secondary Colors", "Kontrast prüfen"],
+  },
+  w04: {
+    directionDe: "Kunde: Physio Aktiv Wien. Aufgabe: Visitenkarte und Briefkopf für eine Physiotherapie-Praxis.",
+    directionUa: "Клієнт: Physio Aktiv Wien. Завдання: візитка і бланк для фізіотерапевтичної практики.",
+    fixedDe: "Die Visitenkarte hat 85 x 55 mm, Vorderseite und Rückseite, mit 3 mm Beschnitt.",
+    fixedUa: "Візитка має 85 x 55 мм, передню і задню сторону, з 3 мм Beschnitt.",
+    scopeDe: "1 Visitenkarte, 1 A4-Briefkopf, 1 Druckdaten-Checkliste.",
+    scopeUa: "1 візитка, 1 A4 бланк, 1 checklist для Druckdaten.",
+    pagesDe: "2 Visitenkarten-Seiten plus 1 A4-Briefkopf.",
+    pagesUa: "2 сторони візитки плюс 1 A4 бланк.",
+    settings: ["3 mm Beschnitt", "CMYK", "Schnittmarken", "Kontaktdaten: Name, Telefon, Website, Adresse"],
+  },
+  w05: {
+    directionDe: "Kunde: Kinderatelier Farbenfroh. Aufgabe: A5 Flyer für einen Ferien-Workshop.",
+    directionUa: "Клієнт: Kinderatelier Farbenfroh. Завдання: A5 flyer для канікулярного воркшопу.",
+    fixedDe: "Der Flyer ist A5 hoch und muss für Eltern schnell verständlich sein.",
+    fixedUa: "Flyer A5 вертикальний і має бути швидко зрозумілим для батьків.",
+    scopeDe: "1 A5 Flyer in zwei Layout-Versionen und danach 1 finaler Flyer.",
+    scopeUa: "1 A5 flyer у двох layout версіях і потім 1 фінальний flyer.",
+    pagesDe: "1 Vorderseite, optional 1 Rückseite mit Kursdetails.",
+    pagesUa: "1 передня сторона, опційно 1 зворотна сторона з деталями курсу.",
+    settings: ["Datum", "Uhrzeit", "Preis", "Ort", "CTA: Jetzt anmelden"],
+  },
+  w06: {
+    directionDe: "Kunde: Nova Raum Immobilien. Aufgabe: 8-seitige Broschüre für eine neue Wohnanlage.",
+    directionUa: "Клієнт: Nova Raum Immobilien. Завдання: брошура на 8 сторінок для нового житлового комплексу.",
+    fixedDe: "Die Broschüre wird in InDesign aufgebaut und nutzt Musterseiten.",
+    fixedUa: "Брошура створюється в InDesign і використовує master pages.",
+    scopeDe: "8 Seiten: Cover, Projekt, Lage, Wohnungen, Grundrisse, Vorteile, Finanzierung, Kontakt.",
+    scopeUa: "8 сторінок: обкладинка, проєкт, локація, квартири, плани, переваги, фінансування, контакт.",
+    pagesDe: "Genau 8 Seiten. Mindestens Cover, 2 Innenseiten und Kontaktseite polieren.",
+    pagesUa: "Рівно 8 сторінок. Мінімум обкладинка, 2 внутрішні сторінки і контакт мають бути доведені.",
+    settings: ["Musterseite", "Seitenzahlen", "Raster", "Bild-Text-Verhältnis", "PDF Preview"],
+  },
+  w07: {
+    directionDe: "Kunde: FitMeal Catering. Aufgabe: Social-Media-Kampagne für gesunde Lunch-Boxen.",
+    directionUa: "Клієнт: FitMeal Catering. Завдання: social media campaign для healthy lunch boxes.",
+    fixedDe: "Die Kampagne hat 3 Feed Posts und 2 Story-Slides.",
+    fixedUa: "Кампанія має 3 feed posts і 2 story slides.",
+    scopeDe: "Post 1 Aufmerksamkeit, Post 2 Angebot, Post 3 Vertrauen; Stories für Reminder und Bestellung.",
+    scopeUa: "Пост 1 увага, пост 2 пропозиція, пост 3 довіра; stories для нагадування і замовлення.",
+    pagesDe: "3 Posts 1080 x 1080 px und 2 Stories 1080 x 1920 px.",
+    pagesUa: "3 пости 1080 x 1080 px і 2 stories 1080 x 1920 px.",
+    settings: ["gleiche Typografie", "gleiche Farben", "mobile Lesbarkeit", "CTA: Lunchbox bestellen"],
+  },
+  w08: {
+    directionDe: "Kunde: WaldPapier Studio. Aufgabe: Print Case Study und Druckdaten-Checkliste.",
+    directionUa: "Клієнт: WaldPapier Studio. Завдання: print case study і checklist для Druckdaten.",
+    fixedDe: "Du erklärst technische Print-Begriffe einfach und zeigst, wie Dateien vorbereitet werden.",
+    fixedUa: "Ти пояснюєш технічні print-слова просто і показуєш, як готуються файли.",
+    scopeDe: "1 Druckdaten-Checkliste und 1 Mini Case Study mit 6 Slides.",
+    scopeUa: "1 checklist для Druckdaten і 1 mini case study на 6 slides.",
+    pagesDe: "6 Slides: Problem, Moodboard, Layout, Druckdaten, Export, Ergebnis.",
+    pagesUa: "6 slides: проблема, moodboard, layout, Druckdaten, export, результат.",
+    settings: ["PDF/X", "Beschnitt", "CMYK", "Farbprofil", "Preflight"],
+  },
+  w09: {
+    directionDe: "Kunde: AlpenBike Verleih. Aufgabe: Website Design in Figma für eine 5-seitige Website.",
+    directionUa: "Клієнт: AlpenBike Verleih. Завдання: дизайн сайту у Figma для сайту на 5 сторінок.",
+    fixedDe: "Der Kunde möchte 5 Seiten, nicht nur eine Landing Page.",
+    fixedUa: "Клієнт хоче 5 сторінок, не тільки landing page.",
+    scopeDe: "Sitemap, Desktop Wireframe und visuelles Design für die Startseite.",
+    scopeUa: "Sitemap, desktop wireframe і візуальний дизайн головної сторінки.",
+    pagesDe: "5 Seiten: Startseite, Fahrräder, Touren, Preise, Kontakt.",
+    pagesUa: "5 сторінок: головна, велосипеди, тури, ціни, контакт.",
+    settings: ["Hero mit CTA", "Touren-Teaser", "Preise sichtbar", "Kontaktbereich", "mobile Preview"],
+  },
+  w10: {
+    directionDe: "Kunde: Urban Yoga Studio. Aufgabe: Responsive UI Kit für die Website.",
+    directionUa: "Клієнт: Urban Yoga Studio. Завдання: responsive UI kit для сайту.",
+    fixedDe: "Du erstellst keine neue Branche, sondern ein UI-System für diesen Yoga-Kunden.",
+    fixedUa: "Ти не створюєш нову сферу, а UI system саме для цього yoga клієнта.",
+    scopeDe: "Buttons, Cards, Navigation, Formularfelder und responsive Varianten.",
+    scopeUa: "Buttons, cards, navigation, form fields і responsive варіанти.",
+    pagesDe: "Desktop, Tablet und Mobile für Startseite; Mobile-Skizze für Kursplan-Seite.",
+    pagesUa: "Desktop, tablet і mobile для головної; mobile sketch для сторінки розкладу.",
+    settings: ["Button states", "Form fields", "Breakpoints", "Touch targets", "Lesbarkeit"],
+  },
+  w11: {
+    directionDe: "Kunde: Bistro Mare. Aufgabe: 5-seitige Restaurant-Website in WordPress mit Elementor.",
+    directionUa: "Клієнт: Bistro Mare. Завдання: ресторанний сайт на 5 сторінок у WordPress з Elementor.",
+    fixedDe: "Der Kunde möchte eine einfache pflegbare Website mit Speisekarte und Kontakt.",
+    fixedUa: "Клієнт хоче простий сайт, який можна редагувати, з меню і контактами.",
+    scopeDe: "WordPress Grundsetup, 5 Seiten anlegen, Startseite mit Elementor bauen.",
+    scopeUa: "WordPress basic setup, створити 5 сторінок, побудувати головну в Elementor.",
+    pagesDe: "5 Seiten: Startseite, Speisekarte, Reservierung, Über uns, Kontakt.",
+    pagesUa: "5 сторінок: головна, меню, бронювання, про нас, контакт.",
+    plugins: ["Elementor", "Hello Elementor Theme", "Rank Math SEO oder Yoast SEO", "UpdraftPlus Backup", "Smush oder ShortPixel Image Optimizer"],
+    settings: ["Permalinks", "Global Colors", "Global Fonts", "Navigation", "Startseite als Homepage"],
+  },
+  w12: {
+    directionDe: "Kunde: Lichtwerk Eventraum. Aufgabe: WordPress Plugins für Kalender, Formular, Cookies, SEO und Backup.",
+    directionUa: "Клієнт: Lichtwerk Eventraum. Завдання: WordPress plugins для calendar, form, cookies, SEO і backup.",
+    fixedDe: "Alle Plugins sollen kostenlose Versionen sein. Du dokumentierst, was jedes Plugin macht.",
+    fixedUa: "Усі плагіни мають бути безкоштовні версії. Ти документуєш, що робить кожен plugin.",
+    scopeDe: "Kontaktformular, Event-Kalender, Cookie-Hinweis, SEO-Basics, Bildoptimierung und Backup.",
+    scopeUa: "Contact form, event calendar, cookie notice, SEO basics, image optimization і backup.",
+    pagesDe: "5 Seiten: Startseite, Räume, Events, Preise, Kontakt. Event-Seite mit Kalender.",
+    pagesUa: "5 сторінок: головна, зали, події, ціни, контакт. Event page з календарем.",
+    plugins: ["CookieYes oder Complianz", "The Events Calendar", "Fluent Forms oder Contact Form 7", "Rank Math SEO oder Yoast SEO", "UpdraftPlus Backup", "LiteSpeed Cache oder Autoptimize"],
+    settings: ["Cookie-Banner aktivieren", "1 Test-Event eintragen", "Kontaktformular testen", "Meta Title schreiben", "Alt-Texte setzen", "Backup erstellen"],
+  },
+  w13: {
+    directionDe: "Kunde: PfotenGlück Tierpraxis. Aufgabe: Behance Case Study für ein kleines Branding-Projekt.",
+    directionUa: "Клієнт: PfotenGlück Tierpraxis. Завдання: Behance case study для маленького branding-проєкту.",
+    fixedDe: "Die Case Study zeigt nicht alles, sondern nur die stärksten Schritte.",
+    fixedUa: "Case study показує не все, а тільки найсильніші кроки.",
+    scopeDe: "10 Abschnitte: Problem, Zielgruppe, Moodboard, Logo, Farben, Print, Website-Idee, Mockups, Ergebnis, Learnings.",
+    scopeUa: "10 блоків: проблема, target group, moodboard, logo, colors, print, website idea, mockups, result, learnings.",
+    pagesDe: "10 Case-Abschnitte als Figma/Behance Layout.",
+    pagesUa: "10 case blocks як Figma/Behance layout.",
+    settings: ["kurze Texte", "klare Reihenfolge", "nur beste Bilder", "DE/UA Notizen"],
+  },
+  w14: {
+    directionDe: "Kunde: Krystyna Lozova. Aufgabe: persönliches Portfolio PDF und LinkedIn.",
+    directionUa: "Клієнт: Krystyna Lozova. Завдання: особисте portfolio PDF і LinkedIn.",
+    fixedDe: "Der Fokus bleibt Graphic Design, Print, Figma, WordPress und AI.",
+    fixedUa: "Фокус залишається Graphic Design, Print, Figma, WordPress і AI.",
+    scopeDe: "Portfolio PDF mit 8 Seiten und LinkedIn-Projekttexte.",
+    scopeUa: "Portfolio PDF на 8 сторінок і тексти про проєкти для LinkedIn.",
+    pagesDe: "8 PDF-Seiten: Cover, Profil, Skills, Projekt 1, Projekt 2, Projekt 3, Kontakt, Next Steps.",
+    pagesUa: "8 PDF сторінок: обкладинка, профіль, skills, project 1, project 2, project 3, contact, next steps.",
+    settings: ["maximal 3 Projekte", "kurze Texte", "deutsche Fachwörter", "Kontakt sichtbar"],
+  },
+  w15: {
+    directionDe: "Kunde: EcoHome Cleaning. Aufgabe: finales Crossmedia-Paket für eine nachhaltige Reinigungsfirma.",
+    directionUa: "Клієнт: EcoHome Cleaning. Завдання: фінальний crossmedia пакет для еко клінінгу.",
+    fixedDe: "Das Paket verbindet Logo, Print, Social Media, Figma Website und WordPress-Plan.",
+    fixedUa: "Пакет об'єднує logo, print, social media, Figma website і WordPress plan.",
+    scopeDe: "Logo, Visitenkarte, A5 Flyer, 3 Posts, Website Design und WordPress-Plugin-Notizen.",
+    scopeUa: "Logo, business card, A5 flyer, 3 posts, website design і WordPress plugin notes.",
+    pagesDe: "Website-Konzept mit 5 Seiten: Startseite, Leistungen, Preise, Über uns, Kontakt.",
+    pagesUa: "Website concept на 5 сторінок: головна, послуги, ціни, про нас, контакт.",
+    settings: ["konsistentes Design", "Druckdaten", "mobile Website", "saubere Dateinamen", "finales Board"],
+  },
+  w16: {
+    directionDe: "Kunde: Prüfungssimulation. Aufgabe: zwei Kundenprojekte auf Deutsch erklären.",
+    directionUa: "Клієнт: Prüfungssimulation. Завдання: пояснити два клієнтські проєкти німецькою.",
+    fixedDe: "Du übst einfache, richtige Antworten für das Fachgespräch.",
+    fixedUa: "Ти тренуєш прості правильні відповіді для Fachgespräch.",
+    scopeDe: "12 Prüfungsfragen, 8-Minuten-Präsentation und finaler Portfolio-Check.",
+    scopeUa: "12 exam questions, 8-minute presentation і final portfolio check.",
+    pagesDe: "1 Fachgespräch Sheet, 1 Portfolio Checklist, 1 Next-Steps-Seite.",
+    pagesUa: "1 Fachgespräch sheet, 1 portfolio checklist, 1 next steps page.",
+    settings: ["RGB/CMYK", "Beschnitt", "Typografie", "WordPress Plugins", "Projekt begründen"],
+  },
+};
+
+const projectRoadmap = [
+  { id: "w01", de: "Arztpraxis: Moodboard", ua: "лікар: moodboard" },
+  { id: "w02", de: "Recruiting: Logo", ua: "пошук роботи: логотип" },
+  { id: "w03", de: "Beauty Studio: CD", ua: "косметологія: CD" },
+  { id: "w04", de: "Physio: Visitenkarte", ua: "фізіо: візитка" },
+  { id: "w05", de: "Kinderschule: Flyer", ua: "дитяча школа: flyer" },
+  { id: "w06", de: "Immobilien: Broschüre", ua: "нерухомість: брошура" },
+  { id: "w07", de: "Catering: Social Media", ua: "catering: соцмережі" },
+  { id: "w08", de: "Papeterie: Druckdaten", ua: "поліграфія: Druckdaten" },
+  { id: "w09", de: "Bike Verleih: Figma Website", ua: "bike rental: сайт Figma" },
+  { id: "w10", de: "Yoga: UI Kit", ua: "йога: UI kit" },
+  { id: "w11", de: "Restaurant: WordPress", ua: "ресторан: WordPress" },
+  { id: "w12", de: "Eventraum: Plugins", ua: "івент-зал: плагіни" },
+  { id: "w13", de: "Tierpraxis: Behance", ua: "ветеринар: Behance" },
+  { id: "w14", de: "Du: Portfolio PDF", ua: "ти: portfolio PDF" },
+  { id: "w15", de: "Eco Cleaning: Paket", ua: "еко клінінг: пакет" },
+  { id: "w16", de: "Prüfung: Fachgespräch", ua: "іспит: Fachgespräch" },
+];
 
 const theorySupport = {
   w01: {
@@ -1542,8 +2049,8 @@ const termMeaningTranslations = {
 };
 
 plan.forEach((week) => {
-  week.client = clientBriefs[week.id];
-  week.spec = projectSpecs[week.id];
+  week.client = { ...clientBriefs[week.id], ...clientBriefOverrides[week.id] };
+  week.spec = { ...projectSpecs[week.id], ...projectSpecOverrides[week.id] };
   week.learning = enrichLearning(theorySupport[week.id]);
 });
 
@@ -1698,6 +2205,7 @@ function renderWeekSummary() {
       <div class="chips">${week.tools.map((tool) => `<span class="chip teal">${tool}</span>`).join("")}</div>
     </div>
     ${renderClientBrief(week.client)}
+    ${renderProjectRoadmap(week.id)}
     ${renderProjectSpec(week.spec)}
   `;
 }
@@ -1766,16 +2274,33 @@ function renderClientBrief(brief) {
   `;
 }
 
+function renderProjectRoadmap(activeId) {
+  return `
+    <div class="summary-block project-roadmap">
+      <h3>16 Wochen · 16 Kundenrichtungen / 16 тижнів · 16 напрямків клієнтів</h3>
+      <div class="roadmap-list">
+        ${projectRoadmap.map((item, index) => `
+          <span class="roadmap-item ${item.id === activeId ? "active" : ""}">
+            <b>${index + 1}</b>
+            <span>${item.de}</span>
+            <small>${item.ua}</small>
+          </span>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
 function renderProjectSpec(spec) {
   if (!spec) return "";
   return `
     <div class="summary-block project-spec">
       <div class="spec-head">
         <div>
-          <h3>Konkreter Wochenauftrag / Конкретний проєкт тижня</h3>
+          <h3>Konkreter Kundenauftrag / Конкретне замовлення клієнта</h3>
           <p class="phase-label">${spec.phase}</p>
         </div>
-        <span class="chip coral">1 Kunde · 1 Projekt · klare Abgabe</span>
+        <span class="chip coral">1 Woche · 1 Kunde · klare Abgabe</span>
       </div>
       <div class="spec-grid">
         <article>
