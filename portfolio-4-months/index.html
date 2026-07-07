@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#111827" />
+    <title>4 Monate Portfolio Trainer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <p>Medienfachfrau</p>
+          <h1>4 Monate Portfolio Trainer</h1>
+          <span>2 Lerntage pro Woche</span>
+        </div>
+
+        <section class="progress-panel" aria-label="Fortschritt">
+          <div>
+            <strong id="progressPercent">0%</strong>
+            <span>erledigt</span>
+          </div>
+          <div class="bar"><span id="progressBar"></span></div>
+          <button id="resetButton" type="button">Fortschritt zurücksetzen</button>
+        </section>
+
+        <nav id="weekList" class="week-list" aria-label="Wochen"></nav>
+      </aside>
+
+      <main class="main">
+        <header class="toolbar">
+          <div>
+            <p class="eyebrow">Neue Lern-App, alte bleibt unverändert</p>
+            <h2 id="weekTitle">Portfolio Plan</h2>
+          </div>
+          <label class="compact-toggle">
+            <input id="lightWeekToggle" type="checkbox" />
+            <span>Schwere Arbeitswoche</span>
+          </label>
+        </header>
+
+        <section class="week-summary" id="weekSummary"></section>
+
+        <section class="tabs" aria-label="Lerntag wählen">
+          <button id="dayAButton" type="button"></button>
+          <button id="dayBButton" type="button"></button>
+        </section>
+
+        <article id="dayView" class="day-view"></article>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
