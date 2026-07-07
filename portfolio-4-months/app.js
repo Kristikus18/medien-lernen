@@ -2375,6 +2375,7 @@ function buildFullClientBrief(project) {
 }
 
 function buildFullProjectSpec(project, weekId) {
+  const programTasks = buildProgramTasks(project);
   return {
     phase: `5h Kurs-Sprint · ${project.weekTitle}`,
     directionDe: `Kunde: ${project.company}. ${project.directionDe}`,
@@ -2388,6 +2389,7 @@ function buildFullProjectSpec(project, weekId) {
     deliverables: ["Moodboard", "Logo 1-3 Versionen", "Visitenkarte Vorder/Rückseite", project.printProduct, "Figma Website", "WordPress/Elementor Setup"],
     plugins: project.plugins,
     settings: project.settings,
+    programTasks,
     fullPackage: [
       "Moodboard mit 8-12 Referenzen",
       "Logo: 1-3 Versionen, davon 1 finale Version",
@@ -2428,7 +2430,48 @@ function buildFullProjectSpec(project, weekId) {
   };
 }
 
+function buildProgramTasks(project) {
+  return [
+    {
+      title: "Briefing + Moodboard",
+      de: `Erstelle fuer ${project.company} ein kurzes Briefing, eine Zielgruppe und ein Moodboard mit 8-12 Referenzen.`,
+      ua: `Створи для ${project.company} короткий brief, target group і moodboard з 8-12 референсами.`,
+    },
+    {
+      title: "Illustrator",
+      de: `Gestalte ein Logo mit 1-3 Versionen. Eine Version wird finalisiert und als SVG, PDF und PNG exportiert.`,
+      ua: `Створи логотип у 1-3 версіях. Одну версію доведи до фіналу і експортуй як SVG, PDF і PNG.`,
+    },
+    {
+      title: "InDesign · Visitenkarte",
+      de: "Erstelle eine Visitenkarte 85 x 55 mm mit Vorderseite, Rueckseite, 3 mm Beschnitt und sauberen Kontaktdaten.",
+      ua: "Створи візитку 85 x 55 мм: передня сторона, задня сторона, 3 мм Beschnitt і чисті контактні дані.",
+    },
+    {
+      title: "InDesign · Print",
+      de: `Erstelle ${project.printProduct}. Nutze Raster, klare Typografie und exportiere ein PDF.`,
+      ua: `Створи ${project.printProductUa}. Використай сітку, чисту типографіку і експортуй PDF.`,
+    },
+    {
+      title: "Figma",
+      de: `Entwirf die Website-Struktur: ${project.websitePages}. Gestalte mindestens die Startseite als Desktop-Screen und eine mobile Hero-Version.`,
+      ua: `Створи структуру сайту: ${project.websitePagesUa}. Зроби мінімум головну сторінку як desktop screen і mobile hero version.`,
+    },
+    {
+      title: "WordPress + Elementor",
+      de: `Lege die Seiten aus dem Website-Konzept in WordPress an und baue die Startseite oder die wichtigste Seite mit Elementor nach.`,
+      ua: `Створи сторінки з website concept у WordPress і побудуй головну або найважливішу сторінку через Elementor.`,
+    },
+    {
+      title: "Plugins",
+      de: `Installiere oder plane diese kostenlosen Plugins: ${project.plugins.join(", ")}. Notiere kurz, wofuer jedes Plugin gebraucht wird.`,
+      ua: `Встанови або заплануй ці безкоштовні plugins: ${project.plugins.join(", ")}. Коротко запиши, навіщо потрібен кожен plugin.`,
+    },
+  ];
+}
+
 function applyFullProjectWeek(week, project) {
+  const programTasks = buildProgramTasks(project);
   week.title = project.weekTitle;
   week.goal = `За цей тиждень створити повний mini client package для ${project.company}: від moodboard до WordPress/Elementor.`;
   week.project = `${project.company}: komplettes Kundenpaket`;
@@ -2443,10 +2486,13 @@ function applyFullProjectWeek(week, project) {
         light: "25-35 Min Vorbereitung",
         focus: `Für ${project.company}: schnell vorbereiten, damit die 5 Kursstunden für echtes Gestalten genutzt werden.`,
         practice: [
-          "Zu Hause: Briefing lesen und Zielgruppe in 5 Sätzen notieren.",
-          "Zu Hause: Moodboard mit 8-12 Referenzen sammeln.",
-          "Zu Hause: 6 Logo-Skizzen auf Papier oder iPad machen.",
-          "Im Kurs: Logo, Visitenkarte, Printprodukt, Figma Website und WordPress-Grundaufbau erstellen.",
+          programTasks[0].de,
+          "Skizziere 6 Logo-Ideen auf Papier oder iPad, bevor du Illustrator öffnest.",
+          programTasks[1].de,
+          programTasks[2].de,
+          programTasks[3].de,
+          programTasks[4].de,
+          programTasks[5].de,
         ],
         portfolio: ["Moodboard", "Logo-Entwürfe", "Visitenkarte", project.printProduct, "Figma Website Screen", "WordPress Screenshot"],
         adobe: "Illustrator: Logo 1-3 Versionen. InDesign: Visitenkarte und Mini-Broschüre/Printprodukt. Photoshop nur für Bildkorrektur, wenn nötig.",
@@ -2462,11 +2508,12 @@ function applyFullProjectWeek(week, project) {
       light: "25-40 Min Nacharbeit",
       focus: `Das Wochenpaket für ${project.company} fertig machen und kurz auf Deutsch erklären können.`,
       practice: [
-        "Finales Logo auswählen und sauber exportieren.",
-        "Visitenkarte und Printprodukt als PDF/PNG exportieren.",
-        "Figma Website Screen aufräumen und mobile Idee notieren.",
-        "WordPress/Elementor Seite prüfen und Plugin-Liste mit Zweck notieren.",
-        "5 Fachwörter laut auf Deutsch erklären.",
+        "Finales Logo auswählen, Schutzzone prüfen und SVG/PDF/PNG exportieren.",
+        "Visitenkarte mit 3 mm Beschnitt als PDF exportieren.",
+        `${project.printProduct} als PDF exportieren und 1 Mockup/Screenshot vorbereiten.`,
+        `Figma: Website-Screen fuer ${project.websitePages} aufraeumen.`,
+        "WordPress/Elementor: angelegte Seiten, Startseite und Plugin-Liste pruefen.",
+        "5 Fachwoerter laut auf Deutsch erklaeren und im Portfolio notieren.",
       ],
       portfolio: ["Final Board", "Export-Ordner", "WordPress/Plugin Checklist", "5 Fachgespräch-Sätze"],
       adobe: "Export: AI/SVG/PDF/PNG für Logo, PDF für Print, Screenshots für Portfolio.",
@@ -2670,6 +2717,20 @@ function renderProjectSpec(spec) {
           <div>
             <strong>Обов'язково цього тижня</strong>
             ${list(spec.fullPackageUa)}
+          </div>
+        </div>
+      ` : ""}
+      ${spec.programTasks ? `
+        <div class="program-task-block">
+          <strong>Aufgaben nach Programmen / Завдання по програмах</strong>
+          <div class="program-task-grid">
+            ${spec.programTasks.map((task) => `
+              <article>
+                <h4>${task.title}</h4>
+                <p>${task.de}</p>
+                <p class="ua">${task.ua}</p>
+              </article>
+            `).join("")}
           </div>
         </div>
       ` : ""}

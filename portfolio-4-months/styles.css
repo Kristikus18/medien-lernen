@@ -578,6 +578,49 @@ button {
   margin-top: 8px;
 }
 
+.program-task-block {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #ffd0c2;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.program-task-block > strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #9a3412;
+}
+
+.program-task-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.program-task-grid article {
+  padding: 12px;
+  border: 1px solid #f6d7cc;
+  border-radius: 8px;
+  background: #fffaf7;
+}
+
+.program-task-grid h4 {
+  margin: 0 0 6px;
+  color: #9a3412;
+  font-size: 14px;
+}
+
+.program-task-grid p {
+  margin: 0;
+  color: #334155;
+  line-height: 1.45;
+}
+
+.program-task-grid .ua {
+  margin-top: 7px !important;
+}
+
 .learning-support {
   border-color: #c4b5fd;
   background: #faf7ff;
@@ -749,6 +792,7 @@ button {
   .spec-grid,
   .spec-columns,
   .full-package-grid,
+  .program-task-grid,
   .term-grid {
     grid-template-columns: 1fr;
   }
