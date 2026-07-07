@@ -10,7 +10,7 @@ Der Ordner `ipad-art/` enthaelt eine zweite kleine Web-App fuer Video-Unterricht
 
 ## 4 Monate Portfolio Trainer
 
-Der Ordner `portfolio-4-months/` enthaelt eine neue Lern-App mit 16 Wochen, 2 Lerntagen pro Woche und Portfolio-Projekten fuer Illustrator, InDesign, Photoshop, Figma, WordPress und Elementor.
+Der Ordner `portfolio-4-months/` enthaelt eine neue Lern-App mit 16 Wochen, 2 Lerntagen pro Woche und Portfolio-Projekten fuer Illustrator, InDesign, Photoshop, Figma, WordPress und Elementor. Jede Woche hat einen konkreten Kundenauftrag mit festem Umfang, Seitenzahl/Formaten, Abgabe, Fachwoertern und Lernfortschritt.
 
 `https://kristikus18.github.io/medien-lernen/portfolio-4-months/`
 

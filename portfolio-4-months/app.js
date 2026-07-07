@@ -1,5 +1,6 @@
 const storageKey = "portfolio-4-months-progress-v1";
 const selectedWeekKey = "portfolio-4-months-selected-week-v1";
+const learningStorageKey = "portfolio-4-months-learning-progress-v1";
 
 const videos = {
   illustratorStart: {
@@ -107,7 +108,7 @@ const plan = [
     month: "Monat 1",
     pdf: "Marketing, Zielgruppe, Moodboard, Corporate Identity",
     goal: "Створити основу для бренду, щоб усі наступні роботи виглядали як один реальний клієнтський проєкт.",
-    project: "Mini-Brand für fiktives Café, Tattoo-Studio, Kosmetikstudio oder Tierpraxis",
+    project: "Mini-Brand für Luna Kava Studio",
     tools: ["Figma", "Illustrator"],
     days: [
       {
@@ -693,7 +694,7 @@ const plan = [
         focus: "Не робити все заново, а об'єднати найкраще в одну кампанію.",
         theory: ["Kampagnenziel", "Kanäle", "Zielgruppe", "Corporate Design"],
         fach: ["das Kampagnenziel", "der Kanal", "die Zielgruppe", "das Corporate Design"],
-        practice: ["Вибери final client.", "Напиши campaign goal.", "Склади asset list: logo, flyer, posts, landing page."],
+        practice: ["Використай final client Luna Kava Studio.", "Напиши campaign goal.", "Склади asset list: logo, flyer, posts, landing page."],
         portfolio: ["Final campaign plan"],
         adobe: "Collect final assets.",
         figma: "Campaign overview board.",
@@ -1066,6 +1067,219 @@ const clientBriefs = {
   },
 };
 
+const projectSpecs = {
+  w01: {
+    phase: "Sommer-Schule Praxisphase",
+    directionDe: "Fester Kunde: Luna Kava Studio, ein kleines Café mit Kaffee, ukrainischem Gebäck und kreativen Wochenend-Workshops.",
+    directionUa: "Фіксований клієнт: Luna Kava Studio, маленька кав'ярня з кавою, українською випічкою і творчими воркшопами на вихідних.",
+    fixedDe: "Du wählst keinen anderen Kunden. Die Marke soll warm, modern, ruhig und freundlich wirken.",
+    fixedUa: "Ти не вибираєш іншого клієнта. Бренд має виглядати теплим, сучасним, спокійним і дружнім.",
+    scopeDe: "Brand-Start-Paket: 1 Kundenbriefing, 1 Persona, 1 Moodboard mit 12 Referenzen und 1 Brand-Direction-Board.",
+    scopeUa: "Стартовий пакет бренду: 1 бриф, 1 персона, 1 moodboard з 12 референсами і 1 brand-direction board.",
+    pagesDe: "Keine Website-Seiten. Diese Woche entstehen 4 Grundlagen-Seiten für dein Portfolio.",
+    pagesUa: "Без сторінок сайту. Цього тижня створюються 4 базові сторінки для портфоліо.",
+    deliverables: ["Briefing-Seite", "Persona-Seite", "Moodboard", "Brand Direction"],
+    settings: ["Client Name bleibt Luna Kava Studio", "Farbstimmung: warm, hell, nicht dunkel", "Zielgruppe: 20-40 Jahre, Kaffee, Design, Workshops"],
+  },
+  w02: {
+    phase: "Sommer-Schule Praxisphase",
+    directionDe: "Logo-Projekt für Luna Kava Studio. Das Logo muss auf Becher, Schild, Visitenkarte, Instagram und Website funktionieren.",
+    directionUa: "Проєкт логотипу для Luna Kava Studio. Логотип має працювати на стаканчику, вивісці, візитці, Instagram і сайті.",
+    fixedDe: "Stil: einfache Wortmarke mit kleinem Symbol. Kein kompliziertes Illustrationslogo.",
+    fixedUa: "Стиль: проста словесна марка з маленьким символом. Без складного ілюстративного логотипу.",
+    scopeDe: "12 Skizzen auf Papier, 3 Vektor-Entwürfe in Illustrator, 1 finales Logo-System.",
+    scopeUa: "12 ескізів на папері, 3 векторні варіанти в Illustrator, 1 фінальна система логотипу.",
+    pagesDe: "Keine Website-Seiten. Du erstellst 1 Logo-Board und 1 Export-Board.",
+    pagesUa: "Без сторінок сайту. Ти створюєш 1 logo board і 1 export board.",
+    deliverables: ["Hauptlogo", "Icon", "Schwarz-Weiß-Version", "SVG", "PDF", "PNG"],
+    settings: ["Mindestgröße testen: 24 px und 30 mm", "Schutzzone zeigen", "Logo auf Becher und Schild mocken"],
+  },
+  w03: {
+    phase: "Sommer-Schule Praxisphase",
+    directionDe: "Corporate-Design-Grundlage für Luna Kava Studio: Schriften, Farben und kleine Regeln.",
+    directionUa: "Основа corporate design для Luna Kava Studio: шрифти, кольори і маленькі правила.",
+    fixedDe: "Die Marke bleibt warm und modern. Keine Neonfarben, keine harte Luxus-Optik.",
+    fixedUa: "Бренд залишається теплим і сучасним. Без неонових кольорів і жорсткого luxury-стилю.",
+    scopeDe: "Mini-CD-Manual mit 4 Seiten: Logo, Farben, Typografie und Beispielanwendung.",
+    scopeUa: "Міні CD manual на 4 сторінки: логотип, кольори, типографіка і приклад застосування.",
+    pagesDe: "4 Manual-Seiten: Cover, Logo-Regeln, Farbpalette, Typografie.",
+    pagesUa: "4 сторінки manual: обкладинка, правила логотипу, палітра, типографіка.",
+    deliverables: ["Typografie-System", "RGB/CMYK-Farbpalette", "Kontrast-Notiz", "Mini-CD-Manual"],
+    settings: ["1 Headline-Schrift", "1 Fließtext-Schrift", "1 Primary Color", "2 Secondary Colors", "2 Neutral Colors"],
+  },
+  w04: {
+    phase: "Sommer-Schule Praxisphase",
+    directionDe: "Print-Set für Luna Kava Studio: Visitenkarte und einfacher Briefkopf.",
+    directionUa: "Print-набір для Luna Kava Studio: візитка і простий фірмовий бланк.",
+    fixedDe: "Die Visitenkarte ist 85 x 55 mm, Vorderseite und Rückseite, mit 3 mm Beschnitt.",
+    fixedUa: "Візитка 85 x 55 мм, передня і задня сторона, з 3 мм Beschnitt.",
+    scopeDe: "1 Visitenkarte, 1 A4-Briefkopf, 1 Druckdaten-Checkliste.",
+    scopeUa: "1 візитка, 1 A4 бланк, 1 checklist для друкарських файлів.",
+    pagesDe: "2 Visitenkarten-Seiten plus 1 A4-Seite.",
+    pagesUa: "2 сторони візитки плюс 1 A4 сторінка.",
+    deliverables: ["Visitenkarte Vorderseite", "Visitenkarte Rückseite", "A4 Briefkopf", "PDF/X Export"],
+    settings: ["3 mm Beschnitt", "CMYK für Print", "Schnittmarken beim Export", "Kontaktdaten vollständig"],
+  },
+  w05: {
+    phase: "Sommer-Schule Praxisphase",
+    directionDe: "Event-Flyer für den Workshop 'Latte Art Samstag' im Luna Kava Studio.",
+    directionUa: "Event flyer для воркшопу 'Latte Art Samstag' у Luna Kava Studio.",
+    fixedDe: "Format A5 hoch. Der Flyer muss Datum, Uhrzeit, Preis, Ort und CTA enthalten.",
+    fixedUa: "Формат A5 вертикальний. Flyer має містити дату, час, ціну, місце і CTA.",
+    scopeDe: "1 A5 Flyer in zwei Layout-Varianten: crowded vs. clean. Danach 1 finaler Flyer.",
+    scopeUa: "1 A5 flyer у двох варіантах: перевантажений і чистий. Потім 1 фінальний flyer.",
+    pagesDe: "1 Flyer-Seite, optional 1 Rückseite mit Kurzinfo.",
+    pagesUa: "1 сторінка flyer, опційно 1 зворотна сторона з короткою інформацією.",
+    deliverables: ["A5 Flyer", "Print PDF", "Web PNG", "Before/After Vergleich"],
+    settings: ["Blickfang oben", "klare Leserführung", "CTA: Jetzt Platz reservieren", "viel Weißraum in finaler Version"],
+  },
+  w06: {
+    phase: "Sommer-Schule Praxisphase",
+    directionDe: "Imagebroschüre für Luna Kava Studio mit Café, Angebot und Workshops.",
+    directionUa: "Іміджева брошура для Luna Kava Studio з кав'ярнею, пропозицією і воркшопами.",
+    fixedDe: "Die Broschüre hat genau 8 Seiten und wird in InDesign aufgebaut.",
+    fixedUa: "Брошура має рівно 8 сторінок і створюється в InDesign.",
+    scopeDe: "8-seitige Broschüre: Cover, Über uns, Kaffee, Gebäck, Workshops, Gutschein, Anfahrt, Kontakt.",
+    scopeUa: "Брошура на 8 сторінок: обкладинка, про нас, кава, випічка, воркшопи, подарунковий сертифікат, як дістатися, контакт.",
+    pagesDe: "8 Seiten, davon mindestens Cover, 2 Innenseiten und Kontaktseite poliert.",
+    pagesUa: "8 сторінок, з них мінімум обкладинка, 2 внутрішні сторінки і контакт мають бути доведені до красивого рівня.",
+    deliverables: ["8-Seiten InDesign-Datei", "3 polierte Spreads", "PDF Preview", "Portfolio Mockup"],
+    settings: ["Musterseite verwenden", "Seitenzahlen setzen", "einheitliches Raster", "Bild-Text-Verhältnis prüfen"],
+  },
+  w07: {
+    phase: "Sommer-Schule Praxisphase",
+    directionDe: "Social-Media-Kampagne für den Workshop 'Latte Art Samstag'.",
+    directionUa: "Social media кампанія для воркшопу 'Latte Art Samstag'.",
+    fixedDe: "Die Kampagne besteht aus 3 Instagram Feed Posts und 2 Story-Slides.",
+    fixedUa: "Кампанія складається з 3 Instagram feed posts і 2 story slides.",
+    scopeDe: "Post 1: Aufmerksamkeit, Post 2: Angebot, Post 3: Vertrauen. Stories: Reminder und Anmeldung.",
+    scopeUa: "Пост 1: увага, пост 2: пропозиція, пост 3: довіра. Stories: нагадування і запис.",
+    pagesDe: "3 quadratische Posts 1080 x 1080 px und 2 Stories 1080 x 1920 px.",
+    pagesUa: "3 квадратні пости 1080 x 1080 px і 2 stories 1080 x 1920 px.",
+    deliverables: ["3 Feed Posts", "2 Stories", "Caption Texte", "Mockup Board"],
+    settings: ["gleiche Typografie", "gleiche CTA-Logik", "mobile Lesbarkeit testen", "Brandfarben nutzen"],
+  },
+  w08: {
+    phase: "Sommer-Schule Praxisphase",
+    directionDe: "Print-Workflow und Mini Case Study für die bisherigen Luna-Kava-Arbeiten.",
+    directionUa: "Print workflow і mini case study для всіх попередніх робіт Luna Kava.",
+    fixedDe: "Du präsentierst nicht nur schöne Bilder, sondern auch Druckdaten, Beschnitt und Export.",
+    fixedUa: "Ти показуєш не тільки красиві картинки, а й Druckdaten, Beschnitt і export.",
+    scopeDe: "1 Druckdaten-Checkliste und 1 Mini Case Study mit 6 Slides.",
+    scopeUa: "1 checklist для Druckdaten і 1 mini case study на 6 слайдів.",
+    pagesDe: "6 Case-Slides: Problem, Moodboard, Logo, Print, Social, Ergebnis.",
+    pagesUa: "6 case slides: проблема, moodboard, логотип, print, social, результат.",
+    deliverables: ["Druckdaten-Checkliste", "6-Slide Case Study", "PDF/PNG Export"],
+    settings: ["PDF/X erklären", "Beschnitt erklären", "CMYK erklären", "Preflight-Screenshot einbauen"],
+  },
+  w09: {
+    phase: "Website Design Phase",
+    directionDe: "Website-Konzept für Luna Kava Studio. Der Kunde möchte eine klare kleine Website mit 5 Seiten.",
+    directionUa: "Website concept для Luna Kava Studio. Клієнт хоче маленький зрозумілий сайт на 5 сторінок.",
+    fixedDe: "Keine andere Branche. Es bleibt Café + Workshops + Kontakt.",
+    fixedUa: "Без іншої сфери. Залишається кав'ярня + воркшопи + контакт.",
+    scopeDe: "Figma: Sitemap für 5 Seiten, Desktop-Wireframe und visuelles Design für die Startseite.",
+    scopeUa: "Figma: sitemap для 5 сторінок, desktop wireframe і візуальний дизайн головної сторінки.",
+    pagesDe: "5 Seiten: Startseite, Kaffee & Menü, Workshops, Über uns, Kontakt.",
+    pagesUa: "5 сторінок: головна, кава і меню, воркшопи, про нас, контакт.",
+    deliverables: ["Sitemap", "Desktop Wireframe", "Startseite Design", "Mobile Preview"],
+    settings: ["Hero mit CTA", "Workshop-Teaser", "Kontaktbereich", "Öffnungszeiten", "ruhiger Weißraum"],
+  },
+  w10: {
+    phase: "Website Design Phase",
+    directionDe: "Responsive UI-System für die Luna-Kava-Website.",
+    directionUa: "Responsive UI system для сайту Luna Kava.",
+    fixedDe: "Du arbeitest weiter mit denselben 5 Seiten und machst das Design wiederverwendbar.",
+    fixedUa: "Ти далі працюєш з тими самими 5 сторінками і робиш дизайн повторно використовуваним.",
+    scopeDe: "UI Kit, Komponenten und responsive Varianten für Startseite und Workshop-Seite.",
+    scopeUa: "UI kit, компоненти і responsive варіанти для головної сторінки та сторінки workshops.",
+    pagesDe: "Desktop, Tablet und Mobile für die Startseite; Mobile-Skizze für die Workshop-Seite.",
+    pagesUa: "Desktop, tablet і mobile для головної; mobile sketch для сторінки workshops.",
+    deliverables: ["UI Kit", "Buttons", "Cards", "Navigation", "Responsive Screens"],
+    settings: ["Button states", "Form fields", "Breakpoints notieren", "Touch targets prüfen"],
+  },
+  w11: {
+    phase: "WordPress Umsetzung",
+    directionDe: "WordPress-Aufbau der Luna-Kava-Website mit Elementor.",
+    directionUa: "Створення сайту Luna Kava у WordPress через Elementor.",
+    fixedDe: "Der Kunde möchte keine große Website. Es bleibt bei 5 Seiten und einer einfachen Pflege.",
+    fixedUa: "Клієнт не хоче великий сайт. Залишається 5 сторінок і просте редагування.",
+    scopeDe: "WordPress Grundsetup, 5 Seiten anlegen, Startseite mit Elementor bauen.",
+    scopeUa: "Базове налаштування WordPress, створити 5 сторінок, побудувати головну в Elementor.",
+    pagesDe: "5 WordPress-Seiten: Startseite, Kaffee & Menü, Workshops, Über uns, Kontakt.",
+    pagesUa: "5 WordPress сторінок: головна, кава і меню, воркшопи, про нас, контакт.",
+    deliverables: ["WordPress Struktur", "Elementor Startseite", "Navigation", "Mobile Check"],
+    plugins: ["Elementor", "Hello Elementor Theme", "Rank Math SEO oder Yoast SEO", "UpdraftPlus Backup", "Smush oder ShortPixel Image Optimizer"],
+    settings: ["Permalinks prüfen", "Global Colors setzen", "Global Fonts setzen", "Navigation bauen", "Startseite als Homepage setzen"],
+  },
+  w12: {
+    phase: "WordPress Funktionen",
+    directionDe: "Funktionen für die Luna-Kava-Website: Kontakt, Cookie-Banner, Kalender, SEO und Backup.",
+    directionUa: "Функції для сайту Luna Kava: контакт, cookie banner, календар, SEO і backup.",
+    fixedDe: "Du installierst nur kostenlose Plugin-Versionen und dokumentierst, warum du sie brauchst.",
+    fixedUa: "Ти встановлюєш тільки безкоштовні версії плагінів і записуєш, навіщо вони потрібні.",
+    scopeDe: "Kontaktformular, Workshop-Kalender, Cookie-Hinweis, SEO-Basics, Bildoptimierung und Backup einrichten.",
+    scopeUa: "Налаштувати контактну форму, календар воркшопів, cookie notice, SEO basics, оптимізацію зображень і backup.",
+    pagesDe: "Kontaktseite mit Formular, Workshop-Seite mit Kalender, alle 5 Seiten mit Meta Title und Alt-Texten.",
+    pagesUa: "Контактна сторінка з формою, сторінка workshops з календарем, усі 5 сторінок з meta title і alt-text.",
+    deliverables: ["Kontaktformular", "Cookie Banner", "Workshop Kalender", "SEO Liste", "Handoff Checklist"],
+    plugins: ["CookieYes oder Complianz", "The Events Calendar", "Fluent Forms oder Contact Form 7", "Rank Math SEO oder Yoast SEO", "UpdraftPlus Backup", "LiteSpeed Cache oder Autoptimize"],
+    settings: ["Cookie-Banner aktivieren", "1 Test-Event eintragen", "Kontaktformular testen", "Meta Title schreiben", "Alt-Texte setzen", "Backup erstellen"],
+  },
+  w13: {
+    phase: "Portfolio Aufbau",
+    directionDe: "Behance Case Study für Luna Kava Studio.",
+    directionUa: "Behance case study для Luna Kava Studio.",
+    fixedDe: "Du baust eine echte Case Study aus deinem Projekt, nicht nur eine Galerie.",
+    fixedUa: "Ти створюєш справжній case study зі свого проєкту, не просто галерею.",
+    scopeDe: "Case Study mit 10 Abschnitten: Problem, Zielgruppe, Moodboard, Logo, Print, Social, Website, WordPress, Ergebnis, Learnings.",
+    scopeUa: "Case study з 10 блоків: проблема, цільова група, moodboard, логотип, print, social, website, WordPress, результат, висновки.",
+    pagesDe: "10 Case-Abschnitte als Figma/Behance Layout.",
+    pagesUa: "10 блоків case study у Figma/Behance layout.",
+    deliverables: ["Behance Draft", "Mockups", "Projekttexte", "Finale Bilder"],
+    settings: ["kurze Texte", "klare Reihenfolge", "nur beste Bilder", "DE/UA Notizen für Fachgespräch"],
+  },
+  w14: {
+    phase: "Bewerbung und Portfolio",
+    directionDe: "Persönliches Portfolio von Krystyna Lozova für Bewerbung und Ausbildung.",
+    directionUa: "Особисте портфоліо Krystyny Lozova для Bewerbung і Ausbildung.",
+    fixedDe: "Der Fokus bleibt Graphic Design, Print, Figma, WordPress und AI. Kein React/Backend.",
+    fixedUa: "Фокус залишається Graphic Design, Print, Figma, WordPress і AI. Без React/backend.",
+    scopeDe: "Portfolio PDF mit 8 Seiten und LinkedIn-Projekttexte.",
+    scopeUa: "Portfolio PDF на 8 сторінок і тексти про проєкти для LinkedIn.",
+    pagesDe: "8 PDF-Seiten: Cover, Profil, Skills, Projekt 1, Projekt 2, Projekt 3, Kontakt, Next Steps.",
+    pagesUa: "8 PDF сторінок: обкладинка, профіль, skills, проєкт 1, проєкт 2, проєкт 3, контакт, next steps.",
+    deliverables: ["Portfolio PDF", "LinkedIn Headline", "2 Projekttexte", "45-Sekunden Vorstellung"],
+    settings: ["maximal 3 Projekte", "kurze Texte", "deutsche Fachwörter einbauen", "Kontakt gut sichtbar"],
+  },
+  w15: {
+    phase: "Finale Crossmedia Kampagne",
+    directionDe: "Finales Kundenpaket für Luna Kava Studio: 'Summer Coffee Workshop 2026'.",
+    directionUa: "Фінальний клієнтський пакет для Luna Kava Studio: 'Summer Coffee Workshop 2026'.",
+    fixedDe: "Alle Medien gehören zu derselben Kampagne und müssen wie eine Marke aussehen.",
+    fixedUa: "Усі медіа належать до однієї кампанії і мають виглядати як один бренд.",
+    scopeDe: "Finales Paket aus Logo, Visitenkarte, A5 Flyer, 8-Seiten-Broschüre, 3 Posts und 5-Seiten-Website.",
+    scopeUa: "Фінальний пакет: логотип, візитка, A5 flyer, брошура на 8 сторінок, 3 пости і сайт на 5 сторінок.",
+    pagesDe: "5 Website-Seiten plus Print- und Social-Media-Materialien.",
+    pagesUa: "5 сторінок сайту плюс print і social media матеріали.",
+    deliverables: ["Campaign Board", "Export-Ordner", "Print PDF", "Web Assets", "Presentation Board"],
+    settings: ["alles konsistent prüfen", "Druckdaten kontrollieren", "Website mobile prüfen", "finale Dateien sauber benennen"],
+  },
+  w16: {
+    phase: "Prüfung und Review",
+    directionDe: "Fachgespräch über dein Luna-Kava-Projekt und dein persönliches Portfolio.",
+    directionUa: "Fachgespräch про твій Luna Kava проєкт і особисте портфоліо.",
+    fixedDe: "Du übst einfache, richtige deutsche Antworten. Nicht perfekt, aber verständlich.",
+    fixedUa: "Ти тренуєш прості правильні німецькі відповіді. Не ідеально, але зрозуміло.",
+    scopeDe: "12 Prüfungsfragen, 8-Minuten-Präsentation und finaler Portfolio-Check.",
+    scopeUa: "12 екзаменаційних питань, презентація на 8 хвилин і фінальна перевірка портфоліо.",
+    pagesDe: "1 Fachgespräch Sheet, 1 Portfolio Checklist, 1 Next-Steps-Seite.",
+    pagesUa: "1 sheet для Fachgespräch, 1 portfolio checklist, 1 next-steps сторінка.",
+    deliverables: ["Fachgespräch Sheet", "Portfolio Checklist", "Next Steps", "Selbstbewertung"],
+    settings: ["RGB/CMYK erklären", "Beschnitt erklären", "Typografie begründen", "WordPress Plugins erklären", "Portfolio-Projekte bewerten"],
+  },
+};
+
 const theorySupport = {
   w01: {
     terms: [
@@ -1261,9 +1475,76 @@ const theorySupport = {
   },
 };
 
+const termMeaningTranslations = {
+  "das Briefing": "Коротка інформація від клієнта: мета, цільова група, стиль, бюджет і час.",
+  "die Zielgruppe": "Люди, яких має досягнути дизайн або реклама.",
+  "das Moodboard": "Збірка зображень, кольорів і стилю для візуального напрямку.",
+  "die Corporate Identity": "Загальний образ бренду всередині компанії і назовні.",
+  "die Vektorgrafik": "Графіка з форм і контурів, яку можна збільшувати без втрати якості.",
+  "die Wortmarke": "Логотип, який складається переважно з тексту.",
+  "die Bildmarke": "Графічний знак або символ бренду.",
+  "die Skalierbarkeit": "Логотип або графіка добре працює у малому і великому розмірі.",
+  "die Schriftfamilie": "Група шрифтів, наприклад Regular, Bold і Italic.",
+  "die Hierarchie": "Показує, яка інформація найважливіша.",
+  "RGB": "Колірна модель для екранів і цифрових медіа.",
+  "CMYK": "Колірна модель для друкованої продукції.",
+  "der Beschnitt": "Додатковий край, який після друку обрізається.",
+  "das Endformat": "Готовий розмір після обрізання.",
+  "die Schnittmarken": "Мітки, які показують, де треба різати.",
+  "das PDF/X": "PDF-стандарт для друкарських файлів.",
+  "das Raster": "Допоміжна сітка для охайного розміщення елементів.",
+  "der Weißraum": "Вільний простір між елементами дизайну.",
+  "der Blickfang": "Елемент, який першим привертає увагу.",
+  "die Leserführung": "Веде погляд людини через макет.",
+  "die Musterseite": "Шаблон для однакових елементів на кількох сторінках в InDesign.",
+  "die Spalte": "Вертикальна область для тексту або зображень.",
+  "der Falz": "Місце, де папір згинається.",
+  "die Endverarbeitung": "Обрізання, згинання, брошурування або обробка після друку.",
+  "die Kampagne": "Кілька рекламних дій з однією спільною метою.",
+  "die Botschaft": "Головна думка, яку треба передати.",
+  "der Call-to-Action": "Заклик до дії, наприклад забронювати або купити.",
+  "die Bildsprache": "Стиль зображень, кольорів і візуального настрою.",
+  "das Farbprofil": "Описує, як кольори відображаються на екрані або в друці.",
+  "der Preflight": "Перевірка, чи друкарські файли підготовлені правильно.",
+  "die Druckmarken": "Допоміжні позначки для друкарні і подальшої обробки.",
+  "die Fallstudie": "Показ проєкту: проблема, процес і результат.",
+  "die Landing Page": "Одна сторінка сайту з чіткою метою.",
+  "der Hero-Bereich": "Перший верхній блок сайту з головною думкою і кнопкою.",
+  "die Informationsarchitektur": "Порядок і структура контенту на сайті.",
+  "responsive": "Сайт або дизайн адаптується до різних розмірів екрана.",
+  "die Komponente": "Повторюваний UI-елемент, наприклад кнопка або card.",
+  "der Zustand": "Варіант елемента, наприклад normal, hover або active.",
+  "der Breakpoint": "Ширина екрана, на якій змінюється layout.",
+  "die Barrierefreiheit": "Дизайн зручний для максимально великої кількості людей.",
+  "das Theme": "Базовий дизайн WordPress-сайту.",
+  "das Plugin": "Розширення, яке додає WordPress нові функції.",
+  "der Container": "Блок Elementor, який структурує контент.",
+  "die globalen Stile": "Центральні налаштування кольорів, шрифтів і layout.",
+  "das Formular": "Блок, через який користувачі можуть відправити дані.",
+  "der Alt-Text": "Опис зображення для SEO і доступності.",
+  "der Meta Title": "Заголовок сторінки для пошукових систем.",
+  "die Ladezeit": "Час, поки сайт стане видимим і зручним для використання.",
+  "die Recherche": "Збір і аналіз інформації перед дизайном.",
+  "der Entwurfsprozess": "Шлях від ідеї та ескізів до фінального дизайну.",
+  "das Mockup": "Реалістичний показ дизайну на продукті або екрані.",
+  "das Portfolio": "Збірка найкращих робіт.",
+  "das Kurzprofil": "Коротке представлення людини і її навичок.",
+  "die Projektbeschreibung": "Короткий текст про мету, роль, процес і результат.",
+  "die Bewerbung": "Документи і комунікація для подання на роботу.",
+  "Crossmedia": "Одна кампанія в кількох медіаканалах.",
+  "der Kanal": "Медіа, наприклад print, social media, website або newsletter.",
+  "die Konsistenz": "Усі матеріали виглядають як частини одного бренду.",
+  "die Qualitätskontrolle": "Перевірка перед здачею або публікацією.",
+  "das Fachgespräch": "Екзаменаційна розмова, де ти пояснюєш свою роботу.",
+  "begründen": "Пояснити, чому було прийняте певне рішення.",
+  "die Selbstbewertung": "Перевірити власну роботу і побачити, що можна покращити.",
+  "der nächste Schritt": "Конкретна дія після review.",
+};
+
 plan.forEach((week) => {
   week.client = clientBriefs[week.id];
-  week.learning = theorySupport[week.id];
+  week.spec = projectSpecs[week.id];
+  week.learning = enrichLearning(theorySupport[week.id]);
 });
 
 const state = {
@@ -1273,6 +1554,7 @@ const state = {
 };
 
 const progress = loadProgress();
+const learningProgress = loadLearningProgress();
 
 const weekList = document.querySelector("#weekList");
 const weekTitle = document.querySelector("#weekTitle");
@@ -1297,12 +1579,66 @@ function saveProgress() {
   localStorage.setItem(storageKey, JSON.stringify(progress));
 }
 
+function loadLearningProgress() {
+  try {
+    return JSON.parse(localStorage.getItem(learningStorageKey)) || {};
+  } catch {
+    return {};
+  }
+}
+
+function saveLearningProgress() {
+  localStorage.setItem(learningStorageKey, JSON.stringify(learningProgress));
+}
+
+function enrichLearning(learning) {
+  if (!learning) return null;
+  return {
+    ...learning,
+    terms: learning.terms.map((term) => ({
+      ...term,
+      meaningUa: term.meaningUa || termMeaningTranslations[term.de] || term.ua,
+    })),
+  };
+}
+
 function sessionKey(day) {
   return day.id;
 }
 
 function isDone(day) {
   return Boolean(progress[sessionKey(day)]);
+}
+
+function learningItemKey(weekId, type, index) {
+  return `${weekId}:${type}:${index}`;
+}
+
+function isLearned(key) {
+  return Boolean(learningProgress[key]);
+}
+
+function toggleLearned(key) {
+  if (learningProgress[key]) delete learningProgress[key];
+  else learningProgress[key] = Date.now();
+  saveLearningProgress();
+}
+
+function learningStatsForWeek(week) {
+  if (!week.learning) return { done: 0, total: 0 };
+  const total = week.learning.terms.length + week.learning.questions.length;
+  const termDone = week.learning.terms.filter((_, index) => isLearned(learningItemKey(week.id, "term", index))).length;
+  const questionDone = week.learning.questions.filter((_, index) => isLearned(learningItemKey(week.id, "question", index))).length;
+  return { done: termDone + questionDone, total };
+}
+
+function bindLearningToggles() {
+  dayView.querySelectorAll(".learn-toggle").forEach((button) => {
+    button.addEventListener("click", () => {
+      toggleLearned(button.dataset.learnKey);
+      render();
+    });
+  });
 }
 
 function currentWeek() {
@@ -1328,10 +1664,11 @@ function renderProgress() {
 function renderWeeks() {
   weekList.innerHTML = plan.map((week, index) => {
     const done = week.days.filter(isDone).length;
+    const learned = learningStatsForWeek(week);
     return `
       <button class="week-button ${index === state.weekIndex ? "active" : ""}" type="button" data-week="${index}">
         <strong>${index + 1}. ${week.title}</strong>
-        <span>${week.month} · ${done}/2 erledigt · ${week.tools.join(", ")}</span>
+        <span>${week.month} · ${done}/2 Praxis · ${learned.done}/${learned.total} Theorie · ${week.tools.join(", ")}</span>
       </button>
     `;
   }).join("");
@@ -1361,6 +1698,7 @@ function renderWeekSummary() {
       <div class="chips">${week.tools.map((tool) => `<span class="chip teal">${tool}</span>`).join("")}</div>
     </div>
     ${renderClientBrief(week.client)}
+    ${renderProjectSpec(week.spec)}
   `;
 }
 
@@ -1428,6 +1766,59 @@ function renderClientBrief(brief) {
   `;
 }
 
+function renderProjectSpec(spec) {
+  if (!spec) return "";
+  return `
+    <div class="summary-block project-spec">
+      <div class="spec-head">
+        <div>
+          <h3>Konkreter Wochenauftrag / Конкретний проєкт тижня</h3>
+          <p class="phase-label">${spec.phase}</p>
+        </div>
+        <span class="chip coral">1 Kunde · 1 Projekt · klare Abgabe</span>
+      </div>
+      <div class="spec-grid">
+        <article>
+          <strong>Kunde und Richtung</strong>
+          <p>${spec.directionDe}</p>
+          <p class="ua">${spec.directionUa}</p>
+        </article>
+        <article>
+          <strong>Keine Auswahl / Без вибору</strong>
+          <p>${spec.fixedDe}</p>
+          <p class="ua">${spec.fixedUa}</p>
+        </article>
+        <article>
+          <strong>Umfang</strong>
+          <p>${spec.scopeDe}</p>
+          <p class="ua">${spec.scopeUa}</p>
+        </article>
+        <article>
+          <strong>Seiten oder Formate</strong>
+          <p>${spec.pagesDe}</p>
+          <p class="ua">${spec.pagesUa}</p>
+        </article>
+      </div>
+      <div class="spec-columns">
+        <div>
+          <strong>Abgabe / Що здати</strong>
+          ${list(spec.deliverables)}
+        </div>
+        <div>
+          <strong>${spec.plugins ? "Plugins / Плагіни" : "Einstellungen / Налаштування"}</strong>
+          ${list(spec.plugins || spec.settings)}
+        </div>
+      </div>
+      ${spec.plugins ? `
+        <div class="spec-settings">
+          <strong>Plugin-Einstellungen / Налаштування плагінів</strong>
+          ${list(spec.settings)}
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
 function renderTodayOrder(brief, dayIndex) {
   if (!brief || !brief.today || !brief.today[dayIndex]) return "";
   const order = brief.today[dayIndex];
@@ -1440,30 +1831,56 @@ function renderTodayOrder(brief, dayIndex) {
   `;
 }
 
-function renderLearningSupport(learning) {
+function renderLearningSupport(week) {
+  const learning = week.learning;
   if (!learning) return "";
+  const stats = learningStatsForWeek(week);
   return `
     <section class="section learning-support">
-      <h3>Theorie lernen / Теорія для вивчення</h3>
-      <p class="learning-intro">Основні слова цього тижня: спочатку зрозуміти значення, потім вчити для Fachgespräch.</p>
+      <div class="learning-head">
+        <div>
+          <h3>Theorie lernen / Теорія для вивчення</h3>
+          <p class="learning-intro">Основні слова цього тижня: спочатку зрозуміти значення, потім вчити для Fachgespräch.</p>
+        </div>
+        <span>${stats.done}/${stats.total} gelernt</span>
+      </div>
       <div class="term-grid">
-        ${learning.terms.map((term) => `
+        ${learning.terms.map((term, index) => {
+          const key = learningItemKey(week.id, "term", index);
+          const learned = isLearned(key);
+          return `
           <article class="term-card">
-            <strong>${term.de}</strong>
-            <span>${term.ua}</span>
-            <p>${term.meaning}</p>
+            <div class="term-top">
+              <div>
+                <strong>${term.de}</strong>
+                <span>${term.ua}</span>
+              </div>
+              <button class="learn-toggle ${learned ? "learned" : ""}" type="button" data-learn-key="${key}">
+                ${learned ? "Gelernt" : "Lernen"}
+              </button>
+            </div>
+            <p><b>DE einfach:</b> ${term.meaning}</p>
+            <p class="ua"><b>UA:</b> ${term.meaningUa}</p>
           </article>
-        `).join("")}
+        `}).join("")}
       </div>
       <h4>Beispielfragen / Приклади питань</h4>
       <div class="question-list">
-        ${learning.questions.map((item) => `
+        ${learning.questions.map((item, index) => {
+          const key = learningItemKey(week.id, "question", index);
+          const learned = isLearned(key);
+          return `
           <article class="question-card">
-            <strong>${item.q}</strong>
+            <div class="question-top">
+              <strong>${item.q}</strong>
+              <button class="learn-toggle ${learned ? "learned" : ""}" type="button" data-learn-key="${key}">
+                ${learned ? "Geübt" : "Üben"}
+              </button>
+            </div>
             <p><b>Antwort:</b> ${item.a}</p>
             <p class="ua"><b>UA:</b> ${item.ua}</p>
           </article>
-        `).join("")}
+        `}).join("")}
       </div>
     </section>
   `;
@@ -1493,7 +1910,7 @@ function renderDay() {
     <div class="layout-grid">
       <div>
         ${renderTodayOrder(week.client, state.dayIndex)}
-        ${renderLearningSupport(week.learning)}
+        ${renderLearningSupport(week)}
         <section class="section">
           <h3>Theorie / Теорія</h3>
           ${chips(day.theory, "teal")}
@@ -1540,6 +1957,7 @@ function renderDay() {
     saveProgress();
     render();
   });
+  bindLearningToggles();
 }
 
 function render() {
@@ -1553,7 +1971,9 @@ function render() {
 resetButton.addEventListener("click", () => {
   if (!confirm("Fortschritt wirklich zurücksetzen?")) return;
   Object.keys(progress).forEach((key) => delete progress[key]);
+  Object.keys(learningProgress).forEach((key) => delete learningProgress[key]);
   saveProgress();
+  saveLearningProgress();
   render();
 });
 
