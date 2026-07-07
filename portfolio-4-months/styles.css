@@ -422,6 +422,71 @@ button {
   color: #134e4a;
 }
 
+.learning-support {
+  border-color: #c4b5fd;
+  background: #faf7ff;
+}
+
+.learning-support h3 {
+  color: #4c1d95;
+}
+
+.learning-support h4 {
+  margin: 16px 0 8px;
+  color: #4c1d95;
+  font-size: 14px;
+}
+
+.learning-intro {
+  margin-bottom: 12px !important;
+}
+
+.term-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.term-card,
+.question-card {
+  padding: 12px;
+  border: 1px solid #ddd6fe;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.term-card strong,
+.term-card span {
+  display: block;
+}
+
+.term-card strong {
+  color: #4c1d95;
+}
+
+.term-card span {
+  margin-top: 3px;
+  color: #475569;
+  font-size: 13px;
+}
+
+.term-card p,
+.question-card p {
+  margin: 7px 0 0;
+  color: #334155;
+  line-height: 1.45;
+}
+
+.question-list {
+  display: grid;
+  gap: 10px;
+}
+
+.question-card strong {
+  display: block;
+  color: #1f4d78;
+}
+
 .video-list {
   display: grid;
   gap: 10px;
@@ -496,7 +561,8 @@ button {
 
   .week-summary,
   .layout-grid,
-  .bilingual-grid {
+  .bilingual-grid,
+  .term-grid {
     grid-template-columns: 1fr;
   }
 

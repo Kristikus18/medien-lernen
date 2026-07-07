@@ -1066,8 +1066,204 @@ const clientBriefs = {
   },
 };
 
+const theorySupport = {
+  w01: {
+    terms: [
+      { de: "das Briefing", ua: "бриф", meaning: "kurze Informationen vom Kunden: Ziel, Zielgruppe, Stil, Budget und Zeit" },
+      { de: "die Zielgruppe", ua: "цільова група", meaning: "Menschen, die mit dem Design erreicht werden sollen" },
+      { de: "das Moodboard", ua: "дошка настрою", meaning: "Sammlung von Bildern, Farben und Stilen als visuelle Richtung" },
+      { de: "die Corporate Identity", ua: "ідентичність бренду", meaning: "das gesamte Bild einer Marke nach innen und außen" },
+    ],
+    questions: [
+      { q: "Was steht in einem Briefing?", a: "In einem Briefing stehen Ziel, Zielgruppe, Stil, Budget und Zeitplan.", ua: "У брифі є мета, цільова група, стиль, бюджет і час." },
+      { q: "Warum macht man ein Moodboard?", a: "Ein Moodboard hilft, die visuelle Richtung zu zeigen.", ua: "Moodboard допомагає показати візуальний напрямок." },
+    ],
+  },
+  w02: {
+    terms: [
+      { de: "die Vektorgrafik", ua: "векторна графіка", meaning: "Grafik aus Formen und Pfaden, die ohne Qualitätsverlust skaliert werden kann" },
+      { de: "die Wortmarke", ua: "словесний логотип", meaning: "Logo, das hauptsächlich aus Schrift besteht" },
+      { de: "die Bildmarke", ua: "знак логотипу", meaning: "grafisches Symbol einer Marke" },
+      { de: "die Skalierbarkeit", ua: "масштабованість", meaning: "Logo bleibt klein und groß gut erkennbar" },
+    ],
+    questions: [
+      { q: "Warum nutzt man Vektorgrafiken für Logos?", a: "Vektorgrafiken bleiben beim Vergrößern scharf.", ua: "Векторна графіка залишається чіткою при збільшенні." },
+      { q: "Was ist wichtig bei einem Logo?", a: "Ein Logo soll einfach, lesbar und wiedererkennbar sein.", ua: "Логотип має бути простий, читабельний і впізнаваний." },
+    ],
+  },
+  w03: {
+    terms: [
+      { de: "die Schriftfamilie", ua: "сімейство шрифтів", meaning: "zusammengehörende Schriftschnitte wie Regular, Bold und Italic" },
+      { de: "die Hierarchie", ua: "ієрархія", meaning: "zeigt, welche Information am wichtigsten ist" },
+      { de: "RGB", ua: "модель кольору для екранів", meaning: "Farbmodell für digitale Medien und Bildschirme" },
+      { de: "CMYK", ua: "модель кольору для друку", meaning: "Farbmodell für Printprodukte" },
+    ],
+    questions: [
+      { q: "Wofür verwendet man RGB?", a: "RGB verwendet man für Bildschirme und digitale Medien.", ua: "RGB використовують для екранів і цифрових медіа." },
+      { q: "Warum ist typografische Hierarchie wichtig?", a: "Sie zeigt dem Leser, was zuerst wichtig ist.", ua: "Вона показує читачу, що є найважливішим спочатку." },
+    ],
+  },
+  w04: {
+    terms: [
+      { de: "der Beschnitt", ua: "виліт під обріз", meaning: "zusätzlicher Rand, der nach dem Druck abgeschnitten wird" },
+      { de: "das Endformat", ua: "кінцевий формат", meaning: "fertige Größe nach dem Schneiden" },
+      { de: "die Schnittmarken", ua: "мітки обрізу", meaning: "Marken, die zeigen, wo geschnitten wird" },
+      { de: "das PDF/X", ua: "стандарт PDF для друку", meaning: "PDF-Standard für druckfertige Daten" },
+    ],
+    questions: [
+      { q: "Warum braucht man Beschnitt?", a: "Beschnitt verhindert weiße Blitzer nach dem Schneiden.", ua: "Beschnitt запобігає білим смужкам після обрізання." },
+      { q: "Was sind Druckdaten?", a: "Druckdaten sind Dateien, die für die Druckerei vorbereitet sind.", ua: "Druckdaten - це файли, підготовлені для друкарні." },
+    ],
+  },
+  w05: {
+    terms: [
+      { de: "das Raster", ua: "сітка", meaning: "Hilfssystem, um Elemente ordentlich zu platzieren" },
+      { de: "der Weißraum", ua: "вільний простір", meaning: "freier Bereich zwischen Gestaltungselementen" },
+      { de: "der Blickfang", ua: "елемент уваги", meaning: "Element, das zuerst Aufmerksamkeit bekommt" },
+      { de: "die Leserführung", ua: "ведення погляду", meaning: "lenkt den Blick durch das Layout" },
+    ],
+    questions: [
+      { q: "Wofür braucht man ein Raster?", a: "Ein Raster hilft, ein Layout klar und ordentlich aufzubauen.", ua: "Сітка допомагає зробити макет чітким і охайним." },
+      { q: "Warum ist Weißraum wichtig?", a: "Weißraum macht das Design ruhiger und besser lesbar.", ua: "Вільний простір робить дизайн спокійнішим і читабельнішим." },
+    ],
+  },
+  w06: {
+    terms: [
+      { de: "die Musterseite", ua: "master page", meaning: "Vorlage für wiederkehrende Elemente in InDesign" },
+      { de: "die Spalte", ua: "колонка", meaning: "senkrechter Bereich für Text oder Bilder" },
+      { de: "der Falz", ua: "згин", meaning: "Stelle, an der Papier gefaltet wird" },
+      { de: "die Endverarbeitung", ua: "після друкарська обробка", meaning: "Schneiden, Falzen, Binden oder Veredeln nach dem Druck" },
+    ],
+    questions: [
+      { q: "Was ist eine Musterseite?", a: "Eine Musterseite ist eine Vorlage für gleiche Elemente auf mehreren Seiten.", ua: "Master page - це шаблон для однакових елементів на кількох сторінках." },
+      { q: "Warum nutzt man Spalten?", a: "Spalten machen lange Inhalte übersichtlicher.", ua: "Колонки роблять довгий контент зрозумілішим." },
+    ],
+  },
+  w07: {
+    terms: [
+      { de: "die Kampagne", ua: "кампанія", meaning: "mehrere zusammengehörende Werbemaßnahmen mit einem Ziel" },
+      { de: "die Botschaft", ua: "повідомлення", meaning: "Kernaussage, die kommuniziert werden soll" },
+      { de: "der Call-to-Action", ua: "заклик до дії", meaning: "Aufforderung, etwas zu tun, zum Beispiel buchen oder kaufen" },
+      { de: "die Bildsprache", ua: "візуальна мова", meaning: "Stil der Bilder, Farben und visuellen Stimmung" },
+    ],
+    questions: [
+      { q: "Was ist eine Kampagne?", a: "Eine Kampagne besteht aus mehreren Maßnahmen mit einem gemeinsamen Ziel.", ua: "Кампанія складається з кількох дій з однією спільною метою." },
+      { q: "Was ist ein Call-to-Action?", a: "Ein Call-to-Action fordert den Nutzer zu einer Handlung auf.", ua: "Call-to-action закликає користувача до дії." },
+    ],
+  },
+  w08: {
+    terms: [
+      { de: "das Farbprofil", ua: "колірний профіль", meaning: "beschreibt, wie Farben auf einem Gerät oder im Druck wiedergegeben werden" },
+      { de: "der Preflight", ua: "перевірка перед друком", meaning: "Kontrolle, ob Druckdaten korrekt sind" },
+      { de: "die Druckmarken", ua: "друкарські мітки", meaning: "Hilfszeichen für Druckerei und Weiterverarbeitung" },
+      { de: "die Fallstudie", ua: "case study", meaning: "Präsentation von Problem, Prozess und Ergebnis" },
+    ],
+    questions: [
+      { q: "Was prüft man im Preflight?", a: "Man prüft Beschnitt, Bilder, Schriften, Farben und PDF-Einstellungen.", ua: "Перевіряють Beschnitt, зображення, шрифти, кольори і PDF-налаштування." },
+      { q: "Was zeigt eine Case Study?", a: "Eine Case Study zeigt Problem, Prozess und Ergebnis eines Projekts.", ua: "Case study показує проблему, процес і результат проєкту." },
+    ],
+  },
+  w09: {
+    terms: [
+      { de: "die Landing Page", ua: "посадкова сторінка", meaning: "einzelne Webseite mit einem klaren Ziel" },
+      { de: "der Hero-Bereich", ua: "перший екран сайту", meaning: "oberster Bereich mit Hauptaussage und CTA" },
+      { de: "die Informationsarchitektur", ua: "структура інформації", meaning: "Ordnung und Aufbau der Inhalte auf einer Website" },
+      { de: "responsive", ua: "адаптивний", meaning: "passt sich an verschiedene Bildschirmgrößen an" },
+    ],
+    questions: [
+      { q: "Was ist eine Landing Page?", a: "Eine Landing Page ist eine einzelne Webseite mit einem klaren Ziel.", ua: "Landing page - це одна сторінка з чіткою метою." },
+      { q: "Warum ist ein CTA wichtig?", a: "Ein CTA zeigt, was der Nutzer als Nächstes tun soll.", ua: "CTA показує, що користувач має зробити далі." },
+    ],
+  },
+  w10: {
+    terms: [
+      { de: "die Komponente", ua: "компонент", meaning: "wiederverwendbares UI-Element wie Button oder Card" },
+      { de: "der Zustand", ua: "стан", meaning: "Variante eines Elements, zum Beispiel normal, hover oder active" },
+      { de: "der Breakpoint", ua: "точка адаптації", meaning: "Bildschirmbreite, bei der sich das Layout ändert" },
+      { de: "die Barrierefreiheit", ua: "доступність", meaning: "Design ist für möglichst viele Menschen nutzbar" },
+    ],
+    questions: [
+      { q: "Was ist eine UI-Komponente?", a: "Eine Komponente ist ein wiederverwendbares Element im Design.", ua: "Компонент - це повторюваний елемент у дизайні." },
+      { q: "Was bedeutet responsive Design?", a: "Responsive Design passt sich an Desktop, Tablet und Smartphone an.", ua: "Responsive design адаптується до desktop, tablet і smartphone." },
+    ],
+  },
+  w11: {
+    terms: [
+      { de: "das Theme", ua: "тема WordPress", meaning: "Grunddesign einer WordPress-Website" },
+      { de: "das Plugin", ua: "плагін", meaning: "Erweiterung mit zusätzlichen Funktionen" },
+      { de: "der Container", ua: "контейнер", meaning: "Elementor-Bereich, der Inhalte strukturiert" },
+      { de: "die globalen Stile", ua: "глобальні стилі", meaning: "zentrale Einstellungen für Farben, Schriften und Layout" },
+    ],
+    questions: [
+      { q: "Was ist ein Plugin?", a: "Ein Plugin erweitert WordPress um zusätzliche Funktionen.", ua: "Плагін додає WordPress додаткові функції." },
+      { q: "Wofür nutzt man Container in Elementor?", a: "Container strukturieren Inhalte und helfen beim responsive Design.", ua: "Контейнери структурують контент і допомагають з адаптивністю." },
+    ],
+  },
+  w12: {
+    terms: [
+      { de: "das Formular", ua: "форма", meaning: "Bereich, in dem Nutzer Daten senden können" },
+      { de: "der Alt-Text", ua: "альтернативний текст", meaning: "Beschreibung eines Bildes für SEO und Barrierefreiheit" },
+      { de: "der Meta Title", ua: "SEO-заголовок", meaning: "Titel einer Seite für Suchmaschinen" },
+      { de: "die Ladezeit", ua: "час завантаження", meaning: "Zeit, bis eine Website sichtbar und nutzbar ist" },
+    ],
+    questions: [
+      { q: "Warum braucht ein Bild Alt-Text?", a: "Alt-Text hilft bei SEO und Barrierefreiheit.", ua: "Alt-text допомагає SEO і доступності." },
+      { q: "Warum ist Ladezeit wichtig?", a: "Eine schnelle Website ist besser für Nutzer und Suchmaschinen.", ua: "Швидкий сайт кращий для користувачів і пошукових систем." },
+    ],
+  },
+  w13: {
+    terms: [
+      { de: "die Recherche", ua: "дослідження", meaning: "Sammeln und Auswerten von Informationen vor dem Design" },
+      { de: "der Entwurfsprozess", ua: "процес розробки", meaning: "Weg von Idee über Skizzen bis zum finalen Design" },
+      { de: "das Mockup", ua: "мокап", meaning: "realistische Darstellung eines Designs auf einem Produkt oder Bildschirm" },
+      { de: "die Fallstudie", ua: "case study", meaning: "Portfolio-Präsentation eines Projekts" },
+    ],
+    questions: [
+      { q: "Warum zeigt man den Designprozess?", a: "Der Prozess zeigt, wie Entscheidungen entstanden sind.", ua: "Процес показує, як виникли дизайнерські рішення." },
+      { q: "Was gehört in eine Case Study?", a: "Problem, Recherche, Moodboard, Prozess und Endergebnis.", ua: "Проблема, дослідження, moodboard, процес і фінальний результат." },
+    ],
+  },
+  w14: {
+    terms: [
+      { de: "das Portfolio", ua: "портфоліо", meaning: "Sammlung der besten Arbeiten" },
+      { de: "das Kurzprofil", ua: "короткий профіль", meaning: "kurze Vorstellung der Person und Fähigkeiten" },
+      { de: "die Projektbeschreibung", ua: "опис проєкту", meaning: "kurzer Text über Ziel, Rolle, Prozess und Ergebnis" },
+      { de: "die Bewerbung", ua: "заявка на роботу", meaning: "Unterlagen und Kommunikation für eine Stelle" },
+    ],
+    questions: [
+      { q: "Was zeigt ein gutes Portfolio?", a: "Es zeigt gute Arbeiten, Prozess und klare Ergebnisse.", ua: "Хороше портфоліо показує роботи, процес і чіткі результати." },
+      { q: "Was steht in einer Projektbeschreibung?", a: "Ziel, Aufgabe, eigene Rolle, Prozess und Ergebnis.", ua: "Мета, завдання, твоя роль, процес і результат." },
+    ],
+  },
+  w15: {
+    terms: [
+      { de: "Crossmedia", ua: "кросмедіа", meaning: "eine Kampagne über mehrere Medienkanäle" },
+      { de: "der Kanal", ua: "канал", meaning: "Medium wie Print, Social Media, Website oder Newsletter" },
+      { de: "die Konsistenz", ua: "послідовність", meaning: "alle Medien wirken zusammengehörend" },
+      { de: "die Qualitätskontrolle", ua: "контроль якості", meaning: "Prüfung vor Abgabe oder Veröffentlichung" },
+    ],
+    questions: [
+      { q: "Was ist Crossmedia?", a: "Crossmedia verbindet mehrere Kanäle in einer Kampagne.", ua: "Crossmedia об'єднує кілька каналів в одній кампанії." },
+      { q: "Warum ist Konsistenz wichtig?", a: "Konsistenz macht eine Marke wiedererkennbar.", ua: "Послідовність робить бренд впізнаваним." },
+    ],
+  },
+  w16: {
+    terms: [
+      { de: "das Fachgespräch", ua: "усна професійна розмова", meaning: "Prüfungsgespräch, in dem du deine Arbeit erklärst" },
+      { de: "begründen", ua: "обґрунтувати", meaning: "erklären, warum man eine Entscheidung getroffen hat" },
+      { de: "die Selbstbewertung", ua: "самооцінка", meaning: "eigene Arbeit prüfen und Verbesserungen erkennen" },
+      { de: "der nächste Schritt", ua: "наступний крок", meaning: "konkrete Handlung nach dem Review" },
+    ],
+    questions: [
+      { q: "Warum haben Sie CMYK verwendet?", a: "Ich habe CMYK verwendet, weil das Produkt für den Druck vorbereitet wurde.", ua: "Я використала CMYK, тому що продукт підготовлений для друку." },
+      { q: "Wie erklären Sie Ihre Gestaltung?", a: "Ich erkläre Zielgruppe, Layout, Farben, Typografie und technische Vorbereitung.", ua: "Я пояснюю цільову групу, макет, кольори, типографіку і технічну підготовку." },
+    ],
+  },
+};
+
 plan.forEach((week) => {
   week.client = clientBriefs[week.id];
+  week.learning = theorySupport[week.id];
 });
 
 const state = {
@@ -1244,6 +1440,35 @@ function renderTodayOrder(brief, dayIndex) {
   `;
 }
 
+function renderLearningSupport(learning) {
+  if (!learning) return "";
+  return `
+    <section class="section learning-support">
+      <h3>Theorie lernen / Теорія для вивчення</h3>
+      <p class="learning-intro">Основні слова цього тижня: спочатку зрозуміти значення, потім вчити для Fachgespräch.</p>
+      <div class="term-grid">
+        ${learning.terms.map((term) => `
+          <article class="term-card">
+            <strong>${term.de}</strong>
+            <span>${term.ua}</span>
+            <p>${term.meaning}</p>
+          </article>
+        `).join("")}
+      </div>
+      <h4>Beispielfragen / Приклади питань</h4>
+      <div class="question-list">
+        ${learning.questions.map((item) => `
+          <article class="question-card">
+            <strong>${item.q}</strong>
+            <p><b>Antwort:</b> ${item.a}</p>
+            <p class="ua"><b>UA:</b> ${item.ua}</p>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderDay() {
   const day = currentDay();
   const week = currentWeek();
@@ -1268,6 +1493,7 @@ function renderDay() {
     <div class="layout-grid">
       <div>
         ${renderTodayOrder(week.client, state.dayIndex)}
+        ${renderLearningSupport(week.learning)}
         <section class="section">
           <h3>Theorie / Теорія</h3>
           ${chips(day.theory, "teal")}

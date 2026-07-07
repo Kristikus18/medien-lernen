@@ -15,6 +15,8 @@ Pfad fuer GitHub Pages:
 - Portfolio-Projekte statt isolierte Uebungen
 - zweisprachige Kundenauftraege Deutsch/Ukrainisch
 - fiktiver Kunde mit realistischen Briefings und Lieferobjekten
+- Theorie-Karten mit Bedeutungen wichtiger Fachwoerter
+- Beispielfragen mit einfachen Antworten fuer das Fachgespraech
 - Adobe, Figma, WordPress und Elementor
 - kurze kostenlose YouTube-Tutorials als Einstieg
 
