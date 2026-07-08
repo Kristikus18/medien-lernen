@@ -455,6 +455,8 @@ button {
   border: 1px solid #e3ddff;
   border-radius: 8px;
   background: #ffffff;
+  text-align: left;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
 }
 
 .roadmap-item b {
@@ -490,6 +492,14 @@ button {
 .roadmap-item.active {
   border-color: #9f7aea;
   background: #f3f0ff;
+}
+
+.roadmap-item:hover,
+.roadmap-item:focus-visible {
+  border-color: #7c3aed;
+  background: #f5f3ff;
+  outline: 0;
+  transform: translateY(-1px);
 }
 
 .spec-head,

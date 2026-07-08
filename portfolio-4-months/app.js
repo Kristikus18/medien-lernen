@@ -2664,15 +2664,26 @@ function renderProjectRoadmap(activeId) {
       <h3>16 Wochen · 16 Kundenrichtungen / 16 тижнів · 16 напрямків клієнтів</h3>
       <div class="roadmap-list">
         ${projectRoadmap.map((item, index) => `
-          <span class="roadmap-item ${item.id === activeId ? "active" : ""}">
+          <button class="roadmap-item ${item.id === activeId ? "active" : ""}" type="button" data-roadmap-week="${index}">
             <b>${index + 1}</b>
             <span>${item.de}</span>
             <small>${item.ua}</small>
-          </span>
+          </button>
         `).join("")}
       </div>
     </div>
   `;
+}
+
+function bindProjectRoadmap() {
+  weekSummary.querySelectorAll("[data-roadmap-week]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.weekIndex = Number(button.dataset.roadmapWeek);
+      state.dayIndex = 0;
+      localStorage.setItem(selectedWeekKey, String(state.weekIndex));
+      render();
+    });
+  });
 }
 
 function renderProjectSpec(spec) {
@@ -2908,6 +2919,7 @@ function render() {
   renderProgress();
   renderWeeks();
   renderWeekSummary();
+  bindProjectRoadmap();
   renderDayTabs();
   renderDay();
 }
