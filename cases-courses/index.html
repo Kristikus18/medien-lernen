@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CASES Course Finish Plan</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <p>CASES</p>
+          <h1>План завершення курсів</h1>
+          <span>17 активних курсів · пріоритет для Grafik, Print, Figma, WordPress</span>
+        </div>
+
+        <div class="stats">
+          <div>
+            <strong id="doneCount">0</strong>
+            <span>завершено</span>
+          </div>
+          <div class="bar"><span id="progressBar"></span></div>
+          <button id="resetButton" type="button">Скинути прогрес</button>
+        </div>
+
+        <nav id="courseList" class="course-list" aria-label="Список курсів"></nav>
+      </aside>
+
+      <main class="main">
+        <section class="toolbar">
+          <div>
+            <p class="eyebrow">Окремий план</p>
+            <h2 id="courseTitle">CASES</h2>
+          </div>
+          <a class="open-link" id="courseLink" href="https://cases.media/learning/my/courses" target="_blank" rel="noreferrer">Відкрити курс</a>
+        </section>
+
+        <section id="courseDetail" class="course-detail"></section>
+
+        <section class="priority-board">
+          <div>
+            <h3>Спочатку</h3>
+            <p>Найбільше допомагає для Ausbildung, Prüfung і portfolio.</p>
+            <div id="criticalList" class="mini-list"></div>
+          </div>
+          <div>
+            <h3>Після цього</h3>
+            <p>Корисно для роботи, але не має з'їсти весь час.</p>
+            <div id="usefulList" class="mini-list"></div>
+          </div>
+          <div>
+            <h3>Пізніше</h3>
+            <p>Можна пройти легко або залишити на перерви.</p>
+            <div id="laterList" class="mini-list"></div>
+          </div>
+        </section>
+
+        <section class="weekly-plan">
+          <div class="section-head">
+            <div>
+              <h3>16-тижневий план</h3>
+              <p>2 легкі сесії на тиждень. Якщо тиждень важкий, роби тільки Session A.</p>
+            </div>
+          </div>
+          <div id="weekPlan" class="week-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -14,6 +14,12 @@ Der Ordner `portfolio-4-months/` enthaelt eine neue Lern-App mit 16 Wochen, 2 Le
 
 `https://kristikus18.github.io/medien-lernen/portfolio-4-months/`
 
+## CASES Course Finish Plan
+
+Der Ordner `cases-courses/` enthaelt einen separaten Plan fuer die 17 aktiven CASES-Kurse mit Prioritaeten, Wochenplan und lokal gespeichertem Fortschritt.
+
+`https://kristikus18.github.io/medien-lernen/cases-courses/`
+
 ## GitHub Pages
 
 Diese App ist ein statischer Webordner. Fuer die Veroeffentlichung auf GitHub Pages:
