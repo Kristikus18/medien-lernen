@@ -1,0 +1,46 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsUserDocument(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function keepsOwnUserId(userId) {
+      return !("userId" in request.resource.data) || request.resource.data.userId == userId;
+    }
+
+    match /users/{userId} {
+      allow read: if ownsUserDocument(userId);
+      allow create: if ownsUserDocument(userId) && keepsOwnUserId(userId);
+      allow update: if ownsUserDocument(userId) && keepsOwnUserId(userId);
+      allow delete: if ownsUserDocument(userId);
+
+      match /{collectionName}/{documentId} {
+        allow read: if ownsUserDocument(userId);
+        allow create: if ownsUserDocument(userId) && keepsOwnUserId(userId);
+        allow update: if ownsUserDocument(userId) && keepsOwnUserId(userId);
+        allow delete: if ownsUserDocument(userId);
+      }
+
+      match /modules/{moduleId}/tasks/{taskId} {
+        allow read: if ownsUserDocument(userId);
+        allow create: if ownsUserDocument(userId)
+          && keepsOwnUserId(userId)
+          && request.resource.data.moduleId == moduleId;
+        allow update: if ownsUserDocument(userId)
+          && keepsOwnUserId(userId)
+          && request.resource.data.moduleId == moduleId;
+        allow delete: if ownsUserDocument(userId);
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
