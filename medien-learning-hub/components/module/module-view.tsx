@@ -171,7 +171,9 @@ export function ModuleView() {
               avoidUa={selectedPrimaryTranslation?.avoid}
               pages={selectedBrief.pages}
               pagesUa={selectedPrimaryTranslation?.pages}
-              tasks={coreAusbildungDeliverables}
+              tasks={deliverableTasks}
+              checkedTasks={moduleState.checkedTasks}
+              onToggleTask={toggleTask}
             />
             {selectedAlternative ? (
               <VariantCard
@@ -180,7 +182,9 @@ export function ModuleView() {
                 industry={selectedAlternative.industry}
                 description={`${selectedAlternative.wantsDe} ${selectedAlternative.orderDe}`}
                 ukrainian={`${selectedAlternative.wantsUa} ${selectedAlternative.orderUa}`}
-                tasks={coreAusbildungDeliverables}
+                tasks={deliverableTasks}
+                checkedTasks={moduleState.checkedTasks}
+                onToggleTask={toggleTask}
               />
             ) : null}
           </div>
@@ -683,7 +687,9 @@ function VariantCard({
   avoidUa,
   pages,
   pagesUa,
-  tasks
+  tasks,
+  checkedTasks,
+  onToggleTask
 }: {
   label: string;
   title: string;
@@ -697,7 +703,9 @@ function VariantCard({
   avoidUa?: string;
   pages?: string;
   pagesUa?: string;
-  tasks?: string[];
+  tasks?: TaskRecord[];
+  checkedTasks?: Record<string, boolean>;
+  onToggleTask?: (task: TaskRecord) => Promise<void>;
 }) {
   return (
     <article className="rounded-md border border-line bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-950">
@@ -714,20 +722,33 @@ function VariantCard({
       {tasks?.length ? (
         <div className="mt-3 rounded-md border border-line bg-white p-3 dark:border-neutral-800 dark:bg-neutral-900">
           <p className="text-xs font-semibold uppercase tracking-normal text-neutral-500 dark:text-neutral-400">Завдання для цього варіанту</p>
-          <ol className="mt-2 grid gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+          <div className="mt-2 grid gap-2 text-sm text-neutral-700 dark:text-neutral-300">
             {tasks.map((task) => {
-              const optional = task.trim().startsWith("★");
+              const optional = isOptionalTask(task);
+              const checked = task.done || checkedTasks?.[task.id];
               return (
-                <li key={task} className="flex items-start gap-2">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" aria-hidden="true" />
+                <label
+                  key={task.id}
+                  className={`flex cursor-pointer items-start gap-3 rounded-md border p-2.5 transition ${
+                    checked
+                      ? "border-brand-400 bg-brand-50 dark:border-brand-700 dark:bg-brand-700/20"
+                      : "border-line hover:border-brand-300 hover:bg-neutral-50 dark:border-neutral-800 dark:hover:border-brand-700 dark:hover:bg-neutral-950"
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={Boolean(checked)}
+                    onChange={() => void onToggleTask?.(task)}
+                    className="mt-1 h-4 w-4 accent-brand-600"
+                  />
                   <span className="flex flex-wrap items-center gap-2">
-                    <span>{task}</span>
+                    <span>{task.label}</span>
                     {optional ? <Badge tone="amber">freiwillig</Badge> : null}
                   </span>
-                </li>
+                </label>
               );
             })}
-          </ol>
+          </div>
         </div>
       ) : null}
       {targetGroup ? <p className="mt-3 text-sm"><span className="font-semibold">Zielgruppe:</span> {targetGroup}</p> : null}
