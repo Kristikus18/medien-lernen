@@ -178,9 +178,9 @@ export type TimeCategory =
 
 export interface QuizQuestion {
   id: string;
-  type: "single" | "match" | "article" | "translation" | "trueFalse" | "short";
+  type: "single" | "article" | "translation" | "trueFalse" | "fachgespraech";
   question: string;
-  options?: string[];
+  options: string[];
   answer: string;
   help: string;
 }

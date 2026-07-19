@@ -2322,7 +2322,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: "q1",
     type: "single",
     question: "Wofür verwendet man CMYK?",
-    options: ["Für Druckprodukte", "Für reine Bildschirmdarstellung", "Für Audioexport"],
+    options: ["Für Druckprodukte", "Für reine Bildschirmdarstellung", "Für Audioexport", "Für WordPress-Plugins"],
     answer: "Für Druckprodukte",
     help: "CMYK wird für Druckdaten verwendet."
   },
@@ -2330,6 +2330,7 @@ export const quizQuestions: QuizQuestion[] = [
     id: "q2",
     type: "article",
     question: "Welcher Artikel passt zu Wortmarke?",
+    options: ["der", "die", "das", "ein"],
     answer: "die",
     help: "Es heißt: die Wortmarke."
   },
@@ -2337,21 +2338,147 @@ export const quizQuestions: QuizQuestion[] = [
     id: "q3",
     type: "trueFalse",
     question: "Eine Vektorgrafik bleibt beim Vergrößern scharf.",
+    options: ["richtig", "falsch"],
     answer: "richtig",
     help: "Vektorgrafiken bestehen aus Linien, Kurven und Flächen."
   },
   {
     id: "q4",
     type: "translation",
-    question: "Übersetze: der Entwurf",
-    answer: "дизайн-варіант",
-    help: "Auch: чернетка або перший варіант дизайну."
+    question: "Was bedeutet der Entwurf?",
+    options: ["дизайн-варіант / чернетка", "кінцевий формат", "колірний профіль", "друкарня"],
+    answer: "дизайн-варіант / чернетка",
+    help: "Der Entwurf ist eine erste Design-Idee oder Version."
   },
   {
     id: "q5",
-    type: "short",
+    type: "single",
     question: "Warum ist Weißraum wichtig?",
+    options: [
+      "Er verbessert die Lesbarkeit und macht das Design ruhiger.",
+      "Er macht jede Datei kleiner.",
+      "Er ersetzt den Beschnitt.",
+      "Er ist nur für Animation wichtig."
+    ],
     answer: "Er verbessert die Lesbarkeit und macht das Design ruhiger.",
-    help: "Eine kurze Antwort reicht: Weißraum schafft Ordnung und Lesbarkeit."
+    help: "Weißraum schafft Ordnung, Ruhe und bessere Leserführung."
+  },
+  {
+    id: "q6",
+    type: "single",
+    question: "Was ist ein Beschnitt?",
+    options: [
+      "Ein zusätzlicher Rand außerhalb des Endformats.",
+      "Ein anderes Wort für RGB.",
+      "Eine Animation im Logo.",
+      "Ein Plugin für Cookie Banner."
+    ],
+    answer: "Ein zusätzlicher Rand außerhalb des Endformats.",
+    help: "Beschnitt verhindert weiße Blitzer nach dem Zuschneiden."
+  },
+  {
+    id: "q7",
+    type: "single",
+    question: "Welche Datei ist besonders gut für ein Weblogo geeignet?",
+    options: ["SVG", "MP3", "DOCX", "WAV"],
+    answer: "SVG",
+    help: "SVG ist skalierbar und bleibt als Vektorgrafik scharf."
+  },
+  {
+    id: "q8",
+    type: "single",
+    question: "Was gehört zu einem Kundenbriefing?",
+    options: [
+      "Ziel, Zielgruppe, Stil, Budget und technische Anforderungen.",
+      "Nur die Lieblingsfarbe des Designers.",
+      "Nur der finale Export.",
+      "Nur ein Screenshot ohne Erklärung."
+    ],
+    answer: "Ziel, Zielgruppe, Stil, Budget und technische Anforderungen.",
+    help: "Ein Briefing erklärt, was der Kunde braucht und worauf man achten muss."
+  },
+  {
+    id: "q9",
+    type: "translation",
+    question: "Was bedeutet die Zielgruppe?",
+    options: ["цільова аудиторія", "візитка", "роздільна здатність", "шрифт без засічок"],
+    answer: "цільова аудиторія",
+    help: "Die Zielgruppe sind die Menschen, die erreicht werden sollen."
+  },
+  {
+    id: "q10",
+    type: "article",
+    question: "Welcher Artikel passt zu Vektorgrafik?",
+    options: ["der", "die", "das", "den"],
+    answer: "die",
+    help: "Es heißt: die Vektorgrafik."
+  },
+  {
+    id: "q11",
+    type: "fachgespraech",
+    question: "Welche Antwort passt im Fachgespräch zu: Warum haben Sie RGB verwendet?",
+    options: [
+      "Ich habe RGB verwendet, weil das Medium digital auf dem Bildschirm gezeigt wird.",
+      "Ich habe RGB verwendet, weil es immer für Druck besser ist.",
+      "Ich habe RGB verwendet, weil Beschnitt dann nicht nötig ist.",
+      "Ich habe RGB verwendet, weil es ein Dateiformat ist."
+    ],
+    answer: "Ich habe RGB verwendet, weil das Medium digital auf dem Bildschirm gezeigt wird.",
+    help: "RGB ist für digitale Medien und Bildschirmdarstellung."
+  },
+  {
+    id: "q12",
+    type: "fachgespraech",
+    question: "Welche Antwort erklärt ein Moodboard richtig?",
+    options: [
+      "Ein Moodboard zeigt Stil, Farben, Typografie und Bildsprache vor dem Design.",
+      "Ein Moodboard ist nur ein fertiges PDF/X für die Druckerei.",
+      "Ein Moodboard ist ein anderes Wort für Schnittmarken.",
+      "Ein Moodboard ist nur eine Liste mit Preisen."
+    ],
+    answer: "Ein Moodboard zeigt Stil, Farben, Typografie und Bildsprache vor dem Design.",
+    help: "Ein Moodboard hilft, die visuelle Richtung mit dem Kunden zu klären."
+  },
+  {
+    id: "q13",
+    type: "single",
+    question: "Was bedeutet PDF/X?",
+    options: [
+      "Ein PDF-Standard für druckfertige Daten.",
+      "Ein Videoformat für Social Media.",
+      "Ein WordPress Theme.",
+      "Ein Farbname von Pantone."
+    ],
+    answer: "Ein PDF-Standard für druckfertige Daten.",
+    help: "PDF/X wird für die sichere Übergabe an die Druckerei genutzt."
+  },
+  {
+    id: "q14",
+    type: "single",
+    question: "Was ist eine Bild-Wort-Marke?",
+    options: [
+      "Eine Kombination aus Symbol und Schrift.",
+      "Nur ein Foto ohne Text.",
+      "Nur eine lange Broschüre.",
+      "Ein Plugin für Formulare."
+    ],
+    answer: "Eine Kombination aus Symbol und Schrift.",
+    help: "Bild-Wort-Marke kombiniert Bildzeichen und Text."
+  },
+  {
+    id: "q15",
+    type: "trueFalse",
+    question: "Für Druckdaten sollte man Auflösung, CMYK, Beschnitt und Schriften prüfen.",
+    options: ["richtig", "falsch"],
+    answer: "richtig",
+    help: "Diese Punkte gehören zur Druckvorstufe."
+  },
+  {
+    id: "q16",
+    type: "translation",
+    question: "Was bedeutet die Druckdatei?",
+    options: ["файл для друку", "цільова група", "мультимедійний монтаж", "головна сторінка сайту"],
+    answer: "файл для друку",
+    help: "Eine Druckdatei ist für die Produktion in der Druckerei vorbereitet."
   }
 ];
