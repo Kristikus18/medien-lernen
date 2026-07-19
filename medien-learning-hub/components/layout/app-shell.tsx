@@ -14,6 +14,7 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
+  Palette,
   Settings,
   X
 } from "lucide-react";
@@ -27,6 +28,7 @@ const navItems = [
   { href: "/berufsschule-lap", label: "Berufsschule / LAP", icon: GraduationCap },
   { href: "/projects", label: "Projects", icon: FolderKanban },
   { href: "/portfolio", label: "Portfolio", icon: BriefcaseBusiness },
+  { href: "/ipad-drawing", label: "iPad / Sketches", icon: Palette },
   { href: "/time-tracking", label: "Time Tracking", icon: Clock3 },
   { href: "/knowledge-base", label: "Knowledge Base", icon: BrainCircuit },
   { href: "/tests", label: "Tests", icon: FileQuestion },

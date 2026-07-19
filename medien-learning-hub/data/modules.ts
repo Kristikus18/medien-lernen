@@ -359,12 +359,1160 @@ export const moduleOneQualityChecks = [
   "Kundenpaket ist bereit."
 ];
 
+export interface ModulePlan {
+  brief: CustomerBrief;
+  ausbildungFocus: string[];
+  theory: string[];
+  fachwoerter: string[];
+  fachgespraech: string[];
+  practice: string[];
+  drawing: string[];
+  report: string[];
+  deliverables: string[];
+  quality: string[];
+}
+
+export interface ClientVariant {
+  company: string;
+  industry: string;
+  wantsDe: string;
+  wantsUa: string;
+  orderDe: string;
+  orderUa: string;
+  deliverables: string[];
+}
+
+const reportTemplate = [
+  "Was habe ich gemacht? - Напиши 3-5 речень про виконану роботу.",
+  "Welche Programme habe ich benutzt? - Назви програму і конкретний інструмент.",
+  "Welche Fachwörter habe ich gelernt? - Випиши 5-10 слів з перекладом.",
+  "Was war schwierig? - Коротко опиши проблему і як ти її вирішила.",
+  "Was kann ich auf Deutsch erklären? - Напиши 2 прості Prüfungssätze.",
+  "Beweis / Datei / Link - Додай назву файлу, Figma/Behance/WordPress посилання або скриншот."
+];
+
+export const coreAusbildungProjectFlow = [
+  "Moodboard - Ausbildung: Skizzen und Moodboards entwerfen, Bildsprache, Farbe und Stil begründen.",
+  "Logo 1-3 Versionen - Ausbildung: grafische Elemente und Logos mit Gestaltungsgrundsätzen designen.",
+  "Logo-Animation 5-8 Sekunden - Ausbildung: grafische Elemente einfach animieren und für digitale Medien exportieren.",
+  "Visitenkarte - Ausbildung: Typografie, Layout, Beschnitt, CMYK und druckfertiges PDF anwenden.",
+  "Broschüre oder Flyer - Ausbildung: Satzspiegel, Raster, Leserführung, Bildauswahl und Druckvorstufe trainieren.",
+  "Figma Website Design - Ausbildung: Digitalprodukt planen, Wireframe, UI, Responsive Design und Prototyp erstellen.",
+  "WordPress/Elementor - Ausbildung: digitale Anwendungen nutzen, Seitenstruktur, Plugins, Datenschutz, SEO und Formular prüfen.",
+  "Lernbericht - Ausbildung: eigene Arbeit reflektieren, Fachwörter verwenden und Entscheidungen auf Deutsch erklären."
+];
+
+export const coreAusbildungDeliverables = [
+  "Moodboard / Brand Direction",
+  "Logo: 1-3 Entwürfe",
+  "Finales Logo als SVG, PDF und PNG",
+  "Logo-Animation: 5-8 Sekunden als MP4 oder GIF",
+  "Visitenkarte Vorder- und Rückseite",
+  "Broschüre oder Flyer als Print-PDF",
+  "Figma Website Design mit Desktop und Mobile",
+  "WordPress/Elementor Umsetzung oder Setup-Dokumentation",
+  "Lernbericht / Ausbildungsnachweis"
+];
+
+export const alternativeClientBriefs: Record<string, ClientVariant> = {
+  "module-1": {
+    company: "Praxis Dr. Anna Berger",
+    industry: "Hausarztpraxis / лікарська практика",
+    wantsDe: "Die Ärztin eröffnet eine moderne Hausarztpraxis und braucht eine ruhige, vertrauensvolle visuelle Richtung.",
+    wantsUa: "Лікарка відкриває сучасну сімейну практику і потребує спокійного, надійного візуального напрямку.",
+    orderDe: "Erstelle Briefing, Zielgruppe, Persona und Moodboard für die Praxis.",
+    orderUa: "Створи бриф, цільову групу, персону і moodboard для лікарської практики.",
+    deliverables: ["Briefing", "Persona", "Moodboard", "Brand Direction"]
+  },
+  "module-2": {
+    company: "JobBrücke Recruiting",
+    industry: "Firma für Jobsuche und Bewerbung / рекрутингова фірма",
+    wantsDe: "Die Firma hilft Menschen bei Jobsuche, Bewerbung und Karrierewechsel und braucht ein seriöses Logo.",
+    wantsUa: "Фірма допомагає людям з пошуком роботи, резюме і зміною кар'єри та потребує серйозний логотип.",
+    orderDe: "Gestalte 1-3 Logo-Versionen und finalisiere eine saubere Logo-Variante.",
+    orderUa: "Створи 1-3 версії логотипу і доведи одну чисту фінальну версію.",
+    deliverables: ["3 Logo-Entwürfe", "Finales Logo", "Icon", "SVG/PDF/PNG"]
+  },
+  "module-3": {
+    company: "Klara Beauty Studio",
+    industry: "Kosmetikstudio / косметологічна студія",
+    wantsDe: "Das Studio braucht Farben und Schriften, die hochwertig, sauber und feminin wirken.",
+    wantsUa: "Студії потрібні кольори і шрифти, які виглядають якісно, чисто і жіночно.",
+    orderDe: "Erstelle ein kleines Corporate Design Sheet mit Farbpalette und Typografie.",
+    orderUa: "Створи маленький corporate design sheet з палітрою і типографікою.",
+    deliverables: ["Farbpalette", "Schriftsystem", "Mini-CD-Manual", "Anwendungsbeispiel"]
+  },
+  "module-4": {
+    company: "Physio Aktiv Wien",
+    industry: "Physiotherapie / фізіотерапія",
+    wantsDe: "Die Praxis braucht eine professionelle Visitenkarte und einen einfachen Briefkopf für Patientinnen und Partner.",
+    wantsUa: "Практиці потрібна професійна візитка і простий бланк для пацієнтів та партнерів.",
+    orderDe: "Gestalte eine druckfertige Visitenkarte und einen A4-Briefkopf.",
+    orderUa: "Створи візитку для друку і A4 фірмовий бланк.",
+    deliverables: ["Visitenkarte Vorderseite", "Visitenkarte Rückseite", "A4 Briefkopf", "PDF/X"]
+  },
+  "module-5": {
+    company: "Kinderatelier Farbenfroh",
+    industry: "Kreativschule für Kinder / творча школа для дітей",
+    wantsDe: "Das Atelier bewirbt einen Ferien-Workshop und braucht einen freundlichen A5 Flyer.",
+    wantsUa: "Ательє рекламує канікулярний воркшоп і потребує дружній A5 flyer.",
+    orderDe: "Gestalte einen A5 Flyer mit Datum, Uhrzeit, Preis, Ort und Anmeldung.",
+    orderUa: "Створи A5 flyer з датою, часом, ціною, місцем і записом.",
+    deliverables: ["A5 Flyer", "Print PDF", "Web PNG", "Before/After Layout"]
+  },
+  "module-6": {
+    company: "Nova Raum Immobilien",
+    industry: "Immobilienfirma / агенція нерухомості",
+    wantsDe: "Die Firma braucht eine 8-seitige Broschüre für eine neue Wohnanlage.",
+    wantsUa: "Фірмі потрібна брошура на 8 сторінок для нового житлового комплексу.",
+    orderDe: "Erstelle eine Broschüre mit Projektinfo, Grundrissen, Vorteilen und Kontaktseite.",
+    orderUa: "Створи брошуру з інформацією про проєкт, планами, перевагами і контактами.",
+    deliverables: ["8-Seiten-Broschüre", "3 polierte Doppelseiten", "PDF Preview"]
+  },
+  "module-7": {
+    company: "FitMeal Catering",
+    industry: "Healthy Food Catering / healthy food доставка",
+    wantsDe: "Das Catering bewirbt neue Lunch-Boxen für Büros und braucht eine Social-Media-Kampagne.",
+    wantsUa: "Catering рекламує нові lunch boxes для офісів і потребує social media кампанію.",
+    orderDe: "Entwickle 3 Instagram Posts und 2 Story-Slides in einem einheitlichen Stil.",
+    orderUa: "Розроби 3 Instagram posts і 2 story slides в одному стилі.",
+    deliverables: ["3 Feed Posts", "2 Stories", "Caption Texte", "Mockup"]
+  },
+  "module-8": {
+    company: "WaldPapier Studio",
+    industry: "nachhaltige Papeterie / екологічна поліграфія",
+    wantsDe: "Das Studio möchte Printprodukte zeigen und braucht eine kleine Case Study mit Druckdaten-Erklärung.",
+    wantsUa: "Студія хоче показати друковані продукти і потребує mini case study з поясненням Druckdaten.",
+    orderDe: "Erstelle Druckdaten-Checkliste und Mini Case Study mit 6 Slides.",
+    orderUa: "Створи checklist для Druckdaten і mini case study на 6 слайдів.",
+    deliverables: ["Druckdaten-Checkliste", "6-Slide Case Study", "PDF/PNG Export"]
+  },
+  "module-9": {
+    company: "AlpenBike Verleih",
+    industry: "Fahrradverleih und Touren / оренда велосипедів",
+    wantsDe: "Der Kunde möchte eine übersichtliche Website mit fünf Seiten für Verleih, Touren und Kontakt.",
+    wantsUa: "Клієнт хоче зрозумілий сайт на п'ять сторінок для оренди, турів і контакту.",
+    orderDe: "Entwirf Sitemap, Wireframe und Startseite in Figma.",
+    orderUa: "Створи sitemap, wireframe і головну сторінку у Figma.",
+    deliverables: ["Sitemap", "Desktop Wireframe", "Startseite Design", "Mobile Preview"]
+  },
+  "module-10": {
+    company: "Urban Yoga Studio",
+    industry: "Yoga Studio / йога студія",
+    wantsDe: "Das Studio braucht ein konsistentes UI-System für Desktop, Tablet und Smartphone.",
+    wantsUa: "Студії потрібна послідовна UI-система для desktop, tablet і smartphone.",
+    orderDe: "Erstelle UI Kit, Komponenten und responsive Varianten.",
+    orderUa: "Створи UI kit, компоненти і responsive варіанти.",
+    deliverables: ["UI Kit", "Buttons", "Cards", "Navigation", "Responsive Screens"]
+  },
+  "module-11": {
+    company: "Bistro Mare",
+    industry: "Restaurant / ресторан",
+    wantsDe: "Das Restaurant möchte eine 5-seitige WordPress-Website mit Elementor.",
+    wantsUa: "Ресторан хоче WordPress-сайт на 5 сторінок через Elementor.",
+    orderDe: "Baue die Seitenstruktur und die Startseite in WordPress mit Elementor.",
+    orderUa: "Побудуй структуру сторінок і головну сторінку у WordPress через Elementor.",
+    deliverables: ["5 WordPress-Seiten", "Elementor Startseite", "Navigation", "Mobile Check"]
+  },
+  "module-12": {
+    company: "Lichtwerk Eventraum",
+    industry: "Eventlocation / простір для подій",
+    wantsDe: "Die Location braucht Formular, Kalender, Cookie-Banner, SEO und Backup für die Website.",
+    wantsUa: "Локації потрібні форма, календар, cookie banner, SEO і backup для сайту.",
+    orderDe: "Richte kostenlose WordPress-Plugins ein und dokumentiere die wichtigsten Einstellungen.",
+    orderUa: "Налаштуй безкоштовні WordPress-плагіни і задокументуй головні налаштування.",
+    deliverables: ["Kontaktformular", "Cookie Banner", "Event Kalender", "SEO Liste", "Handoff Checklist"]
+  },
+  "module-13": {
+    company: "PfotenGlück Tierpraxis",
+    industry: "Tierarztpraxis / ветеринарна практика",
+    wantsDe: "Die Praxis braucht eine professionelle Behance Case Study für ein kleines Branding-Projekt.",
+    wantsUa: "Практиці потрібен професійний Behance case study для маленького branding-проєкту.",
+    orderDe: "Baue eine Case Study mit Problem, Zielgruppe, Moodboard, Logo, Print und Ergebnis.",
+    orderUa: "Збери case study з problem, target group, moodboard, logo, print і результатом.",
+    deliverables: ["Behance Draft", "Case Structure", "Mockups"]
+  },
+  "module-14": {
+    company: "EcoHome Cleaning",
+    industry: "nachhaltige Reinigungsfirma / еко клінінг",
+    wantsDe: "Die Firma möchte ein zusammenhängendes Paket aus Print, Social Media und Website.",
+    wantsUa: "Фірма хоче цілісний пакет з print, social media і website.",
+    orderDe: "Verbinde Logo, Visitenkarte, Flyer, Social Posts, Figma Website und WordPress-Notizen zu einer Kampagne.",
+    orderUa: "Об'єднай логотип, візитку, flyer, social posts, Figma website і WordPress нотатки в одну кампанію.",
+    deliverables: ["Campaign Board", "Finale Assets", "Export-Ordner"]
+  },
+  "module-15": {
+    company: "Krystyna Lozova",
+    industry: "Personal Portfolio / особисте портфоліо",
+    wantsDe: "Du brauchst eine professionelle Präsentation deiner besten Arbeiten für Bewerbung und Ausbildung.",
+    wantsUa: "Тобі потрібна професійна презентація найкращих робіт для Bewerbung і Ausbildung.",
+    orderDe: "Erstelle Portfolio PDF, LinkedIn Texte und eine kurze Vorstellung auf Deutsch.",
+    orderUa: "Створи portfolio PDF, LinkedIn тексти і коротку презентацію німецькою.",
+    deliverables: ["Portfolio PDF", "LinkedIn Texte", "Kurzprofil"]
+  },
+  "module-16": {
+    company: "Prüfungssimulation",
+    industry: "Medienfachfrau Grafik und Print / підготовка до іспиту",
+    wantsDe: "Du sollst zwei Kundenprojekte sicher erklären und deine Entscheidungen begründen.",
+    wantsUa: "Ти маєш впевнено пояснити два клієнтські проєкти і обґрунтувати рішення.",
+    orderDe: "Bereite Fachgespräch-Antworten vor und mache einen finalen Portfolio-Check.",
+    orderUa: "Підготуй відповіді для Fachgespräch і зроби фінальну перевірку portfolio.",
+    deliverables: ["Fachgespräch Sheet", "Portfolio Checklist", "Next Steps"]
+  }
+};
+
+export const modulePlans: Record<string, ModulePlan> = {
+  "module-1": {
+    brief: moduleOneBrief,
+    ausbildungFocus: [
+      "Kundenbriefing verstehen und in ein Logo-Konzept übersetzen.",
+      "Skizzen, Moodboard und mehrere Entwürfe entwickeln.",
+      "Vektorgrafik, Dateiformate, RGB/CMYK und Export für Web und Print erklären.",
+      "Urheberrecht beachten: keine fremden Logos, Fonts oder Bilder ohne Lizenz verwenden."
+    ],
+    theory: [
+      "Ein Logo muss einfach, wiedererkennbar und skalierbar sein.",
+      "Eine Vektorgrafik bleibt beim Vergrößern scharf. Eine Rastergrafik kann pixelig werden.",
+      "RGB ist für Bildschirm und Web. CMYK ist für Druck.",
+      "Ein Moodboard zeigt Stil, Farben, Typografie und Bildsprache vor dem Design.",
+      "Eine gute Ordnerstruktur hilft, die finalen Kundendateien sauber abzugeben."
+    ],
+    fachwoerter: [
+      "das Logo - логотип - Ein Logo ist ein Zeichen für eine Marke.",
+      "die Wortmarke - словесний логотип - Sie besteht vor allem aus Text.",
+      "die Bildmarke - графічний знак - Sie ist ein Symbol ohne Text.",
+      "die Bild-Wort-Marke - знак + текст - Sie kombiniert Symbol und Schrift.",
+      "die Vektorgrafik - векторна графіка - Sie bleibt beim Skalieren scharf.",
+      "das Farbmodell - кольорова модель - RGB oder CMYK.",
+      "der Export - експорт - Die Datei wird für Web oder Print gespeichert.",
+      "die Reinzeichnung - чистова фінальна версія - Die finale saubere Datei."
+    ],
+    fachgespraech: [
+      "Ich habe das Logo als Vektorgrafik erstellt, weil es ohne Qualitätsverlust skalierbar ist.",
+      "Für digitale Medien exportiere ich RGB-Dateien. Für Druck bereite ich CMYK-Dateien vor.",
+      "Ich habe zuerst Skizzen und ein Moodboard erstellt, damit die Gestaltung zur Zielgruppe passt.",
+      "Ich prüfe die Dateiformate, damit der Kunde das Logo für Web und Print verwenden kann."
+    ],
+    practice: [
+      "Erstelle 10 schnelle Logo-Skizzen für Lune Bakery.",
+      "Wähle 3 Richtungen aus: elegant, minimalistisch, warm.",
+      "Baue 1-3 Logo-Versionen in Illustrator als Vektor nach.",
+      "Erstelle ein kleines Brand Board mit Farben, Schriften und Logo-Varianten.",
+      "Erstelle Mockups: Coffee Cup, Paper Bag, Shop Sign und Instagram Post."
+    ],
+    drawing: [
+      "15-30 Minuten Handzeichnung: Croissants, Tasse, Mondformen und kleine Icons skizzieren.",
+      "15-30 Minuten iPad: eine saubere Linienversion deiner besten Logo-Skizze zeichnen.",
+      "Mini-Training Charakter: eine Kundin mit Coffee Cup als einfache Figur skizzieren."
+    ],
+    report: reportTemplate,
+    deliverables: moduleOneDeliverables,
+    quality: moduleOneQualityChecks
+  },
+  "module-2": {
+    brief: {
+      company: "Medicus Praxis",
+      industry: "Arztpraxis",
+      targetGroup: "Patientinnen und Patienten jeden Alters, besonders Familien und ältere Menschen.",
+      request: "Ein seriöses, ruhiges Corporate Design mit Logo, Visitenkarte, Briefpapier und Social Preview.",
+      avoid: "Zu verspielte Farben, unlesbare Schrift, medizinische Klischees ohne Konzept."
+    },
+    ausbildungFocus: [
+      "Corporate Identity und Corporate Design Manual lesen und anwenden.",
+      "Typografie, Farbe, Barrierefreiheit und Zielgruppe begründen.",
+      "Printprodukte mit korrektem Format, Beschnitt und PDF-Export vorbereiten.",
+      "Kundenfeedback aufnehmen und Korrekturen sauber dokumentieren."
+    ],
+    theory: [
+      "Corporate Identity ist das gesamte Selbstbild eines Unternehmens.",
+      "Corporate Design ist der visuelle Teil: Logo, Farben, Schriften, Bildsprache und Layoutregeln.",
+      "Barrierefreiheit bedeutet: Gestaltung soll für möglichst viele Menschen gut nutzbar und lesbar sein.",
+      "Bei Printdaten müssen Endformat, Beschnitt, Farbmodus und Schriften geprüft werden.",
+      "Ein CD Manual hilft, dass alle Medien gleich und professionell aussehen."
+    ],
+    fachwoerter: [
+      "die Corporate Identity - фірмова ідентичність - Das Gesamtbild eines Unternehmens.",
+      "das Corporate Design - візуальний стиль - Logo, Farben, Schriften und Gestaltung.",
+      "das CD Manual - брендбук - Regeln für die visuelle Darstellung.",
+      "die Barrierefreiheit - доступність - Gestaltung ist gut lesbar und nutzbar.",
+      "die Visitenkarte - візитка - Kleine Karte mit Kontaktdaten.",
+      "das Briefpapier - фірмовий бланк - Papier mit Logo und Kontaktdaten.",
+      "der Kontrast - контраст - Unterschied zwischen hell und dunkel.",
+      "die Lesbarkeit - читабельність - Text kann gut gelesen werden."
+    ],
+    fachgespraech: [
+      "Ich habe eine ruhige Farbpalette gewählt, weil eine Arztpraxis Vertrauen vermitteln soll.",
+      "Ich achte auf gute Lesbarkeit und genug Kontrast, damit die Gestaltung barriereärmer ist.",
+      "Die Visitenkarte wird mit Beschnitt und CMYK für den Druck vorbereitet.",
+      "Das Corporate Design Manual erklärt, wie Logo, Farben und Schriften verwendet werden."
+    ],
+    practice: [
+      "Erstelle ein Logo für Medicus Praxis in 1-3 Varianten.",
+      "Erstelle eine Visitenkarte Vorder- und Rückseite in InDesign.",
+      "Erstelle ein Briefpapier A4 mit Logo, Kontaktdaten und ruhigem Satzspiegel.",
+      "Erstelle eine kleine CD-Manual-Seite: Logo, Farben, Schriften, Bildsprache.",
+      "Simuliere eine Kundenkorrektur: Logo weniger klinisch, Schrift freundlicher."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: einfache medizinische Icons wie Herz, Kreuz, Blatt, Hand.",
+      "15-30 Minuten iPad: 6 saubere Piktogramme im gleichen Stil zeichnen.",
+      "Figurentraining: einfache Handhaltung zeichnen, die eine Visitenkarte hält."
+    ],
+    report: reportTemplate,
+    deliverables: ["Logo Set", "Business Card Vorderseite", "Business Card Rückseite", "A4 Briefpapier", "Mini CD Manual", "PDF/X Export", "Mockup"],
+    quality: [
+      "Logo wirkt seriös und funktioniert klein.",
+      "Visitenkarte hat korrekte Maße und Beschnitt.",
+      "Schriften und Farben sind im CD Manual dokumentiert.",
+      "Kontrast und Lesbarkeit wurden geprüft.",
+      "Druck-PDF wurde mit CMYK und Schnittmarken exportiert."
+    ]
+  },
+  "module-3": {
+    brief: {
+      company: "Nova Jobs",
+      industry: "Jobvermittlung",
+      targetGroup: "Junge Erwachsene, Berufseinsteigerinnen und Menschen, die sich beruflich neu orientieren.",
+      request: "Ein modernes Recruiting-Branding mit klarer Zielgruppenansprache, Landing Page und LinkedIn Banner.",
+      avoid: "Zu kalte Business-Optik, unklare Call-to-Actions, austauschbare Stockbilder."
+    },
+    ausbildungFocus: [
+      "Zielgruppenanalyse, Persona und Kundenbedürfnisse erarbeiten.",
+      "Marketinginstrumente und Kommunikationskanäle passend auswählen.",
+      "Above the Line / Below the Line und Social Media Grundlagen verstehen.",
+      "Konzeptentwicklung und einfache Präsentation für Kundinnen und Kunden."
+    ],
+    theory: [
+      "Eine Zielgruppe beschreibt, für wen ein Produkt oder eine Kampagne gestaltet wird.",
+      "Eine Persona ist eine fiktive Person, die eine Zielgruppe greifbarer macht.",
+      "Ein Call-to-Action zeigt, was die Nutzerin als Nächstes tun soll.",
+      "LinkedIn braucht klare Texte, professionelles Bildmaterial und ein seriöses Layout.",
+      "Eine Landing Page soll schnell erklären, welches Problem gelöst wird."
+    ],
+    fachwoerter: [
+      "die Zielgruppe - цільова аудиторія - Menschen, die erreicht werden sollen.",
+      "die Persona - персона - Eine Beispielperson aus der Zielgruppe.",
+      "das Briefing - бриф - Informationen und Anforderungen vom Kunden.",
+      "das Rebriefing - уточнення брифу - Rückfrage, ob alles richtig verstanden wurde.",
+      "der Call-to-Action - заклик до дії - Eine klare Handlungsaufforderung.",
+      "die Conversion Rate - коефіцієнт конверсії - Anteil der Nutzer, die eine Aktion machen.",
+      "die Positionierung - позиціонування - Wie sich eine Marke im Markt zeigt.",
+      "die Konkurrenzanalyse - аналіз конкурентів - Vergleich mit anderen Anbietern."
+    ],
+    fachgespraech: [
+      "Ich habe zuerst die Zielgruppe definiert, damit die Gestaltung passend und verständlich ist.",
+      "Die Persona hilft mir, Bedürfnisse und Erwartungen der Nutzer besser zu verstehen.",
+      "Der Call-to-Action ist deutlich sichtbar, damit Nutzer schnell handeln können.",
+      "Ich habe LinkedIn als Kanal gewählt, weil die Zielgruppe dort berufliche Inhalte sucht."
+    ],
+    practice: [
+      "Erstelle eine Persona für Nova Jobs mit Alter, Ziel, Problem und Bedürfnissen.",
+      "Erstelle eine Konkurrenzanalyse mit 3 Jobplattformen.",
+      "Entwerfe ein Logo oder Wordmark-Konzept.",
+      "Gestalte einen LinkedIn Banner und einen Social Post.",
+      "Gestalte eine Landing Page in Figma mit Hero, Benefits, Ablauf und Formularbereich."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: 6 einfache Büro- und Job-Icons skizzieren.",
+      "15-30 Minuten iPad: eine freundliche Bewerber-Figur als einfache Character-Skizze.",
+      "Körpertraining: stehende Person mit Laptop-Tasche in einfachen Formen zeichnen."
+    ],
+    report: reportTemplate,
+    deliverables: ["Persona", "Konkurrenzanalyse", "Logo / Wordmark", "LinkedIn Banner", "Social Post", "Figma Landing Page", "Mini Presentation"],
+    quality: [
+      "Persona und Zielgruppe sind klar beschrieben.",
+      "Landing Page hat klare Leserführung und CTA.",
+      "Texte sind kurz, verständlich und zielgruppenorientiert.",
+      "LinkedIn Banner funktioniert auch klein.",
+      "Designentscheidungen können auf Deutsch begründet werden."
+    ]
+  },
+  "module-4": {
+    brief: {
+      company: "Atelier Flora",
+      industry: "Blumengeschäft",
+      targetGroup: "Menschen, die hochwertige Blumen, kleine Geschenke und liebevolle Verpackung suchen.",
+      request: "Ein natürliches Branding mit Verpackungssticker, Etikett und kleinem CD Manual.",
+      avoid: "Billige Deko-Optik, zu viele Farben, schwer druckbare Details."
+    },
+    ausbildungFocus: [
+      "Grundlagen von Verpackungs- und Produktdesign beschreiben.",
+      "Grafische Elemente und Etiketten mit Illustrator/InDesign erstellen.",
+      "Bedruckmaterialien und Druckproduktion zielgruppenorientiert auswählen.",
+      "Druckdaten mit Beschnitt, CMYK und Endformat vorbereiten."
+    ],
+    theory: [
+      "Verpackungsdesign verbindet Funktion, Information und Markenwirkung.",
+      "Ein Etikett muss lesbar sein und auf dem Material gut funktionieren.",
+      "Pantone und RAL sind Farbsysteme für genaue Farbangaben in bestimmten Bereichen.",
+      "Für Sticker sind Form, Beschnitt und Konturlinie besonders wichtig.",
+      "Unterschiedliche Papiere wirken unterschiedlich: gestrichen, ungestrichen, matt oder glänzend."
+    ],
+    fachwoerter: [
+      "das Etikett - етикетка - Kleine Fläche mit Information oder Marke.",
+      "der Sticker - наліпка - Klebendes Druckprodukt.",
+      "die Verpackung - упаковка - Schützt Produkt und zeigt Marke.",
+      "die Konturlinie - контурна лінія - Linie für die Schnittform.",
+      "der Beschnitt / Anschnitt - виліт під обріз - Extra Rand für den Schnitt.",
+      "das Endformat - кінцевий формат - Die finale Größe nach dem Schneiden.",
+      "das Bedruckmaterial - матеріал для друку - Papier, Karton, Folie oder anderes Material.",
+      "die Endverarbeitung - післядрукарська обробка - Schneiden, Falzen, Stanzen, Kleben."
+    ],
+    fachgespraech: [
+      "Ich habe Beschnitt angelegt, damit nach dem Schneiden keine weißen Blitzer entstehen.",
+      "Das Etikett muss gut lesbar sein, auch wenn es klein gedruckt wird.",
+      "Ich wähle das Material passend zur Marke und zur Nutzung des Produkts.",
+      "Für den Druck prüfe ich CMYK, Auflösung, Endformat und Exportprofil."
+    ],
+    practice: [
+      "Erstelle ein Logo oder Monogramm für Atelier Flora.",
+      "Gestalte einen runden Sticker und ein längliches Etikett.",
+      "Erstelle eine kleine Verpackungsserie: Sticker, Danke-Karte, Pflegehinweis.",
+      "Erstelle ein Mini CD Manual mit Farben, Schriften, Logo-Regeln.",
+      "Exportiere druckfertige PDFs mit Beschnitt und Schnittmarken."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: Blätter, Blumenformen und Schleifen skizzieren.",
+      "15-30 Minuten iPad: 3 florale Icons als Linienillustration zeichnen.",
+      "Tier/Character-Training: kleine Katze im Blumengeschäft als einfache Figur skizzieren."
+    ],
+    report: reportTemplate,
+    deliverables: ["Logo / Monogramm", "Sticker", "Etikett", "Danke-Karte", "Pflegehinweis", "Mini CD Manual", "PDF/X Druckdaten", "Mockup"],
+    quality: [
+      "Sticker und Etikett haben Beschnitt.",
+      "Konturlinie ist klar markiert.",
+      "Texte sind auch klein lesbar.",
+      "Farben und Material passen zur Marke.",
+      "Druckdaten wurden vor der Abgabe geprüft."
+    ]
+  },
+  "module-5": {
+    brief: {
+      company: "Kunstnacht Wien",
+      industry: "Kulturveranstaltung",
+      targetGroup: "Kunstinteressierte Erwachsene, Studierende, Touristinnen und lokale Kulturfans.",
+      request: "Ein A5-Flyer mit starker Typografie, Bildbearbeitung und druckfertigem PDF.",
+      avoid: "Chaotische Hierarchie, zu kleine Informationen, fehlender Beschnitt."
+    },
+    ausbildungFocus: [
+      "Layout, Typografie, Satzspiegel und Raster anwenden.",
+      "Bildkomposition und Leserführung erklären.",
+      "Druckvorstufe: Auflösung, CMYK, Beschnitt, Schnittmarken und PDF/X.",
+      "Printprodukt prüfen und bei Bedarf überarbeiten."
+    ],
+    theory: [
+      "Ein Flyer muss schnell informieren: Was, wann, wo und warum.",
+      "Typografische Hierarchie zeigt, welche Information am wichtigsten ist.",
+      "Der Satzspiegel definiert, wo Inhalte auf der Seite platziert werden.",
+      "Weißraum macht Layouts ruhiger und besser lesbar.",
+      "PDF/X ist ein Standard für zuverlässige Druckdaten."
+    ],
+    fachwoerter: [
+      "das Layout - макет - Anordnung von Text, Bild und Elementen.",
+      "der Satzspiegel - область контенту - Bereich, in dem Inhalt steht.",
+      "das Raster - сітка - Hilft beim ordentlichen Platzieren.",
+      "der Weißraum - вільний простір - Freier Bereich zwischen Elementen.",
+      "die Leserführung - напрямок погляду - Führt den Blick durch das Layout.",
+      "die Schnittmarken - мітки обрізу - Zeigen, wo geschnitten wird.",
+      "das PDF/X-Format - стандарт для друку - Sicheres Format für Druckdaten.",
+      "die Auflösung - роздільна здатність - Wichtig für scharfe Bilder."
+    ],
+    fachgespraech: [
+      "Ich habe ein Raster verwendet, damit das Layout ordentlich und professionell wirkt.",
+      "Die Überschrift ist groß, weil sie als Blickfang funktionieren soll.",
+      "Für den Druck exportiere ich ein PDF/X mit Beschnitt und Schnittmarken.",
+      "Ich prüfe die Auflösung der Bilder, damit sie im Druck scharf sind."
+    ],
+    practice: [
+      "Erstelle einen A5-Flyer Vorder- und Rückseite in InDesign.",
+      "Baue eine klare Hierarchie: Titel, Datum, Ort, Programm, CTA.",
+      "Bearbeite ein Bild in Photoshop und setze es passend ein.",
+      "Erstelle eine Instagram Story als digitale Variante.",
+      "Exportiere ein PDF/X und prüfe Beschnitt, Schnittmarken und Schriften."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: kleine Kunstsymbole und Rahmenformen skizzieren.",
+      "15-30 Minuten iPad: eine einfache Event-Illustration oder Pattern für den Flyer.",
+      "Körpertraining: Besuchergruppe im Museum als schnelle Silhouetten zeichnen."
+    ],
+    report: reportTemplate,
+    deliverables: ["A5 Flyer Vorderseite", "A5 Flyer Rückseite", "Photoshop Bildbearbeitung", "PDF/X", "Print Preview", "Instagram Story"],
+    quality: [
+      "Alle Pflichtinformationen sind sichtbar.",
+      "Typografie hat klare Hierarchie.",
+      "Bilder haben passende Auflösung.",
+      "PDF/X enthält Beschnitt und Schnittmarken.",
+      "Flyer ist auf Lesbarkeit und Rechtschreibung geprüft."
+    ]
+  },
+  "module-6": {
+    brief: {
+      company: "Green Studio",
+      industry: "Interior Design",
+      targetGroup: "Privatkundinnen und kleine Büros, die nachhaltiges Interior Design suchen.",
+      request: "Eine 8-seitige Broschüre mit Satzspiegel, Bildkonzept, sauberem Raster und Druckvorstufe.",
+      avoid: "Zu volle Seiten, schlechte Bildqualität, uneinheitliche Abstände."
+    },
+    ausbildungFocus: [
+      "Mehrseitiges Layout mit Raster, Satzspiegel und Absatzformaten erstellen.",
+      "Textelemente typografisch gestalten und Bilder medienneutral bearbeiten.",
+      "Druckdaten kontrollieren und Datenübergabe vorbereiten.",
+      "Projektplanung: Seitenumfang, Bildmaterial, Deadline und Korrekturschleife."
+    ],
+    theory: [
+      "Eine Broschüre braucht eine klare Seitenstruktur und wiederkehrende Layoutregeln.",
+      "Absatzformate sparen Zeit und sorgen für ein einheitliches Erscheinungsbild.",
+      "Bildrhythmus bedeutet: Bilder und Text wechseln harmonisch.",
+      "Falzarten und Bindung beeinflussen die Gestaltung.",
+      "Eine Preflight-Prüfung findet technische Fehler vor dem Druck."
+    ],
+    fachwoerter: [
+      "die Broschüre - брошура - Mehrseitiges Printprodukt.",
+      "der Satzspiegel - область набору - Fläche für Text und Bilder.",
+      "das Absatzformat - стиль абзацу - Gespeicherte Textformatierung.",
+      "die Musterseite - майстер-сторінка - Vorlage für wiederkehrende Elemente.",
+      "der Bildrahmen - рамка зображення - Platz für Bilder in InDesign.",
+      "der Preflight - перевірка перед друком - Prüft technische Fehler.",
+      "die Falzart - тип фальцювання - Art, wie Papier gefaltet wird.",
+      "die Druckdaten - друкарські дані - Finale Dateien für die Druckerei."
+    ],
+    fachgespraech: [
+      "Ich habe Absatzformate verwendet, damit die Broschüre einheitlich bleibt.",
+      "Der Satzspiegel hilft, Text und Bilder ruhig zu platzieren.",
+      "Vor dem Export prüfe ich Bilder, Schriften, Beschnitt und Preflight.",
+      "Die Broschüre wird als druckfähiges PDF an die Druckerei übergeben."
+    ],
+    practice: [
+      "Plane eine 8-seitige Broschüre mit Deckblatt, Leistungen, Projektbeispielen und Kontakt.",
+      "Erstelle Musterseiten, Raster und Absatzformate in InDesign.",
+      "Bearbeite 4-6 Bilder in Photoshop.",
+      "Setze Text, Bildunterschriften und Seitenzahlen sauber ein.",
+      "Erstelle ein PDF/X und eine kleine Print-Checkliste."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: Möbel, Pflanzen und Raum-Icons skizzieren.",
+      "15-30 Minuten iPad: 3 einfache Interior-Spot-Illustrationen.",
+      "Perspektive üben: einfacher Raum mit Sofa und Pflanze."
+    ],
+    report: reportTemplate,
+    deliverables: ["8-page Brochure", "Musterseiten", "Absatzformate", "Bildbearbeitung", "PDF/X", "Image Package", "Print Checklist"],
+    quality: [
+      "Alle Seiten folgen einem klaren Raster.",
+      "Absatzformate sind konsistent.",
+      "Bilder sind scharf und passend bearbeitet.",
+      "Preflight zeigt keine kritischen Fehler.",
+      "PDF/X und offene Datei sind ordentlich abgelegt."
+    ]
+  },
+  "module-7": {
+    brief: {
+      company: "Mellow Yoga",
+      industry: "Yoga Studio",
+      targetGroup: "Menschen, die Ruhe, Gesundheit und einen achtsamen Alltag suchen.",
+      request: "Ein editorialer Magazin-Spread mit Textstilen, Bildrhythmus und ruhiger Leserführung.",
+      avoid: "Überladene Seiten, zu dekorative Schrift, schlechte Lesbarkeit."
+    },
+    ausbildungFocus: [
+      "Mikrotypografie und Makrotypografie verstehen.",
+      "Schriftfamilien, Schriftschnitte, Laufweite, Kerning und Zeilenabstand anwenden.",
+      "Bild und Text in einem ruhigen Layout kombinieren.",
+      "Typografie im Fachgespräch einfach erklären."
+    ],
+    theory: [
+      "Mikrotypografie betrifft Buchstaben, Wörter, Laufweite, Kerning und Zeilenabstand.",
+      "Makrotypografie betrifft Gesamtaufbau, Satzspiegel, Layout und Verhältnis von Schrift zu Bild.",
+      "Zeilenabstand beeinflusst, ob ein Text angenehm lesbar ist.",
+      "Eine Schriftfamilie enthält mehrere Schriftschnitte wie Regular, Bold oder Italic.",
+      "Flattersatz wirkt oft natürlicher als schlechter Blocksatz."
+    ],
+    fachwoerter: [
+      "die Typografie - типографіка - Gestaltung und Anordnung von Schrift.",
+      "die Schriftfamilie - сімейство шрифтів - Zusammengehörende Schriftschnitte.",
+      "der Schriftschnitt - накреслення - Regular, Bold, Italic.",
+      "das Kerning - кернінг - Abstand zwischen zwei Buchstaben.",
+      "die Laufweite - трекінг - Abstand zwischen allen Buchstaben.",
+      "der Zeilenabstand - міжрядковий інтервал - Abstand zwischen Textzeilen.",
+      "der Fließtext - основний текст - Längerer Lesetext.",
+      "der Flattersatz - вирівнювання з нерівним краєм - Text mit freiem rechten Rand."
+    ],
+    fachgespraech: [
+      "Typografie macht Texte lesbar und ästhetisch.",
+      "Ich habe den Zeilenabstand erhöht, damit der Fließtext leichter zu lesen ist.",
+      "Kerning betrifft einzelne Buchstaben, Laufweite betrifft den ganzen Text.",
+      "Die typografische Hierarchie zeigt, welche Information wichtig ist."
+    ],
+    practice: [
+      "Erstelle einen Magazin-Spread mit Überschrift, Lead, Fließtext und Bild.",
+      "Teste 3 Schriftkombinationen und begründe die beste Wahl.",
+      "Erstelle Absatzformate für Titel, Untertitel, Fließtext und Zitat.",
+      "Vergleiche Blocksatz und Flattersatz.",
+      "Exportiere PDF Preview und beschrifte deine typografischen Entscheidungen."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: Yoga-Posen als einfache Linienfiguren.",
+      "15-30 Minuten iPad: eine ruhige Yoga-Illustration für den Magazin-Spread.",
+      "Körpertraining: 3 einfache Körperhaltungen mit Proportionen zeichnen."
+    ],
+    report: reportTemplate,
+    deliverables: ["Magazine Spread", "Typografie Tests", "Style Sheet", "PDF Export", "Mockup"],
+    quality: [
+      "Text ist gut lesbar.",
+      "Zeilenabstand und Laufweite sind bewusst gewählt.",
+      "Hierarchie ist klar.",
+      "Bild und Text haben gutes Gleichgewicht.",
+      "Typografie kann auf Deutsch erklärt werden."
+    ]
+  },
+  "module-8": {
+    brief: {
+      company: "Craft Market",
+      industry: "Handmade Markt",
+      targetGroup: "Kreative Menschen, Familien und Besucherinnen lokaler Märkte.",
+      request: "Eine zusammenhängende Printkampagne mit Plakat, Flyer und Roll-up.",
+      avoid: "Uneinheitliche Gestaltung, zu viele Schriftarten, unklare Druckformate."
+    },
+    ausbildungFocus: [
+      "Medien auswählen und Einsatz argumentieren.",
+      "Printkampagne mit mehreren Formaten konsistent gestalten.",
+      "Drucktechniken, Bedruckmaterialien und Endverarbeitung grundlegend erklären.",
+      "Produktionsdateien und Datenübergabe vorbereiten."
+    ],
+    theory: [
+      "Eine Kampagne braucht Wiedererkennung über mehrere Medien.",
+      "Ein Plakat muss aus der Distanz funktionieren.",
+      "Ein Roll-up braucht große Schrift, klare Botschaft und starke Hierarchie.",
+      "Druckverfahren unterscheiden sich nach Material, Auflage und Qualität.",
+      "Endverarbeitung umfasst Schneiden, Falzen, Kaschieren oder Stanzen."
+    ],
+    fachwoerter: [
+      "die Printkampagne - друкована кампанія - Mehrere Printmedien im gleichen Stil.",
+      "das Plakat - плакат - Großes Werbemittel für Aufmerksamkeit.",
+      "der Flyer - флаєр - Kleines Informations- oder Werbemittel.",
+      "das Roll-up - ролап - Aufsteller für Events.",
+      "das Druckverfahren - спосіб друку - Offsetdruck, Digitaldruck, Siebdruck usw.",
+      "die Auflage - тираж - Anzahl der gedruckten Exemplare.",
+      "die Endverarbeitung - післядрукарська обробка - Arbeiten nach dem Druck.",
+      "die Produktionsdatei - виробничий файл - Finale Datei für Umsetzung."
+    ],
+    fachgespraech: [
+      "Ich habe die Gestaltung über alle Formate konsistent gehalten.",
+      "Das Plakat hat große Schrift, weil es aus der Distanz gelesen werden muss.",
+      "Für kleine Auflagen eignet sich oft Digitaldruck, für größere Auflagen kann Offsetdruck sinnvoll sein.",
+      "Vor der Abgabe prüfe ich Endformat, Beschnitt, Farbmodus und Auflösung."
+    ],
+    practice: [
+      "Entwickle ein Key Visual für Craft Market.",
+      "Gestalte ein A2-Plakat, einen A5-Flyer und ein Roll-up.",
+      "Passe Layout und Hierarchie pro Format an.",
+      "Erstelle Druck-PDFs mit korrekten Formaten.",
+      "Erstelle eine kurze Präsentation: Warum passen diese Medien zur Zielgruppe?"
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: Marktstände, Produkte und Icons skizzieren.",
+      "15-30 Minuten iPad: ein Key Visual mit Händen, die ein Handmade-Produkt halten.",
+      "Tier/Character-Training: kleine Marktbesucher-Figur oder Tiermaskottchen skizzieren."
+    ],
+    report: reportTemplate,
+    deliverables: ["Poster", "Flyer", "Roll-up", "Key Visual", "PDF/X Files", "Production Files", "Presentation"],
+    quality: [
+      "Alle Formate wirken zusammengehörig.",
+      "Schriftgrößen passen zum Medium.",
+      "Druckdaten sind vollständig.",
+      "Beschnitt und Endformat sind korrekt.",
+      "Medienauswahl kann begründet werden."
+    ]
+  },
+  "module-9": {
+    brief: {
+      company: "Maison Lune",
+      industry: "Boutique Hotel",
+      targetGroup: "Reisende, Paare und Design-interessierte Gäste, die ein besonderes Hotel suchen.",
+      request: "Eine responsive One-Page Website in Figma mit Wireframe, UI-Komponenten und Prototyp.",
+      avoid: "Unklare Navigation, zu kleine Buttons, rein dekorative Elemente ohne Funktion.",
+      pages: "One Page: Start, Zimmer, Galerie, Angebote, Kontakt."
+    },
+    ausbildungFocus: [
+      "Digitalprodukte mit Layout-, Grafik- und Bildbearbeitungsprogrammen gestalten.",
+      "Zielgruppe, Informationsarchitektur und Responsive Design berücksichtigen.",
+      "Prototypen und Anschauungsmaterial erstellen.",
+      "Barrierefreiheit, Leserführung und UI-Grundlagen erklären."
+    ],
+    theory: [
+      "Ein Wireframe zeigt Struktur ohne fertiges Design.",
+      "UI Design betrifft sichtbare Elemente wie Buttons, Karten, Navigation und Formulare.",
+      "Responsive Design bedeutet, dass eine Website auf Desktop, Tablet und Mobile funktioniert.",
+      "Barrierefreiheit bedeutet auch: genug Kontrast, klare Beschriftung und gute Bedienbarkeit.",
+      "Ein Prototyp zeigt, wie Nutzer durch die Seite klicken."
+    ],
+    fachwoerter: [
+      "das Wireframe - вайрфрейм - Grobe Struktur einer Seite.",
+      "das UI Design - дизайн інтерфейсу - Gestaltung der sichtbaren Oberfläche.",
+      "der Prototyp - прототип - Klickbares Modell eines Designs.",
+      "die Navigation - навігація - Menü und Orientierung auf der Website.",
+      "der Button - кнопка - Element für eine Aktion.",
+      "das Responsive Design - адаптивний дизайн - Funktioniert auf verschiedenen Bildschirmgrößen.",
+      "die Barrierefreiheit - доступність - Gut nutzbar für viele Menschen.",
+      "die Informationsarchitektur - структура інформації - Ordnung der Inhalte."
+    ],
+    fachgespraech: [
+      "Ich habe zuerst ein Wireframe erstellt, um die Struktur zu planen.",
+      "Das Design ist responsive gedacht, damit es auf Desktop und Mobile funktioniert.",
+      "Ich achte auf Kontrast und klare Buttons, damit die Seite leichter bedienbar ist.",
+      "Der Prototyp hilft, die Navigation und den Nutzerfluss zu testen."
+    ],
+    practice: [
+      "Erstelle eine Sitemap für die One-Page Website.",
+      "Erstelle Wireframes für Desktop und Mobile.",
+      "Gestalte UI-Komponenten: Header, Button, Zimmerkarte, Kontaktbereich.",
+      "Gestalte die finale Website in Figma.",
+      "Erstelle einen klickbaren Prototyp und Design Specs."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: kleine Hotel-Icons und Zimmer-Symbole skizzieren.",
+      "15-30 Minuten iPad: eine einfache Illustration für Hero oder Zimmerkarte.",
+      "Perspektive üben: Bett oder Fenster in einfachen Formen zeichnen."
+    ],
+    report: reportTemplate,
+    deliverables: ["Sitemap", "Desktop Wireframe", "Mobile Wireframe", "UI Design", "Prototype", "Design Specs"],
+    quality: [
+      "Navigation ist klar.",
+      "Desktop und Mobile sind gestaltet.",
+      "Buttons sind gut erkennbar.",
+      "Kontrast und Lesbarkeit sind geprüft.",
+      "Figma Datei ist sauber benannt und strukturiert."
+    ]
+  },
+  "module-10": {
+    brief: {
+      company: "Lernraum Kids",
+      industry: "Nachhilfeinstitut",
+      targetGroup: "Eltern von Schulkindern und Jugendliche, die Nachhilfe suchen.",
+      request: "Eine WordPress Website mit Elementor, Kontaktformular, Cookie Banner und SEO Basics.",
+      avoid: "Unklare Seitenstruktur, fehlendes Impressum/Datenschutz, zu langsame Bilder.",
+      pages: "5 Seiten: Start, Kurse, Preise, Über uns, Kontakt."
+    },
+    ausbildungFocus: [
+      "Digitale Medien planen und mit WordPress/Elementor umsetzen.",
+      "Kundenbriefing, Seitenstruktur und Zielgruppe beachten.",
+      "Datenschutz, Cookie Banner, Kontaktformular und SEO-Grundlagen anwenden.",
+      "Website auf Desktop, Tablet und Mobile prüfen."
+    ],
+    theory: [
+      "WordPress ist ein CMS, mit dem Inhalte und Seiten verwaltet werden.",
+      "Elementor ist ein Page Builder für visuelle Seitengestaltung.",
+      "Plugins erweitern WordPress, müssen aber sinnvoll und sparsam eingesetzt werden.",
+      "Ein Cookie Banner informiert über Cookies und Einwilligung.",
+      "SEO Basics helfen, dass Seiten besser gefunden werden."
+    ],
+    fachwoerter: [
+      "das CMS - CMS - System zur Verwaltung von Website-Inhalten.",
+      "das Theme - тема сайту - Grunddesign einer WordPress Website.",
+      "das Plugin - плагін - Erweiterung für zusätzliche Funktionen.",
+      "das Kontaktformular - контактна форма - Formular für Anfragen.",
+      "der Cookie Banner - банер cookies - Hinweis und Einwilligung zu Cookies.",
+      "die Datenschutzerklärung - політика приватності - Text zum Datenschutz.",
+      "der Meta Title - SEO-заголовок - Titel für Suchmaschinen.",
+      "der Alt-Text - альтернативний текст - Beschreibung für Bilder."
+    ],
+    fachgespraech: [
+      "Ich habe die Website mit WordPress und Elementor aufgebaut, weil der Kunde Inhalte später einfacher pflegen kann.",
+      "Ich nutze Plugins nur, wenn sie wirklich eine Funktion erfüllen.",
+      "Das Kontaktformular hilft, Anfragen direkt über die Website zu bekommen.",
+      "Ich prüfe Datenschutz, Cookie Banner, SEO Titel und mobile Darstellung."
+    ],
+    practice: [
+      "Plane 5 Seiten: Start, Kurse, Preise, Über uns, Kontakt.",
+      "Baue Header, Footer und Menü in WordPress.",
+      "Erstelle die Seiten mit Elementor-Containern.",
+      "Richte Kontaktformular, Cookie Plugin, SEO Plugin und Backup Plugin ein.",
+      "Prüfe responsive Ansicht und Bildgrößen."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: Lern-Icons wie Buch, Stift, Stern, Kalender.",
+      "15-30 Minuten iPad: freundliche Kinder-/Lernfigur als einfache Character-Skizze.",
+      "Körpertraining: sitzende Person am Schreibtisch zeichnen."
+    ],
+    report: reportTemplate,
+    deliverables: ["5 WordPress Pages", "Elementor Templates", "Contact Form", "Cookie Banner", "SEO Setup", "Backup Setup", "Responsive Check"],
+    quality: [
+      "Alle 5 Seiten sind erreichbar.",
+      "Menü, Header und Footer funktionieren.",
+      "Cookie Banner und Datenschutzseite sind vorhanden.",
+      "Kontaktformular wurde getestet.",
+      "SEO Titel, Meta Description und Alt-Texte sind eingetragen."
+    ]
+  },
+  "module-11": {
+    brief: {
+      company: "Studio Frame",
+      industry: "Fotostudio",
+      targetGroup: "Privatpersonen, Paare und kleine Unternehmen, die professionelle Fotos brauchen.",
+      request: "Eine einfache responsive Landing Page mit HTML, CSS, klaren Sections und sauberem Asset-Ordner.",
+      avoid: "Komplizierter JavaScript-Fokus, unstrukturierter Code, zu schwere Bilder.",
+      pages: "One Page: Hero, Leistungen, Galerie, Preise, Kontakt."
+    },
+    ausbildungFocus: [
+      "Grundlagen digitaler Anwendungen und Dateistruktur anwenden.",
+      "Weblayout, Responsive Design und Bildoptimierung verstehen.",
+      "HTML/CSS nur als Basis lernen, nicht als Hauptfokus.",
+      "Digitale Produkte prüfen und verständlich dokumentieren."
+    ],
+    theory: [
+      "HTML strukturiert Inhalte wie Überschriften, Absätze, Bilder und Links.",
+      "CSS gestaltet Farben, Abstände, Schrift und Layout.",
+      "Responsive Design passt Layouts an verschiedene Bildschirmgrößen an.",
+      "Bildoptimierung verbessert Ladezeit und Nutzererlebnis.",
+      "Semantische HTML-Elemente helfen Struktur und Barrierefreiheit."
+    ],
+    fachwoerter: [
+      "das HTML - HTML - Struktur einer Webseite.",
+      "das CSS - CSS - Gestaltung einer Webseite.",
+      "die Section - секція - Inhaltlicher Bereich einer Seite.",
+      "der Header - шапка сайту - Oberer Seitenbereich.",
+      "der Footer - футер - Unterer Seitenbereich.",
+      "die Ladezeit - час завантаження - Wie schnell eine Seite lädt.",
+      "das Asset - файл ресурсу - Bild, Icon oder Font für ein Projekt.",
+      "die Semantik - семантика - Sinnvolle HTML-Struktur."
+    ],
+    fachgespraech: [
+      "HTML ist für die Struktur der Inhalte zuständig.",
+      "CSS ist für die visuelle Gestaltung zuständig.",
+      "Ich optimiere Bilder, damit die Website schneller lädt.",
+      "Die Landing Page ist responsive, damit sie auch auf dem Smartphone gut funktioniert."
+    ],
+    practice: [
+      "Erstelle ein Figma-Wireframe für die Landing Page.",
+      "Baue eine HTML-Struktur mit Header, Hero, Leistungen, Galerie, Preise und Kontakt.",
+      "Gestalte die Seite mit CSS: Farben, Abstände, Schrift, responsive Grid.",
+      "Ordne Bilder und Icons in einem Asset-Ordner.",
+      "Teste Desktop und Mobile."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: Kamera, Rahmen, Blitz und Galerie-Icons.",
+      "15-30 Minuten iPad: ein einfaches Kamera-Icon-Set im gleichen Stil.",
+      "Körpertraining: stehende Person mit Kamera zeichnen."
+    ],
+    report: reportTemplate,
+    deliverables: ["Figma Wireframe", "HTML Landing Page", "CSS Layout", "Responsive Layout", "Asset Folder", "Code Review Notes"],
+    quality: [
+      "HTML-Struktur ist logisch.",
+      "CSS ist sauber und wiederverwendbar.",
+      "Bilder sind optimiert.",
+      "Mobile Ansicht ist geprüft.",
+      "Kein unnötig komplizierter JavaScript-Fokus."
+    ]
+  },
+  "module-12": {
+    brief: {
+      company: "Bella Casa",
+      industry: "Immobilienagentur",
+      targetGroup: "Menschen, die Immobilien kaufen, verkaufen oder mieten möchten.",
+      request: "Ein Website-Relaunch mit Informationsarchitektur, Figma-Wireframes, Elementor-Umsetzung und Plugin Setup.",
+      avoid: "Unklare Objektstruktur, fehlende Suchfunktion, schlechte Performance.",
+      pages: "6 Seiten: Start, Immobilien, Kaufen, Verkaufen, Über uns, Kontakt."
+    },
+    ausbildungFocus: [
+      "Kundenbriefing prüfen, Rückfragen formulieren und Rebriefing nutzen.",
+      "Informationsarchitektur und Website-Konzept entwickeln.",
+      "WordPress Plugins passend auswählen und korrekt einrichten.",
+      "Performance, Datenschutz, SEO und responsive Qualität prüfen."
+    ],
+    theory: [
+      "Ein Relaunch verbessert eine bestehende Website in Struktur, Design und Technik.",
+      "Informationsarchitektur ordnet Inhalte so, dass Nutzer schnell finden, was sie suchen.",
+      "Ein Rebriefing klärt, ob das Briefing richtig verstanden wurde.",
+      "Performance bedeutet, dass eine Website schnell und stabil lädt.",
+      "Plugins sollen einen klaren Zweck haben und regelmäßig aktualisiert werden."
+    ],
+    fachwoerter: [
+      "der Relaunch - перезапуск сайту - Überarbeitung einer bestehenden Website.",
+      "die Sitemap - карта сайту - Übersicht der Seitenstruktur.",
+      "das Rebriefing - уточнення брифу - Rückversicherung nach dem Briefing.",
+      "die Performance - продуктивність - Geschwindigkeit und Stabilität.",
+      "das Plugin Setup - налаштування плагінів - Installation und Konfiguration.",
+      "das Immobilienobjekt - об'єкт нерухомості - Wohnung, Haus oder Grundstück.",
+      "die Suchfunktion - пошук - Funktion zum Finden von Inhalten.",
+      "die Datensicherung - резервна копія - Backup der Website."
+    ],
+    fachgespraech: [
+      "Ich habe zuerst die Sitemap geplant, damit die Seitenstruktur logisch ist.",
+      "Beim Rebriefing prüfe ich, ob ich die Kundenwünsche richtig verstanden habe.",
+      "Ich wähle Plugins nach Funktion, Sicherheit und Wartbarkeit aus.",
+      "Nach der Umsetzung prüfe ich Performance, Datenschutz, SEO und responsive Darstellung."
+    ],
+    practice: [
+      "Schreibe 8 Rückfragen an den Kunden.",
+      "Erstelle eine Sitemap für 6 Seiten.",
+      "Gestalte Wireframes für Startseite und Immobilien-Übersicht in Figma.",
+      "Baue die Struktur in WordPress/Elementor.",
+      "Richte Cookie Plugin, SEO Plugin, Formular Plugin, Backup Plugin und optional Kalender/Buchung ein."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: Haus, Schlüssel, Karte, Kalender-Icons.",
+      "15-30 Minuten iPad: kleine Haus-Illustration oder Icon-Set.",
+      "Perspektive üben: einfaches Haus mit Dach und Fenstern zeichnen."
+    ],
+    report: reportTemplate,
+    deliverables: ["Rebriefing Questions", "Sitemap", "Figma Wireframes", "WordPress Pages", "Plugin Setup", "Performance Check", "SEO Checklist"],
+    quality: [
+      "Sitemap beantwortet Kundenbedarf.",
+      "Wireframes zeigen klare Nutzerführung.",
+      "Plugins sind sinnvoll und dokumentiert.",
+      "Cookie, Formular, Backup und SEO sind geprüft.",
+      "Website funktioniert auf Desktop, Tablet und Mobile."
+    ]
+  },
+  "module-13": {
+    brief: {
+      company: "Sound & Motion",
+      industry: "Eventagentur",
+      targetGroup: "Unternehmen und Veranstalter, die kurze Eventvideos und Social Clips brauchen.",
+      request: "Ein 30-Sekunden-Video mit Storyboard, Schnitt, Exportformaten und Thumbnail.",
+      avoid: "Zu lange Clips, schlechte Audioqualität, falsches Format für Social Media."
+    },
+    ausbildungFocus: [
+      "Audiovisuelle Grundlagen nur praxisnah und kompakt lernen.",
+      "Storyboard, Timeline, Schnitt und Exportformate erklären.",
+      "Mediendateien für unterschiedliche Ausgabetechniken aufbereiten.",
+      "Dateiformate, Komprimierung und Speicherstruktur verstehen."
+    ],
+    theory: [
+      "Ein Storyboard zeigt die geplanten Szenen vor dem Schnitt.",
+      "Die Timeline ist der Arbeitsbereich für Video und Audio.",
+      "Exportformat und Seitenverhältnis hängen vom Ausgabekanal ab.",
+      "Komprimierung reduziert Dateigröße, kann aber Qualität beeinflussen.",
+      "Ein Thumbnail muss schnell Aufmerksamkeit erzeugen."
+    ],
+    fachwoerter: [
+      "das Storyboard - сторіборд - Planung der Szenen.",
+      "die Timeline - таймлайн - Arbeitsbereich im Schnittprogramm.",
+      "die Sequenz - секвенція - Projekteinstellung für Video.",
+      "der Schnitt - монтаж - Kürzen und Ordnen von Clips.",
+      "das Exportformat - формат експорту - Datei für Ausgabe.",
+      "die Komprimierung - стиснення - Reduziert Dateigröße.",
+      "das Seitenverhältnis - співвідношення сторін - 16:9, 9:16 oder 1:1.",
+      "das Thumbnail - прев'ю - Vorschaubild für Video."
+    ],
+    fachgespraech: [
+      "Ich habe ein Storyboard erstellt, damit der Ablauf vor dem Schnitt klar ist.",
+      "Das Exportformat wähle ich passend zum Kanal, zum Beispiel 9:16 für Stories.",
+      "Ich komprimiere das Video, damit die Datei kleiner wird, aber die Qualität noch passt.",
+      "Premiere ist hier nur ein Grundlagenmodul, weil Grafik und Print mein Hauptfokus bleiben."
+    ],
+    practice: [
+      "Erstelle ein Storyboard mit 6 Szenen.",
+      "Schneide einen 30-Sekunden-Clip in Premiere Pro.",
+      "Erstelle Titel, Bauchbinde oder einfache Motion-Elemente.",
+      "Exportiere 16:9 und 9:16 Versionen.",
+      "Erstelle ein Thumbnail in Photoshop oder Figma."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: 6 Storyboard-Kästchen skizzieren.",
+      "15-30 Minuten iPad: einfache Event-Character-Posen zeichnen.",
+      "Körpertraining: Person mit Mikrofon oder Kamera in Bewegung zeichnen."
+    ],
+    report: reportTemplate,
+    deliverables: ["Storyboard", "30s Video", "16:9 Export", "9:16 Export", "Export Presets", "Thumbnail"],
+    quality: [
+      "Storyboard ist verständlich.",
+      "Video ist kurz und klar.",
+      "Audio und Titel sind geprüft.",
+      "Exportformat passt zum Kanal.",
+      "Dateien sind ordentlich benannt."
+    ]
+  },
+  "module-14": {
+    brief: {
+      company: "Café Nord",
+      industry: "Gastronomie",
+      targetGroup: "Lokale Gäste, Studierende und Menschen, die ein ruhiges Café zum Arbeiten suchen.",
+      request: "Ein kompletter Mini-Auftrag: Branding, Menü, Website Mockup, Kundendateien und Abschlusspräsentation.",
+      avoid: "Unvollständige Dateien, fehlende Begründung, nicht zusammenpassende Medien."
+    },
+    ausbildungFocus: [
+      "Kompletten Auftrag von Briefing bis Abgabe organisieren.",
+      "Projektplan, Deadline, Korrekturschleife und Kundendateien dokumentieren.",
+      "Print und Digital konsistent gestalten.",
+      "Eigene Designentscheidungen fachlich präsentieren."
+    ],
+    theory: [
+      "Ein Projektplan zeigt Aufgaben, Reihenfolge, Zeitpuffer und Deadline.",
+      "Eine Korrekturschleife ist eine geplante Runde für Kundenfeedback.",
+      "Ein Kundenpaket enthält offene Dateien, Exportdateien und kurze Hinweise.",
+      "Kostenvoranschlag und Budget helfen, Aufwand und Umfang zu klären.",
+      "Eine Präsentation erklärt Problem, Prozess und Ergebnis."
+    ],
+    fachwoerter: [
+      "der Projektplan - план проєкту - Aufgaben und Zeitablauf.",
+      "die Deadline - дедлайн - Spätester Abgabetermin.",
+      "die Korrekturschleife - раунд правок - Geplante Feedbackrunde.",
+      "der Zeitpuffer - запас часу - Reserve für Probleme.",
+      "der Kostenvoranschlag - кошторис - Geschätzte Kosten.",
+      "das Kundenpaket - пакет для клієнта - Finale Dateien und Hinweise.",
+      "die Präsentation - презентація - Vorstellung von Prozess und Ergebnis.",
+      "die Freigabe - підтвердження - Zustimmung vom Kunden."
+    ],
+    fachgespraech: [
+      "Ich plane zuerst Aufgaben, Deadline und Zeitpuffer.",
+      "Nach dem ersten Entwurf hole ich Kundenfeedback ein und dokumentiere die Korrekturen.",
+      "Das Kundenpaket enthält offene Dateien und Exportdateien für Web und Print.",
+      "In der Präsentation begründe ich Zielgruppe, Gestaltung und technische Umsetzung."
+    ],
+    practice: [
+      "Erstelle ein Briefing und einen einfachen Projektplan.",
+      "Gestalte Logo, Menükarte und Social Post.",
+      "Erstelle ein Website Mockup in Figma.",
+      "Simuliere eine Korrekturschleife und passe die Dateien an.",
+      "Packe alle finalen Dateien als Client ZIP mit README."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: Tasse, Menü-Icons, kleine Café-Szene.",
+      "15-30 Minuten iPad: Café-Illustration für Menü oder Website.",
+      "Character-Training: sitzende Person mit Kaffee und Laptop."
+    ],
+    report: reportTemplate,
+    deliverables: ["Briefing", "Projektplan", "Brand Set", "Menu", "Social Post", "Website Mockup", "Client ZIP", "Final Presentation"],
+    quality: [
+      "Alle Medien wirken zusammengehörig.",
+      "Projektplan und Korrekturen sind dokumentiert.",
+      "Printdaten und digitale Dateien sind getrennt.",
+      "Client ZIP ist verständlich strukturiert.",
+      "Präsentation erklärt Prozess und Entscheidungen."
+    ]
+  },
+  "module-15": {
+    brief: {
+      company: "Krystyna Lozova",
+      industry: "Personal Branding",
+      targetGroup: "Ausbilder, Prüfungskommission, Agenturen und mögliche Arbeitgeber.",
+      request: "Ein Portfolio-Sprint mit Behance Case Studies, LinkedIn Profil, Portfolio PDF und Bewerbungsunterlagen.",
+      avoid: "Nur schöne Bilder ohne Prozess, fehlende Erklärungen, unklare Projektstruktur."
+    },
+    ausbildungFocus: [
+      "Eigene Arbeit reflektieren und professionell präsentieren.",
+      "Portfolio-Projekte mit Problem, Research, Prozess und Ergebnis dokumentieren.",
+      "Deutsch für Fachgespräch und Bewerbung festigen.",
+      "Stärken, Lernstand und nächste Schritte sichtbar machen."
+    ],
+    theory: [
+      "Eine Behance Case Study zeigt nicht nur das Ergebnis, sondern auch den Weg dorthin.",
+      "Ein gutes Portfolio erklärt Problem, Zielgruppe, Moodboard, Skizzen, Prozess und finale Anwendung.",
+      "LinkedIn sollte klar zeigen, was du machst und welche Programme du kannst.",
+      "Ein Portfolio PDF braucht klare Auswahl, gute Reihenfolge und kurze Erklärungen.",
+      "Selbstreflexion zeigt, dass du bewusst lernst und dich verbessern kannst."
+    ],
+    fachwoerter: [
+      "das Portfolio - портфоліо - Sammlung deiner besten Arbeiten.",
+      "die Case Study - кейс - Darstellung von Problem, Prozess und Ergebnis.",
+      "das Mockup - мокап - Realistische Darstellung des Designs.",
+      "der Designprozess - дизайн-процес - Weg von Briefing bis Ergebnis.",
+      "die Bewerbung - заявка на роботу - Unterlagen für Job oder Praktikum.",
+      "das Profil - профіль - Deine öffentliche Darstellung.",
+      "die Selbstreflexion - саморефлексія - Nachdenken über die eigene Arbeit.",
+      "die Projektbeschreibung - опис проєкту - Kurzer Text zum Projekt."
+    ],
+    fachgespraech: [
+      "In meiner Case Study zeige ich Problem, Research, Moodboard, Skizzen, Prozess und Ergebnis.",
+      "Ich erkläre nicht nur, was ich gestaltet habe, sondern auch warum.",
+      "Mein Portfolio zeigt Print, Branding, Web und meine Entwicklung.",
+      "Ich reflektiere jedes Projekt, damit ich beim nächsten Projekt besser arbeite."
+    ],
+    practice: [
+      "Wähle 3 beste Projekte aus den Modulen aus.",
+      "Erstelle für jedes Projekt eine Case-Study-Struktur.",
+      "Schreibe kurze deutsche Projektbeschreibungen.",
+      "Erstelle LinkedIn Banner und verbessere Profiltext.",
+      "Erstelle ein Portfolio PDF mit klarer Reihenfolge."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: kleine Icons für Skills und Projektkategorien.",
+      "15-30 Minuten iPad: persönliches Avatar/Character für Portfolio optional.",
+      "Hände üben: Hand mit Stift oder iPad für Portfolio-Illustration."
+    ],
+    report: reportTemplate,
+    deliverables: ["3 Behance Case Outlines", "LinkedIn Banner", "Portfolio PDF", "CV Visual", "Project Descriptions DE/UA", "Skill Overview"],
+    quality: [
+      "Jede Case Study zeigt Prozess und Ergebnis.",
+      "Texte sind kurz und verständlich.",
+      "Portfolio hat klare visuelle Ordnung.",
+      "LinkedIn Profil wirkt professionell.",
+      "Deutsch ist einfach, aber fachlich korrekt."
+    ]
+  },
+  "module-16": {
+    brief: {
+      company: "Prüfungsvorbereitung",
+      industry: "Medienfachfrau LAP",
+      targetGroup: "Prüfungskommission und Krystyna als Prüfungskandidatin.",
+      request: "Eine LAP Simulation mit Fachgespräch, Druckdatenprüfung, Projektpräsentation und finaler Prüfungsmappe.",
+      avoid: "Nur auswendig lernen ohne Erklärung, unsichere Druckbegriffe, fehlende Beispiele aus eigenen Projekten."
+    },
+    ausbildungFocus: [
+      "Fachgespräch auf Deutsch trainieren.",
+      "Druckvorstufe, Druckverfahren, Layout, Typografie, CD, Datenschutz und Urheberrecht wiederholen.",
+      "Eigene Projekte mit Fachbegriffen präsentieren.",
+      "Prüfungsmappe und Lernberichte als Nachweis vorbereiten."
+    ],
+    theory: [
+      "Im Fachgespräch ist wichtig, Begriffe einfach und sicher zu erklären.",
+      "Druckdaten müssen auf CMYK, Auflösung, Beschnitt, Schnittmarken, Schriften und PDF/X geprüft werden.",
+      "Urheberrecht bedeutet, dass fremde Bilder, Fonts und Logos nicht ohne Lizenz verwendet werden dürfen.",
+      "Datenschutz betrifft personenbezogene Daten, Formulare, Kundendaten und Website-Tracking.",
+      "Projektmanagement zeigt, dass du strukturiert planen, umsetzen und reflektieren kannst."
+    ],
+    fachwoerter: [
+      "CMYK - кольорова модель для друку - Für Printprodukte.",
+      "RGB - кольорова модель для екранів - Für digitale Medien.",
+      "der Beschnitt - виліт - Extra Rand für den Schnitt.",
+      "die Schnittmarken - мітки обрізу - Zeigen die Schnittposition.",
+      "das PDF/X - PDF для друку - Standard für Druckdaten.",
+      "das Urheberrecht - авторське право - Schutz von kreativen Werken.",
+      "der Datenschutz - захист даних - Schutz personenbezogener Daten.",
+      "das Projektmanagement - управління проєктом - Planung und Steuerung eines Projekts."
+    ],
+    fachgespraech: [
+      "Ich verwende CMYK, weil das Produkt für den Druck vorbereitet wird.",
+      "Der Beschnitt verhindert weiße Blitzer nach dem Zuschneiden.",
+      "RGB ist für digitale Medien geeignet, CMYK für Printprodukte.",
+      "Ich prüfe Druckdaten vor der Abgabe auf Auflösung, Beschnitt, Farbmodus und PDF/X.",
+      "Ich beachte Urheberrecht und Datenschutz, weil ich rechtlich sauber arbeiten muss."
+    ],
+    practice: [
+      "Wähle 2 fertige Projekte und bereite eine 5-Minuten-Präsentation vor.",
+      "Prüfe eine Druckdatei mit Checkliste: CMYK, Beschnitt, Auflösung, PDF/X.",
+      "Trainiere 20 Fachgespräch-Fragen mit einfachen deutschen Antworten.",
+      "Erstelle eine Prüfungsmappe mit Projekten, Lernberichten und Fachwörterliste.",
+      "Simuliere eine Prüfung: Frage, Antwort, Korrektur, Wiederholung."
+    ],
+    drawing: [
+      "15 Minuten Handzeichnung: schnelle Skizze für ein Projekt erklären.",
+      "15-30 Minuten iPad: eine kleine Prozessgrafik oder Icon-Legende für die Prüfungsmappe.",
+      "Wiederholung: Hände, einfache Körper und ein Tier/Character als lockeres Warm-up."
+    ],
+    report: reportTemplate,
+    deliverables: ["Prüfungsmappe", "Fachwörterliste", "Druckdaten Check", "Mock Exam Notes", "Final Presentation", "Reflection"],
+    quality: [
+      "20 Fachbegriffe können einfach erklärt werden.",
+      "Druckdaten-Checkliste ist verstanden.",
+      "Eigene Projekte können mit Fachwörtern erklärt werden.",
+      "Präsentation ist kurz, klar und strukturiert.",
+      "Offene Unsicherheiten sind als Wiederholung markiert."
+    ]
+  }
+};
+
 export const timeCategories: TimeCategory[] = [
   "Research",
   "Moodboard",
   "Sketches",
+  "Hand Drawing",
+  "iPad Drawing",
   "Illustrator",
+  "InDesign",
+  "Figma",
   "Photoshop",
+  "WordPress",
+  "Elementor",
   "Mockups",
   "Presentation",
   "Language Learning",

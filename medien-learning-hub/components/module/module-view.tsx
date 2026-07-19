@@ -2,19 +2,22 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { ArrowRight, Check, FileText } from "lucide-react";
+import { ArrowRight, Check, Download, FileText } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { collection, doc, onSnapshot, serverTimestamp, setDoc } from "firebase/firestore";
 import {
-  moduleOneBlocks,
-  moduleOneBrief,
   moduleOneDeliverables,
   moduleOneQualityChecks,
+  alternativeClientBriefs,
+  coreAusbildungProjectFlow,
+  coreAusbildungDeliverables,
+  modulePlans,
   modules
 } from "@/data/modules";
 import { AutosaveTextarea } from "@/components/shared/autosave-textarea";
 import { Badge, CollapsibleCard, PageHeader, Panel, ProgressBar } from "@/components/shared/ui";
 import { useAuth } from "@/lib/auth";
+import { exportModulePdf } from "@/lib/export";
 import { getFirebaseDb } from "@/lib/firebase";
 import type { ChecklistItem, CustomerBrief, LearningModule, ModuleBlock, ModuleProgressState } from "@/lib/types";
 
@@ -28,8 +31,13 @@ export function ModuleView() {
   const selectedModule = modules.find((module) => module.id === selectedModuleId) ?? modules[0];
   const selectedBrief = useMemo(() => createBrief(selectedModule), [selectedModule]);
   const selectedBlocks = useMemo(() => createBlocks(selectedModule), [selectedModule]);
-  const fallbackDeliverables = selectedModule.id === "module-1" ? moduleOneDeliverables : selectedModule.finalDeliverables;
-  const fallbackQualityChecks = selectedModule.id === "module-1" ? moduleOneQualityChecks : createQualityChecks(selectedModule);
+  const selectedPlan = modulePlans[selectedModule.id];
+  const selectedAlternative = alternativeClientBriefs[selectedModule.id];
+  const fallbackDeliverables = uniqueTasks([
+    ...(selectedPlan?.deliverables ?? (selectedModule.id === "module-1" ? moduleOneDeliverables : selectedModule.finalDeliverables)),
+    ...coreAusbildungDeliverables
+  ]);
+  const fallbackQualityChecks = selectedPlan?.quality ?? (selectedModule.id === "module-1" ? moduleOneQualityChecks : createQualityChecks(selectedModule));
   const [moduleState, setModuleState] = useState<ModuleProgressState>({
     moduleId: "module-1",
     checkedTasks: {},
@@ -72,26 +80,12 @@ export function ModuleView() {
 
   const deliverableTasks = useMemo(
     () =>
-      tasks.filter((task) => task.type === "deliverable").length
-        ? tasks.filter((task) => task.type === "deliverable")
-        : fallbackDeliverables.map((label, index) => ({
-            id: `deliverable-${index + 1}`,
-            label,
-            type: "deliverable" as const,
-            done: false
-          })),
+      mergeTaskRecords(tasks.filter((task) => task.type === "deliverable"), fallbackDeliverables, "deliverable"),
     [fallbackDeliverables, tasks]
   );
   const qualityTasks = useMemo(
     () =>
-      tasks.filter((task) => task.type === "quality").length
-        ? tasks.filter((task) => task.type === "quality")
-        : fallbackQualityChecks.map((label, index) => ({
-            id: `quality-${index + 1}`,
-            label,
-            type: "quality" as const,
-            done: false
-          })),
+      mergeTaskRecords(tasks.filter((task) => task.type === "quality"), fallbackQualityChecks, "quality"),
     [fallbackQualityChecks, tasks]
   );
 
@@ -161,15 +155,26 @@ export function ModuleView() {
 
       <div className="mb-6 grid gap-4 xl:grid-cols-[1fr_320px]">
         <Panel title="Kundenbrief" description="Те, що треба тримати перед очима під час дизайну.">
-          <dl className="grid gap-4 text-sm md:grid-cols-2">
-            <BriefTerm label="Firmenname" value={selectedBrief.company} />
-            <BriefTerm label="Branche" value={selectedBrief.industry} />
-            <BriefTerm label="Zielgruppe" value={selectedBrief.targetGroup} />
-            <BriefTerm label="Nicht verwenden" value={selectedBrief.avoid} />
-            <div className="md:col-span-2">
-              <BriefTerm label="Wunsch des Kunden" value={selectedBrief.request} />
-            </div>
-          </dl>
+          <div className="grid gap-4 lg:grid-cols-2">
+            <VariantCard
+              label="Variante A"
+              title={selectedBrief.company}
+              industry={selectedBrief.industry}
+              description={selectedBrief.request}
+              targetGroup={selectedBrief.targetGroup}
+              avoid={selectedBrief.avoid}
+            />
+            {selectedAlternative ? (
+              <VariantCard
+                label="Variante B"
+                title={selectedAlternative.company}
+                industry={selectedAlternative.industry}
+                description={`${selectedAlternative.wantsDe} ${selectedAlternative.orderDe}`}
+                ukrainian={`${selectedAlternative.wantsUa} ${selectedAlternative.orderUa}`}
+                deliverables={selectedAlternative.deliverables}
+              />
+            ) : null}
+          </div>
         </Panel>
 
         <Panel title="Progress">
@@ -180,6 +185,14 @@ export function ModuleView() {
             </div>
             <ProgressBar value={progress} />
             <p className="text-sm text-neutral-600 dark:text-neutral-300">Мета: зробити результат, який можна покласти у портфоліо.</p>
+            <button
+              type="button"
+              onClick={() => void exportModulePdf(userId, selectedModule.id)}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-line px-3 py-2 text-sm font-semibold text-brand-700 transition hover:bg-brand-50 dark:border-neutral-800 dark:text-brand-100 dark:hover:bg-brand-700/10"
+            >
+              <Download size={15} aria-hidden="true" />
+              ★ Export PDF для аналізу
+            </button>
           </div>
         </Panel>
       </div>
@@ -264,8 +277,10 @@ function createEmptyModuleState(moduleId: string): ModuleProgressState {
 }
 
 function createBrief(module: LearningModule): CustomerBrief {
-  if (module.id === "module-1") {
-    return moduleOneBrief;
+  const plan = modulePlans[module.id];
+
+  if (plan) {
+    return plan.brief;
   }
 
   const websiteScope = module.finalDeliverables.find((item) => item.toLowerCase().includes("page"));
@@ -282,8 +297,89 @@ function createBrief(module: LearningModule): CustomerBrief {
 }
 
 function createBlocks(module: LearningModule): ModuleBlock[] {
-  if (module.id === "module-1") {
-    return moduleOneBlocks;
+  const plan = modulePlans[module.id];
+  const alternative = alternativeClientBriefs[module.id];
+
+  if (plan) {
+    return [
+      {
+        key: "lernziele",
+        title: "Ausbildung-Bezug",
+        eyebrow: "Warum dieses Modul wichtig ist",
+        items: plan.ausbildungFocus
+      },
+      {
+        key: "kundenbrief",
+        title: "Variante A/B",
+        eyebrow: "Client choice",
+        items: [
+          `Variante A: ${plan.brief.company} - ${plan.brief.industry}.`,
+          `Auftrag A: ${plan.brief.request}`,
+          alternative
+            ? `Variante B: ${alternative.company} - ${alternative.industry}.`
+            : "Variante B: optional später ergänzen.",
+          alternative ? `Auftrag B: ${alternative.orderDe} / ${alternative.orderUa}` : "Wähle A, wenn du an deinem gestarteten Projekt weiterarbeiten möchtest."
+        ]
+      },
+      {
+        key: "theorie",
+        title: "Theorie einfach",
+        eyebrow: "DE + UA lernen",
+        items: plan.theory
+      },
+      {
+        key: "quiz",
+        title: "Theorie-Check mit Auswahl",
+        eyebrow: "Nicht frei schreiben",
+        items: createTheoryChoices(module)
+      },
+      {
+        key: "fachwoerter",
+        title: "Fachwörter",
+        eyebrow: "Deutsch, Ukrainisch, einfache Bedeutung",
+        items: plan.fachwoerter
+      },
+      {
+        key: "phrases",
+        title: "Fachgespräch Sätze",
+        eyebrow: "Kurz und prüfungstauglich",
+        items: plan.fachgespraech
+      },
+      {
+        key: "project",
+        title: "Praktischer Kundenauftrag",
+        eyebrow: "Portfolio + Ausbildung",
+        items: [...coreProjectItems(module), ...plan.practice]
+      },
+      {
+        key: "drawing",
+        title: "Optional: iPad und Hand-Sketch",
+        eyebrow: "★ freiwillig, aber gut für deinen Stil",
+        items: plan.drawing
+      },
+      {
+        key: "software",
+        title: "Software Workflow",
+        eyebrow: module.software.join(" + "),
+        items: createSoftwareWorkflow(module)
+      },
+      {
+        key: "quality",
+        title: "Quality Check",
+        eyebrow: "Before delivery",
+        items: plan.quality
+      },
+      {
+        key: "ausbildungsnachweis",
+        title: "Lernbericht / Ausbildungsnachweis",
+        eyebrow: "So sehe ich später deinen Fortschritt",
+        items: [
+          ...plan.report,
+          "★ Optional: Nach Abschluss PDF exportieren und mir hier schicken, dann kann ich den Bericht analysieren und dir Korrekturen geben.",
+          "Wenn du nichts exportierst, sehe ich deine Arbeit nicht automatisch im Chat. Die App speichert sie nur in deinem Google/Firebase-Konto."
+        ]
+      }
+    ];
   }
 
   return [
@@ -421,6 +517,40 @@ function createSoftwareWorkflow(module: LearningModule) {
   return items;
 }
 
+function coreProjectItems(module: LearningModule) {
+  const animationTool = module.software.includes("After Effects") ? "After Effects" : "After Effects, Photoshop oder Figma Smart Animate";
+  return coreAusbildungProjectFlow.map((item) =>
+    item.startsWith("Logo-Animation")
+      ? `${item} Werkzeug: ${animationTool}.`
+      : item
+  );
+}
+
+function createTheoryChoices(module: LearningModule) {
+  const choices = [
+    "Was passt zu Print? A: CMYK + Beschnitt + PDF/X. B: nur RGB + JPG. Richtige Antwort: A.",
+    "Was ist ein Moodboard? A: Rechnung. B: Sammlung von Farben, Bildern, Typografie und Stil. Richtige Antwort: B.",
+    "Was macht ein Raster? A: Es ordnet Elemente. B: Es ersetzt alle Bilder. Richtige Antwort: A.",
+    "Was ist besser für ein Logo? A: Vektorgrafik. B: unscharfes JPG. Richtige Antwort: A.",
+    "Was bedeutet Rebriefing? A: Briefing prüfen und Rückfragen klären. B: Datei löschen. Richtige Antwort: A."
+  ];
+
+  if (module.software.includes("WordPress") || module.software.includes("Elementor")) {
+    choices.push("Was ist ein Plugin? A: Erweiterung für WordPress. B: Papierformat. Richtige Antwort: A.");
+    choices.push("Was prüft man bei einer Website? A: Responsive Design, Formular, SEO, Datenschutz. B: nur Logo-Größe. Richtige Antwort: A.");
+  }
+
+  if (module.software.includes("InDesign")) {
+    choices.push("Wofür nutzt man InDesign? A: Mehrseitige Layouts und Print-PDFs. B: Videoschnitt. Richtige Antwort: A.");
+  }
+
+  if (module.software.includes("Figma")) {
+    choices.push("Wofür nutzt man einen Prototyp? A: Klickwege testen. B: Druckfarbe mischen. Richtige Antwort: A.");
+  }
+
+  return choices;
+}
+
 function createQualityChecks(module: LearningModule) {
   const checks = [
     "Briefing wurde gelesen und umgesetzt.",
@@ -447,6 +577,25 @@ function createQualityChecks(module: LearningModule) {
   return checks;
 }
 
+function mergeTaskRecords(existingTasks: TaskRecord[], labels: string[], type: TaskRecord["type"]) {
+  const existingByLabel = new Map(existingTasks.map((task) => [task.label, task]));
+  const existingById = new Map(existingTasks.map((task) => [task.id, task]));
+
+  return labels.map((label, index) => {
+    const id = `${type}-${index + 1}`;
+    return existingByLabel.get(label) ?? existingById.get(id) ?? {
+      id,
+      label,
+      type,
+      done: false
+    };
+  });
+}
+
+function uniqueTasks(tasks: string[]) {
+  return Array.from(new Set(tasks));
+}
+
 function calculateProgress(tasks: TaskRecord[], checkedTasks: Record<string, boolean>, changedTaskId: string, nextDone: boolean) {
   if (!tasks.length) {
     return 0;
@@ -460,15 +609,6 @@ function calculateProgress(tasks: TaskRecord[], checkedTasks: Record<string, boo
   }).length;
 
   return Math.round((checkedCount / tasks.length) * 100);
-}
-
-function BriefTerm({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <dt className="text-xs font-semibold uppercase tracking-normal text-neutral-500 dark:text-neutral-400">{label}</dt>
-      <dd className="mt-1 text-sm">{value}</dd>
-    </div>
-  );
 }
 
 function TaskList({
@@ -500,5 +640,44 @@ function TaskList({
         );
       })}
     </div>
+  );
+}
+
+function VariantCard({
+  label,
+  title,
+  industry,
+  description,
+  ukrainian,
+  targetGroup,
+  avoid,
+  deliverables
+}: {
+  label: string;
+  title: string;
+  industry: string;
+  description: string;
+  ukrainian?: string;
+  targetGroup?: string;
+  avoid?: string;
+  deliverables?: string[];
+}) {
+  return (
+    <article className="rounded-md border border-line bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-950">
+      <Badge tone={label.includes("B") ? "blue" : "green"}>{label}</Badge>
+      <h3 className="mt-3 text-base font-semibold">{title}</h3>
+      <p className="mt-1 text-xs font-medium uppercase tracking-normal text-neutral-500 dark:text-neutral-400">{industry}</p>
+      <p className="mt-3 text-sm leading-6 text-neutral-700 dark:text-neutral-300">{description}</p>
+      {ukrainian ? <p className="mt-2 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{ukrainian}</p> : null}
+      {targetGroup ? <p className="mt-3 text-sm"><span className="font-semibold">Zielgruppe:</span> {targetGroup}</p> : null}
+      {avoid ? <p className="mt-2 text-sm"><span className="font-semibold">Nicht verwenden:</span> {avoid}</p> : null}
+      {deliverables?.length ? (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {deliverables.map((item) => (
+            <Badge key={item}>{item}</Badge>
+          ))}
+        </div>
+      ) : null}
+    </article>
   );
 }

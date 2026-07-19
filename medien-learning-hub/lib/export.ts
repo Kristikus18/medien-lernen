@@ -19,7 +19,8 @@ const exportCollections = [
   "timeEntries",
   "quizResults",
   "files",
-  "selfAssessments"
+  "selfAssessments",
+  "drawingProgress"
 ];
 
 export async function exportUserBackup(userId: string) {
@@ -89,16 +90,46 @@ export function toVocabularyCsv(rows: Array<Record<string, unknown>>) {
 export async function exportModulePdf(userId: string, moduleId: string) {
   const db = getFirebaseDb();
   const moduleSnapshot = await getDoc(doc(db, "users", userId, "modules", moduleId));
+  const tasksSnapshot = await getDocs(collection(db, "users", userId, "modules", moduleId, "tasks"));
   const data = moduleSnapshot.data();
+  const tasks = tasksSnapshot.docs.map((item) => item.data());
+  const blockNotes = (data?.blockNotes ?? {}) as Record<string, string>;
   const pdf = new jsPDF();
+  let y = 20;
+
+  const addSection = (title: string, text: string) => {
+    if (y > 260) {
+      pdf.addPage();
+      y = 20;
+    }
+    pdf.setFontSize(13);
+    pdf.text(title, 16, y);
+    y += 8;
+    pdf.setFontSize(10);
+    const lines = pdf.splitTextToSize(text || "Noch keine Notiz.", 178) as string[];
+    pdf.text(lines, 16, y);
+    y += Math.min(lines.length * 5 + 8, 60);
+  };
 
   pdf.setFontSize(18);
-  pdf.text("Medienfachfrau Learning Hub", 16, 20);
+  pdf.text("Medienfachfrau Learning Hub", 16, y);
+  y += 12;
   pdf.setFontSize(12);
-  pdf.text(`Module: ${String(data?.title ?? moduleId)}`, 16, 34);
-  pdf.text(`Progress: ${String(data?.progress ?? 0)}%`, 16, 44);
-  pdf.text("Reflection:", 16, 58);
-  pdf.text(String(data?.learned ?? "Noch keine Reflexion."), 16, 68, { maxWidth: 180 });
+  pdf.text(`Module: ${String(data?.title ?? moduleId)}`, 16, y);
+  y += 7;
+  pdf.text(`Progress: ${String(data?.progress ?? 0)}%`, 16, y);
+  y += 12;
+
+  addSection("Was habe ich gelernt?", String(data?.learned ?? ""));
+
+  Object.entries(blockNotes).forEach(([key, value]) => {
+    addSection(`Notiz: ${key}`, value);
+  });
+
+  if (tasks.length) {
+    const done = tasks.filter((task) => Boolean(task.done)).length;
+    addSection("Checklist", `${done}/${tasks.length} Aufgaben erledigt.\n${tasks.map((task) => `${task.done ? "[x]" : "[ ]"} ${String(task.label ?? task.id)}`).join("\n")}`);
+  }
 
   pdf.save(`${moduleId}-progress.pdf`);
 }

@@ -13,6 +13,7 @@ export type ModuleBlockKey =
   | "research"
   | "moodboard"
   | "sketches"
+  | "drawing"
   | "software"
   | "ai"
   | "project"
@@ -24,6 +25,7 @@ export type ModuleBlockKey =
   | "time"
   | "quiz"
   | "reflection"
+  | "ausbildungsnachweis"
   | "learned"
   | "selfAssessment"
   | "competencies";
@@ -146,6 +148,16 @@ export interface TimeEntry {
   userId?: string;
 }
 
+export interface DrawingProgress {
+  id: string;
+  taskId: string;
+  done: boolean;
+  note?: string;
+  createdAt?: unknown;
+  updatedAt?: unknown;
+  userId?: string;
+}
+
 export type TimeCategory =
   | "Research"
   | "Moodboard"
@@ -156,7 +168,13 @@ export type TimeCategory =
   | "Presentation"
   | "Language Learning"
   | "Theory"
-  | "Corrections";
+  | "Corrections"
+  | "iPad Drawing"
+  | "Hand Drawing"
+  | "WordPress"
+  | "Elementor"
+  | "Figma"
+  | "InDesign";
 
 export interface QuizQuestion {
   id: string;
