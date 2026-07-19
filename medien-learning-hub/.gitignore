@@ -9,3 +9,5 @@ dist
 firebase-debug.log
 *.tsbuildinfo
 pnpm-workspace.yaml
+.vercel
+.env*
