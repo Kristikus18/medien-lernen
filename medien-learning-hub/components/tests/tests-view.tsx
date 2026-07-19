@@ -12,8 +12,18 @@ export function TestsView() {
   const userId = user?.uid ?? "";
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [result, setResult] = useState<QuizResult | null>(null);
+  const [notice, setNotice] = useState("");
+  const [saveError, setSaveError] = useState(false);
 
   const submitQuiz = async () => {
+    const missingAnswers = quizQuestions.filter((question) => !answers[question.id]).length;
+
+    if (missingAnswers) {
+      setSaveError(false);
+      setNotice(`Ще потрібно вибрати відповідь: ${missingAnswers}.`);
+      return;
+    }
+
     const mistakes: string[] = [];
     let score = 0;
 
@@ -39,8 +49,17 @@ export function TestsView() {
       mistakes
     };
 
-    await saveUserDocument<QuizResult>(userId, "quizResults", nextResult.id, nextResult);
     setResult(nextResult);
+    setSaveError(false);
+    setNotice("Тест завершено. Результат показано, зараз зберігаю.");
+
+    try {
+      await saveUserDocument<QuizResult>(userId, "quizResults", nextResult.id, nextResult);
+      setNotice("Тест завершено і збережено.");
+    } catch {
+      setSaveError(true);
+      setNotice("Результат видно, але зараз не вдалося зберегти. Перевір вхід через Google або інтернет.");
+    }
   };
 
   return (
@@ -78,7 +97,11 @@ export function TestsView() {
                           name={question.id}
                           value={option}
                           checked={selected}
-                          onChange={(event) => setAnswers({ ...answers, [question.id]: event.target.value })}
+                          onChange={(event) => {
+                            setAnswers({ ...answers, [question.id]: event.target.value });
+                            setNotice("");
+                            setSaveError(false);
+                          }}
                           className="mt-1 accent-brand-600"
                         />
                         <span className="font-semibold">{String.fromCharCode(65 + optionIndex)}.</span>
@@ -93,6 +116,17 @@ export function TestsView() {
             <button type="button" onClick={() => void submitQuiz()} className="rounded-md bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">
               Test prüfen
             </button>
+            {notice ? (
+              <p
+                className={`rounded-md border p-3 text-sm ${
+                  saveError
+                    ? "border-red-200 bg-red-50 text-red-700 dark:border-red-900/60 dark:bg-red-950 dark:text-red-200"
+                    : "border-line bg-neutral-50 text-neutral-600 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-300"
+                }`}
+              >
+                {notice}
+              </p>
+            ) : null}
           </div>
         </Panel>
 

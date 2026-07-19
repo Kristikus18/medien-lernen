@@ -36,6 +36,8 @@ export function HungarianView() {
   const [selectedTopicId, setSelectedTopicId] = useState(hungarianTopics[0].id);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [quizResult, setQuizResult] = useState<HungarianQuizResult | null>(null);
+  const [quizSaveStatus, setQuizSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [quizNotice, setQuizNotice] = useState("");
 
   const subscribe = useCallback(
     (onData: (items: HungarianTaskProgress[]) => void, onError: (error: Error) => void) =>
@@ -43,6 +45,12 @@ export function HungarianView() {
     [userId]
   );
   const { items: progressItems } = useSnapshotSubscription(subscribe, [subscribe]);
+  const quizSubscribe = useCallback(
+    (onData: (items: HungarianQuizResult[]) => void, onError: (error: Error) => void) =>
+      subscribeUserCollection<HungarianQuizResult>(userId, "hungarianQuizResults", onData, onError),
+    [userId]
+  );
+  const { items: quizResults } = useSnapshotSubscription(quizSubscribe, [quizSubscribe]);
 
   const selectedTopic = useMemo(
     () => hungarianTopics.find((topic) => topic.id === selectedTopicId) ?? hungarianTopics[0],
@@ -53,15 +61,35 @@ export function HungarianView() {
     () => new Map(progressItems.map((item) => [item.id, item])),
     [progressItems]
   );
+  const latestQuizResultByTopic = useMemo(() => {
+    const results = new Map<string, HungarianQuizResult>();
+
+    quizResults.forEach((item) => {
+      if (!results.has(item.topicId)) {
+        results.set(item.topicId, item);
+      }
+    });
+
+    if (quizResult) {
+      results.set(quizResult.topicId, quizResult);
+    }
+
+    return results;
+  }, [quizResult, quizResults]);
   const allTaskIds = useMemo(
     () => hungarianTopics.flatMap((topic) => topic.tasks.map((_, index) => taskId(topic.id, index))),
     []
   );
-  const doneCount = allTaskIds.filter((id) => progressById.get(id)?.done).length;
-  const totalCount = allTaskIds.length;
+  const taskDoneCount = allTaskIds.filter((id) => progressById.get(id)?.done).length;
+  const quizDoneCount = hungarianTopics.filter((topic) => latestQuizResultByTopic.has(topic.id)).length;
+  const doneCount = taskDoneCount + quizDoneCount;
+  const totalCount = allTaskIds.length + hungarianTopics.length;
   const progress = totalCount ? Math.round((doneCount / totalCount) * 100) : 0;
 
   const topicDoneCount = selectedTopic.tasks.filter((_, index) => progressById.get(taskId(selectedTopic.id, index))?.done).length;
+  const selectedTopicHasNewAnswers = selectedTopic.quiz.some((question) => answers[question.id]);
+  const savedSelectedQuizResult = latestQuizResultByTopic.get(selectedTopic.id) ?? null;
+  const visibleQuizResult = quizResult?.topicId === selectedTopic.id ? quizResult : selectedTopicHasNewAnswers ? null : savedSelectedQuizResult;
 
   const toggleTask = async (topic: HungarianTopic, index: number) => {
     const id = taskId(topic.id, index);
@@ -75,6 +103,14 @@ export function HungarianView() {
   };
 
   const submitQuiz = async () => {
+    const missingAnswers = selectedTopic.quiz.filter((question) => !answers[question.id]).length;
+
+    if (missingAnswers) {
+      setQuizSaveStatus("idle");
+      setQuizNotice(`Ще потрібно вибрати відповідь: ${missingAnswers}.`);
+      return;
+    }
+
     const score = selectedTopic.quiz.reduce((sum, question) => (answers[question.id] === question.answer ? sum + 1 : sum), 0);
     const result: HungarianQuizResult = {
       id: crypto.randomUUID(),
@@ -84,14 +120,33 @@ export function HungarianView() {
       percent: Math.round((score / selectedTopic.quiz.length) * 100)
     };
 
-    await saveUserDocument<HungarianQuizResult>(userId, "hungarianQuizResults", result.id, result);
     setQuizResult(result);
+    setQuizSaveStatus("saving");
+    setQuizNotice("Тест завершено. Результат показано, зараз зберігаю.");
+
+    try {
+      await saveUserDocument<HungarianQuizResult>(userId, "hungarianQuizResults", result.id, result);
+      setQuizSaveStatus("saved");
+      setQuizNotice("Тест завершено і збережено.");
+    } catch {
+      setQuizSaveStatus("error");
+      setQuizNotice("Результат видно, але зараз не вдалося зберегти. Перевір вхід через Google або інтернет.");
+    }
+  };
+
+  const handleQuizAnswer = (questionId: string, answer: string) => {
+    setAnswers((current) => ({ ...current, [questionId]: answer }));
+    setQuizResult(null);
+    setQuizSaveStatus("idle");
+    setQuizNotice("");
   };
 
   const selectTopic = (topicId: string) => {
     setSelectedTopicId(topicId);
     setAnswers({});
     setQuizResult(null);
+    setQuizSaveStatus("idle");
+    setQuizNotice("");
   };
 
   return (
@@ -130,6 +185,7 @@ export function HungarianView() {
             {hungarianTopics.map((topic) => {
               const active = topic.id === selectedTopic.id;
               const completed = topic.tasks.filter((_, index) => progressById.get(taskId(topic.id, index))?.done).length;
+              const topicQuizResult = latestQuizResultByTopic.get(topic.id);
               return (
                 <button
                   key={topic.id}
@@ -145,6 +201,11 @@ export function HungarianView() {
                     <span className="text-sm font-semibold">{topic.title}</span>
                     <Badge tone={completed === topic.tasks.length ? "green" : "neutral"}>{completed}/{topic.tasks.length}</Badge>
                   </span>
+                  {topicQuizResult ? (
+                    <span className="mt-2 inline-flex">
+                      <Badge tone={topicQuizResult.percent >= 80 ? "green" : "amber"}>Test {topicQuizResult.percent}%</Badge>
+                    </span>
+                  ) : null}
                   <span className="mt-1 block text-xs text-neutral-500 dark:text-neutral-400">{topic.subtitle}</span>
                 </button>
               );
@@ -159,6 +220,11 @@ export function HungarianView() {
               <Badge tone={topicDoneCount === selectedTopic.tasks.length ? "green" : "amber"}>
                 {topicDoneCount}/{selectedTopic.tasks.length} done
               </Badge>
+              {visibleQuizResult ? (
+                <Badge tone={visibleQuizResult.percent >= 80 ? "green" : "amber"}>Test {visibleQuizResult.percent}%</Badge>
+              ) : (
+                <Badge tone="neutral">Test offen</Badge>
+              )}
             </div>
 
             <div className="overflow-x-auto">
@@ -238,12 +304,23 @@ export function HungarianView() {
                     question={question}
                     index={index}
                     selectedAnswer={answers[question.id]}
-                    onAnswer={(answer) => setAnswers((current) => ({ ...current, [question.id]: answer }))}
+                    onAnswer={(answer) => handleQuizAnswer(question.id, answer)}
                   />
                 ))}
                 <button type="button" onClick={() => void submitQuiz()} className="rounded-md bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">
                   Test prüfen
                 </button>
+                {quizNotice ? (
+                  <p
+                    className={`rounded-md border p-3 text-sm ${
+                      quizSaveStatus === "error"
+                        ? "border-red-200 bg-red-50 text-red-700 dark:border-red-900/60 dark:bg-red-950 dark:text-red-200"
+                        : "border-line bg-neutral-50 text-neutral-600 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-300"
+                    }`}
+                  >
+                    {quizNotice}
+                  </p>
+                ) : null}
               </div>
 
               <div className="rounded-md border border-line p-4 dark:border-neutral-800">
@@ -251,14 +328,14 @@ export function HungarianView() {
                   <Languages className="h-4 w-4 text-brand-600" aria-hidden="true" />
                   <h3 className="text-sm font-semibold">Ergebnis</h3>
                 </div>
-                {quizResult ? (
+                {visibleQuizResult ? (
                   <div className="mt-4">
-                    <p className="text-4xl font-semibold">{quizResult.percent}%</p>
+                    <p className="text-4xl font-semibold">{visibleQuizResult.percent}%</p>
                     <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">
-                      {quizResult.score} / {quizResult.total} правильні відповіді.
+                      {visibleQuizResult.score} / {visibleQuizResult.total} правильні відповіді.
                     </p>
                     <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-300">
-                      {quizResult.percent >= 80 ? "Sehr gut. Цю тему можна повторити пізніше." : "Нормально. Просто повтори слова ще раз."}
+                      {visibleQuizResult.percent >= 80 ? "Sehr gut. Цю тему можна повторити пізніше." : "Нормально. Просто повтори слова ще раз."}
                     </p>
                   </div>
                 ) : (
