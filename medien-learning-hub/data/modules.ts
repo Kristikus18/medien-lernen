@@ -503,26 +503,19 @@ const reportTemplate = [
 ];
 
 export const coreAusbildungProjectFlow = [
-  "Moodboard - Ausbildung: Skizzen und Moodboards entwerfen, Bildsprache, Farbe und Stil begründen.",
-  "Logo 1-3 Versionen - Ausbildung: grafische Elemente und Logos mit Gestaltungsgrundsätzen designen.",
-  "Logo-Animation 5-8 Sekunden - Ausbildung: grafische Elemente einfach animieren und für digitale Medien exportieren.",
-  "Visitenkarte - Ausbildung: Typografie, Layout, Beschnitt, CMYK und druckfertiges PDF anwenden.",
-  "Broschüre oder Flyer - Ausbildung: Satzspiegel, Raster, Leserführung, Bildauswahl und Druckvorstufe trainieren.",
-  "Figma Website Design - Ausbildung: Digitalprodukt planen, Wireframe, UI, Responsive Design und Prototyp erstellen.",
-  "WordPress/Elementor - Ausbildung: digitale Anwendungen nutzen, Seitenstruktur, Plugins, Datenschutz, SEO und Formular prüfen.",
-  "Lernbericht - Ausbildung: eigene Arbeit reflektieren, Fachwörter verwenden und Entscheidungen auf Deutsch erklären."
+  "1. Moodboard - Sammle 6-10 Referenzen, Farben, Schriften und Bildsprache. Ausbildung: Stil begründen und visuelle Richtung zeigen.",
+  "2. Logo - Entwirf 1-3 Logo-Versionen und finalisiere eine saubere Variante. Ausbildung: Vektor, Formen, Farbe und Skalierbarkeit üben.",
+  "3. Visitenkarte - Gestalte Vorder- und Rückseite mit Logo, Kontaktdaten, Typografie, Beschnitt und CMYK.",
+  "4. Flyer A5 - Gestalte einen einseitigen oder zweiseitigen Flyer mit Hierarchie, Raster, Bild und druckfertigem PDF.",
+  "★ 5. Website - optional: Entwirf eine Startseite in Figma. Wenn du Zeit hast, baue sie später in WordPress/Elementor nach."
 ];
 
 export const coreAusbildungDeliverables = [
-  "Moodboard / Brand Direction",
-  "Logo: 1-3 Entwürfe",
-  "Finales Logo als SVG, PDF und PNG",
-  "Logo-Animation: 5-8 Sekunden als MP4 oder GIF",
-  "Visitenkarte Vorder- und Rückseite",
-  "Broschüre oder Flyer als Print-PDF",
-  "Figma Website Design mit Desktop und Mobile",
-  "WordPress/Elementor Umsetzung oder Setup-Dokumentation",
-  "Lernbericht / Ausbildungsnachweis"
+  "1. Moodboard",
+  "2. Logo: 1-3 Entwürfe + finales Logo",
+  "3. Visitenkarte Vorder- und Rückseite",
+  "4. Flyer A5 als Print-PDF",
+  "★ 5. Website Design in Figma / optional WordPress"
 ];
 
 export const alternativeClientBriefs: Record<string, ClientVariant> = {

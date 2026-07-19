@@ -6,7 +6,6 @@ import { ArrowRight, Check, Download, FileText } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { collection, doc, onSnapshot, serverTimestamp, setDoc } from "firebase/firestore";
 import {
-  moduleOneDeliverables,
   moduleOneQualityChecks,
   alternativeClientBriefs,
   coreAusbildungProjectFlow,
@@ -35,10 +34,7 @@ export function ModuleView() {
   const selectedPlan = modulePlans[selectedModule.id];
   const selectedAlternative = alternativeClientBriefs[selectedModule.id];
   const selectedPrimaryTranslation = primaryClientBriefTranslations[selectedModule.id];
-  const fallbackDeliverables = uniqueTasks([
-    ...(selectedPlan?.deliverables ?? (selectedModule.id === "module-1" ? moduleOneDeliverables : selectedModule.finalDeliverables)),
-    ...coreAusbildungDeliverables
-  ]);
+  const fallbackDeliverables = coreAusbildungDeliverables;
   const fallbackQualityChecks = selectedPlan?.quality ?? (selectedModule.id === "module-1" ? moduleOneQualityChecks : createQualityChecks(selectedModule));
   const [moduleState, setModuleState] = useState<ModuleProgressState>({
     moduleId: "module-1",
@@ -91,8 +87,12 @@ export function ModuleView() {
     [fallbackQualityChecks, tasks]
   );
 
-  const checkedCount = [...deliverableTasks, ...qualityTasks].filter((task) => task.done || moduleState.checkedTasks[task.id]).length;
-  const totalCount = deliverableTasks.length + qualityTasks.length;
+  const requiredProgressTasks = useMemo(
+    () => [...deliverableTasks, ...qualityTasks].filter((task) => !isOptionalTask(task)),
+    [deliverableTasks, qualityTasks]
+  );
+  const checkedCount = requiredProgressTasks.filter((task) => task.done || moduleState.checkedTasks[task.id]).length;
+  const totalCount = requiredProgressTasks.length;
   const progress = totalCount ? Math.round((checkedCount / totalCount) * 100) : 0;
 
   const saveModulePatch = useCallback(
@@ -225,7 +225,7 @@ export function ModuleView() {
           </CollapsibleCard>
         ))}
 
-        <CollapsibleCard title="Deliverables" eyebrow="Client package" defaultOpen>
+        <CollapsibleCard title="Aufgaben" eyebrow="4 Pflichtaufgaben + ★ optional" defaultOpen>
           <TaskList tasks={deliverableTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
         </CollapsibleCard>
 
@@ -360,7 +360,7 @@ function createBlocks(module: LearningModule): ModuleBlock[] {
         key: "project",
         title: "Praktischer Kundenauftrag",
         eyebrow: "Portfolio + Ausbildung",
-        items: [...coreProjectItems(module), ...plan.practice]
+        items: coreProjectItems(module)
       },
       {
         key: "drawing",
@@ -461,7 +461,7 @@ function createBlocks(module: LearningModule): ModuleBlock[] {
       key: "project",
       title: "Praktischer Projektauftrag",
       eyebrow: "Portfolio-ready",
-      items: module.finalDeliverables.map((deliverable) => `Erstelle: ${deliverable}.`)
+      items: coreProjectItems(module)
     },
     {
       key: "quality",
@@ -529,10 +529,15 @@ function createSoftwareWorkflow(module: LearningModule) {
 }
 
 function coreProjectItems(module: LearningModule) {
-  const animationTool = module.software.includes("After Effects") ? "After Effects" : "After Effects, Photoshop oder Figma Smart Animate";
+  const websiteTool = module.software.includes("WordPress") || module.software.includes("Elementor")
+    ? "Figma + WordPress/Elementor"
+    : module.software.includes("Figma")
+      ? "Figma"
+      : "Figma als optionaler Zusatz";
+
   return coreAusbildungProjectFlow.map((item) =>
-    item.startsWith("Logo-Animation")
-      ? `${item} Werkzeug: ${animationTool}.`
+    item.startsWith("★ 5. Website")
+      ? `${item} Werkzeug: ${websiteTool}.`
       : item
   );
 }
@@ -593,33 +598,39 @@ function mergeTaskRecords(existingTasks: TaskRecord[], labels: string[], type: T
   const existingById = new Map(existingTasks.map((task) => [task.id, task]));
 
   return labels.map((label, index) => {
-    const id = `${type}-${index + 1}`;
-    return existingByLabel.get(label) ?? existingById.get(id) ?? {
+    const id = type === "deliverable" ? `core-task-${index + 1}` : `${type}-${index + 1}`;
+    const existingTask = existingByLabel.get(label) ?? existingById.get(id);
+    return {
       id,
       label,
       type,
-      done: false
+      done: existingTask?.done ?? false,
+      ready: existingTask?.ready ?? false,
+      note: existingTask?.note,
+      fileId: existingTask?.fileId
     };
   });
 }
 
-function uniqueTasks(tasks: string[]) {
-  return Array.from(new Set(tasks));
-}
-
 function calculateProgress(tasks: TaskRecord[], checkedTasks: Record<string, boolean>, changedTaskId: string, nextDone: boolean) {
-  if (!tasks.length) {
+  const requiredTasks = tasks.filter((task) => !isOptionalTask(task));
+
+  if (!requiredTasks.length) {
     return 0;
   }
 
-  const checkedCount = tasks.filter((task) => {
+  const checkedCount = requiredTasks.filter((task) => {
     if (task.id === changedTaskId) {
       return nextDone;
     }
     return task.done || checkedTasks[task.id];
   }).length;
 
-  return Math.round((checkedCount / tasks.length) * 100);
+  return Math.round((checkedCount / requiredTasks.length) * 100);
+}
+
+function isOptionalTask(task: Pick<TaskRecord, "label">) {
+  return task.label.trim().startsWith("★");
 }
 
 function TaskList({
@@ -635,6 +646,7 @@ function TaskList({
     <div className="grid gap-2 md:grid-cols-2">
       {tasks.map((task) => {
         const checked = task.done || checkedTasks[task.id];
+        const optional = isOptionalTask(task);
         return (
           <label key={task.id} className="flex cursor-pointer items-start gap-3 rounded-md border border-line p-3 text-sm dark:border-neutral-800">
             <input
@@ -644,7 +656,10 @@ function TaskList({
               className="mt-1 h-4 w-4 accent-brand-600"
             />
             <span>
-              <span className="font-medium">{task.label}</span>
+              <span className="flex flex-wrap items-center gap-2">
+                <span className="font-medium">{task.label}</span>
+                {optional ? <Badge tone="amber">freiwillig</Badge> : null}
+              </span>
               {task.note ? <span className="mt-1 block text-xs text-neutral-500">{task.note}</span> : null}
             </span>
           </label>
