@@ -29,6 +29,7 @@ export function ModuleView() {
   const userId = user?.uid ?? "";
   const selectedModuleId = searchParams.get("id") ?? "module-1";
   const selectedModule = modules.find((module) => module.id === selectedModuleId) ?? modules[0];
+  const isModuleOne = selectedModule.id === "module-1";
   const selectedBrief = useMemo(() => createBrief(selectedModule), [selectedModule]);
   const selectedBlocks = useMemo(() => createBlocks(selectedModule), [selectedModule]);
   const { primaryBlocks, extraBlocks } = useMemo(
@@ -160,7 +161,14 @@ export function ModuleView() {
       />
 
       <div className="mb-6 grid gap-4 xl:grid-cols-[1fr_320px]">
-        <Panel title="Kundenbrief" description="Те, що треба тримати перед очима під час дизайну.">
+        <Panel
+          title="Kundenbrief"
+          description={
+            isModuleOne
+              ? "Обери тільки Variante A або Variante B. Галочки під варіантом - це твій головний список на модуль."
+              : "Те, що треба тримати перед очима під час дизайну."
+          }
+        >
           <div className="grid gap-4 lg:grid-cols-2">
             <VariantCard
               label="Variante A"
@@ -201,7 +209,11 @@ export function ModuleView() {
               <span className="text-sm font-semibold">{checkedCount}/{totalCount}</span>
             </div>
             <ProgressBar value={progress} />
-            <p className="text-sm text-neutral-600 dark:text-neutral-300">Мета: зробити результат, який можна покласти у портфоліо.</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-300">
+              {isModuleOne
+                ? "У цьому модулі прогрес рахується тільки по 4 основних завданнях. Website і перевірки можна зробити пізніше."
+                : "Мета: зробити результат, який можна покласти у портфоліо."}
+            </p>
             <button
               type="button"
               onClick={() => void exportModulePdf(userId, selectedModule.id)}
@@ -219,14 +231,17 @@ export function ModuleView() {
           <ModuleBlockCard
             key={block.key}
             block={block}
-            defaultOpen={index < 2}
+            defaultOpen={isModuleOne ? false : index < 2}
             note={moduleState.blockNotes[block.key] ?? ""}
             onSaveNote={saveBlockNote}
           />
         ))}
 
         {extraBlocks.length ? (
-          <CollapsibleCard title="Zusatzmaterial" eyebrow="Сховано, якщо потрібно пізніше">
+          <CollapsibleCard
+            title={isModuleOne ? "Später / optional" : "Zusatzmaterial"}
+            eyebrow={isModuleOne ? "не відкривати зараз, якщо плутає" : "Сховано, якщо потрібно пізніше"}
+          >
             <div className="grid gap-4">
               {extraBlocks.map((block) => (
                 <ModuleBlockInline
@@ -240,13 +255,17 @@ export function ModuleView() {
           </CollapsibleCard>
         ) : null}
 
-        <CollapsibleCard title="Aufgaben" eyebrow="4 Pflichtaufgaben + ★ optional" defaultOpen>
-          <TaskList tasks={deliverableTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
-        </CollapsibleCard>
+        {!isModuleOne ? (
+          <CollapsibleCard title="Aufgaben" eyebrow="4 Pflichtaufgaben + ★ optional" defaultOpen>
+            <TaskList tasks={deliverableTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
+          </CollapsibleCard>
+        ) : null}
 
-        <CollapsibleCard title="Quality Check" eyebrow="Before delivery" defaultOpen={selectedModule.id !== "module-1"}>
-          <TaskList tasks={qualityTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
-        </CollapsibleCard>
+        {!isModuleOne ? (
+          <CollapsibleCard title="Quality Check" eyebrow="Before delivery" defaultOpen>
+            <TaskList tasks={qualityTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
+          </CollapsibleCard>
+        ) : null}
 
         <CollapsibleCard title="Was habe ich gelernt?" eyebrow="Reflection">
           <AutosaveTextarea
