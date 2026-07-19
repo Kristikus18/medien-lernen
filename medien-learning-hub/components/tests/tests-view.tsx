@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { quizQuestions } from "@/data/modules";
 import { Badge, PageHeader, Panel } from "@/components/shared/ui";
 import { useAuth } from "@/lib/auth";
-import { saveUserDocument } from "@/lib/firestore";
+import { saveUserDocument, subscribeUserCollection } from "@/lib/firestore";
+import { useSnapshotSubscription } from "@/lib/hooks";
 import type { QuizResult } from "@/lib/types";
 
 export function TestsView() {
@@ -14,6 +15,15 @@ export function TestsView() {
   const [result, setResult] = useState<QuizResult | null>(null);
   const [notice, setNotice] = useState("");
   const [saveError, setSaveError] = useState(false);
+  const subscribe = useCallback(
+    (onData: (items: QuizResult[]) => void, onError: (error: Error) => void) =>
+      subscribeUserCollection<QuizResult>(userId, "quizResults", onData, onError),
+    [userId]
+  );
+  const { items: savedResults } = useSnapshotSubscription(subscribe, [subscribe]);
+  const hasNewAnswers = Object.keys(answers).length > 0;
+  const savedResult = useMemo(() => savedResults[0] ?? null, [savedResults]);
+  const visibleResult = result ?? (hasNewAnswers ? null : savedResult);
 
   const submitQuiz = async () => {
     const missingAnswers = quizQuestions.filter((question) => !answers[question.id]).length;
@@ -68,7 +78,7 @@ export function TestsView() {
         eyebrow="Tests"
         title="Quiz mit Auswahl"
         description="Тут не треба писати самому. Просто вибирай правильну відповідь і тренуй Fachwörter, артиклі, Druck та Fachgespräch."
-        action={result ? <Badge tone={result.percent >= 80 ? "green" : "amber"}>{result.percent}%</Badge> : null}
+        action={visibleResult ? <Badge tone={visibleResult.percent >= 80 ? "green" : "amber"}>{visibleResult.percent}%</Badge> : null}
       />
 
       <div className="grid gap-6 xl:grid-cols-[1fr_360px]">
@@ -131,17 +141,17 @@ export function TestsView() {
         </Panel>
 
         <Panel title="Ergebnis">
-          {result ? (
+          {visibleResult ? (
             <div>
-              <p className="text-4xl font-semibold">{result.percent}%</p>
+              <p className="text-4xl font-semibold">{visibleResult.percent}%</p>
               <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">
-                {result.score} richtige Antworten von {result.total}.
+                {visibleResult.score} richtige Antworten von {visibleResult.total}.
               </p>
-              {result.mistakes.length ? (
+              {visibleResult.mistakes.length ? (
                 <div className="mt-5">
                   <h3 className="text-sm font-semibold">Wiederholen:</h3>
                   <ul className="mt-2 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
-                    {result.mistakes.map((mistake) => (
+                    {visibleResult.mistakes.map((mistake) => (
                       <li key={mistake} className="rounded-md border border-line p-3 dark:border-neutral-800">
                         {mistake}
                       </li>
