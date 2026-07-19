@@ -12,6 +12,7 @@ import {
   coreAusbildungProjectFlow,
   coreAusbildungDeliverables,
   modulePlans,
+  primaryClientBriefTranslations,
   modules
 } from "@/data/modules";
 import { AutosaveTextarea } from "@/components/shared/autosave-textarea";
@@ -33,6 +34,7 @@ export function ModuleView() {
   const selectedBlocks = useMemo(() => createBlocks(selectedModule), [selectedModule]);
   const selectedPlan = modulePlans[selectedModule.id];
   const selectedAlternative = alternativeClientBriefs[selectedModule.id];
+  const selectedPrimaryTranslation = primaryClientBriefTranslations[selectedModule.id];
   const fallbackDeliverables = uniqueTasks([
     ...(selectedPlan?.deliverables ?? (selectedModule.id === "module-1" ? moduleOneDeliverables : selectedModule.finalDeliverables)),
     ...coreAusbildungDeliverables
@@ -160,9 +162,15 @@ export function ModuleView() {
               label="Variante A"
               title={selectedBrief.company}
               industry={selectedBrief.industry}
+              industryUa={selectedPrimaryTranslation?.industry}
               description={selectedBrief.request}
+              ukrainian={selectedPrimaryTranslation?.request}
               targetGroup={selectedBrief.targetGroup}
+              targetGroupUa={selectedPrimaryTranslation?.targetGroup}
               avoid={selectedBrief.avoid}
+              avoidUa={selectedPrimaryTranslation?.avoid}
+              pages={selectedBrief.pages}
+              pagesUa={selectedPrimaryTranslation?.pages}
             />
             {selectedAlternative ? (
               <VariantCard
@@ -299,6 +307,7 @@ function createBrief(module: LearningModule): CustomerBrief {
 function createBlocks(module: LearningModule): ModuleBlock[] {
   const plan = modulePlans[module.id];
   const alternative = alternativeClientBriefs[module.id];
+  const primaryTranslation = primaryClientBriefTranslations[module.id];
 
   if (plan) {
     return [
@@ -315,6 +324,8 @@ function createBlocks(module: LearningModule): ModuleBlock[] {
         items: [
           `Variante A: ${plan.brief.company} - ${plan.brief.industry}.`,
           `Auftrag A: ${plan.brief.request}`,
+          primaryTranslation ? `Переклад A: ${primaryTranslation.request}` : "Переклад A: прочитай німецький бриф і запиши коротко українською.",
+          primaryTranslation ? `Цільова група A: ${primaryTranslation.targetGroup}` : `Zielgruppe A: ${plan.brief.targetGroup}`,
           alternative
             ? `Variante B: ${alternative.company} - ${alternative.industry}.`
             : "Variante B: optional später ergänzen.",
@@ -647,19 +658,29 @@ function VariantCard({
   label,
   title,
   industry,
+  industryUa,
   description,
   ukrainian,
   targetGroup,
+  targetGroupUa,
   avoid,
+  avoidUa,
+  pages,
+  pagesUa,
   deliverables
 }: {
   label: string;
   title: string;
   industry: string;
+  industryUa?: string;
   description: string;
   ukrainian?: string;
   targetGroup?: string;
+  targetGroupUa?: string;
   avoid?: string;
+  avoidUa?: string;
+  pages?: string;
+  pagesUa?: string;
   deliverables?: string[];
 }) {
   return (
@@ -667,10 +688,19 @@ function VariantCard({
       <Badge tone={label.includes("B") ? "blue" : "green"}>{label}</Badge>
       <h3 className="mt-3 text-base font-semibold">{title}</h3>
       <p className="mt-1 text-xs font-medium uppercase tracking-normal text-neutral-500 dark:text-neutral-400">{industry}</p>
+      {industryUa ? <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">{industryUa}</p> : null}
       <p className="mt-3 text-sm leading-6 text-neutral-700 dark:text-neutral-300">{description}</p>
-      {ukrainian ? <p className="mt-2 text-sm leading-6 text-neutral-600 dark:text-neutral-400">{ukrainian}</p> : null}
+      {ukrainian ? (
+        <p className="mt-2 rounded-md border border-line bg-white p-3 text-sm leading-6 text-neutral-700 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-300">
+          <span className="font-semibold">Українською:</span> {ukrainian}
+        </p>
+      ) : null}
       {targetGroup ? <p className="mt-3 text-sm"><span className="font-semibold">Zielgruppe:</span> {targetGroup}</p> : null}
+      {targetGroupUa ? <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400"><span className="font-semibold">Цільова група:</span> {targetGroupUa}</p> : null}
       {avoid ? <p className="mt-2 text-sm"><span className="font-semibold">Nicht verwenden:</span> {avoid}</p> : null}
+      {avoidUa ? <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400"><span className="font-semibold">Не використовувати:</span> {avoidUa}</p> : null}
+      {pages ? <p className="mt-2 text-sm"><span className="font-semibold">Seitenumfang:</span> {pages}</p> : null}
+      {pagesUa ? <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400"><span className="font-semibold">Сторінки:</span> {pagesUa}</p> : null}
       {deliverables?.length ? (
         <div className="mt-3 flex flex-wrap gap-2">
           {deliverables.map((item) => (

@@ -382,6 +382,117 @@ export interface ClientVariant {
   deliverables: string[];
 }
 
+export interface BriefTranslation {
+  industry: string;
+  targetGroup: string;
+  request: string;
+  avoid: string;
+  pages?: string;
+}
+
+export const primaryClientBriefTranslations: Record<string, BriefTranslation> = {
+  "module-1": {
+    industry: "Французька патисерія і кафе.",
+    targetGroup: "Жінки 25-45 років, сім'ї та туристи.",
+    request: "Потрібен елегантний, сучасний і мінімалістичний логотип з легким мотивом місяця та теплою атмосферою.",
+    avoid: "Не використовувати мультяшний стиль, неонові кольори та дитячі шрифти."
+  },
+  "module-2": {
+    industry: "Лікарська практика.",
+    targetGroup: "Пацієнти різного віку, особливо сім'ї та старші люди.",
+    request: "Потрібен серйозний і спокійний corporate design з логотипом, візиткою, фірмовим бланком і social preview.",
+    avoid: "Не використовувати занадто грайливі кольори, нечіткий шрифт і медичні кліше без ідеї."
+  },
+  "module-3": {
+    industry: "Фірма з пошуку роботи.",
+    targetGroup: "Молоді дорослі, люди на старті кар'єри та ті, хто хоче змінити професійний напрямок.",
+    request: "Потрібен сучасний recruiting branding з чітким зверненням до цільової групи, landing page і LinkedIn banner.",
+    avoid: "Не робити дизайн занадто холодним, не використовувати нечіткі call-to-actions і типові stock images."
+  },
+  "module-4": {
+    industry: "Квітковий магазин.",
+    targetGroup: "Люди, які шукають якісні квіти, маленькі подарунки і гарне пакування.",
+    request: "Потрібен природний branding з пакувальним sticker, етикеткою і маленьким CD Manual.",
+    avoid: "Не робити дешевий декоративний стиль, забагато кольорів або деталі, які важко друкувати."
+  },
+  "module-5": {
+    industry: "Культурна подія.",
+    targetGroup: "Дорослі, студенти, туристи і локальні фанати культури, які цікавляться мистецтвом.",
+    request: "Потрібен A5 flyer з сильною типографікою, обробкою зображення і готовим print PDF.",
+    avoid: "Не робити хаотичну ієрархію, занадто дрібну інформацію і файл без Beschnitt."
+  },
+  "module-6": {
+    industry: "Interior Design.",
+    targetGroup: "Приватні клієнти і маленькі офіси, які шукають сталий interior design.",
+    request: "Потрібна брошура на 8 сторінок із Satzspiegel, концепцією зображень, чистою сіткою і Druckvorstufe.",
+    avoid: "Не робити перевантажені сторінки, погану якість фото і нерівні відступи."
+  },
+  "module-7": {
+    industry: "Yoga Studio.",
+    targetGroup: "Люди, які шукають спокій, здоров'я і більш усвідомлений щоденний ритм.",
+    request: "Потрібен editorial magazine spread з text styles, ритмом зображень і спокійною Leserführung.",
+    avoid: "Не робити перевантажені сторінки, занадто декоративний шрифт і погану читабельність."
+  },
+  "module-8": {
+    industry: "Handmade market.",
+    targetGroup: "Креативні люди, сім'ї та відвідувачі локальних маркетів.",
+    request: "Потрібна цілісна print campaign з poster, flyer і roll-up.",
+    avoid: "Не робити різний стиль для кожного носія, забагато шрифтів і нечіткі print formats."
+  },
+  "module-9": {
+    industry: "Boutique hotel.",
+    targetGroup: "Мандрівники, пари і гості, які цікавляться дизайном та шукають особливий готель.",
+    request: "Потрібен responsive one-page website у Figma з wireframe, UI components і prototype.",
+    avoid: "Не робити нечітку навігацію, занадто маленькі кнопки і декоративні елементи без функції.",
+    pages: "Одна сторінка: Start, Zimmer, Galerie, Angebote, Kontakt."
+  },
+  "module-10": {
+    industry: "Репетиторський центр.",
+    targetGroup: "Батьки школярів і підлітки, які шукають Nachhilfe.",
+    request: "Потрібен WordPress website з Elementor, contact form, cookie banner і SEO basics.",
+    avoid: "Не робити нечітку структуру сторінок, не забувати Impressum/Datenschutz, не використовувати занадто важкі картинки.",
+    pages: "5 сторінок: Start, Kurse, Preise, Über uns, Kontakt."
+  },
+  "module-11": {
+    industry: "Фотостудія.",
+    targetGroup: "Приватні особи, пари і маленькі компанії, яким потрібні професійні фото.",
+    request: "Потрібна проста responsive landing page з HTML, CSS, чіткими секціями і чистою папкою assets.",
+    avoid: "Не робити фокус на складному JavaScript, не залишати хаотичний код і занадто важкі картинки.",
+    pages: "Одна сторінка: Hero, Leistungen, Galerie, Preise, Kontakt."
+  },
+  "module-12": {
+    industry: "Агенція нерухомості.",
+    targetGroup: "Люди, які хочуть купити, продати або орендувати нерухомість.",
+    request: "Потрібен website relaunch з information architecture, Figma wireframes, Elementor implementation і plugin setup.",
+    avoid: "Не робити нечітку структуру об'єктів, не пропускати search function і не залишати погану performance.",
+    pages: "6 сторінок: Start, Immobilien, Kaufen, Verkaufen, Über uns, Kontakt."
+  },
+  "module-13": {
+    industry: "Event agency.",
+    targetGroup: "Компанії та організатори подій, яким потрібні короткі event videos і social clips.",
+    request: "Потрібне 30-секундне відео зі storyboard, монтажем, export formats і thumbnail.",
+    avoid: "Не робити занадто довгі clips, поганий звук і неправильний format для social media."
+  },
+  "module-14": {
+    industry: "Гастрономія / кафе.",
+    targetGroup: "Локальні гості, студенти і люди, які шукають спокійне кафе для роботи.",
+    request: "Потрібен повний mini-Auftrag: branding, menu, website mockup, customer files і final presentation.",
+    avoid: "Не здавати неповні файли, дизайн без пояснення і носії, які не виглядають як одна система."
+  },
+  "module-15": {
+    industry: "Personal branding.",
+    targetGroup: "Ausbilder, Prüfungskommission, агенції і можливі роботодавці.",
+    request: "Потрібен portfolio sprint з Behance case studies, LinkedIn profile, portfolio PDF і application documents.",
+    avoid: "Не показувати тільки красиві картинки без процесу, пояснень і чіткої структури проєкту."
+  },
+  "module-16": {
+    industry: "Підготовка до LAP Medienfachfrau.",
+    targetGroup: "Prüfungskommission і Krystyna як кандидатка на іспиті.",
+    request: "Потрібна LAP simulation з Fachgespräch, перевіркою Druckdaten, project presentation і final exam folder.",
+    avoid: "Не вчити тільки напам'ять без пояснення, не залишати слабкі Druckbegriffe і не забувати приклади з власних проєктів."
+  }
+};
+
 const reportTemplate = [
   "Was habe ich gemacht? - Напиши 3-5 речень про виконану роботу.",
   "Welche Programme habe ich benutzt? - Назви програму і конкретний інструмент.",
