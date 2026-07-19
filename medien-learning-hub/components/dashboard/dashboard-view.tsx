@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, CheckCircle2, Clock3, Languages, Trophy } from "lucide-react";
 import { useCallback, useMemo } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import { modules } from "@/data/modules";
+import { alternativeClientBriefs, modules } from "@/data/modules";
 import { PageHeader, Panel, ProgressBar, Badge } from "@/components/shared/ui";
 import { useAuth } from "@/lib/auth";
 import { getFirebaseDb } from "@/lib/firebase";
@@ -67,7 +67,12 @@ export function DashboardView() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <Metric icon={BookOpen} label="Поточний модуль" value={currentModule?.title ?? "Module 1"} detail={currentModule?.client ?? "Lune Bakery"} />
+        <Metric
+          icon={BookOpen}
+          label="Поточний модуль"
+          value={currentModule ? dashboardModuleTitle(currentModule) : "Module 1"}
+          detail={currentModule ? dashboardModuleDetail(currentModule) : "Variante A / B"}
+        />
         <Metric icon={CheckCircle2} label="Загальний прогрес" value={`${Math.round(totalProgress)}%`} detail="по всіх модулях" />
         <Metric icon={Languages} label="Вивчені слова" value={`${learnedWords}/${words.length || 40}`} detail="німецькі Fachwörter" />
         <Metric icon={Clock3} label="Час за тиждень" value={`${Math.round(weeklyMinutes / 60)}h ${weeklyMinutes % 60}m`} detail="фактичний час" />
@@ -82,8 +87,8 @@ export function DashboardView() {
                 <Link key={module.id} href={`/module?id=${module.id}`} className="block rounded-md border border-transparent p-2 transition hover:border-line hover:bg-neutral-50 dark:hover:border-neutral-800 dark:hover:bg-neutral-950">
                   <div className="mb-2 flex items-center justify-between gap-3">
                     <div>
-                      <p className="text-sm font-semibold">{module.number}. {module.title}</p>
-                      <p className="text-xs text-neutral-500 dark:text-neutral-400">{module.client} - {module.field}</p>
+                      <p className="text-sm font-semibold">{module.number}. {dashboardModuleTitle(module)}</p>
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400">{dashboardModuleDetail(module)}</p>
                     </div>
                     <Badge tone={progress >= 100 ? "green" : progress > 0 ? "amber" : "neutral"}>{progress}%</Badge>
                   </div>
@@ -147,6 +152,21 @@ function mergeModuleProgress(userModules: LearningModule[]) {
     ...module,
     progress: progressById.get(module.id) ?? 0
   }));
+}
+
+function dashboardModuleTitle(module: LearningModule) {
+  const titlePart = module.title.includes(" - ") ? module.title.split(" - ").slice(1).join(" - ") : module.title;
+  return `${moduleVariantNames(module)} - ${titlePart}`;
+}
+
+function dashboardModuleDetail(module: LearningModule) {
+  const alternative = alternativeClientBriefs[module.id];
+  return alternative ? `${module.field} / ${alternative.industry}` : module.field;
+}
+
+function moduleVariantNames(module: LearningModule) {
+  const alternative = alternativeClientBriefs[module.id];
+  return alternative ? `${module.client} / ${alternative.company}` : module.client;
 }
 
 function Metric({

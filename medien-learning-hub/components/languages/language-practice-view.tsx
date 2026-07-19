@@ -2,11 +2,11 @@
 
 import { BookOpenCheck, Check } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
-import { Badge, PageHeader, Panel, ProgressBar } from "@/components/shared/ui";
+import { Badge, PageHeader, Panel, ProgressBar, inputClass } from "@/components/shared/ui";
 import { useAuth } from "@/lib/auth";
 import { saveUserDocument, subscribeUserCollection } from "@/lib/firestore";
 import { useSnapshotSubscription } from "@/lib/hooks";
-import type { PracticeQuizQuestion, PracticeTopic } from "@/data/language-practice";
+import type { DictationTask, IrregularVerb, PracticeQuizQuestion, PracticeResource, PracticeTopic } from "@/data/language-practice";
 
 interface LanguagePracticeViewProps {
   eyebrow: string;
@@ -15,6 +15,9 @@ interface LanguagePracticeViewProps {
   topics: PracticeTopic[];
   progressCollection: string;
   quizCollection: string;
+  resources?: PracticeResource[];
+  dictations?: DictationTask[];
+  irregularVerbs?: IrregularVerb[];
 }
 
 interface PracticeTaskProgress {
@@ -38,19 +41,36 @@ interface PracticeQuizResult {
   userId?: string;
 }
 
+interface PersonalWord {
+  id: string;
+  word: string;
+  translation: string;
+  note: string;
+  createdAt?: unknown;
+  updatedAt?: unknown;
+  userId?: string;
+}
+
 export function LanguagePracticeView({
   eyebrow,
   title,
   description,
   topics,
   progressCollection,
-  quizCollection
+  quizCollection,
+  resources = [],
+  dictations = [],
+  irregularVerbs = []
 }: LanguagePracticeViewProps) {
   const { user } = useAuth();
   const userId = user?.uid ?? "";
   const [selectedTopicId, setSelectedTopicId] = useState(topics[0].id);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [quizResult, setQuizResult] = useState<PracticeQuizResult | null>(null);
+  const [word, setWord] = useState("");
+  const [translation, setTranslation] = useState("");
+  const [wordNote, setWordNote] = useState("");
+  const wordCollection = `${progressCollection}Words`;
 
   const subscribe = useCallback(
     (onData: (items: PracticeTaskProgress[]) => void, onError: (error: Error) => void) =>
@@ -58,6 +78,12 @@ export function LanguagePracticeView({
     [progressCollection, userId]
   );
   const { items: progressItems } = useSnapshotSubscription(subscribe, [subscribe]);
+  const wordSubscribe = useCallback(
+    (onData: (items: PersonalWord[]) => void, onError: (error: Error) => void) =>
+      subscribeUserCollection<PersonalWord>(userId, wordCollection, onData, onError),
+    [userId, wordCollection]
+  );
+  const { items: personalWords } = useSnapshotSubscription(wordSubscribe, [wordSubscribe]);
 
   const selectedTopic = useMemo(
     () => topics.find((topic) => topic.id === selectedTopicId) ?? topics[0],
@@ -79,6 +105,23 @@ export function LanguagePracticeView({
       taskIndex: index,
       done: !current?.done
     });
+  };
+
+  const addPersonalWord = async () => {
+    if (!word.trim() || !translation.trim()) {
+      return;
+    }
+
+    const id = crypto.randomUUID();
+    await saveUserDocument<PersonalWord>(userId, wordCollection, id, {
+      id,
+      word: word.trim(),
+      translation: translation.trim(),
+      note: wordNote.trim()
+    });
+    setWord("");
+    setTranslation("");
+    setWordNote("");
   };
 
   const submitQuiz = async () => {
@@ -132,6 +175,121 @@ export function LanguagePracticeView({
           </div>
         </Panel>
       </div>
+
+      <div className="mb-6 grid gap-4 xl:grid-cols-[1fr_1fr]">
+        <Panel title="Mein Wörterbuch" description="Додавай сюди нові слова з курсу, відео, читання або роботи.">
+          <div className="grid gap-3 md:grid-cols-[1fr_1fr]">
+            <input
+              value={word}
+              onChange={(event) => setWord(event.target.value)}
+              className={inputClass}
+              placeholder="Wort / phrase"
+            />
+            <input
+              value={translation}
+              onChange={(event) => setTranslation(event.target.value)}
+              className={inputClass}
+              placeholder="Переклад"
+            />
+          </div>
+          <textarea
+            value={wordNote}
+            onChange={(event) => setWordNote(event.target.value)}
+            className={`${inputClass} mt-3`}
+            rows={2}
+            placeholder="Нотатка або приклад речення."
+          />
+          <button
+            type="button"
+            onClick={() => void addPersonalWord()}
+            className="mt-3 rounded-md bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700"
+          >
+            Додати слово
+          </button>
+
+          <div className="mt-4 grid gap-2">
+            {personalWords.slice(0, 8).map((item) => (
+              <div key={item.id} className="rounded-md border border-line bg-neutral-50 p-3 text-sm dark:border-neutral-800 dark:bg-neutral-950">
+                <p className="font-semibold">{item.word}</p>
+                <p className="mt-1 text-neutral-600 dark:text-neutral-300">{item.translation}</p>
+                {item.note ? <p className="mt-1 text-xs text-neutral-500 dark:text-neutral-400">{item.note}</p> : null}
+              </div>
+            ))}
+            {!personalWords.length ? (
+              <p className="rounded-md border border-dashed border-line p-4 text-sm text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
+                Словник поки порожній. Додай перше слово з уроку або курсу.
+              </p>
+            ) : null}
+          </div>
+        </Panel>
+
+        {resources.length ? (
+          <Panel title="Безкоштовні вправи" description="Посилання для додаткової практики, читання і слухання.">
+            <div className="grid gap-3">
+              {resources.map((resource) => (
+                <a
+                  key={resource.url}
+                  href={resource.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-md border border-line p-3 text-sm transition hover:border-brand-300 hover:bg-brand-50 dark:border-neutral-800 dark:hover:border-brand-700 dark:hover:bg-brand-700/10"
+                >
+                  <span className="font-semibold text-brand-700 dark:text-brand-100">{resource.title}</span>
+                  <span className="mt-1 block leading-6 text-neutral-600 dark:text-neutral-300">{resource.description}</span>
+                </a>
+              ))}
+            </div>
+          </Panel>
+        ) : null}
+      </div>
+
+      {dictations.length ? (
+        <Panel title="Diktate 1-2x pro Woche" description="Пиши від руки, потім перевіряй себе. Рівень легкий, приблизно 5-7 клас.">
+          <div className="grid gap-4 lg:grid-cols-3">
+            {dictations.map((dictation) => (
+              <div key={dictation.title} className="rounded-md border border-line bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-950">
+                <Badge tone="amber">{dictation.level}</Badge>
+                <h3 className="mt-3 text-sm font-semibold">{dictation.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-neutral-700 dark:text-neutral-300">{dictation.text}</p>
+                <ul className="mt-3 grid gap-2 text-xs leading-5 text-neutral-500 dark:text-neutral-400">
+                  {dictation.selfCheck.map((check) => (
+                    <li key={check}>• {check}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Panel>
+      ) : null}
+
+      {irregularVerbs.length ? (
+        <div className="mt-6">
+          <Panel title="Irregular Verbs Table" description="Вчи маленькими групами по 5 дієслів. Для Past Simple потрібна друга колонка, для Present Perfect третя.">
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-left text-sm">
+                <thead className="text-xs uppercase tracking-normal text-neutral-500 dark:text-neutral-400">
+                  <tr>
+                    <th className="px-3 py-2">Base</th>
+                    <th className="px-3 py-2">Past Simple</th>
+                    <th className="px-3 py-2">Past Participle</th>
+                    <th className="px-3 py-2">Українська</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {irregularVerbs.map((verb) => (
+                    <tr key={verb.base} className="border-t border-line dark:border-neutral-800">
+                      <td className="px-3 py-2 font-semibold">{verb.base}</td>
+                      <td className="px-3 py-2">{verb.past}</td>
+                      <td className="px-3 py-2">{verb.participle}</td>
+                      <td className="px-3 py-2">{verb.ukrainian}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Panel>
+        </div>
+      ) : null}
 
       <div className="grid gap-6 xl:grid-cols-[300px_1fr]">
         <Panel title="Themen" description="Обери одну тему.">

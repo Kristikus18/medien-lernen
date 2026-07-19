@@ -10,9 +10,29 @@ export interface PracticeQuizQuestion {
   answer: string;
 }
 
+export interface PracticeResource {
+  title: string;
+  url: string;
+  description: string;
+}
+
+export interface DictationTask {
+  title: string;
+  level: string;
+  text: string;
+  selfCheck: string[];
+}
+
+export interface IrregularVerb {
+  base: string;
+  past: string;
+  participle: string;
+  ukrainian: string;
+}
+
 export interface PracticeTopic {
   id: string;
-  level: "A1" | "A2" | "B1";
+  level: "A1" | "A2" | "B1" | "B2";
   title: string;
   subtitle: string;
   goal: string;
@@ -21,6 +41,109 @@ export interface PracticeTopic {
   tasks: string[];
   quiz: PracticeQuizQuestion[];
 }
+
+export const germanLearningResources: PracticeResource[] = [
+  {
+    title: "DW Deutsch Lernen",
+    url: "https://learngerman.dw.com/de/deutsch-lernen/s-9095",
+    description: "Безкоштовні курси, відео, читання і слухання від A1 до B2."
+  },
+  {
+    title: "DW Top-Thema",
+    url: "https://learngerman.dw.com/de/top-thema/s-55861562",
+    description: "Короткі актуальні тексти з аудіо. Добре для B1/B2 Lesen + Hören."
+  },
+  {
+    title: "Schubert Verlag Online-Übungen",
+    url: "https://www.schubert-verlag.de/aufgaben/",
+    description: "Безкоштовні граматичні вправи за рівнями."
+  },
+  {
+    title: "Mein Deutschbuch Übungen",
+    url: "https://mein-deutschbuch.de/online-uebungen.html",
+    description: "Онлайн-вправи з граматики, словника і структури речень."
+  }
+];
+
+export const englishLearningResources: PracticeResource[] = [
+  {
+    title: "British Council LearnEnglish Grammar",
+    url: "https://learnenglish.britishcouncil.org/grammar",
+    description: "Безкоштовні пояснення і вправи з граматики."
+  },
+  {
+    title: "British Council A1-A2 Grammar",
+    url: "https://learnenglish.britishcouncil.org/grammar/a1-a2-grammar",
+    description: "Практичні теми A1-A2 з короткими правилами."
+  },
+  {
+    title: "Perfect English Grammar",
+    url: "https://www.perfect-english-grammar.com/grammar-exercises.html",
+    description: "Багато безкоштовних граматичних вправ."
+  }
+];
+
+export const germanDictationTasks: DictationTask[] = [
+  {
+    title: "Diktat 1 - Alltag und Schule",
+    level: "5-6 Klasse / leicht",
+    text: "Heute lerne ich Deutsch. Ich schreibe neue Wörter in mein Heft. Danach lese ich einen kurzen Text und höre eine Übung. Am Abend wiederhole ich die Grammatik.",
+    selfCheck: [
+      "Перевір великі літери на початку речення.",
+      "Перевір іменники з великої літери: Deutsch, Wörter, Heft, Text, Übung, Abend, Grammatik.",
+      "Підкресли дієслова: lerne, schreibe, lese, höre, wiederhole."
+    ]
+  },
+  {
+    title: "Diktat 2 - Design und Arbeit",
+    level: "6-7 Klasse / leicht-mittel",
+    text: "Die Kundin braucht ein Logo und eine Visitenkarte. Ich erstelle zuerst ein Moodboard. Dann wähle ich Farben und Schriften. Am Ende exportiere ich die Datei als PDF.",
+    selfCheck: [
+      "Перевір артиклі: die Kundin, ein Logo, eine Visitenkarte, ein Moodboard, die Datei.",
+      "Перевір порядок: zuerst, dann, am Ende.",
+      "Перевір професійні слова: Logo, Visitenkarte, Moodboard, PDF."
+    ]
+  },
+  {
+    title: "Diktat 3 - B2 Kurs Rhythmus",
+    level: "7 Klasse / mittel",
+    text: "Im Deutschkurs übe ich Lesen, Hören, Schreiben und Sprechen. Wenn ich ein neues Wort nicht verstehe, schreibe ich es in mein Wörterbuch und suche ein Beispiel.",
+    selfCheck: [
+      "Перевір коми перед wenn.",
+      "Перевір іменники: Deutschkurs, Lesen, Hören, Schreiben, Sprechen, Wort, Wörterbuch, Beispiel.",
+      "Після диктанту прочитай текст уголос один раз."
+    ]
+  }
+];
+
+export const englishIrregularVerbs: IrregularVerb[] = [
+  { base: "be", past: "was/were", participle: "been", ukrainian: "бути" },
+  { base: "become", past: "became", participle: "become", ukrainian: "ставати" },
+  { base: "begin", past: "began", participle: "begun", ukrainian: "починати" },
+  { base: "break", past: "broke", participle: "broken", ukrainian: "ламати" },
+  { base: "bring", past: "brought", participle: "brought", ukrainian: "приносити" },
+  { base: "buy", past: "bought", participle: "bought", ukrainian: "купувати" },
+  { base: "choose", past: "chose", participle: "chosen", ukrainian: "обирати" },
+  { base: "come", past: "came", participle: "come", ukrainian: "приходити" },
+  { base: "do", past: "did", participle: "done", ukrainian: "робити" },
+  { base: "draw", past: "drew", participle: "drawn", ukrainian: "малювати" },
+  { base: "drink", past: "drank", participle: "drunk", ukrainian: "пити" },
+  { base: "eat", past: "ate", participle: "eaten", ukrainian: "їсти" },
+  { base: "find", past: "found", participle: "found", ukrainian: "знаходити" },
+  { base: "get", past: "got", participle: "got/gotten", ukrainian: "отримувати" },
+  { base: "give", past: "gave", participle: "given", ukrainian: "давати" },
+  { base: "go", past: "went", participle: "gone", ukrainian: "йти" },
+  { base: "have", past: "had", participle: "had", ukrainian: "мати" },
+  { base: "hear", past: "heard", participle: "heard", ukrainian: "чути" },
+  { base: "know", past: "knew", participle: "known", ukrainian: "знати" },
+  { base: "make", past: "made", participle: "made", ukrainian: "робити/створювати" },
+  { base: "read", past: "read", participle: "read", ukrainian: "читати" },
+  { base: "see", past: "saw", participle: "seen", ukrainian: "бачити" },
+  { base: "send", past: "sent", participle: "sent", ukrainian: "надсилати" },
+  { base: "speak", past: "spoke", participle: "spoken", ukrainian: "говорити" },
+  { base: "take", past: "took", participle: "taken", ukrainian: "брати" },
+  { base: "write", past: "wrote", participle: "written", ukrainian: "писати" }
+];
 
 export const germanGrammarTopics: PracticeTopic[] = [
   {
@@ -225,6 +348,93 @@ export const germanGrammarTopics: PracticeTopic[] = [
       { id: "de-b1-passiv-q2", question: "Was bedeutet 'wird gedruckt'?", options: ["друкується", "малюється", "зберігається"], answer: "друкується" },
       { id: "de-b1-passiv-q3", question: "Passiv ist gut für:", options: ["Prozesse erklären", "nur Namen lernen", "Farben mischen"], answer: "Prozesse erklären" }
     ]
+  },
+  {
+    id: "de-b2-konnektoren",
+    level: "B2",
+    title: "Konnektoren",
+    subtitle: "obwohl, trotzdem, deshalb",
+    goal: "Мета: зв'язувати думки у B2-курсі і говорити більш природно.",
+    rules: [
+      "Obwohl = хоча. У підрядному реченні дієслово стоїть в кінці.",
+      "Trotzdem = попри це. Після trotzdem часто стоїть дієслово на позиції 2.",
+      "Deshalb = тому. Воно показує наслідок, а не причину.",
+      "Für B2 важливо не тільки знати слово, а й правильно будувати речення."
+    ],
+    examples: [
+      { sentence: "Obwohl das Layout einfach ist, wirkt es professionell.", translation: "Хоча макет простий, він виглядає професійно." },
+      { sentence: "Das Bild ist dunkel. Trotzdem passt es zur Stimmung.", translation: "Зображення темне. Попри це воно підходить до настрою." },
+      { sentence: "Die Datei ist zu groß. Deshalb komprimiere ich die Bilder.", translation: "Файл занадто великий. Тому я стискаю зображення." }
+    ],
+    tasks: [
+      "Вивчити різницю: obwohl = хоча, trotzdem = попри це, deshalb = тому.",
+      "Прочитати 3 приклади вголос.",
+      "Знайти в одному B2-тексті 3 Konnektoren.",
+      "★ Сказати усно одне речення про дизайн з obwohl."
+    ],
+    quiz: [
+      { id: "de-b2-konnektoren-q1", question: "Was bedeutet 'obwohl'?", options: ["хоча", "тому", "без"], answer: "хоча" },
+      { id: "de-b2-konnektoren-q2", question: "Was ist richtig?", options: ["Obwohl das Layout einfach ist, wirkt es professionell.", "Obwohl ist das Layout einfach, wirkt es professionell.", "Obwohl das Layout ist einfach, wirkt es professionell."], answer: "Obwohl das Layout einfach ist, wirkt es professionell." },
+      { id: "de-b2-konnektoren-q3", question: "Deshalb zeigt:", options: ["Folge / наслідок", "Gegensatz / протилежність", "Ort / місце"], answer: "Folge / наслідок" }
+    ]
+  },
+  {
+    id: "de-b2-lesen-hoeren",
+    level: "B2",
+    title: "Lesen und Hören",
+    subtitle: "B2 Kurs Training",
+    goal: "Мета: тренувати курс B2 без перевантаження: читання, слухання, нові слова і короткий переказ.",
+    rules: [
+      "Lesen: спочатку прочитай заголовок і підзаголовки, потім шукай головну думку.",
+      "Hören: перший раз слухай загальний зміст, другий раз шукай деталі.",
+      "Neue Wörter: записуй тільки важливі слова, не всі підряд.",
+      "Zusammenfassung: після тексту скажи 2-3 прості речення німецькою."
+    ],
+    examples: [
+      { sentence: "Der Text handelt von digitaler Kommunikation.", translation: "Текст про цифрову комунікацію." },
+      { sentence: "Die wichtigste Information ist, dass Datenschutz beachtet werden muss.", translation: "Найважливіша інформація: треба враховувати захист даних." },
+      { sentence: "Ich habe fünf neue Wörter gelernt.", translation: "Я вивчила п'ять нових слів." }
+    ],
+    tasks: [
+      "1 короткий B2-текст прочитати і підкреслити 5 важливих слів.",
+      "1 аудіо послухати двічі: перший раз загально, другий раз з нотатками.",
+      "Записати 5 нових слів у Wörterbuch.",
+      "★ Усно зробити 2 речення: Der Text handelt von..."
+    ],
+    quiz: [
+      { id: "de-b2-lesen-q1", question: "Beim ersten Hören soll man zuerst:", options: ["den allgemeinen Sinn verstehen", "jedes Wort übersetzen", "sofort alles schreiben"], answer: "den allgemeinen Sinn verstehen" },
+      { id: "de-b2-lesen-q2", question: "Was ist eine Zusammenfassung?", options: ["короткий переказ", "повний переклад", "список артиклів"], answer: "короткий переказ" },
+      { id: "de-b2-lesen-q3", question: "Neue Wörter soll man:", options: ["kurz notieren und mit Beispiel lernen", "alle Wörter ohne Kontext schreiben", "nie wiederholen"], answer: "kurz notieren und mit Beispiel lernen" }
+    ]
+  },
+  {
+    id: "de-b1-diktat",
+    level: "B1",
+    title: "Diktat Training",
+    subtitle: "1-2x pro Woche",
+    goal: "Мета: писати від руки, тренувати Rechtschreibung і потім перевіряти себе.",
+    rules: [
+      "Один диктант має бути короткий: 4-6 речень.",
+      "Пиши від руки, не на комп'ютері.",
+      "Після написання перевір великі літери, артиклі, дієслова і коми.",
+      "Для старту підходить рівень 5-7 класу: не надто складно, але корисно."
+    ],
+    examples: [
+      { sentence: "Ich schreibe den Text zuerst ohne Hilfe.", translation: "Спочатку я пишу текст без допомоги." },
+      { sentence: "Danach vergleiche ich meine Version mit dem Original.", translation: "Потім я порівнюю свою версію з оригіналом." },
+      { sentence: "Ich markiere meine Fehler mit einer Farbe.", translation: "Я позначаю свої помилки кольором." }
+    ],
+    tasks: [
+      "1 раз на тиждень написати Diktat 1 від руки.",
+      "Другий раз optional: короткий дизайн-диктант.",
+      "Після перевірки записати 3 помилки, які повторюються.",
+      "★ Одне речення з диктанту прочитати вголос."
+    ],
+    quiz: [
+      { id: "de-b1-diktat-q1", question: "Diktat soll man hier schreiben:", options: ["mit der Hand", "nur im Kopf", "nur als Audio"], answer: "mit der Hand" },
+      { id: "de-b1-diktat-q2", question: "Was prüft man danach?", options: ["Großschreibung, Artikel, Verben, Kommas", "nur Farbe", "nur Dateiname"], answer: "Großschreibung, Artikel, Verben, Kommas" },
+      { id: "de-b1-diktat-q3", question: "Wie oft pro Woche?", options: ["1-2 Mal", "jeden Tag 3 Stunden", "nie"], answer: "1-2 Mal" }
+    ]
   }
 ];
 
@@ -401,6 +611,151 @@ export const englishTopics: PracticeTopic[] = [
       { id: "en-a2-comp-q1", question: "good ->", options: ["better", "gooder", "more good"], answer: "better" },
       { id: "en-a2-comp-q2", question: "modern ->", options: ["more modern", "moderner", "modernest"], answer: "more modern" },
       { id: "en-a2-comp-q3", question: "Choose the correct sentence.", options: ["This logo is better than the first version.", "This logo is better then the first version.", "This logo better than first."], answer: "This logo is better than the first version." }
+    ]
+  },
+  {
+    id: "en-a1-there-is",
+    level: "A1",
+    title: "There is / There are",
+    subtitle: "опис макету",
+    goal: "Goal: describe what is on a page, flyer or website.",
+    rules: [
+      "There is = є один предмет або один блок.",
+      "There are = є кілька предметів або блоків.",
+      "Question: Is there...? Are there...?",
+      "Negative: There is no... / There are no..."
+    ],
+    examples: [
+      { sentence: "There is a logo at the top.", translation: "Вгорі є логотип." },
+      { sentence: "There are three sections on the website.", translation: "На сайті є три секції." },
+      { sentence: "There is no contact form yet.", translation: "Форми контакту ще немає." }
+    ],
+    tasks: [
+      "Describe one design with there is / there are.",
+      "Read 3 examples aloud.",
+      "Do the mini-test.",
+      "★ Say what is missing in a website."
+    ],
+    quiz: [
+      { id: "en-a1-there-q1", question: "Choose the correct sentence.", options: ["There is a logo.", "There are a logo.", "There a logo is."], answer: "There is a logo." },
+      { id: "en-a1-there-q2", question: "Three sections:", options: ["There are three sections.", "There is three sections.", "There be three sections."], answer: "There are three sections." },
+      { id: "en-a1-there-q3", question: "No form:", options: ["There is no form.", "There are no form.", "No there form."], answer: "There is no form." }
+    ]
+  },
+  {
+    id: "en-a1-can",
+    level: "A1",
+    title: "Can / Can't",
+    subtitle: "уміння і можливості",
+    goal: "Goal: say what you can do at work.",
+    rules: [
+      "Can + base verb: I can design.",
+      "Negative: can't / cannot.",
+      "Question: Can you...?",
+      "After can there is no -s: She can create, not she can creates."
+    ],
+    examples: [
+      { sentence: "I can create a logo.", translation: "Я можу створити логотип." },
+      { sentence: "I can't finish the website today.", translation: "Я не можу закінчити сайт сьогодні." },
+      { sentence: "Can you send the file?", translation: "Ти можеш надіслати файл?" }
+    ],
+    tasks: [
+      "Learn: can + verb.",
+      "Say 3 things you can do in design.",
+      "Do the mini-test.",
+      "★ Write one client sentence with can."
+    ],
+    quiz: [
+      { id: "en-a1-can-q1", question: "Choose the correct sentence.", options: ["She can create a logo.", "She can creates a logo.", "She cans create a logo."], answer: "She can create a logo." },
+      { id: "en-a1-can-q2", question: "Question:", options: ["Can you send the file?", "You can send the file?", "Do can you send?"], answer: "Can you send the file?" },
+      { id: "en-a1-can-q3", question: "Can't means:", options: ["не можу", "буду", "мала"], answer: "не можу" }
+    ]
+  },
+  {
+    id: "en-a2-present-continuous",
+    level: "A2",
+    title: "Present Continuous",
+    subtitle: "right now",
+    goal: "Goal: say what is happening now.",
+    rules: [
+      "Form: am/is/are + verb-ing.",
+      "I am working. She is designing. They are testing.",
+      "Use it for actions happening now.",
+      "Question: Are you working? Is she designing?"
+    ],
+    examples: [
+      { sentence: "I am working on the flyer.", translation: "Я зараз працюю над флаєром." },
+      { sentence: "She is testing the website.", translation: "Вона тестує сайт." },
+      { sentence: "We are choosing colors.", translation: "Ми обираємо кольори." }
+    ],
+    tasks: [
+      "Learn: am/is/are + -ing.",
+      "Say what you are doing now.",
+      "Do the mini-test.",
+      "★ Compare Present Simple and Present Continuous."
+    ],
+    quiz: [
+      { id: "en-a2-cont-q1", question: "Choose the correct sentence.", options: ["I am working on the flyer.", "I working on the flyer.", "I work now on flyer."], answer: "I am working on the flyer." },
+      { id: "en-a2-cont-q2", question: "She ___ testing the website.", options: ["is", "are", "am"], answer: "is" },
+      { id: "en-a2-cont-q3", question: "Present Continuous is for:", options: ["now", "only yesterday", "articles"], answer: "now" }
+    ]
+  },
+  {
+    id: "en-a2-emails",
+    level: "A2",
+    title: "Client Emails",
+    subtitle: "simple work messages",
+    goal: "Goal: write and understand simple client messages.",
+    rules: [
+      "Start politely: Hello / Dear...",
+      "Use simple structure: reason, information, next step.",
+      "Useful phrase: I am sending you...",
+      "End politely: Best regards / Kind regards."
+    ],
+    examples: [
+      { sentence: "I am sending you the first logo version.", translation: "Я надсилаю вам першу версію логотипу." },
+      { sentence: "Could you please check the file?", translation: "Чи могли б ви перевірити файл?" },
+      { sentence: "Thank you for your feedback.", translation: "Дякую за ваш feedback." }
+    ],
+    tasks: [
+      "Read 3 client email phrases aloud.",
+      "Choose one phrase for sending a file.",
+      "Do the mini-test.",
+      "★ Write a short message in your notebook."
+    ],
+    quiz: [
+      { id: "en-a2-email-q1", question: "Which phrase is polite?", options: ["Could you please check the file?", "Check file now!", "File check you?"], answer: "Could you please check the file?" },
+      { id: "en-a2-email-q2", question: "Best regards is used:", options: ["at the end", "only in the middle", "as a question"], answer: "at the end" },
+      { id: "en-a2-email-q3", question: "Переклад: I am sending you the file.", options: ["Я надсилаю вам файл.", "Я видаляю файл.", "Я шукаю файл."], answer: "Я надсилаю вам файл." }
+    ]
+  },
+  {
+    id: "en-a2-irregular-verbs",
+    level: "A2",
+    title: "Irregular Verbs",
+    subtitle: "go-went-gone",
+    goal: "Goal: recognize the most useful irregular verbs for work and daily life.",
+    rules: [
+      "Irregular verbs do not use normal -ed in Past Simple.",
+      "Use column 2 for Past Simple: I went, I made, I wrote.",
+      "Use column 3 with have/has: I have made, she has written.",
+      "Learn small groups, not the whole table at once."
+    ],
+    examples: [
+      { sentence: "I made a moodboard.", translation: "Я зробила moodboard." },
+      { sentence: "I wrote a short email.", translation: "Я написала короткий email." },
+      { sentence: "I have sent the file.", translation: "Я надіслала файл." }
+    ],
+    tasks: [
+      "Learn 5 verbs: be, do, go, make, write.",
+      "Read the irregular verbs table.",
+      "Do the mini-test.",
+      "★ Say 3 things you did last week."
+    ],
+    quiz: [
+      { id: "en-a2-irregular-q1", question: "go in Past Simple:", options: ["went", "goed", "gone"], answer: "went" },
+      { id: "en-a2-irregular-q2", question: "make in Past Simple:", options: ["made", "maked", "make"], answer: "made" },
+      { id: "en-a2-irregular-q3", question: "write - wrote -", options: ["written", "writed", "writing"], answer: "written" }
     ]
   }
 ];

@@ -227,23 +227,10 @@ export function ModuleView() {
       </div>
 
       <div className="grid gap-4">
-        {primaryBlocks.map((block, index) => (
-          <ModuleBlockCard
-            key={block.key}
-            block={block}
-            defaultOpen={isModuleOne ? false : index < 2}
-            note={moduleState.blockNotes[block.key] ?? ""}
-            onSaveNote={saveBlockNote}
-          />
-        ))}
-
-        {extraBlocks.length ? (
-          <CollapsibleCard
-            title={isModuleOne ? "Später / optional" : "Zusatzmaterial"}
-            eyebrow={isModuleOne ? "не відкривати зараз, якщо плутає" : "Сховано, якщо потрібно пізніше"}
-          >
+        {isModuleOne ? (
+          <CollapsibleCard title="Lernmaterial" eyebrow="теорія, слова, питання - відкривати тільки коли треба">
             <div className="grid gap-4">
-              {extraBlocks.map((block) => (
+              {[...primaryBlocks, ...extraBlocks].map((block) => (
                 <ModuleBlockInline
                   key={block.key}
                   block={block}
@@ -251,31 +238,58 @@ export function ModuleView() {
                   onSaveNote={saveBlockNote}
                 />
               ))}
+              <ReflectionInline
+                learned={moduleState.learned ?? ""}
+                onSave={(value) => saveModulePatch({ learned: value })}
+              />
             </div>
           </CollapsibleCard>
-        ) : null}
+        ) : (
+          <>
+            {primaryBlocks.map((block, index) => (
+              <ModuleBlockCard
+                key={block.key}
+                block={block}
+                defaultOpen={index < 2}
+                note={moduleState.blockNotes[block.key] ?? ""}
+                onSaveNote={saveBlockNote}
+              />
+            ))}
 
-        {!isModuleOne ? (
-          <CollapsibleCard title="Aufgaben" eyebrow="4 Pflichtaufgaben + ★ optional" defaultOpen>
-            <TaskList tasks={deliverableTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
-          </CollapsibleCard>
-        ) : null}
+            {extraBlocks.length ? (
+              <CollapsibleCard title="Zusatzmaterial" eyebrow="Сховано, якщо потрібно пізніше">
+                <div className="grid gap-4">
+                  {extraBlocks.map((block) => (
+                    <ModuleBlockInline
+                      key={block.key}
+                      block={block}
+                      note={moduleState.blockNotes[block.key] ?? ""}
+                      onSaveNote={saveBlockNote}
+                    />
+                  ))}
+                </div>
+              </CollapsibleCard>
+            ) : null}
 
-        {!isModuleOne ? (
-          <CollapsibleCard title="Quality Check" eyebrow="Before delivery" defaultOpen>
-            <TaskList tasks={qualityTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
-          </CollapsibleCard>
-        ) : null}
+            <CollapsibleCard title="Aufgaben" eyebrow="4 Pflichtaufgaben + ★ optional" defaultOpen>
+              <TaskList tasks={deliverableTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
+            </CollapsibleCard>
 
-        <CollapsibleCard title="Was habe ich gelernt?" eyebrow="Reflection">
-          <AutosaveTextarea
-            label="Meine Zusammenfassung"
-            initialValue={moduleState.learned ?? ""}
-            placeholder="Ich habe gelernt, dass..."
-            rows={6}
-            onSave={(value) => saveModulePatch({ learned: value })}
-          />
-        </CollapsibleCard>
+            <CollapsibleCard title="Quality Check" eyebrow="Before delivery" defaultOpen>
+              <TaskList tasks={qualityTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
+            </CollapsibleCard>
+
+            <CollapsibleCard title="Was habe ich gelernt?" eyebrow="Reflection">
+              <AutosaveTextarea
+                label="Meine Zusammenfassung"
+                initialValue={moduleState.learned ?? ""}
+                placeholder="Ich habe gelernt, dass..."
+                rows={6}
+                onSave={(value) => saveModulePatch({ learned: value })}
+              />
+            </CollapsibleCard>
+          </>
+        )}
       </div>
 
       <div className="mt-6">
@@ -389,6 +403,30 @@ function ModuleBlockInline({
         initialValue={note}
         placeholder="Можеш записати тільки якщо це справді потрібно."
         onSave={(value) => onSaveNote(block.key, value)}
+      />
+    </section>
+  );
+}
+
+function ReflectionInline({
+  learned,
+  onSave
+}: {
+  learned: string;
+  onSave: (value: string) => Promise<void>;
+}) {
+  return (
+    <section className="border-t border-line pt-4 dark:border-neutral-800">
+      <div className="mb-3">
+        <p className="text-xs font-semibold uppercase tracking-normal text-brand-700 dark:text-brand-100">Reflection</p>
+        <h3 className="mt-1 text-sm font-semibold">Was habe ich gelernt?</h3>
+      </div>
+      <AutosaveTextarea
+        label="Meine Zusammenfassung"
+        initialValue={learned}
+        placeholder="Ich habe gelernt, dass..."
+        rows={6}
+        onSave={onSave}
       />
     </section>
   );
