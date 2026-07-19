@@ -31,6 +31,10 @@ export function ModuleView() {
   const selectedModule = modules.find((module) => module.id === selectedModuleId) ?? modules[0];
   const selectedBrief = useMemo(() => createBrief(selectedModule), [selectedModule]);
   const selectedBlocks = useMemo(() => createBlocks(selectedModule), [selectedModule]);
+  const { primaryBlocks, extraBlocks } = useMemo(
+    () => splitModuleBlocks(selectedModule, selectedBlocks),
+    [selectedBlocks, selectedModule]
+  );
   const selectedPlan = modulePlans[selectedModule.id];
   const selectedAlternative = alternativeClientBriefs[selectedModule.id];
   const selectedPrimaryTranslation = primaryClientBriefTranslations[selectedModule.id];
@@ -88,8 +92,8 @@ export function ModuleView() {
   );
 
   const requiredProgressTasks = useMemo(
-    () => [...deliverableTasks, ...qualityTasks].filter((task) => !isOptionalTask(task)),
-    [deliverableTasks, qualityTasks]
+    () => deliverableTasks.filter((task) => !isOptionalTask(task)),
+    [deliverableTasks]
   );
   const checkedCount = requiredProgressTasks.filter((task) => task.done || moduleState.checkedTasks[task.id]).length;
   const totalCount = requiredProgressTasks.length;
@@ -125,7 +129,7 @@ export function ModuleView() {
       ...moduleState.checkedTasks,
       [task.id]: nextDone
     };
-    const nextProgress = calculateProgress([...deliverableTasks, ...qualityTasks], nextCheckedTasks, task.id, nextDone);
+    const nextProgress = calculateProgress(deliverableTasks, nextCheckedTasks, task.id, nextDone);
 
     await setDoc(
       doc(getFirebaseDb(), "users", userId, "modules", selectedModule.id, "tasks", task.id),
@@ -211,30 +215,36 @@ export function ModuleView() {
       </div>
 
       <div className="grid gap-4">
-        {selectedBlocks.map((block, index) => (
-          <CollapsibleCard key={block.key} title={block.title} eyebrow={block.eyebrow} defaultOpen={index < 3}>
-            <ul className="mb-4 grid gap-2 text-sm text-neutral-700 dark:text-neutral-300">
-              {block.items.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <AutosaveTextarea
-              label="Моя нотатка до цього блоку"
-              initialValue={moduleState.blockNotes[block.key] ?? ""}
-              placeholder="Напиши свої висновки, приклади речень або що треба повторити."
-              onSave={(value) => saveBlockNote(block.key, value)}
-            />
-          </CollapsibleCard>
+        {primaryBlocks.map((block, index) => (
+          <ModuleBlockCard
+            key={block.key}
+            block={block}
+            defaultOpen={index < 2}
+            note={moduleState.blockNotes[block.key] ?? ""}
+            onSaveNote={saveBlockNote}
+          />
         ))}
+
+        {extraBlocks.length ? (
+          <CollapsibleCard title="Zusatzmaterial" eyebrow="Сховано, якщо потрібно пізніше">
+            <div className="grid gap-4">
+              {extraBlocks.map((block) => (
+                <ModuleBlockInline
+                  key={block.key}
+                  block={block}
+                  note={moduleState.blockNotes[block.key] ?? ""}
+                  onSaveNote={saveBlockNote}
+                />
+              ))}
+            </div>
+          </CollapsibleCard>
+        ) : null}
 
         <CollapsibleCard title="Aufgaben" eyebrow="4 Pflichtaufgaben + ★ optional" defaultOpen>
           <TaskList tasks={deliverableTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
         </CollapsibleCard>
 
-        <CollapsibleCard title="Quality Check" eyebrow="Before delivery" defaultOpen>
+        <CollapsibleCard title="Quality Check" eyebrow="Before delivery" defaultOpen={selectedModule.id !== "module-1"}>
           <TaskList tasks={qualityTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
         </CollapsibleCard>
 
@@ -287,6 +297,82 @@ function createEmptyModuleState(moduleId: string): ModuleProgressState {
     learned: "",
     selfAssessment: {}
   };
+}
+
+function splitModuleBlocks(module: LearningModule, blocks: ModuleBlock[]) {
+  if (module.id !== "module-1") {
+    return { primaryBlocks: blocks, extraBlocks: [] };
+  }
+
+  const primaryKeys = new Set<ModuleBlock["key"]>(["theorie", "quiz", "fachwoerter", "phrases"]);
+  return {
+    primaryBlocks: blocks.filter((block) => primaryKeys.has(block.key)),
+    extraBlocks: blocks.filter((block) => !primaryKeys.has(block.key))
+  };
+}
+
+function ModuleBlockCard({
+  block,
+  defaultOpen = false,
+  note,
+  onSaveNote
+}: {
+  block: ModuleBlock;
+  defaultOpen?: boolean;
+  note: string;
+  onSaveNote: (key: string, value: string) => Promise<void>;
+}) {
+  return (
+    <CollapsibleCard title={block.title} eyebrow={block.eyebrow} defaultOpen={defaultOpen}>
+      <ul className="mb-4 grid gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+        {block.items.map((item) => (
+          <li key={item} className="flex gap-2">
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" aria-hidden="true" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+      <AutosaveTextarea
+        label="Моя нотатка до цього блоку"
+        initialValue={note}
+        placeholder="Напиши свої висновки, приклади речень або що треба повторити."
+        onSave={(value) => onSaveNote(block.key, value)}
+      />
+    </CollapsibleCard>
+  );
+}
+
+function ModuleBlockInline({
+  block,
+  note,
+  onSaveNote
+}: {
+  block: ModuleBlock;
+  note: string;
+  onSaveNote: (key: string, value: string) => Promise<void>;
+}) {
+  return (
+    <section className="border-t border-line pt-4 first:border-t-0 first:pt-0 dark:border-neutral-800">
+      <div className="mb-3">
+        {block.eyebrow ? <p className="text-xs font-semibold uppercase tracking-normal text-brand-700 dark:text-brand-100">{block.eyebrow}</p> : null}
+        <h3 className="mt-1 text-sm font-semibold">{block.title}</h3>
+      </div>
+      <ul className="mb-4 grid gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+        {block.items.map((item) => (
+          <li key={item} className="flex gap-2">
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" aria-hidden="true" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+      <AutosaveTextarea
+        label="Моя нотатка"
+        initialValue={note}
+        placeholder="Можеш записати тільки якщо це справді потрібно."
+        onSave={(value) => onSaveNote(block.key, value)}
+      />
+    </section>
+  );
 }
 
 function createBrief(module: LearningModule): CustomerBrief {
