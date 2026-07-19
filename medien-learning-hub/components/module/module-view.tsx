@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { ArrowRight, Check, Download, FileText } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { collection, doc, onSnapshot, serverTimestamp, setDoc } from "firebase/firestore";
 import {
   moduleOneQualityChecks,
   alternativeClientBriefs,
@@ -18,7 +17,7 @@ import { AutosaveTextarea } from "@/components/shared/autosave-textarea";
 import { Badge, CollapsibleCard, PageHeader, Panel, ProgressBar } from "@/components/shared/ui";
 import { useAuth } from "@/lib/auth";
 import { exportModulePdf } from "@/lib/export";
-import { getFirebaseDb } from "@/lib/firebase";
+import { saveUserDocument, subscribeUserCollection } from "@/lib/firestore";
 import type { ChecklistItem, CustomerBrief, LearningModule, ModuleBlock, ModuleProgressState } from "@/lib/types";
 
 type TaskRecord = ChecklistItem & { type: "deliverable" | "quality" };
@@ -52,28 +51,35 @@ export function ModuleView() {
   const [tasks, setTasks] = useState<TaskRecord[]>([]);
 
   useEffect(() => {
-    const db = getFirebaseDb();
     setModuleState(createEmptyModuleState(selectedModule.id));
     setTasks([]);
 
-    const unsubscribeModule = onSnapshot(doc(db, "users", userId, "modules", selectedModule.id), (snapshot) => {
-      const data = snapshot.data();
-      if (data) {
-        setModuleState((current) => ({
-          ...current,
-          ...data,
-          moduleId: selectedModule.id,
-          checkedTasks: (data.checkedTasks as Record<string, boolean>) ?? {},
-          blockNotes: (data.blockNotes as Record<string, string>) ?? {},
-          reflection: (data.reflection as Record<string, string>) ?? {},
-          selfAssessment: (data.selfAssessment as Record<string, number>) ?? {}
-        }));
-      }
-    });
+    const unsubscribeModule = subscribeUserCollection<ModuleProgressState & { id?: string; progress?: number }>(
+      userId,
+      "modules",
+      (items) => {
+        const data = items.find((item) => item.id === selectedModule.id || item.moduleId === selectedModule.id);
+        if (data) {
+          setModuleState((current) => ({
+            ...current,
+            ...data,
+            moduleId: selectedModule.id,
+            checkedTasks: (data.checkedTasks as Record<string, boolean>) ?? {},
+            blockNotes: (data.blockNotes as Record<string, string>) ?? {},
+            reflection: (data.reflection as Record<string, string>) ?? {},
+            selfAssessment: (data.selfAssessment as Record<string, number>) ?? {}
+          }));
+        }
+      },
+      () => undefined
+    );
 
-    const unsubscribeTasks = onSnapshot(collection(db, "users", userId, "modules", selectedModule.id, "tasks"), (snapshot) => {
-      setTasks(snapshot.docs.map((item) => ({ id: item.id, ...item.data() }) as TaskRecord));
-    });
+    const unsubscribeTasks = subscribeUserCollection<TaskRecord>(
+      userId,
+      moduleTaskCollection(selectedModule.id),
+      setTasks,
+      () => undefined
+    );
 
     return () => {
       unsubscribeModule();
@@ -102,17 +108,21 @@ export function ModuleView() {
 
   const saveModulePatch = useCallback(
     async (patch: Partial<ModuleProgressState>, nextProgress = progress) => {
-      await setDoc(
-        doc(getFirebaseDb(), "users", userId, "modules", selectedModule.id),
-        {
-          ...patch,
-          moduleId: selectedModule.id,
+      try {
+        await saveUserDocument<Partial<ModuleProgressState> & { id: string; moduleId: string; progress: number }>(
           userId,
-          progress: nextProgress,
-          updatedAt: serverTimestamp()
-        },
-        { merge: true }
-      );
+          "modules",
+          selectedModule.id,
+          {
+            ...patch,
+            id: selectedModule.id,
+            moduleId: selectedModule.id,
+            progress: nextProgress
+          }
+        );
+      } catch {
+        // A local copy is saved first, so progress survives refresh even if cloud sync fails.
+      }
     },
     [progress, selectedModule.id, userId]
   );
@@ -132,19 +142,21 @@ export function ModuleView() {
     };
     const nextProgress = calculateProgress(deliverableTasks, nextCheckedTasks, task.id, nextDone);
 
-    await setDoc(
-      doc(getFirebaseDb(), "users", userId, "modules", selectedModule.id, "tasks", task.id),
-      {
-        ...task,
-        done: nextDone,
-        ready: nextDone,
-        moduleId: selectedModule.id,
+    try {
+      await saveUserDocument<TaskRecord & { moduleId: string; ready: boolean }>(
         userId,
-        updatedAt: serverTimestamp(),
-        createdAt: serverTimestamp()
-      },
-      { merge: true }
-    );
+        moduleTaskCollection(selectedModule.id),
+        task.id,
+        {
+          ...task,
+          done: nextDone,
+          ready: nextDone,
+          moduleId: selectedModule.id
+        }
+      );
+    } catch {
+      // A local copy is saved first, so progress survives refresh even if cloud sync fails.
+    }
 
     await saveModulePatch({
       checkedTasks: nextCheckedTasks
@@ -330,6 +342,10 @@ function createEmptyModuleState(moduleId: string): ModuleProgressState {
     learned: "",
     selfAssessment: {}
   };
+}
+
+function moduleTaskCollection(moduleId: string) {
+  return `modules/${moduleId}/tasks`;
 }
 
 function splitModuleBlocks(module: LearningModule, blocks: ModuleBlock[]) {

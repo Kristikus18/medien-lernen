@@ -1,12 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { collection, doc, onSnapshot, serverTimestamp, setDoc } from "firebase/firestore";
 import { AutosaveTextarea } from "@/components/shared/autosave-textarea";
 import { Badge, CollapsibleCard, PageHeader, Panel, ProgressBar } from "@/components/shared/ui";
 import { alternativeClientBriefs, modulePlans, modules, primaryClientBriefTranslations } from "@/data/modules";
 import { useAuth } from "@/lib/auth";
-import { getFirebaseDb } from "@/lib/firebase";
+import { saveUserDocument, subscribeUserCollection } from "@/lib/firestore";
 import type { LearningModule } from "@/lib/types";
 
 const portfolioDeliverables = [
@@ -137,61 +136,64 @@ export function PortfolioView() {
   const [portfolioNotes, setPortfolioNotes] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(doc(getFirebaseDb(), "users", userId, "selfAssessments", "current"), (snapshot) => {
-      const data = snapshot.data();
-      if (data?.ratings && typeof data.ratings === "object") {
-        setRatings(data.ratings as Record<string, number>);
-      }
-    });
+    const unsubscribe = subscribeUserCollection<{ id: string; ratings?: Record<string, number> }>(
+      userId,
+      "selfAssessments",
+      (items) => {
+        const data = items.find((item) => item.id === "current");
+        if (data?.ratings && typeof data.ratings === "object") {
+          setRatings(data.ratings as Record<string, number>);
+        }
+      },
+      () => undefined
+    );
     return unsubscribe;
   }, [userId]);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(getFirebaseDb(), "users", userId, "portfolio"), (snapshot) => {
-      const nextNotes: Record<string, string> = {};
-      snapshot.docs.forEach((item) => {
-        const data = item.data();
-        if (typeof data.content === "string") {
-          nextNotes[item.id] = data.content;
-        }
-      });
-      setPortfolioNotes(nextNotes);
-    });
+    const unsubscribe = subscribeUserCollection<{ id: string; content?: string }>(
+      userId,
+      "portfolio",
+      (items) => {
+        const nextNotes: Record<string, string> = {};
+        items.forEach((item) => {
+          if (typeof item.content === "string") {
+            nextNotes[item.id] = item.content;
+          }
+        });
+        setPortfolioNotes(nextNotes);
+      },
+      () => undefined
+    );
     return unsubscribe;
   }, [userId]);
 
   const saveRatings = useCallback(
     async (nextRatings: Record<string, number>) => {
       setRatings(nextRatings);
-      await setDoc(
-        doc(getFirebaseDb(), "users", userId, "selfAssessments", "current"),
-        {
+      try {
+        await saveUserDocument(userId, "selfAssessments", "current", {
           id: "current",
-          ratings: nextRatings,
-          userId,
-          updatedAt: serverTimestamp(),
-          createdAt: serverTimestamp()
-        },
-        { merge: true }
-      );
+          ratings: nextRatings
+        });
+      } catch {
+        // A local copy is saved first, so ratings survive refresh even if cloud sync fails.
+      }
     },
     [userId]
   );
 
   const savePortfolioNote = useCallback(
     async (id: string, title: string, value: string) => {
-      await setDoc(
-        doc(getFirebaseDb(), "users", userId, "portfolio", id),
-        {
+      try {
+        await saveUserDocument(userId, "portfolio", id, {
           id,
           title,
-          content: value,
-          userId,
-          updatedAt: serverTimestamp(),
-          createdAt: serverTimestamp()
-        },
-        { merge: true }
-      );
+          content: value
+        });
+      } catch {
+        // A local copy is saved first, so notes survive refresh even if cloud sync fails.
+      }
     },
     [userId]
   );

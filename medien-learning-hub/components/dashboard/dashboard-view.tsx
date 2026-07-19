@@ -3,11 +3,10 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen, CheckCircle2, Clock3, Languages, Trophy } from "lucide-react";
 import { useCallback, useMemo } from "react";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { alternativeClientBriefs, modules } from "@/data/modules";
 import { PageHeader, Panel, ProgressBar, Badge } from "@/components/shared/ui";
 import { useAuth } from "@/lib/auth";
-import { getFirebaseDb } from "@/lib/firebase";
+import { subscribeUserCollection } from "@/lib/firestore";
 import { useSnapshotSubscription } from "@/lib/hooks";
 import type { LearningModule, TimeEntry, VocabularyWord } from "@/lib/types";
 
@@ -17,20 +16,19 @@ export function DashboardView() {
 
   const moduleSubscription = useCallback(
     (onData: (items: LearningModule[]) => void, onError: (error: Error) => void) => {
-      const ref = query(collection(getFirebaseDb(), "users", userId, "modules"), orderBy("number", "asc"));
-      return onSnapshot(ref, (snapshot) => onData(snapshot.docs.map((item) => item.data() as LearningModule)), onError);
+      return subscribeUserCollection<LearningModule>(userId, "modules", onData, onError);
     },
     [userId]
   );
   const vocabSubscription = useCallback(
     (onData: (items: VocabularyWord[]) => void, onError: (error: Error) => void) => {
-      return onSnapshot(collection(getFirebaseDb(), "users", userId, "vocabulary"), (snapshot) => onData(snapshot.docs.map((item) => item.data() as VocabularyWord)), onError);
+      return subscribeUserCollection<VocabularyWord>(userId, "vocabulary", onData, onError);
     },
     [userId]
   );
   const timeSubscription = useCallback(
     (onData: (items: TimeEntry[]) => void, onError: (error: Error) => void) => {
-      return onSnapshot(collection(getFirebaseDb(), "users", userId, "timeEntries"), (snapshot) => onData(snapshot.docs.map((item) => item.data() as TimeEntry)), onError);
+      return subscribeUserCollection<TimeEntry>(userId, "timeEntries", onData, onError);
     },
     [userId]
   );
