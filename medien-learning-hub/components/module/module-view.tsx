@@ -171,6 +171,7 @@ export function ModuleView() {
               avoidUa={selectedPrimaryTranslation?.avoid}
               pages={selectedBrief.pages}
               pagesUa={selectedPrimaryTranslation?.pages}
+              tasks={coreAusbildungDeliverables}
             />
             {selectedAlternative ? (
               <VariantCard
@@ -179,7 +180,7 @@ export function ModuleView() {
                 industry={selectedAlternative.industry}
                 description={`${selectedAlternative.wantsDe} ${selectedAlternative.orderDe}`}
                 ukrainian={`${selectedAlternative.wantsUa} ${selectedAlternative.orderUa}`}
-                deliverables={selectedAlternative.deliverables}
+                tasks={coreAusbildungDeliverables}
               />
             ) : null}
           </div>
@@ -682,7 +683,7 @@ function VariantCard({
   avoidUa,
   pages,
   pagesUa,
-  deliverables
+  tasks
 }: {
   label: string;
   title: string;
@@ -696,7 +697,7 @@ function VariantCard({
   avoidUa?: string;
   pages?: string;
   pagesUa?: string;
-  deliverables?: string[];
+  tasks?: string[];
 }) {
   return (
     <article className="rounded-md border border-line bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-950">
@@ -710,19 +711,31 @@ function VariantCard({
           <span className="font-semibold">Українською:</span> {ukrainian}
         </p>
       ) : null}
+      {tasks?.length ? (
+        <div className="mt-3 rounded-md border border-line bg-white p-3 dark:border-neutral-800 dark:bg-neutral-900">
+          <p className="text-xs font-semibold uppercase tracking-normal text-neutral-500 dark:text-neutral-400">Завдання для цього варіанту</p>
+          <ol className="mt-2 grid gap-2 text-sm text-neutral-700 dark:text-neutral-300">
+            {tasks.map((task) => {
+              const optional = task.trim().startsWith("★");
+              return (
+                <li key={task} className="flex items-start gap-2">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" aria-hidden="true" />
+                  <span className="flex flex-wrap items-center gap-2">
+                    <span>{task}</span>
+                    {optional ? <Badge tone="amber">freiwillig</Badge> : null}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+      ) : null}
       {targetGroup ? <p className="mt-3 text-sm"><span className="font-semibold">Zielgruppe:</span> {targetGroup}</p> : null}
       {targetGroupUa ? <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400"><span className="font-semibold">Цільова група:</span> {targetGroupUa}</p> : null}
       {avoid ? <p className="mt-2 text-sm"><span className="font-semibold">Nicht verwenden:</span> {avoid}</p> : null}
       {avoidUa ? <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400"><span className="font-semibold">Не використовувати:</span> {avoidUa}</p> : null}
       {pages ? <p className="mt-2 text-sm"><span className="font-semibold">Seitenumfang:</span> {pages}</p> : null}
       {pagesUa ? <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400"><span className="font-semibold">Сторінки:</span> {pagesUa}</p> : null}
-      {deliverables?.length ? (
-        <div className="mt-3 flex flex-wrap gap-2">
-          {deliverables.map((item) => (
-            <Badge key={item}>{item}</Badge>
-          ))}
-        </div>
-      ) : null}
     </article>
   );
 }
