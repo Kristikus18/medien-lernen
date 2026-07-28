@@ -327,7 +327,7 @@ export const moduleOneBlocks: ModuleBlock[] = [
 export const moduleOneDeliverables = [
   "Logo Redesign: 3 Scribbles + 1 finale Richtung mit Begründung",
   "Illustrator Logo Set: 4-färbig, einfärbig und negativ",
-  "Logo Animation: 5-8 Sekunden als MP4/GIF",
+  "Logo-/Bildanimation: 5-8 Sekunden als MP4/GIF",
   "Styleguide: 1-3 Seiten mit Logo, Farben, Schriften und Regeln",
   "Moodboard: DIN A3 quer mit Logo, Farbgebung und Bildsprache",
   "Inserat: 98 x 135 mm, 4c, PDF/X-4, FOGRA 51, Druckmarken",
@@ -336,14 +336,14 @@ export const moduleOneDeliverables = [
   "Budgetierung: Angebot und Rechnung inkl. Druck, Budget 10.000 EUR, Stückzahl 5000",
   "Projektplan: Termine, Produktionsschritte und Meilensteine bis zur Abgabe",
   "Präsentation: PowerPoint oder PDF",
-  "★ Website: Figma Design und optional WordPress/Elementor Umsetzung",
+  "Website: Figma Design + WordPress/Elementor Umsetzung",
   "★ Extra: 16-Bogen-Plakat oder Rollup"
 ];
 
 export const moduleOneQualityChecks = [
   "3 Logo-Scribbles sind sichtbar und eine Entscheidung ist begründet.",
   "Logo ist als Vektor aufgebaut und in 4-färbig, einfärbig und negativ geprüft.",
-  "Logo Animation ist kurz, sauber exportiert und passt zur Marke.",
+  "Logo-/Bildanimation ist kurz, sauber exportiert und passt zur Marke.",
   "Styleguide erklärt Logo, Farben, Typografie und Bildsprache einfach.",
   "Moodboard ist DIN A3 quer und zeigt Logo, Farbgebung und Bildsprache.",
   "Inserat hat korrektes Format 98 x 135 mm, CMYK/4c, PDF/X-4 und Druckmarken.",
@@ -352,6 +352,8 @@ export const moduleOneQualityChecks = [
   "Budgetierung enthält Angebot, Rechnung, Druckkosten, Budget und Stückzahl.",
   "Projektplan zeigt Termine, Produktionsschritte und Meilensteine.",
   "Präsentation zeigt Aufgabe, Prozess, Entscheidungen und finale Ergebnisse.",
+  "Website ist in Figma geplant und in WordPress/Elementor zumindest als Startseite umgesetzt.",
+  "Website-Grundlagen sind geprüft: Responsive Design, Formular, Cookie Banner, SEO und Backup.",
   "Alle Dateien sind klar benannt und in einem Kundenordner geordnet.",
   "Fachbegriffe können auf Deutsch kurz erklärt werden."
 ];
@@ -502,7 +504,7 @@ const reportTemplate = [
 export const coreAusbildungProjectFlow = [
   "1. Logo Redesign - scribble 3 unterschiedliche Versionen, wähle eine Richtung und begründe deine Entscheidung auf Deutsch.",
   "2. Illustrator Ausarbeitung - baue das Logo sauber als Vektor auf: 4-färbig, einfärbig und negativ.",
-  "3. Logo Animation - animiere das finale Logo kurz und ruhig, 5-8 Sekunden, Export als MP4 oder GIF.",
+  "3. Logo-/Bildanimation - animiere das finale Logo oder ein Key Visual kurz und ruhig, 5-8 Sekunden, Export als MP4 oder GIF.",
   "4. Styleguide - erstelle 1-3 Seiten mit Logo-Regeln, Farben, Typografie und Bildsprache.",
   "5. Moodboard - erstelle DIN A3 quer mit Logo, Farbgebung, Bildsprache und 3-5 Stichwörtern zur Wirkung.",
   "6. Inserat - gestalte ein Inserat 98 x 135 mm, 4c, PDF/X-4, FOGRA 51, Kunstdruckpapier matt, inkl. Druckmarken.",
@@ -511,14 +513,14 @@ export const coreAusbildungProjectFlow = [
   "9. Budgetierung - erstelle Angebot und Rechnung: Projektkosten inkl. Druck, Budget 10.000 EUR, Stückzahl 5000.",
   "10. Projektplan - plane Termine, Produktionsschritte und Meilensteine bis zur Abgabe an den Kunden.",
   "11. Präsentation - erstelle eine kurze PowerPoint- oder PDF-Präsentation mit Aufgabe, Prozess und Ergebnis.",
-  "★ 12. Website - Zusatz für Portfolio: Website Design in Figma und optional WordPress/Elementor Umsetzung.",
+  "12. Website - erstelle ein Website Design in Figma und setze die Startseite oder One-Page-Version in WordPress/Elementor um.",
   "★ 13. Extras - wenn Zeit bleibt: 16-Bogen-Plakat oder Rollup erstellen."
 ];
 
 export const coreAusbildungDeliverables = [
   "1. Logo Redesign: 3 Scribbles + Entscheidung mit Begründung",
   "2. Illustrator Logo Set: 4-färbig, einfärbig, negativ",
-  "3. Logo Animation: 5-8 Sekunden MP4/GIF",
+  "3. Logo-/Bildanimation: 5-8 Sekunden MP4/GIF",
   "4. Styleguide: 1-3 Seiten",
   "5. Moodboard: DIN A3 quer",
   "6. Inserat: 98 x 135 mm, 4c, PDF/X-4, FOGRA 51, Druckmarken",
@@ -527,7 +529,7 @@ export const coreAusbildungDeliverables = [
   "9. Budgetierung: Angebot + Rechnung, Budget 10.000 EUR, Stückzahl 5000",
   "10. Projektplan: Termine + Meilensteine",
   "11. Präsentation: PowerPoint oder PDF",
-  "★ 12. Website Design in Figma / optional WordPress",
+  "12. Website Design in Figma + WordPress/Elementor Umsetzung",
   "★ 13. Extra: 16-Bogen-Plakat oder Rollup"
 ];
 

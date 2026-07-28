@@ -27,13 +27,13 @@ const portfolioDeliverables = [
   {
     id: "logo-animation",
     number: "2",
-    title: "Logo Animation",
+    title: "Logo-/Bildanimation",
     program: "After Effects / Premiere Pro",
-    clientWishDe: "Der Kunde möchte eine kurze Logo-Animation für Social Media oder Website-Intro.",
-    clientWishUa: "Клієнт хоче коротку анімацію логотипу для соцмереж або вступу на сайті.",
+    clientWishDe: "Der Kunde möchte eine kurze Logo- oder Bildanimation für Social Media, Website-Intro oder Präsentation.",
+    clientWishUa: "Клієнт хоче коротку анімацію логотипу або картинки для соцмереж, сайту чи презентації.",
     requirements: [
-      "Logo in einzelne Ebenen vorbereiten.",
-      "3-5 einfache Keyframes planen: Auftauchen, Skalierung, Rotation oder Fade.",
+      "Logo oder Key Visual in einzelne Ebenen vorbereiten.",
+      "3-5 einfache Keyframes planen: Auftauchen, Skalierung, Rotation, Mask Reveal oder Fade.",
       "Animation ruhig halten, 5-8 Sekunden.",
       "Export als MP4 oder GIF testen."
     ],
@@ -147,17 +147,18 @@ const portfolioDeliverables = [
   {
     id: "website",
     number: "10",
-    title: "★ Website",
+    title: "Website in WordPress",
     program: "Figma + WordPress / Elementor",
-    clientWishDe: "Als Portfolio-Zusatz möchte der Kunde eine Website, die zur Kampagne passt und auf Handy und Desktop funktioniert.",
-    clientWishUa: "Як додаток для портфоліо клієнт хоче сайт, який підходить до кампанії і працює на телефоні та комп'ютері.",
+    clientWishDe: "Der Kunde möchte eine Website, die zur Kampagne passt und in WordPress mit Elementor umgesetzt werden kann.",
+    clientWishUa: "Клієнт хоче сайт, який підходить до кампанії і може бути створений у WordPress через Elementor.",
     requirements: [
       "Entscheiden: One-Page oder 3-5 Seiten.",
       "Figma Design erstellen: Hero, Angebot, Über uns, Kontakt.",
+      "Startseite oder One-Page-Version in WordPress mit Elementor nachbauen.",
       "Responsive Version für Desktop und Mobile prüfen.",
-      "Optional in WordPress/Elementor nachbauen: Formular, Cookie Banner, SEO, Backup."
+      "Formular, Cookie Banner, SEO Basics und Backup dokumentieren."
     ],
-    output: "Figma Design, optional WordPress-Link, Screenshots für Behance und kurze Beschreibung."
+    output: "Figma Design, WordPress/Elementor Link oder Screenshots, Plugin-Notizen und kurze Beschreibung."
   },
   {
     id: "extras",
@@ -180,13 +181,13 @@ const finalPortfolioPostChecks = [
   "Der Portfolio-Post zeigt die komplette LAP-Simulation, nicht nur einzelne schöne Bilder.",
   "Logo, Styleguide, Moodboard, Inserat, Folder und Instagram Post wirken wie eine Kampagne.",
   "Printdaten werden kurz erwähnt: CMYK/4c, PDF/X-4, Beschnitt, Schnittmarken, FOGRA 51.",
-  "Logo-Animation und Website sind klar als Zusatz sichtbar, wenn sie gemacht wurden.",
+  "Logo-/Bildanimation und WordPress-Website sind als eigene Projektergebnisse sichtbar.",
   "PDF oder Behance Draft ist sauber exportiert und kann zur Prüfung oder Kontrolle geschickt werden."
 ];
 
 const lapSimulationDeliverables = [
   "Logo Redesign",
-  "Logo Animation",
+  "Logo-/Bildanimation",
   "Styleguide",
   "Moodboard A3",
   "Inserat",
@@ -195,7 +196,7 @@ const lapSimulationDeliverables = [
   "Budgetierung",
   "Projektplan",
   "Präsentation",
-  "★ Website",
+  "WordPress Website",
   "★ Plakat / Rollup"
 ];
 
@@ -589,14 +590,14 @@ function createModulePortfolioSheetItems(module: LearningModule, variant: Portfo
     "Moodboard DIN A3 quer: Logo, Farbgebung, Bildsprache und 3-5 Wirkungswörter zeigen.",
     "Logo Redesign: 3 Scribbles, finale Entscheidung, Begründung und Illustrator-Ausarbeitung zeigen.",
     "Logo Set: 4-färbig, einfärbig und negativ auf einem sauberen Mockup präsentieren.",
-    "Logo Animation: 2-3 Keyframes oder kurzes MP4/GIF zeigen und die Bewegung kurz begründen.",
+    "Logo-/Bildanimation: 2-3 Keyframes oder kurzes MP4/GIF zeigen und die Bewegung kurz begründen.",
     "Styleguide 1-3 Seiten: Logo-Regeln, Farben, Schriften und Bildsprache zeigen.",
     "Inserat: 98 x 135 mm, 4c, PDF/X-4, FOGRA 51 und Druckmarken kurz sichtbar machen.",
     "Wickelfalz-Folder: 6 Seiten, offen A4 quer, 4/4c, 3 mm Beschnitt und Schnittmarken erwähnen.",
     "Instagram Post: finalen Post und Feed-Mockup zeigen.",
     "Budgetierung + Projektplan: Angebot/Rechnung, Budget 10.000 EUR, Stückzahl 5000 und Meilensteine kurz zeigen.",
     "Präsentation: 3-6 Slides oder PDF-Seiten zeigen: Aufgabe, Prozess, Ergebnis, Fachbegriffe.",
-    "★ Website: optional Figma Desktop/Mobile und WordPress/Elementor Umsetzung zeigen.",
+    "Website: Figma Desktop/Mobile und WordPress/Elementor Umsetzung mit Formular, Cookie Banner, SEO und Backup-Notizen zeigen.",
     "★ Extra: optional 16-Bogen-Plakat oder Rollup als Mockup zeigen.",
     "Kurztext für Behance/LinkedIn: Problem, Zielgruppe, Lösung, Programme und Ergebnis in einfachen Sätzen.",
     "PDF oder Behance Draft hochladen/verlinken und danach Feedback notieren."

@@ -223,7 +223,7 @@ export function ModuleView() {
             <ProgressBar value={progress} />
             <p className="text-sm text-neutral-600 dark:text-neutral-300">
               {isModuleOne
-                ? "Прогрес рахується по основних LAP-завданнях. Website, Plakat і Rollup можна зробити пізніше як додаткові."
+                ? "Прогрес рахується по основних LAP-завданнях, включно з Animation і WordPress/Elementor Website. Додаткові тільки Plakat і Rollup."
                 : "Мета: зробити LAP-пакет, який можна покласти у портфоліо."}
             </p>
             <button

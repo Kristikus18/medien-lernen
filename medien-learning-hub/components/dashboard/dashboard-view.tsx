@@ -101,9 +101,9 @@ export function DashboardView() {
           <ul className="space-y-3 text-sm">
             {[
               "Logo Redesign: 3 Scribbles + 1 рішення з коротким Begründung.",
-              "Illustrator: Logo Set у 4-färbig, einfärbig і negativ.",
+              "Animation: Logo-/Bildanimation 5-8 секунд як MP4/GIF.",
               "Print: Inserat 98 x 135 mm + Wickelfalz-Folder з Beschnitt і Schnittmarken.",
-              "Deutsch: пояснити PDF/X-4, FOGRA 51, Beschnitt, Druckmarken."
+              "WordPress: Figma дизайн + Startseite/One-Page в Elementor з Formular, Cookie Banner, SEO."
             ].map((task) => (
               <li key={task} className="rounded-md border border-line p-3 dark:border-neutral-800">
                 {task}
