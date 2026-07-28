@@ -223,8 +223,8 @@ export function ModuleView() {
             <ProgressBar value={progress} />
             <p className="text-sm text-neutral-600 dark:text-neutral-300">
               {isModuleOne
-                ? "У цьому модулі прогрес рахується тільки по 4 основних завданнях. Website і перевірки можна зробити пізніше."
-                : "Мета: зробити результат, який можна покласти у портфоліо."}
+                ? "Прогрес рахується по основних LAP-завданнях. Website, Plakat і Rollup можна зробити пізніше як додаткові."
+                : "Мета: зробити LAP-пакет, який можна покласти у портфоліо."}
             </p>
             <button
               type="button"
@@ -283,7 +283,7 @@ export function ModuleView() {
               </CollapsibleCard>
             ) : null}
 
-            <CollapsibleCard title="Aufgaben" eyebrow="4 Pflichtaufgaben + ★ optional" defaultOpen>
+            <CollapsibleCard title="Aufgaben" eyebrow="Prüfungssimulation + ★ optional" defaultOpen>
               <TaskList tasks={deliverableTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
             </CollapsibleCard>
 
@@ -700,7 +700,7 @@ function coreProjectItems(module: LearningModule) {
       : "Figma als optionaler Zusatz";
 
   return coreAusbildungProjectFlow.map((item) =>
-    item.startsWith("★ 5. Website")
+    item.includes("Website")
       ? `${item} Werkzeug: ${websiteTool}.`
       : item
   );

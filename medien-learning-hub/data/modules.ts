@@ -325,38 +325,35 @@ export const moduleOneBlocks: ModuleBlock[] = [
 ];
 
 export const moduleOneDeliverables = [
-  "Logo AI",
-  "Logo SVG",
-  "Logo EPS",
-  "Logo PDF",
-  "Farbige PNG-Version",
-  "Schwarze PNG-Version",
-  "Weiße PNG-Version",
-  "JPG Preview",
-  "Business Card",
-  "Coffee Cup Mockup",
-  "Paper Bag Mockup",
-  "Shop Sign Mockup",
-  "Instagram Post",
-  "Behance Case",
-  "PDF Presentation",
-  "ZIP für den Kunden"
+  "Logo Redesign: 3 Scribbles + 1 finale Richtung mit Begründung",
+  "Illustrator Logo Set: 4-färbig, einfärbig und negativ",
+  "Logo Animation: 5-8 Sekunden als MP4/GIF",
+  "Styleguide: 1-3 Seiten mit Logo, Farben, Schriften und Regeln",
+  "Moodboard: DIN A3 quer mit Logo, Farbgebung und Bildsprache",
+  "Inserat: 98 x 135 mm, 4c, PDF/X-4, FOGRA 51, Druckmarken",
+  "Folder: Wickelfalz, 6 Seiten, offen A4 quer, 4/4c, 3 mm abfallend, Schnittmarken",
+  "Instagram Post: Standardgröße",
+  "Budgetierung: Angebot und Rechnung inkl. Druck, Budget 10.000 EUR, Stückzahl 5000",
+  "Projektplan: Termine, Produktionsschritte und Meilensteine bis zur Abgabe",
+  "Präsentation: PowerPoint oder PDF",
+  "★ Website: Figma Design und optional WordPress/Elementor Umsetzung",
+  "★ Extra: 16-Bogen-Plakat oder Rollup"
 ];
 
 export const moduleOneQualityChecks = [
-  "Logo funktioniert im kleinen Format.",
-  "Logo funktioniert in Schwarz-Weiß.",
-  "Alle Texte sind geprüft.",
-  "Keine Rasterelemente im Vektorlogo.",
-  "RGB-Version ist fertig.",
-  "CMYK-Version ist fertig.",
-  "SVG öffnet sich korrekt.",
-  "PDF wurde korrekt erstellt.",
-  "Schriften sind bei Bedarf in Pfade umgewandelt.",
-  "Dateinamen sind klar und verständlich.",
-  "Keine unnötigen Objekte außerhalb der Zeichenfläche.",
-  "Alle Mockup-Dateien sind geprüft.",
-  "Kundenpaket ist bereit."
+  "3 Logo-Scribbles sind sichtbar und eine Entscheidung ist begründet.",
+  "Logo ist als Vektor aufgebaut und in 4-färbig, einfärbig und negativ geprüft.",
+  "Logo Animation ist kurz, sauber exportiert und passt zur Marke.",
+  "Styleguide erklärt Logo, Farben, Typografie und Bildsprache einfach.",
+  "Moodboard ist DIN A3 quer und zeigt Logo, Farbgebung und Bildsprache.",
+  "Inserat hat korrektes Format 98 x 135 mm, CMYK/4c, PDF/X-4 und Druckmarken.",
+  "Folder hat Wickelfalz, 6 Seiten, A4 quer offen, 4/4c, 3 mm Beschnitt und Schnittmarken.",
+  "Instagram Post passt optisch zur Kampagne.",
+  "Budgetierung enthält Angebot, Rechnung, Druckkosten, Budget und Stückzahl.",
+  "Projektplan zeigt Termine, Produktionsschritte und Meilensteine.",
+  "Präsentation zeigt Aufgabe, Prozess, Entscheidungen und finale Ergebnisse.",
+  "Alle Dateien sind klar benannt und in einem Kundenordner geordnet.",
+  "Fachbegriffe können auf Deutsch kurz erklärt werden."
 ];
 
 export interface ModulePlan {
@@ -503,19 +500,35 @@ const reportTemplate = [
 ];
 
 export const coreAusbildungProjectFlow = [
-  "1. Moodboard - Sammle 6-10 Referenzen, Farben, Schriften und Bildsprache. Ausbildung: Stil begründen und visuelle Richtung zeigen.",
-  "2. Logo - Entwirf 1-3 Logo-Versionen und finalisiere eine saubere Variante. Ausbildung: Vektor, Formen, Farbe und Skalierbarkeit üben.",
-  "3. Visitenkarte - Gestalte Vorder- und Rückseite mit Logo, Kontaktdaten, Typografie, Beschnitt und CMYK.",
-  "4. Flyer A5 - Gestalte einen einseitigen oder zweiseitigen Flyer mit Hierarchie, Raster, Bild und druckfertigem PDF.",
-  "★ 5. Website - optional: Entwirf eine Startseite in Figma. Wenn du Zeit hast, baue sie später in WordPress/Elementor nach."
+  "1. Logo Redesign - scribble 3 unterschiedliche Versionen, wähle eine Richtung und begründe deine Entscheidung auf Deutsch.",
+  "2. Illustrator Ausarbeitung - baue das Logo sauber als Vektor auf: 4-färbig, einfärbig und negativ.",
+  "3. Logo Animation - animiere das finale Logo kurz und ruhig, 5-8 Sekunden, Export als MP4 oder GIF.",
+  "4. Styleguide - erstelle 1-3 Seiten mit Logo-Regeln, Farben, Typografie und Bildsprache.",
+  "5. Moodboard - erstelle DIN A3 quer mit Logo, Farbgebung, Bildsprache und 3-5 Stichwörtern zur Wirkung.",
+  "6. Inserat - gestalte ein Inserat 98 x 135 mm, 4c, PDF/X-4, FOGRA 51, Kunstdruckpapier matt, inkl. Druckmarken.",
+  "7. Folder - gestalte einen Wickelfalz-Folder, 6 Seiten, offen A4 quer, 4/4c, 3 mm abfallend, inkl. Schnittmarken.",
+  "8. Instagram Post - erstelle einen Standard-Post, der zur Kampagne und Bildsprache passt.",
+  "9. Budgetierung - erstelle Angebot und Rechnung: Projektkosten inkl. Druck, Budget 10.000 EUR, Stückzahl 5000.",
+  "10. Projektplan - plane Termine, Produktionsschritte und Meilensteine bis zur Abgabe an den Kunden.",
+  "11. Präsentation - erstelle eine kurze PowerPoint- oder PDF-Präsentation mit Aufgabe, Prozess und Ergebnis.",
+  "★ 12. Website - Zusatz für Portfolio: Website Design in Figma und optional WordPress/Elementor Umsetzung.",
+  "★ 13. Extras - wenn Zeit bleibt: 16-Bogen-Plakat oder Rollup erstellen."
 ];
 
 export const coreAusbildungDeliverables = [
-  "1. Moodboard",
-  "2. Logo: 1-3 Entwürfe + finales Logo",
-  "3. Visitenkarte Vorder- und Rückseite",
-  "4. Flyer A5 als Print-PDF",
-  "★ 5. Website Design in Figma / optional WordPress"
+  "1. Logo Redesign: 3 Scribbles + Entscheidung mit Begründung",
+  "2. Illustrator Logo Set: 4-färbig, einfärbig, negativ",
+  "3. Logo Animation: 5-8 Sekunden MP4/GIF",
+  "4. Styleguide: 1-3 Seiten",
+  "5. Moodboard: DIN A3 quer",
+  "6. Inserat: 98 x 135 mm, 4c, PDF/X-4, FOGRA 51, Druckmarken",
+  "7. Wickelfalz-Folder: 6 Seiten, A4 quer offen, 4/4c, 3 mm Beschnitt",
+  "8. Instagram Post: Standardgröße",
+  "9. Budgetierung: Angebot + Rechnung, Budget 10.000 EUR, Stückzahl 5000",
+  "10. Projektplan: Termine + Meilensteine",
+  "11. Präsentation: PowerPoint oder PDF",
+  "★ 12. Website Design in Figma / optional WordPress",
+  "★ 13. Extra: 16-Bogen-Plakat oder Rollup"
 ];
 
 export const alternativeClientBriefs: Record<string, ClientVariant> = {

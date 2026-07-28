@@ -10,88 +10,193 @@ import type { LearningModule } from "@/lib/types";
 
 const portfolioDeliverables = [
   {
-    id: "moodboard",
+    id: "logo-redesign",
     number: "1",
-    title: "Moodboard",
-    program: "Figma / Pinterest / Adobe",
-    clientWishDe: "Der Kunde möchte zuerst sehen, in welche visuelle Richtung das Projekt geht.",
-    clientWishUa: "Клієнт хоче спочатку побачити, в якому візуальному напрямку буде проєкт.",
+    title: "Logo Redesign",
+    program: "Hand-Sketch + Adobe Illustrator",
+    clientWishDe: "Der Kunde möchte ein moderneres Logo, das zur Zielgruppe passt und in Print, Web und kleinen Größen funktioniert.",
+    clientWishUa: "Клієнт хоче сучасніший логотип, який підходить цільовій групі і працює для друку, вебу та малого розміру.",
     requirements: [
-      "6-10 Referenzen für Stil, Farben, Fotos, Formen und Stimmung sammeln.",
-      "3-5 Hauptfarben auswählen und kurz begründen.",
-      "2 passende Schriftkombinationen testen.",
-      "3 Wörter für die gewünschte Wirkung notieren, zum Beispiel ruhig, modern, freundlich."
+      "3 unterschiedliche Logo-Scribbles erstellen.",
+      "Eine Richtung auswählen und kurz auf Deutsch begründen.",
+      "Finales Logo in Illustrator sauber als Vektor ausarbeiten.",
+      "Versionen vorbereiten: 4-färbig, einfärbig und negativ."
     ],
-    output: "Moodboard als Figma-Seite oder PDF, plus kurze Erklärung auf Deutsch und Ukrainisch."
+    output: "Skizzenfoto, AI-Datei, PDF/SVG/PNG und kurzer Begründungssatz für Fachgespräch."
   },
   {
-    id: "logo",
+    id: "logo-animation",
     number: "2",
-    title: "Logo",
-    program: "Adobe Illustrator",
-    clientWishDe: "Der Kunde braucht ein einfaches, gut erkennbares Logo, das seriös wirkt und in kleinen Größen funktioniert.",
-    clientWishUa: "Клієнту потрібен простий, впізнаваний логотип, який виглядає професійно і працює в малому розмірі.",
+    title: "Logo Animation",
+    program: "After Effects / Premiere Pro",
+    clientWishDe: "Der Kunde möchte eine kurze Logo-Animation für Social Media oder Website-Intro.",
+    clientWishUa: "Клієнт хоче коротку анімацію логотипу для соцмереж або вступу на сайті.",
     requirements: [
-      "1-3 Logo-Entwürfe entwickeln.",
-      "Eine finale Version sauber als Vektor aufbauen.",
-      "Farbige, schwarze und weiße Version vorbereiten.",
-      "Prüfen, ob das Logo auch klein lesbar bleibt."
+      "Logo in einzelne Ebenen vorbereiten.",
+      "3-5 einfache Keyframes planen: Auftauchen, Skalierung, Rotation oder Fade.",
+      "Animation ruhig halten, 5-8 Sekunden.",
+      "Export als MP4 oder GIF testen."
     ],
-    output: "AI-Arbeitsdatei, SVG, PDF, PNG in Farbe, Schwarz und Weiß."
+    output: "Kurzes MP4/GIF, 2-3 Screenshots der Keyframes und ein Satz, warum die Bewegung zur Marke passt."
   },
   {
-    id: "business-card",
+    id: "styleguide",
     number: "3",
-    title: "Visitenkarte",
-    program: "Adobe InDesign / Illustrator",
-    clientWishDe: "Der Kunde möchte eine professionelle Visitenkarte mit Logo, Kontaktdaten und klarer Typografie.",
-    clientWishUa: "Клієнт хоче професійну візитку з логотипом, контактами і чистою типографікою.",
+    title: "Styleguide",
+    program: "Adobe InDesign / Figma",
+    clientWishDe: "Der Kunde braucht kurze Regeln, damit Logo, Farben, Schriften und Bildsprache später einheitlich verwendet werden.",
+    clientWishUa: "Клієнту потрібні короткі правила, щоб логотип, кольори, шрифти і фото-стиль використовувались однаково.",
     requirements: [
-      "Vorderseite und Rückseite gestalten.",
-      "Logo, Name, Beruf, Telefon, E-Mail, Website und Adresse sinnvoll platzieren.",
-      "Beschnitt, Rand, CMYK und gute Lesbarkeit beachten.",
-      "Schriftgrößen und Abstände sauber kontrollieren."
+      "1-3 Seiten erstellen.",
+      "Logo-Versionen zeigen: farbig, einfärbig, negativ.",
+      "Farbwerte notieren: CMYK/RGB/HEX.",
+      "Schriften, Bildsprache und einfache Anwendungsregeln zeigen."
     ],
-    output: "Druckfähiges PDF/X mit Beschnitt und eine PNG/JPG Vorschau für Portfolio."
+    output: "Styleguide als PDF und 1 Screenshot für Behance/LinkedIn."
   },
   {
-    id: "flyer",
+    id: "moodboard",
     number: "4",
-    title: "Flyer A5",
-    program: "Adobe InDesign / Photoshop",
-    clientWishDe: "Der Kunde möchte einen A5-Flyer, der schnell informiert und optisch zur Marke passt.",
-    clientWishUa: "Клієнт хоче A5-флаєр, який швидко передає інформацію і підходить до бренду.",
+    title: "Moodboard",
+    program: "Figma / InDesign / Pinterest",
+    clientWishDe: "Der Kunde möchte vor der Umsetzung die visuelle Richtung sehen: Logo, Farbgebung und Bildsprache.",
+    clientWishUa: "Клієнт хоче перед роботою побачити візуальний напрям: логотип, кольори і стиль зображень.",
     requirements: [
-      "Klare Überschrift, kurze Infos, Bild oder Illustration und Call-to-Action einbauen.",
-      "Layout mit Raster, Weißraum, Hierarchie und Kontrast gestalten.",
-      "Bilder passend bearbeiten und auf Druckqualität prüfen.",
-      "Druckdaten mit Beschnitt und korrektem Farbmodus vorbereiten."
+      "DIN A3 quer anlegen.",
+      "Logo, Farbgebung und Bildsprache zeigen.",
+      "5-8 Referenzen sammeln.",
+      "3-5 Wörter zur Wirkung notieren, zum Beispiel frisch, hochwertig, ruhig."
     ],
-    output: "A5-Flyer als InDesign-Datei, PDF/X für Druck und Web-PNG für Portfolio."
+    output: "Moodboard als PDF/JPG, plus kurze Erklärung auf Deutsch und Ukrainisch."
+  },
+  {
+    id: "inserat",
+    number: "5",
+    title: "Inserat",
+    program: "Adobe InDesign / Photoshop",
+    clientWishDe: "Der Kunde braucht ein kleines Inserat für eine Anzeige, das druckfertig an die Druckerei gehen kann.",
+    clientWishUa: "Клієнту потрібне маленьке оголошення для друку, яке можна віддати в друкарню.",
+    requirements: [
+      "Format 98 x 135 mm anlegen.",
+      "4c / CMYK verwenden.",
+      "PDF/X-4 exportieren.",
+      "FOGRA 51, Kunstdruckpapier matt und alle erforderlichen Druckmarken beachten."
+    ],
+    output: "InDesign-Datei, druckfertiges PDF/X-4 und Web-Vorschau für Portfolio."
+  },
+  {
+    id: "folder",
+    number: "6",
+    title: "Wickelfalz-Folder",
+    program: "Adobe InDesign",
+    clientWishDe: "Der Kunde möchte einen 6-seitigen Folder, der das Angebot klar erklärt und professionell gedruckt werden kann.",
+    clientWishUa: "Клієнт хоче 6-сторінковий folded flyer, який зрозуміло пояснює пропозицію і готовий до друку.",
+    requirements: [
+      "Wickelfalz mit 6 Seiten erstellen.",
+      "Offenes Format: A4 quer.",
+      "4/4c, also beidseitig farbig.",
+      "3 mm abfallend und alle Schnittmarken prüfen."
+    ],
+    output: "Druck-PDF, Screen-PDF und Mockup des gefalteten Folders."
+  },
+  {
+    id: "instagram",
+    number: "7",
+    title: "Instagram Post",
+    program: "Photoshop / Illustrator / Figma",
+    clientWishDe: "Der Kunde möchte einen Social-Media-Post, der die Kampagne wiedererkennbar macht.",
+    clientWishUa: "Клієнт хоче пост для соцмереж, який повторює стиль кампанії.",
+    requirements: [
+      "Standardgröße für Instagram erstellen.",
+      "Logo, Farbe, Typografie und Bildsprache aus dem Styleguide nutzen.",
+      "Kurze Headline und Call-to-Action schreiben.",
+      "Export als PNG/JPG."
+    ],
+    output: "Instagram Post als PNG/JPG und Mockup im Feed."
+  },
+  {
+    id: "budget-plan",
+    number: "8",
+    title: "Budgetierung + Projektplan",
+    program: "Google Sheets / Excel / PDF",
+    clientWishDe: "Der Kunde möchte wissen, was das Projekt inklusive Druck kostet und wann welche Schritte fertig sind.",
+    clientWishUa: "Клієнт хоче знати, скільки коштує проєкт разом із друком і коли що буде готово.",
+    requirements: [
+      "Angebot und Rechnung vorbereiten.",
+      "Budget 10.000 EUR und Stückzahl 5000 berücksichtigen.",
+      "Druckkosten und eigene Arbeitszeit grob kalkulieren.",
+      "Projektplan mit Terminen, Produktionsschritten und Meilensteinen erstellen."
+    ],
+    output: "Kalkulation als Tabelle/PDF und Projektplan als übersichtliche Liste."
+  },
+  {
+    id: "presentation",
+    number: "9",
+    title: "Präsentation",
+    program: "PowerPoint / PDF / Figma",
+    clientWishDe: "Der Kunde und die Prüfungskommission sollen den Prozess und die Entscheidungen schnell verstehen.",
+    clientWishUa: "Клієнт і комісія мають швидко зрозуміти процес і твої рішення.",
+    requirements: [
+      "Aufgabe, Zielgruppe und Konzept zeigen.",
+      "Moodboard, Logo, Styleguide, Printprodukte und Social Post präsentieren.",
+      "Budget und Projektplan kurz erwähnen.",
+      "2-4 Prüfungssätze auf Deutsch vorbereiten."
+    ],
+    output: "Präsentation als PowerPoint oder PDF."
   },
   {
     id: "website",
-    number: "5",
-    title: "Website",
+    number: "10",
+    title: "★ Website",
     program: "Figma + WordPress / Elementor",
-    clientWishDe: "Der Kunde möchte eine moderne Website, die übersichtlich ist und auf Handy und Desktop gut funktioniert.",
-    clientWishUa: "Клієнт хоче сучасний сайт, який зрозумілий і добре працює на телефоні та комп'ютері.",
+    clientWishDe: "Als Portfolio-Zusatz möchte der Kunde eine Website, die zur Kampagne passt und auf Handy und Desktop funktioniert.",
+    clientWishUa: "Як додаток для портфоліо клієнт хоче сайт, який підходить до кампанії і працює на телефоні та комп'ютері.",
     requirements: [
-      "Entscheiden, ob es eine One-Page Website oder 3-5 Seiten werden soll.",
-      "Startseite in Figma gestalten: Hero, Leistungen, Über uns, Kontakt.",
+      "Entscheiden: One-Page oder 3-5 Seiten.",
+      "Figma Design erstellen: Hero, Angebot, Über uns, Kontakt.",
       "Responsive Version für Desktop und Mobile prüfen.",
-      "Optional in WordPress mit Elementor nachbauen und Formular, Cookie Banner, SEO und Backup beachten."
+      "Optional in WordPress/Elementor nachbauen: Formular, Cookie Banner, SEO, Backup."
     ],
     output: "Figma Design, optional WordPress-Link, Screenshots für Behance und kurze Beschreibung."
+  },
+  {
+    id: "extras",
+    number: "11",
+    title: "★ Extras",
+    program: "InDesign / Photoshop",
+    clientWishDe: "Wenn noch Zeit bleibt, möchte der Kunde ein großes Plakat oder ein Rollup als zusätzliche Werbefläche.",
+    clientWishUa: "Якщо залишиться час, клієнт хоче великий плакат або rollup як додаткову рекламу.",
+    requirements: [
+      "16-Bogen-Plakat oder Rollup auswählen.",
+      "Key Visual und Logo groß einsetzen.",
+      "Lesbarkeit aus Distanz prüfen.",
+      "Druckdaten nur vorbereiten, wenn genug Zeit bleibt."
+    ],
+    output: "Optionales Mockup für Portfolio."
   }
 ];
 
 const finalPortfolioPostChecks = [
-  "Alle Mockups wirken wie ein zusammenhängendes Branding.",
-  "Texte sind kurz, korrekt und gut lesbar.",
-  "Logo, Farben, Typografie und Layout passen zur Zielgruppe.",
-  "Keine leeren oder unfertigen Screenshots zeigen.",
-  "PDF oder Behance Draft ist sauber exportiert und kann zur Prüfung geschickt werden."
+  "Der Portfolio-Post zeigt die komplette LAP-Simulation, nicht nur einzelne schöne Bilder.",
+  "Logo, Styleguide, Moodboard, Inserat, Folder und Instagram Post wirken wie eine Kampagne.",
+  "Printdaten werden kurz erwähnt: CMYK/4c, PDF/X-4, Beschnitt, Schnittmarken, FOGRA 51.",
+  "Logo-Animation und Website sind klar als Zusatz sichtbar, wenn sie gemacht wurden.",
+  "PDF oder Behance Draft ist sauber exportiert und kann zur Prüfung oder Kontrolle geschickt werden."
+];
+
+const lapSimulationDeliverables = [
+  "Logo Redesign",
+  "Logo Animation",
+  "Styleguide",
+  "Moodboard A3",
+  "Inserat",
+  "Wickelfalz-Folder",
+  "Instagram Post",
+  "Budgetierung",
+  "Projektplan",
+  "Präsentation",
+  "★ Website",
+  "★ Plakat / Rollup"
 ];
 
 const caseSteps = [
@@ -108,11 +213,15 @@ const skills = [
   "Illustrator",
   "Photoshop",
   "InDesign",
+  "After Effects",
+  "Print Production",
   "WordPress",
+  "Figma",
   "German",
   "English",
   "Typography",
-  "Color Theory",
+  "Budgeting",
+  "Presentation",
   "Client Communication",
   "Portfolio",
   "Time Management"
@@ -240,7 +349,7 @@ export function PortfolioView() {
               <article key={item.id} className="rounded-md border border-line bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-950">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <Badge tone={item.id === "website" ? "amber" : "green"}>{item.id === "website" ? "★ optional" : `Pflicht ${item.number}`}</Badge>
+                    <Badge tone={item.title.startsWith("★") ? "amber" : "green"}>{item.title.startsWith("★") ? "★ optional" : `Pflicht ${item.number}`}</Badge>
                     <h2 className="mt-3 text-base font-semibold">{item.number}. {item.title}</h2>
                     <p className="mt-1 text-xs font-medium uppercase tracking-normal text-neutral-500 dark:text-neutral-400">{item.program}</p>
                   </div>
@@ -452,7 +561,7 @@ function createPortfolioVariants(module: LearningModule): PortfolioVariant[] {
       title: module.title,
       descriptionDe: primaryBrief?.request ?? module.summary,
       descriptionUa: primaryTranslation?.request,
-      deliverables: module.finalDeliverables
+      deliverables: lapSimulationDeliverables
     }
   ];
 
@@ -465,7 +574,7 @@ function createPortfolioVariants(module: LearningModule): PortfolioVariant[] {
       title: `${module.number}. ${alternative.company}`,
       descriptionDe: `${alternative.wantsDe} ${alternative.orderDe}`,
       descriptionUa: `${alternative.wantsUa} ${alternative.orderUa}`,
-      deliverables: alternative.deliverables
+      deliverables: lapSimulationDeliverables
     });
   }
 
@@ -473,35 +582,25 @@ function createPortfolioVariants(module: LearningModule): PortfolioVariant[] {
 }
 
 function createModulePortfolioSheetItems(module: LearningModule, variant: PortfolioVariant) {
-  const lowerDeliverables = variant.deliverables.join(" ").toLowerCase();
-  const lowerSoftware = module.software.join(" ").toLowerCase();
-  const items = [
-    `Cover / Titelbild: ${variant.title}, Kundenrichtung ${variant.industry} und ein starker Mockup oder Screenshot.`,
-    `Kundenauftrag: kurz erklären, was ${variant.company} gebraucht hat und welches Problem gelöst wurde.`,
-    "Moodboard / Research: Farben, Typografie, Bildsprache, Zielgruppe und 2-3 wichtige Entscheidungen zeigen.",
-    `Finale Ergebnisse: ${variant.deliverables.join(", ")} klar und sauber präsentieren.`
+  return [
+    `Cover / Titelbild: ${variant.company} / ${variant.industry} mit starkem Mockup und kurzer Projektüberschrift.`,
+    `Kundenauftrag: kurz erklären, was ${variant.company} braucht und welche Zielgruppe angesprochen wird.`,
+    `Software: ${module.software.join(", ")} und die wichtigsten Arbeitsschritte kurz nennen.`,
+    "Moodboard DIN A3 quer: Logo, Farbgebung, Bildsprache und 3-5 Wirkungswörter zeigen.",
+    "Logo Redesign: 3 Scribbles, finale Entscheidung, Begründung und Illustrator-Ausarbeitung zeigen.",
+    "Logo Set: 4-färbig, einfärbig und negativ auf einem sauberen Mockup präsentieren.",
+    "Logo Animation: 2-3 Keyframes oder kurzes MP4/GIF zeigen und die Bewegung kurz begründen.",
+    "Styleguide 1-3 Seiten: Logo-Regeln, Farben, Schriften und Bildsprache zeigen.",
+    "Inserat: 98 x 135 mm, 4c, PDF/X-4, FOGRA 51 und Druckmarken kurz sichtbar machen.",
+    "Wickelfalz-Folder: 6 Seiten, offen A4 quer, 4/4c, 3 mm Beschnitt und Schnittmarken erwähnen.",
+    "Instagram Post: finalen Post und Feed-Mockup zeigen.",
+    "Budgetierung + Projektplan: Angebot/Rechnung, Budget 10.000 EUR, Stückzahl 5000 und Meilensteine kurz zeigen.",
+    "Präsentation: 3-6 Slides oder PDF-Seiten zeigen: Aufgabe, Prozess, Ergebnis, Fachbegriffe.",
+    "★ Website: optional Figma Desktop/Mobile und WordPress/Elementor Umsetzung zeigen.",
+    "★ Extra: optional 16-Bogen-Plakat oder Rollup als Mockup zeigen.",
+    "Kurztext für Behance/LinkedIn: Problem, Zielgruppe, Lösung, Programme und Ergebnis in einfachen Sätzen.",
+    "PDF oder Behance Draft hochladen/verlinken und danach Feedback notieren."
   ];
-
-  if (/logo|brand|identity|corporate|sticker|manual|set/.test(lowerDeliverables)) {
-    items.push("Logo / Branding: finales Logo, Varianten, Farben, Typografie und Anwendung auf einem Mockup zeigen.");
-  }
-
-  if (/flyer|brochure|brosch|poster|print|pdf|card|visiten|letterhead|menu|roll-up|magazine/.test(lowerDeliverables)) {
-    items.push("Print-Mockups: Visitenkarte, Flyer, Broschüre, Menü oder Plakat realistisch zeigen und Beschnitt/PDF/X kurz erwähnen.");
-  }
-
-  if (/website|page|landing|wireframe|prototype|wordpress|elementor|ui|sitemap/.test(lowerDeliverables) || /figma|wordpress|elementor|html|css/.test(lowerSoftware)) {
-    items.push("Website / UI: Desktop und Mobile zeigen, Navigation kurz erklären und optional WordPress/Elementor Link ergänzen.");
-  }
-
-  if (/video|storyboard|motion|thumbnail/.test(lowerDeliverables) || /premiere|after effects/.test(lowerSoftware)) {
-    items.push("Video / Motion: Storyboard, Keyframes, Thumbnail und Exportformat zeigen.");
-  }
-
-  items.push("Kurztext für Behance/LinkedIn: Problem, Zielgruppe, Lösung, Programme und Ergebnis in einfachen Sätzen.");
-  items.push("PDF oder Behance Draft hochladen/verlinken und danach Feedback notieren.");
-
-  return items;
 }
 
 function caseStepDescription(step: string) {

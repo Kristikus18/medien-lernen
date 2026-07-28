@@ -100,10 +100,10 @@ export function DashboardView() {
         <Panel title="Найближчі завдання" description="Сфокусуйся на тому, що дає портфоліо і допомагає на Fachgespräch.">
           <ul className="space-y-3 text-sm">
             {[
-              "Lune Bakery: 3 конкурентів і короткий висновок.",
-              "Moodboard: 5 зображень, 3 кольори, 2 шрифти.",
-              "Illustrator: 3 логотипні напрямки.",
-              "Deutsch: пояснити Wortmarke / Bildmarke / Bild-Wort-Marke."
+              "Logo Redesign: 3 Scribbles + 1 рішення з коротким Begründung.",
+              "Illustrator: Logo Set у 4-färbig, einfärbig і negativ.",
+              "Print: Inserat 98 x 135 mm + Wickelfalz-Folder з Beschnitt і Schnittmarken.",
+              "Deutsch: пояснити PDF/X-4, FOGRA 51, Beschnitt, Druckmarken."
             ].map((task) => (
               <li key={task} className="rounded-md border border-line p-3 dark:border-neutral-800">
                 {task}
