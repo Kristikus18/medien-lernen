@@ -763,17 +763,69 @@ function mergeTaskRecords(existingTasks: TaskRecord[], labels: string[], type: T
 
   return labels.map((label, index) => {
     const id = type === "deliverable" ? `core-task-${index + 1}` : `${type}-${index + 1}`;
-    const existingTask = existingByLabel.get(label) ?? existingById.get(id);
+    const existingByStableId = existingById.get(id);
+    const existingTask = existingByLabel.get(label) ?? (existingByStableId?.label === label ? existingByStableId : undefined);
+    const fallbackNote = type === "deliverable" ? taskNoteForLabel(label) : "";
     return {
       id,
       label,
       type,
       done: existingTask?.done ?? false,
       ready: existingTask?.ready ?? false,
-      note: existingTask?.note,
+      note: existingTask?.note?.trim() ? existingTask.note : fallbackNote,
       fileId: existingTask?.fileId
     };
   });
+}
+
+function taskNoteForLabel(label: string) {
+  const lower = label.toLowerCase();
+
+  if (lower.includes("logo redesign")) {
+    return "Що це: 3 швидкі ідеї логотипу від руки. Приклад Lune Bakery: місяць + круасан, літера L, кругла емблема. Фото: сфотографуй скетчі на аркуші.";
+  }
+
+  if (lower.includes("illustrator logo")) {
+    return "Що це: чиста векторна версія. Приклад Lune Bakery: один логотип у кольорі, чорний і negative. Фото: screenshot artboards або mockup на пакеті.";
+  }
+
+  if (lower.includes("animation") || lower.includes("bildanimation")) {
+    return "Що це: короткий рух логотипу або картинки. Приклад Lune Bakery: місяць плавно з'являється, потім текст. Фото: 2-3 screenshots з keyframes.";
+  }
+
+  if (lower.includes("styleguide")) {
+    return "Що це: правила бренду. Приклад Lune Bakery: logo, кольори, шрифти, як використовувати. Фото: screenshot сторінки styleguide.";
+  }
+
+  if (lower.includes("moodboard")) {
+    return "Що це: дошка настрою. Приклад Lune Bakery: фото круасанів, кави, теплого інтер'єру, 3 кольори, 2 шрифти. Фото: A3 board.";
+  }
+
+  if (lower.includes("inserat")) {
+    return "Що це: маленька друкована реклама. Приклад Lune Bakery: 'Weekend Croissant Box' 98 x 135 mm з фото, ціною і CTA. Фото: PDF/mockup з Druckmarken.";
+  }
+
+  if (lower.includes("folder") || lower.includes("wickelfalz")) {
+    return "Що це: складений flyer на 6 сторінок. Приклад Lune Bakery: меню, історія, bestsellers, контакт. Фото: mockup gefalteter Folder.";
+  }
+
+  if (lower.includes("instagram")) {
+    return "Що це: пост для соцмереж. Приклад Lune Bakery: 1080 x 1080 post про новий круасан. Фото: feed mockup або screenshot.";
+  }
+
+  if (lower.includes("präsentation")) {
+    return "Що це: коротко показати процес. Приклад Lune Bakery: 5 slides - Auftrag, Moodboard, Logo, Print, Website. Фото: screenshot презентації.";
+  }
+
+  if (lower.includes("website")) {
+    return "Що це: дизайн у Figma і реалізація в WordPress/Elementor. Приклад Lune Bakery: One-Page з Hero, Angebot, Galerie, Kontakt. Фото: desktop + mobile screenshots.";
+  }
+
+  if (lower.includes("extra") || lower.includes("plakat") || lower.includes("rollup")) {
+    return "Що це: додатковий великий носій. Приклад Lune Bakery: Rollup біля входу або Plakat. Фото: mockup, тільки якщо маєш час.";
+  }
+
+  return "";
 }
 
 function calculateProgress(tasks: TaskRecord[], checkedTasks: Record<string, boolean>, changedTaskId: string, nextDone: boolean) {
@@ -900,9 +952,12 @@ function VariantCard({
                     onChange={() => void onToggleTask?.(task)}
                     className="mt-1 h-4 w-4 accent-brand-600"
                   />
-                  <span className="flex flex-wrap items-center gap-2">
-                    <span>{task.label}</span>
-                    {optional ? <Badge tone="amber">freiwillig</Badge> : null}
+                  <span className="min-w-0 flex-1">
+                    <span className="flex flex-wrap items-center gap-2">
+                      <span>{task.label}</span>
+                      {optional ? <Badge tone="amber">freiwillig</Badge> : null}
+                    </span>
+                    {task.note ? <span className="mt-1 block text-xs leading-5 text-neutral-500 dark:text-neutral-400">{task.note}</span> : null}
                   </span>
                 </label>
               );

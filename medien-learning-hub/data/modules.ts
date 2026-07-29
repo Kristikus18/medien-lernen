@@ -333,8 +333,6 @@ export const moduleOneDeliverables = [
   "Inserat: 98 x 135 mm, 4c, PDF/X-4, FOGRA 51, Druckmarken",
   "Folder: Wickelfalz, 6 Seiten, offen A4 quer, 4/4c, 3 mm abfallend, Schnittmarken",
   "Instagram Post: Standardgröße",
-  "Budgetierung: Angebot und Rechnung inkl. Druck, Budget 10.000 EUR, Stückzahl 5000",
-  "Projektplan: Termine, Produktionsschritte und Meilensteine bis zur Abgabe",
   "Präsentation: PowerPoint oder PDF",
   "Website: Figma Design + WordPress/Elementor Umsetzung",
   "★ Extra: 16-Bogen-Plakat oder Rollup"
@@ -349,8 +347,6 @@ export const moduleOneQualityChecks = [
   "Inserat hat korrektes Format 98 x 135 mm, CMYK/4c, PDF/X-4 und Druckmarken.",
   "Folder hat Wickelfalz, 6 Seiten, A4 quer offen, 4/4c, 3 mm Beschnitt und Schnittmarken.",
   "Instagram Post passt optisch zur Kampagne.",
-  "Budgetierung enthält Angebot, Rechnung, Druckkosten, Budget und Stückzahl.",
-  "Projektplan zeigt Termine, Produktionsschritte und Meilensteine.",
   "Präsentation zeigt Aufgabe, Prozess, Entscheidungen und finale Ergebnisse.",
   "Website ist in Figma geplant und in WordPress/Elementor zumindest als Startseite umgesetzt.",
   "Website-Grundlagen sind geprüft: Responsive Design, Formular, Cookie Banner, SEO und Backup.",
@@ -510,11 +506,9 @@ export const coreAusbildungProjectFlow = [
   "6. Inserat - gestalte ein Inserat 98 x 135 mm, 4c, PDF/X-4, FOGRA 51, Kunstdruckpapier matt, inkl. Druckmarken.",
   "7. Folder - gestalte einen Wickelfalz-Folder, 6 Seiten, offen A4 quer, 4/4c, 3 mm abfallend, inkl. Schnittmarken.",
   "8. Instagram Post - erstelle einen Standard-Post, der zur Kampagne und Bildsprache passt.",
-  "9. Budgetierung - erstelle Angebot und Rechnung: Projektkosten inkl. Druck, Budget 10.000 EUR, Stückzahl 5000.",
-  "10. Projektplan - plane Termine, Produktionsschritte und Meilensteine bis zur Abgabe an den Kunden.",
-  "11. Präsentation - erstelle eine kurze PowerPoint- oder PDF-Präsentation mit Aufgabe, Prozess und Ergebnis.",
-  "12. Website - erstelle ein Website Design in Figma und setze die Startseite oder One-Page-Version in WordPress/Elementor um.",
-  "★ 13. Extras - wenn Zeit bleibt: 16-Bogen-Plakat oder Rollup erstellen."
+  "9. Präsentation - erstelle eine kurze PowerPoint- oder PDF-Präsentation mit Aufgabe, Prozess und Ergebnis.",
+  "10. Website - erstelle ein Website Design in Figma und setze die Startseite oder One-Page-Version in WordPress/Elementor um.",
+  "★ 11. Extras - wenn Zeit bleibt: 16-Bogen-Plakat oder Rollup erstellen."
 ];
 
 export const coreAusbildungDeliverables = [
@@ -526,11 +520,9 @@ export const coreAusbildungDeliverables = [
   "6. Inserat: 98 x 135 mm, 4c, PDF/X-4, FOGRA 51, Druckmarken",
   "7. Wickelfalz-Folder: 6 Seiten, A4 quer offen, 4/4c, 3 mm Beschnitt",
   "8. Instagram Post: Standardgröße",
-  "9. Budgetierung: Angebot + Rechnung, Budget 10.000 EUR, Stückzahl 5000",
-  "10. Projektplan: Termine + Meilensteine",
-  "11. Präsentation: PowerPoint oder PDF",
-  "12. Website Design in Figma + WordPress/Elementor Umsetzung",
-  "★ 13. Extra: 16-Bogen-Plakat oder Rollup"
+  "9. Präsentation: PowerPoint oder PDF",
+  "10. Website Design in Figma + WordPress/Elementor Umsetzung",
+  "★ 11. Extra: 16-Bogen-Plakat oder Rollup"
 ];
 
 export const alternativeClientBriefs: Record<string, ClientVariant> = {

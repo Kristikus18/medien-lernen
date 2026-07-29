@@ -22,7 +22,9 @@ const portfolioDeliverables = [
       "Finales Logo in Illustrator sauber als Vektor ausarbeiten.",
       "Versionen vorbereiten: 4-färbig, einfärbig und negativ."
     ],
-    output: "Skizzenfoto, AI-Datei, PDF/SVG/PNG und kurzer Begründungssatz für Fachgespräch."
+    output: "Skizzenfoto, AI-Datei, PDF/SVG/PNG und kurzer Begründungssatz für Fachgespräch.",
+    example: "Beispiel Lune Bakery: 3 Ideen mit Mond + Croissant, Wortmarke Lune, runde Café-Embleme.",
+    photoIdea: "Foto/Beispiel: ein Foto deiner Scribbles auf Papier und ein Mockup auf Coffee Cup oder Bag."
   },
   {
     id: "logo-animation",
@@ -37,7 +39,9 @@ const portfolioDeliverables = [
       "Animation ruhig halten, 5-8 Sekunden.",
       "Export als MP4 oder GIF testen."
     ],
-    output: "Kurzes MP4/GIF, 2-3 Screenshots der Keyframes und ein Satz, warum die Bewegung zur Marke passt."
+    output: "Kurzes MP4/GIF, 2-3 Screenshots der Keyframes und ein Satz, warum die Bewegung zur Marke passt.",
+    example: "Beispiel Lune Bakery: Der Mond erscheint langsam, danach blendet die Wortmarke weich ein.",
+    photoIdea: "Foto/Beispiel: 3 Screenshots aus der Timeline: Start, Mitte, Ende."
   },
   {
     id: "styleguide",
@@ -52,7 +56,9 @@ const portfolioDeliverables = [
       "Farbwerte notieren: CMYK/RGB/HEX.",
       "Schriften, Bildsprache und einfache Anwendungsregeln zeigen."
     ],
-    output: "Styleguide als PDF und 1 Screenshot für Behance/LinkedIn."
+    output: "Styleguide als PDF und 1 Screenshot für Behance/LinkedIn.",
+    example: "Beispiel Lune Bakery: warme Cremefarbe, dunkles Braun, Serifenschrift für elegant, Sans Serif für Infos.",
+    photoIdea: "Foto/Beispiel: Screenshot von einer Styleguide-Seite mit Logo, Farben und Fonts."
   },
   {
     id: "moodboard",
@@ -67,7 +73,9 @@ const portfolioDeliverables = [
       "5-8 Referenzen sammeln.",
       "3-5 Wörter zur Wirkung notieren, zum Beispiel frisch, hochwertig, ruhig."
     ],
-    output: "Moodboard als PDF/JPG, plus kurze Erklärung auf Deutsch und Ukrainisch."
+    output: "Moodboard als PDF/JPG, plus kurze Erklärung auf Deutsch und Ukrainisch.",
+    example: "Beispiel Lune Bakery: Fotos von Croissants, Kaffee, französischem Café, warmer Verpackung und ruhiger Typografie.",
+    photoIdea: "Foto/Beispiel: ein A3-Board mit 6-8 Bildern, 3 Farben und 2 Schriften."
   },
   {
     id: "inserat",
@@ -82,7 +90,9 @@ const portfolioDeliverables = [
       "PDF/X-4 exportieren.",
       "FOGRA 51, Kunstdruckpapier matt und alle erforderlichen Druckmarken beachten."
     ],
-    output: "InDesign-Datei, druckfertiges PDF/X-4 und Web-Vorschau für Portfolio."
+    output: "InDesign-Datei, druckfertiges PDF/X-4 und Web-Vorschau für Portfolio.",
+    example: "Beispiel Lune Bakery: Inserat für 'Weekend Croissant Box' mit Logo, Produktfoto, Preis und Call-to-Action.",
+    photoIdea: "Foto/Beispiel: Mockup als kleine Magazin-Anzeige oder Screenshot vom PDF mit Druckmarken."
   },
   {
     id: "folder",
@@ -97,7 +107,9 @@ const portfolioDeliverables = [
       "4/4c, also beidseitig farbig.",
       "3 mm abfallend und alle Schnittmarken prüfen."
     ],
-    output: "Druck-PDF, Screen-PDF und Mockup des gefalteten Folders."
+    output: "Druck-PDF, Screen-PDF und Mockup des gefalteten Folders.",
+    example: "Beispiel Lune Bakery: Folder mit Sortiment, Geschichte, Bestellinfo, Karte und Kontakt.",
+    photoIdea: "Foto/Beispiel: Mockup eines gefalteten Flyers oder Screenshot der 6 Seiten nebeneinander."
   },
   {
     id: "instagram",
@@ -112,26 +124,13 @@ const portfolioDeliverables = [
       "Kurze Headline und Call-to-Action schreiben.",
       "Export als PNG/JPG."
     ],
-    output: "Instagram Post als PNG/JPG und Mockup im Feed."
-  },
-  {
-    id: "budget-plan",
-    number: "8",
-    title: "Budgetierung + Projektplan",
-    program: "Google Sheets / Excel / PDF",
-    clientWishDe: "Der Kunde möchte wissen, was das Projekt inklusive Druck kostet und wann welche Schritte fertig sind.",
-    clientWishUa: "Клієнт хоче знати, скільки коштує проєкт разом із друком і коли що буде готово.",
-    requirements: [
-      "Angebot und Rechnung vorbereiten.",
-      "Budget 10.000 EUR und Stückzahl 5000 berücksichtigen.",
-      "Druckkosten und eigene Arbeitszeit grob kalkulieren.",
-      "Projektplan mit Terminen, Produktionsschritten und Meilensteinen erstellen."
-    ],
-    output: "Kalkulation als Tabelle/PDF und Projektplan als übersichtliche Liste."
+    output: "Instagram Post als PNG/JPG und Mockup im Feed.",
+    example: "Beispiel Lune Bakery: Post 'Neu: Pistazien-Croissant am Samstag' mit Produktfoto und Logo.",
+    photoIdea: "Foto/Beispiel: Feed-Mockup oder Handy-Screenshot mit dem fertigen Post."
   },
   {
     id: "presentation",
-    number: "9",
+    number: "8",
     title: "Präsentation",
     program: "PowerPoint / PDF / Figma",
     clientWishDe: "Der Kunde und die Prüfungskommission sollen den Prozess und die Entscheidungen schnell verstehen.",
@@ -139,14 +138,15 @@ const portfolioDeliverables = [
     requirements: [
       "Aufgabe, Zielgruppe und Konzept zeigen.",
       "Moodboard, Logo, Styleguide, Printprodukte und Social Post präsentieren.",
-      "Budget und Projektplan kurz erwähnen.",
       "2-4 Prüfungssätze auf Deutsch vorbereiten."
     ],
-    output: "Präsentation als PowerPoint oder PDF."
+    output: "Präsentation als PowerPoint oder PDF.",
+    example: "Beispiel Lune Bakery: 5 Slides: Auftrag, Moodboard, Logo, Printprodukte, Website.",
+    photoIdea: "Foto/Beispiel: Screenshot der Titelfolie und einer Ergebnisfolie."
   },
   {
     id: "website",
-    number: "10",
+    number: "9",
     title: "Website in WordPress",
     program: "Figma + WordPress / Elementor",
     clientWishDe: "Der Kunde möchte eine Website, die zur Kampagne passt und in WordPress mit Elementor umgesetzt werden kann.",
@@ -158,11 +158,13 @@ const portfolioDeliverables = [
       "Responsive Version für Desktop und Mobile prüfen.",
       "Formular, Cookie Banner, SEO Basics und Backup dokumentieren."
     ],
-    output: "Figma Design, WordPress/Elementor Link oder Screenshots, Plugin-Notizen und kurze Beschreibung."
+    output: "Figma Design, WordPress/Elementor Link oder Screenshots, Plugin-Notizen und kurze Beschreibung.",
+    example: "Beispiel Lune Bakery: One-Page mit Hero, Angebot, Galerie, Über uns und Kontaktformular.",
+    photoIdea: "Foto/Beispiel: Desktop- und Mobile-Screenshot der fertigen Elementor-Seite."
   },
   {
     id: "extras",
-    number: "11",
+    number: "10",
     title: "★ Extras",
     program: "InDesign / Photoshop",
     clientWishDe: "Wenn noch Zeit bleibt, möchte der Kunde ein großes Plakat oder ein Rollup als zusätzliche Werbefläche.",
@@ -173,7 +175,9 @@ const portfolioDeliverables = [
       "Lesbarkeit aus Distanz prüfen.",
       "Druckdaten nur vorbereiten, wenn genug Zeit bleibt."
     ],
-    output: "Optionales Mockup für Portfolio."
+    output: "Optionales Mockup für Portfolio.",
+    example: "Beispiel Lune Bakery: Rollup vor dem Café mit Logo, Croissant-Foto und kurzer Botschaft.",
+    photoIdea: "Foto/Beispiel: Rollup- oder Plakat-Mockup."
   }
 ];
 
@@ -193,8 +197,6 @@ const lapSimulationDeliverables = [
   "Inserat",
   "Wickelfalz-Folder",
   "Instagram Post",
-  "Budgetierung",
-  "Projektplan",
   "Präsentation",
   "WordPress Website",
   "★ Plakat / Rollup"
@@ -221,7 +223,6 @@ const skills = [
   "German",
   "English",
   "Typography",
-  "Budgeting",
   "Presentation",
   "Client Communication",
   "Portfolio",
@@ -379,6 +380,13 @@ export function PortfolioView() {
                   <div>
                     <p className="text-sm font-semibold">Abgabe / Ergebnis</p>
                     <p className="mt-2 text-sm leading-6 text-neutral-700 dark:text-neutral-300">{item.output}</p>
+                    <div className="mt-3 rounded-md border border-line bg-white p-3 dark:border-neutral-800 dark:bg-neutral-900">
+                      <p className="text-xs font-semibold uppercase tracking-normal text-brand-700 dark:text-brand-100">Einfaches Beispiel</p>
+                      <p className="mt-2 text-sm leading-6 text-neutral-700 dark:text-neutral-300">{item.example}</p>
+                      <p className="mt-2 text-sm leading-6 text-neutral-600 dark:text-neutral-400">
+                        <span className="font-semibold">Foto/Beispiel:</span> {item.photoIdea}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -595,7 +603,6 @@ function createModulePortfolioSheetItems(module: LearningModule, variant: Portfo
     "Inserat: 98 x 135 mm, 4c, PDF/X-4, FOGRA 51 und Druckmarken kurz sichtbar machen.",
     "Wickelfalz-Folder: 6 Seiten, offen A4 quer, 4/4c, 3 mm Beschnitt und Schnittmarken erwähnen.",
     "Instagram Post: finalen Post und Feed-Mockup zeigen.",
-    "Budgetierung + Projektplan: Angebot/Rechnung, Budget 10.000 EUR, Stückzahl 5000 und Meilensteine kurz zeigen.",
     "Präsentation: 3-6 Slides oder PDF-Seiten zeigen: Aufgabe, Prozess, Ergebnis, Fachbegriffe.",
     "Website: Figma Desktop/Mobile und WordPress/Elementor Umsetzung mit Formular, Cookie Banner, SEO und Backup-Notizen zeigen.",
     "★ Extra: optional 16-Bogen-Plakat oder Rollup als Mockup zeigen.",
