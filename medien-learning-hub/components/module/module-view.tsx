@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { ArrowRight, Check, Download, FileText } from "lucide-react";
+import { ArrowRight, Check, Download, FileText, Paperclip } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   moduleOneQualityChecks,
@@ -20,7 +20,14 @@ import { exportModulePdf } from "@/lib/export";
 import { saveUserDocument, subscribeUserCollection } from "@/lib/firestore";
 import type { ChecklistItem, CustomerBrief, LearningModule, ModuleBlock, ModuleProgressState } from "@/lib/types";
 
-type TaskRecord = ChecklistItem & { type: "deliverable" | "quality" };
+type TaskRecord = ChecklistItem & {
+  type: "deliverable" | "quality";
+  attachmentName?: string;
+  attachmentSize?: number;
+  attachmentType?: string;
+  attachmentLink?: string;
+  attachmentUpdatedAt?: string;
+};
 
 export function ModuleView() {
   const { user } = useAuth();
@@ -98,13 +105,27 @@ export function ModuleView() {
     [fallbackQualityChecks, tasks]
   );
 
-  const requiredProgressTasks = useMemo(
-    () => deliverableTasks.filter((task) => !isOptionalTask(task)),
-    [deliverableTasks]
+  const variantDeliverableTasks = useMemo(
+    () => ({
+      a: buildVariantTasks(deliverableTasks, "a", tasks),
+      b: buildVariantTasks(deliverableTasks, "b", tasks)
+    }),
+    [deliverableTasks, tasks]
   );
-  const checkedCount = requiredProgressTasks.filter((task) => task.done || moduleState.checkedTasks[task.id]).length;
-  const totalCount = requiredProgressTasks.length;
-  const progress = totalCount ? Math.round((checkedCount / totalCount) * 100) : 0;
+  const progressTaskGroups = useMemo(() => {
+    const groups = [variantDeliverableTasks.a];
+    if (selectedAlternative) {
+      groups.push(variantDeliverableTasks.b);
+    }
+    return groups;
+  }, [selectedAlternative, variantDeliverableTasks]);
+  const progressStats = useMemo(
+    () => calculateBestProgress(progressTaskGroups, moduleState.checkedTasks),
+    [moduleState.checkedTasks, progressTaskGroups]
+  );
+  const checkedCount = progressStats.checkedCount;
+  const totalCount = progressStats.totalCount;
+  const progress = progressStats.progress;
 
   const saveModulePatch = useCallback(
     async (patch: Partial<ModuleProgressState>, nextProgress = progress) => {
@@ -140,19 +161,28 @@ export function ModuleView() {
       ...moduleState.checkedTasks,
       [task.id]: nextDone
     };
-    const nextProgress = calculateProgress(deliverableTasks, nextCheckedTasks, task.id, nextDone);
+    const nextProgress = task.type === "deliverable"
+      ? calculateBestProgress(progressTaskGroups, nextCheckedTasks, task.id, nextDone).progress
+      : progress;
+    const nextTask = {
+      ...task,
+      done: nextDone,
+      ready: nextDone,
+      moduleId: selectedModule.id
+    };
+
+    setModuleState((current) => ({
+      ...current,
+      checkedTasks: nextCheckedTasks
+    }));
+    setTasks((current) => upsertTaskRecord(current, nextTask));
 
     try {
       await saveUserDocument<TaskRecord & { moduleId: string; ready: boolean }>(
         userId,
         moduleTaskCollection(selectedModule.id),
         task.id,
-        {
-          ...task,
-          done: nextDone,
-          ready: nextDone,
-          moduleId: selectedModule.id
-        }
+        nextTask
       );
     } catch {
       // A local copy is saved first, so progress survives refresh even if cloud sync fails.
@@ -162,6 +192,62 @@ export function ModuleView() {
       checkedTasks: nextCheckedTasks
     }, nextProgress);
   };
+
+  const attachTaskFile = useCallback(
+    async (task: TaskRecord, file: File) => {
+      const nextTask = {
+        ...task,
+        attachmentName: file.name,
+        attachmentSize: file.size,
+        attachmentType: file.type,
+        attachmentUpdatedAt: new Date().toISOString(),
+        done: Boolean(task.done || moduleState.checkedTasks[task.id]),
+        ready: Boolean(task.done || moduleState.checkedTasks[task.id]),
+        moduleId: selectedModule.id
+      };
+
+      setTasks((current) => upsertTaskRecord(current, nextTask));
+
+      try {
+        await saveUserDocument<TaskRecord & { moduleId: string; ready: boolean }>(
+          userId,
+          moduleTaskCollection(selectedModule.id),
+          task.id,
+          nextTask
+        );
+      } catch {
+        // File metadata is still kept locally by the app fallback.
+      }
+    },
+    [moduleState.checkedTasks, selectedModule.id, userId]
+  );
+
+  const saveTaskLink = useCallback(
+    async (task: TaskRecord, link: string) => {
+      const nextTask = {
+        ...task,
+        attachmentLink: link.trim(),
+        attachmentUpdatedAt: new Date().toISOString(),
+        done: Boolean(task.done || moduleState.checkedTasks[task.id]),
+        ready: Boolean(task.done || moduleState.checkedTasks[task.id]),
+        moduleId: selectedModule.id
+      };
+
+      setTasks((current) => upsertTaskRecord(current, nextTask));
+
+      try {
+        await saveUserDocument<TaskRecord & { moduleId: string; ready: boolean }>(
+          userId,
+          moduleTaskCollection(selectedModule.id),
+          task.id,
+          nextTask
+        );
+      } catch {
+        // Link metadata is still kept locally by the app fallback.
+      }
+    },
+    [moduleState.checkedTasks, selectedModule.id, userId]
+  );
 
   return (
     <>
@@ -195,9 +281,11 @@ export function ModuleView() {
               avoidUa={selectedPrimaryTranslation?.avoid}
               pages={selectedBrief.pages}
               pagesUa={selectedPrimaryTranslation?.pages}
-              tasks={deliverableTasks}
+              tasks={variantDeliverableTasks.a}
               checkedTasks={moduleState.checkedTasks}
               onToggleTask={toggleTask}
+              onAttachTaskFile={attachTaskFile}
+              onSaveTaskLink={saveTaskLink}
             />
             {selectedAlternative ? (
               <VariantCard
@@ -206,11 +294,14 @@ export function ModuleView() {
                 industry={selectedAlternative.industry}
                 description={`${selectedAlternative.wantsDe} ${selectedAlternative.orderDe}`}
                 ukrainian={`${selectedAlternative.wantsUa} ${selectedAlternative.orderUa}`}
-                tasks={deliverableTasks}
+                tasks={variantDeliverableTasks.b}
                 checkedTasks={moduleState.checkedTasks}
                 onToggleTask={toggleTask}
+                onAttachTaskFile={attachTaskFile}
+                onSaveTaskLink={saveTaskLink}
               />
             ) : null}
+            <ProjectExampleCard />
           </div>
         </Panel>
 
@@ -223,8 +314,8 @@ export function ModuleView() {
             <ProgressBar value={progress} />
             <p className="text-sm text-neutral-600 dark:text-neutral-300">
               {isModuleOne
-                ? "Прогрес рахується по основних LAP-завданнях, включно з Animation і WordPress/Elementor Website. Додаткові тільки Plakat і Rollup."
-                : "Мета: зробити LAP-пакет, який можна покласти у портфоліо."}
+                ? "Variante A і Variante B мають окремі галочки. Прогрес показує той варіант, де зараз більше виконано."
+                : "Мета: зробити LAP-пакет, який можна покласти у портфоліо. Варіанти A/B рахуються окремо."}
             </p>
             <button
               type="button"
@@ -282,10 +373,6 @@ export function ModuleView() {
                 </div>
               </CollapsibleCard>
             ) : null}
-
-            <CollapsibleCard title="Aufgaben" eyebrow="Prüfungssimulation + ★ optional" defaultOpen>
-              <TaskList tasks={deliverableTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
-            </CollapsibleCard>
 
             <CollapsibleCard title="Quality Check" eyebrow="Before delivery" defaultOpen>
               <TaskList tasks={qualityTasks} checkedTasks={moduleState.checkedTasks} onToggle={toggleTask} />
@@ -773,9 +860,50 @@ function mergeTaskRecords(existingTasks: TaskRecord[], labels: string[], type: T
       done: existingTask?.done ?? false,
       ready: existingTask?.ready ?? false,
       note: existingTask?.note?.trim() ? existingTask.note : fallbackNote,
-      fileId: existingTask?.fileId
+      fileId: existingTask?.fileId,
+      attachmentName: existingTask?.attachmentName,
+      attachmentSize: existingTask?.attachmentSize,
+      attachmentType: existingTask?.attachmentType,
+      attachmentLink: existingTask?.attachmentLink,
+      attachmentUpdatedAt: existingTask?.attachmentUpdatedAt
     };
   });
+}
+
+function buildVariantTasks(baseTasks: TaskRecord[], variantId: "a" | "b", savedTasks: TaskRecord[]) {
+  const savedById = new Map(savedTasks.map((task) => [task.id, task]));
+
+  return baseTasks.map((task) => {
+    const id = variantTaskId(variantId, task.id);
+    const savedTask = savedById.get(id);
+
+    return {
+      ...task,
+      id,
+      done: savedTask?.done ?? false,
+      ready: savedTask?.ready ?? false,
+      fileId: savedTask?.fileId,
+      attachmentName: savedTask?.attachmentName,
+      attachmentSize: savedTask?.attachmentSize,
+      attachmentType: savedTask?.attachmentType,
+      attachmentLink: savedTask?.attachmentLink,
+      attachmentUpdatedAt: savedTask?.attachmentUpdatedAt
+    };
+  });
+}
+
+function variantTaskId(variantId: "a" | "b", taskId: string) {
+  return `${variantId}-${taskId}`;
+}
+
+function upsertTaskRecord(tasks: TaskRecord[], nextTask: TaskRecord) {
+  const exists = tasks.some((task) => task.id === nextTask.id);
+
+  if (!exists) {
+    return [...tasks, nextTask];
+  }
+
+  return tasks.map((task) => (task.id === nextTask.id ? { ...task, ...nextTask } : task));
 }
 
 function taskNoteForLabel(label: string) {
@@ -828,21 +956,46 @@ function taskNoteForLabel(label: string) {
   return "";
 }
 
-function calculateProgress(tasks: TaskRecord[], checkedTasks: Record<string, boolean>, changedTaskId: string, nextDone: boolean) {
-  const requiredTasks = tasks.filter((task) => !isOptionalTask(task));
+function calculateBestProgress(
+  taskGroups: TaskRecord[][],
+  checkedTasks: Record<string, boolean>,
+  changedTaskId?: string,
+  nextDone?: boolean
+) {
+  const stats = taskGroups.map((tasks) => {
+    const requiredTasks = tasks.filter((task) => !isOptionalTask(task));
+    const totalCount = requiredTasks.length;
+    const checkedCount = requiredTasks.filter((task) => {
+      if (task.id === changedTaskId) {
+        return Boolean(nextDone);
+      }
+      return task.done || checkedTasks[task.id];
+    }).length;
 
-  if (!requiredTasks.length) {
-    return 0;
+    return {
+      checkedCount,
+      totalCount,
+      progress: totalCount ? Math.round((checkedCount / totalCount) * 100) : 0
+    };
+  });
+
+  return stats.sort((a, b) => b.progress - a.progress)[0] ?? {
+    checkedCount: 0,
+    totalCount: 0,
+    progress: 0
+  };
+}
+
+function formatFileSize(size?: number) {
+  if (!size) {
+    return "";
   }
 
-  const checkedCount = requiredTasks.filter((task) => {
-    if (task.id === changedTaskId) {
-      return nextDone;
-    }
-    return task.done || checkedTasks[task.id];
-  }).length;
+  if (size < 1024 * 1024) {
+    return `${Math.round(size / 1024)} KB`;
+  }
 
-  return Math.round((checkedCount / requiredTasks.length) * 100);
+  return `${(size / 1024 / 1024).toFixed(1)} MB`;
 }
 
 function isOptionalTask(task: Pick<TaskRecord, "label">) {
@@ -885,6 +1038,97 @@ function TaskList({
   );
 }
 
+function ProjectExampleCard() {
+  return (
+    <section className="rounded-md border border-brand-200 bg-white p-4 dark:border-brand-900 dark:bg-neutral-900 lg:col-span-2">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <Badge tone="amber">Beispiel</Badge>
+          <h3 className="mt-3 text-base font-semibold">Фото-приклади з реальних проєктів і презентацій</h3>
+          <p className="mt-1 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
+            Це референси для подачі: як показують logo, styleguide, mockups, website UI і презентацію кейсу.
+            Не копіюй дизайн, дивись тільки на структуру і якість оформлення.
+          </p>
+        </div>
+        <div className="rounded-md border border-line bg-neutral-50 px-3 py-2 text-xs text-neutral-600 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-300">
+          Після кожного пункту прикріпи файл або Figma/Drive link під відповідним завданням.
+        </div>
+      </div>
+
+      <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        {realProjectExamples.map((example) => (
+          <a
+            key={example.title}
+            href={example.url}
+            target="_blank"
+            rel="noreferrer"
+            className="group overflow-hidden rounded-md border border-line bg-neutral-50 transition hover:border-brand-300 hover:bg-brand-50 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:border-brand-700 dark:hover:bg-brand-700/10"
+          >
+            <div
+              role="img"
+              aria-label={example.title}
+              className="aspect-[4/3] bg-cover bg-center bg-no-repeat transition duration-300 group-hover:scale-[1.03]"
+              style={{ backgroundImage: `url(${example.image})` }}
+            />
+            <div className="p-3">
+              <p className="text-sm font-semibold">{example.title}</p>
+              <p className="mt-1 text-xs leading-5 text-neutral-600 dark:text-neutral-300">{example.detail}</p>
+              <p className="mt-2 text-[11px] font-semibold text-brand-700 dark:text-brand-100">Відкрити реальний кейс</p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div className="mt-4 rounded-md border border-line bg-neutral-50 p-3 text-sm leading-6 text-neutral-700 dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-300">
+        <p className="font-semibold">Мінімально готовий результат:</p>
+        <p>
+          moodboard PDF, logo PNG/SVG/PDF, styleguide PDF, print PDF з Druckmarken, Instagram mockup,
+          презентація PDF. ★ Якщо маєш час: Figma website design і WordPress/Elementor сторінка.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+const realProjectExamples = [
+  {
+    title: "Logo + Brand Guidelines",
+    detail: "Дивись, як показані логотип, кольори, типографіка і правила бренду.",
+    image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/ae7af2224862685.6812895ae9d98.jpg",
+    url: "https://www.behance.net/gallery/224862685/Brand-Identity-Logo-Design-Brand-Guidelines"
+  },
+  {
+    title: "Brandbook + Präsentation",
+    detail: "Приклад повної подачі: brand book, applications, corporate deck, social media, website UI.",
+    image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/00b733119380191.64ebd9a321fae.png",
+    url: "https://www.behance.net/gallery/119380191/BMD-Creative-Studio-Branding-Case-Study?locale=en_US"
+  },
+  {
+    title: "Logo-System",
+    detail: "Дивись, як показують різні версії логотипу: short, full, extended.",
+    image: "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/222a66249780723.6a10a461eb6cc.png",
+    url: "https://www.behance.net/gallery/249780723/EdTech-Brand-Identity-UXUI-Web-Design-Ads"
+  },
+  {
+    title: "Website UI",
+    detail: "Приклад подачі сайту: desktop blocks, responsive logic, сторінки і візуальна система.",
+    image: "https://mir-s3-cdn-cf.behance.net/project_modules/fs_webp/f750f1249780723.6a10a461eb2c0.png",
+    url: "https://www.behance.net/gallery/249780723/EdTech-Brand-Identity-UXUI-Web-Design-Ads"
+  },
+  {
+    title: "Corporate Design Case",
+    detail: "Приклад реального клієнтського кейсу з problem, solution, outcome і мокапами.",
+    image: "https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/72c51c192025983.66e5baf16ab2b.jpg",
+    url: "https://www.behance.net/gallery/192025983/ORG-Branding-Visual-Identity?locale=en_US"
+  },
+  {
+    title: "Social Media Visuals",
+    detail: "Дивись структуру social post/carousel: key visual, closeups, before/after, mockup.",
+    image: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/a6f32a245490205.69af1cb6bb981.gif",
+    url: "https://www.behance.net/gallery/245490205/Social-Media-Visual-Identity-Multi-Brand-Case-Study"
+  }
+];
+
 function VariantCard({
   label,
   title,
@@ -900,7 +1144,9 @@ function VariantCard({
   pagesUa,
   tasks,
   checkedTasks,
-  onToggleTask
+  onToggleTask,
+  onAttachTaskFile,
+  onSaveTaskLink
 }: {
   label: string;
   title: string;
@@ -917,6 +1163,8 @@ function VariantCard({
   tasks?: TaskRecord[];
   checkedTasks?: Record<string, boolean>;
   onToggleTask?: (task: TaskRecord) => Promise<void>;
+  onAttachTaskFile?: (task: TaskRecord, file: File) => Promise<void>;
+  onSaveTaskLink?: (task: TaskRecord, link: string) => Promise<void>;
 }) {
   return (
     <article className="rounded-md border border-line bg-neutral-50 p-4 dark:border-neutral-800 dark:bg-neutral-950">
@@ -938,9 +1186,9 @@ function VariantCard({
               const optional = isOptionalTask(task);
               const checked = task.done || checkedTasks?.[task.id];
               return (
-                <label
+                <div
                   key={task.id}
-                  className={`flex cursor-pointer items-start gap-3 rounded-md border p-2.5 transition ${
+                  className={`flex items-start gap-3 rounded-md border p-2.5 transition ${
                     checked
                       ? "border-brand-400 bg-brand-50 dark:border-brand-700 dark:bg-brand-700/20"
                       : "border-line hover:border-brand-300 hover:bg-neutral-50 dark:border-neutral-800 dark:hover:border-brand-700 dark:hover:bg-neutral-950"
@@ -952,14 +1200,19 @@ function VariantCard({
                     onChange={() => void onToggleTask?.(task)}
                     className="mt-1 h-4 w-4 accent-brand-600"
                   />
-                  <span className="min-w-0 flex-1">
+                  <div className="min-w-0 flex-1">
                     <span className="flex flex-wrap items-center gap-2">
                       <span>{task.label}</span>
                       {optional ? <Badge tone="amber">freiwillig</Badge> : null}
                     </span>
                     {task.note ? <span className="mt-1 block text-xs leading-5 text-neutral-500 dark:text-neutral-400">{task.note}</span> : null}
-                  </span>
-                </label>
+                    <TaskAttachmentControl
+                      task={task}
+                      onAttachFile={onAttachTaskFile}
+                      onSaveLink={onSaveTaskLink}
+                    />
+                  </div>
+                </div>
               );
             })}
           </div>
@@ -972,5 +1225,82 @@ function VariantCard({
       {pages ? <p className="mt-2 text-sm"><span className="font-semibold">Seitenumfang:</span> {pages}</p> : null}
       {pagesUa ? <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400"><span className="font-semibold">Сторінки:</span> {pagesUa}</p> : null}
     </article>
+  );
+}
+
+function TaskAttachmentControl({
+  task,
+  onAttachFile,
+  onSaveLink
+}: {
+  task: TaskRecord;
+  onAttachFile?: (task: TaskRecord, file: File) => Promise<void>;
+  onSaveLink?: (task: TaskRecord, link: string) => Promise<void>;
+}) {
+  const [link, setLink] = useState(task.attachmentLink ?? "");
+  const [saved, setSaved] = useState(false);
+  const formattedSize = formatFileSize(task.attachmentSize);
+
+  useEffect(() => {
+    setLink(task.attachmentLink ?? "");
+    setSaved(false);
+  }, [task.attachmentLink, task.id]);
+
+  return (
+    <div className="mt-3 grid gap-2 rounded-md border border-dashed border-line bg-neutral-50 p-2 dark:border-neutral-800 dark:bg-neutral-950">
+      <div className="flex flex-wrap items-center gap-2">
+        <label className="inline-flex cursor-pointer items-center gap-2 rounded-md border border-line bg-white px-2.5 py-1.5 text-xs font-semibold text-brand-700 transition hover:border-brand-300 hover:bg-brand-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-brand-100 dark:hover:border-brand-700">
+          <Paperclip size={14} aria-hidden="true" />
+          Datei wählen
+          <input
+            type="file"
+            className="sr-only"
+            accept=".pdf,.png,.jpg,.jpeg,.gif,.svg,.ai,.indd,.psd,.fig,.zip,.mp4,image/*,video/*,application/pdf"
+            onChange={(event) => {
+              const file = event.currentTarget.files?.[0];
+              if (file) {
+                void onAttachFile?.(task, file);
+              }
+              event.currentTarget.value = "";
+            }}
+          />
+        </label>
+
+        {task.attachmentName ? (
+          <span className="min-w-0 truncate text-xs text-neutral-600 dark:text-neutral-300">
+            Збережено: {task.attachmentName}{formattedSize ? ` · ${formattedSize}` : ""}
+          </span>
+        ) : (
+          <span className="text-xs text-neutral-500 dark:text-neutral-400">Файл ще не вибрано</span>
+        )}
+      </div>
+
+      <div className="grid gap-2 sm:grid-cols-[1fr_auto]">
+        <input
+          type="url"
+          value={link}
+          onChange={(event) => {
+            setLink(event.target.value);
+            setSaved(false);
+          }}
+          placeholder="Figma / Drive / PDF link"
+          className="min-h-9 rounded-md border border-line bg-white px-2.5 py-1.5 text-xs outline-none transition focus:border-brand-400 dark:border-neutral-800 dark:bg-neutral-900"
+        />
+        <button
+          type="button"
+          onClick={() => {
+            void onSaveLink?.(task, link).then(() => setSaved(true));
+          }}
+          className="rounded-md border border-line bg-white px-2.5 py-1.5 text-xs font-semibold text-neutral-700 transition hover:border-brand-300 hover:bg-brand-50 dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-brand-700"
+        >
+          Link speichern
+        </button>
+      </div>
+
+      <p className="text-[11px] leading-4 text-neutral-500 dark:text-neutral-400">
+        Для великих робіт краще вставити Figma/Drive link. У програмі зберігається назва файлу і посилання під цим пунктом.
+      </p>
+      {saved ? <p className="text-[11px] font-semibold text-brand-700 dark:text-brand-100">Збережено.</p> : null}
+    </div>
   );
 }
